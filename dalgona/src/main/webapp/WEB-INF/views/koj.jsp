@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <h1>gggggggg</h1>
-   <h2>hhhh</h2>
-   <h3>내꺼 기준</h3>
+<h1>바보야</h1>
+
 </body>
 </html>
