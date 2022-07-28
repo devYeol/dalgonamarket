@@ -1,0 +1,21 @@
+server:
+  port: 9090
+  
+spring :
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: spring
+    password: spring
+    
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 50
+      auto-commit: false
+      connection-test-query:  select 1 from dual
+      pool-name: dalpool
+      
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
