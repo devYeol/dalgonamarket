@@ -7,10 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-	<h1>zasdqwr23r2d</h1>
-=======
-	<h1>gggggggg</h1>
->>>>>>> branch 'dalgona' of https://github.com/devYeol/dalgonamarket.git
+   <h1>gggggggg</h1>
+   <h2>hhhh</h2>
+   <h3>내꺼 기준</h3>
 </body>
 </html>
