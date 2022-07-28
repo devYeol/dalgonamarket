@@ -4,7 +4,7 @@
 		"oracle_thin-18242e751a9-2b369873fe17809": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "dalgona",
+			"name": "61.78.121.242",
 			"save-password": true,
 			"read-only": false,
 			"configuration": {
@@ -28,7 +28,8 @@
 					"@dbeaver-connection-type@": "BASIC",
 					"@dbeaver-sid-service@": "SID"
 				},
-				"auth-model": "oracle_native"
+				"auth-model": "oracle_native",
+				"handlers": {}
 			}
 		}
 	},

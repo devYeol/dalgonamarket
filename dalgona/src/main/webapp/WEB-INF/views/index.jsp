@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>zzzzzzzzzzzz</h1>
-	
-	
-	
-	<h4>인종차별</h4>
+	<h1>gggggggg</h1>
+	<h2>hhhh</h2>
 </body>
 </html>
