@@ -10,61 +10,59 @@
 <meta charset="UTF-8">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 </head>
 <body>
 	<div id="container">
 		<header>
 			<div>
-    <div class="px-3 py-2">
-      <div class="container" style="display:inline-flex; justify-content: space-between; ">
-        <div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
-          <ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
-            <li>
-              <a href="#" class="nav-link text-black">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#facebook"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-black" >
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#instagram"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-black">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#twitter"/></svg>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
-          <ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
-            <li>
-              <a href="#" class="nav-link text-black">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#facebook"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-black" >
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#instagram"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-black">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#twitter"/></svg>
-              </a>
-            </li>
-          </ul>
-        </div>
-        
-      </div>
-    </div>
+			    <div class="px-3 py-2">
+			      <div class="headcontainer" style="display:flex; justify-content: space-between; ">
+			        <div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
+			          <ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
+			            <li>
+			              <a href="#" class="nav-link text-black">
+			                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#facebook"/></svg>
+			              </a>
+			            </li>
+			            <li>
+			              <a href="#" class="nav-link text-black" >
+			                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#instagram"/></svg>
+			              </a>
+			            </li>
+			            <li>
+			              <a href="#" class="nav-link text-black">
+			                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#twitter"/></svg>
+			              </a>
+			            </li>
+			          </ul>
+			        </div>
+			        <div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
+			          <ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
+			            <li>
+			              <a href="#" class="nav-link text-black">
+			                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#facebook"/></svg>
+			              </a>
+			            </li>
+			            <li>
+			              <a href="#" class="nav-link text-black" >
+			                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#instagram"/></svg>
+			              </a>
+			            </li>
+			            <li>
+			              <a href="#" class="nav-link text-black">
+			                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#twitter"/></svg>
+			              </a>
+			            </li>
+			          </ul>
+			        </div>
+			      </div>
+			    </div>
 				<!-- <div>인스타,페북,트위터</div>
 				<div>검색,마이페이지,로그인,장바구니</div> -->
 			</div>
 			<div>
-				<div class="container">
-					<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-top">
+				<div class="headcontainer border-top" style="padding-left:30px; padding-right:30px;  ">
+					<header class="d-flex flex-wrap justify-content-center py-3 mb-1">
 						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
 							 <span class="fs-4">DALGONA MARKET</span>
 						</a>

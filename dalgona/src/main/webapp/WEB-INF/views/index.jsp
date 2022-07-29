@@ -19,15 +19,15 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" class="d-block w-100" alt="..."
-      height="300" width="400 px">
+      height="520" width="400 px">
     </div>
     <div class="carousel-item">
       <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" class="d-block w-100" alt="..."
-      height="300">
+      height="520">
     </div>
     <div class="carousel-item">
       <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" class="d-block w-100" alt="..."
-      height="300">
+      height="520">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
