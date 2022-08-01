@@ -1,0 +1,23 @@
+@charset "EUC-KR";
+.sidebar {
+	height: 100vh;
+	/* background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,0.9)); */
+	background: linear-gradient(#e66465, #9198e5);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 5px 7px 25px #999;
+}
+
+.bottom-border {
+	border-bottom: 2px groove #eee;
+}
+
+.sidebar-link {
+	transition: all .4s;
+}
+
+.sidebar-link:hover {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+}
