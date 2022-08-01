@@ -57,6 +57,12 @@
 	background-color:white;
 } 
 
+.zzim{
+border:0px;
+background-color:white;
+ position:absolute;
+left:290px; 
+}
 </style>
 
 	
@@ -118,7 +124,7 @@
 				<option value="">리뷰 순</option>
 			</select>
 		</div>
-		<!-- <div class="chartsoon" >
+	<!-- 	<div class="chartsoon" >
 			<button style="border:none; background-color:white;">올림차 순</button>
 			<br>
 			<button style="border:none; background-color:white;">내림차 순</button>
@@ -132,353 +138,123 @@
     <div class="carousel-inner">
     	<div class="item">
 	        <div class="row">
-	          <div class="col-3"> <!-- 상품1개 -->
+		    	<div class="col-3" type="button" onclick="ppp();"  > <!-- 상품1개 -->
+	       		   	<div style="position:relative;" >
+			        	<img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" />
+	       		   		<area shape="circle" coords="x10,y10">
+		            	<button class="zzim" onclick="zzim();" >♡</button>
+		            </div>
+	
+		          	<div class="leftbox">
+						<span> 해바라기 씨</span>
+					</div>
+					<div class="rightbox">		         
+						<span>★4.8/5</span>
+					</div>
+		         	 <hr class="line">
+			          
+		          	 <div class="leftbox">
+						<span class="">&nbsp;컨텐츠</span>
+					 </div>
+					 <div class="rightbox" >
+						<button onclick="" style="border:0px; background-color:white;">♡</button>
+						<span class="">(1,227)</span>
+			     	 </div><br><br>
+			          
+			          <div>
+		          	   <span style="font-size:7px;">&gt;&gt;상세보기</span>
+						<h4 style="float:right;">1400원</h4> 
+		        	  </div>
+	        		
+		          	</div> <!-- 상품1개끝 -->
+		          
+		          
+		          <div class="col-3" type="button" onclick=""> <!-- 상품1개 -->
+	          	  	<div>
+			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
+		            </div>
+	
+		          	<div class="leftbox">
+						<span> 해바라기 씨</span>
+					</div>
+					<div class="rightbox">		         
+						<span>★4.8/5</span>
+					</div>
+	           	    <hr class="line">
+			          
+		          	<div class="leftbox">
+						<span class="">&nbsp;컨텐츠</span>
+					</div>
+					<div class="rightbox">
+					 	<button onclick="" style="border:0px; background-color:white;">♡</button>
+					 	<span class="">(1,227)</span>
+	  				 </div><br><br>
+			          
+			          <div>
+			          	<span style="font-size:7px;">&gt;&gt;상세보기</span>
+						<h4 style="float:right;">1400원</h4> 
+			          </div>
+		          </div> <!-- 상품1개끝 -->
+	
+	
+		          <div class="col-3" type="button" onclick=""> <!-- 상품1개 -->
 	          		<div>
 			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
+		            </div>
 		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
+						<span> 해바라기 씨</span>
 						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
+						<div class="rightbox">		         
 							<span >★4.8/5</span>
 						</div>
-		         	 <hr class="line">
+			         	 <hr class="line">
+			          
+			          	<div class="leftbox">
+							<span class="">&nbsp;컨텐츠</span>
+						</div>
+						<div class="rightbox" >
+						<button onclick="" style="border:0px; background-color:white;">♡</button>
+							<span class="">(1,227)</span>
+						</div><br><br>
+			          
+			          <div>
+			          	<span style="font-size:7px;">&gt;&gt;상세보기</span>
+						<h4 style="float:right;">1400원</h4> 
+			          </div>
+		          </div> <!-- 상품1개끝 -->
 		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
 		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	          <div class="col-3"> <!-- 상품1개 -->
-	          	
-	         
+		          <div class="col-3" type="button" onclick=""> <!-- 상품1개 -->
 	          		<div>
 			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
+		            </div>
+		 
+	          	   <div class="leftbox">
+					<span> 해바라기 씨</span>
+				   </div>
+					<div class="rightbox">		         
+						<span >★4.8/5</span>
+					</div>
+	         	   <hr class="line">
+			          
 		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
+						<span class="">&nbsp;컨텐츠</span>
 					</div>
 					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
+						<button onclick="" style="border:0px; background-color:white;">♡</button>
+						<span class="">(1,227)</span>
 					</div><br><br>
+			          
+			          <div>
+			          	<span style="font-size:7px;">&gt;&gt;상세보기</span>
+						<h4 style="float:right;">1400원</h4> 
+			          </div>
+	        		
+		          </div> <!-- 상품1개끝 -->
 		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	          <div class="col-3"> <!-- 상품1개 -->
-	          	
-	         
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
 		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	          <div class="col-3"> <!-- 상품1개 -->
-	          	
-	         
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	          
-	          
-	        </div>
+		        </div>
 	        <br><br>
-	        
-	        <div class="row">
-	          <div class="col-3"> <!-- 상품1개 -->
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	          <div class="col-3"> <!-- 상품1개 -->
-	          	
-	         
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	          <div class="col-3"> <!-- 상품1개 -->
-	          	
-	         
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	          
-	          <div class="col-3"> <!-- 상품1개 -->
-	          	
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	          
-	          
-	        </div> 
-	        
-	         <br><br>
-	        
-	        <div class="row">
-	          <div class="col-3"> <!-- 상품1개 -->
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	          
-	          <br><br><br>
-	          
-	          <div class="col-3"> <!-- 상품1개 -->
-          		<div>
-		          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	           <br><br>
-	          <div class="col-3"> <!-- 상품1개 -->
-	          	
-	         
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	           <br><br>
-	          
-	          <div class="col-3"> <!-- 상품1개 -->
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		          </div>
-
-		          	<div class="leftbox">
-							<button class="btnnone" style="padding-top:10px;"> 해바라기 씨</button>
-						</div>
-						<div class="rightbox" style="padding-top:10px;">		         
-							<span >★4.8/5</span>
-						</div>
-		         	 <hr class="line">
-		          
-		          	<div class="leftbox">
-						<span class="">&nbsp;해바라기 씨</span>
-					</div>
-					<div class="rightbox" >
-						<span class="">♡(1,227)</span>
-					</div><br><br>
-		          
-		          <div>
-		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
-		          </div>
-        		
-	          </div> <!-- 상품1개끝 -->
-	        </div> <!-- 1열 끝 -->
-	        
     	</div>
     </div>
   </div> 	
@@ -504,4 +280,23 @@
 </section>
    	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+
+<script>
+
+	const ppp=()=>{
+		console.log('상세페이지');
+	}
+
+	const zzim=()=>{
+		console.log('클릭 이벤트 처리');
+	}
+			
+
+		
+		
+
+</script>
+
+
    	
