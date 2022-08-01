@@ -1,8 +1,13 @@
 @charset "UTF-8";
 
 /* 결제페이지-메인 */
+#payment-box {
+	width: 900px;
+ 	margin: 0 auto;
+}
 
-.payment-table{
+
+.payment-table {
 /* 	background-color: beige; */
 	width: 900px;
 	border-collapse: separate;
@@ -27,7 +32,7 @@
 #payment-container {
 /*  	background-color: lightgray; */
 	width: 900px;
-	height: 1100px;
+	height: 1040px;
  	margin: 0 auto;
 }
 
