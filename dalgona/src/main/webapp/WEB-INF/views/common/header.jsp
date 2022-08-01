@@ -5,6 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/header.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -67,6 +68,7 @@
 							 <span class="fs-4">DALGONA MARKET</span>
 						</a>
 						<ul class="nav nav-pills">
+							<li class="nav-item"><a href="${path}/admin/adminMain.do" class="nav-link" style="color: gray">ADMIN</a></li>
 							<li class="nav-item"><a href="#" class="nav-link" style="color: red">CUSTOMER</a></li>
 							<li class="nav-item"><a href="#" class="nav-link">SHOP</a></li>
 							<li class="nav-item"><a href="#" class="nav-link">EVENT</a></li>
