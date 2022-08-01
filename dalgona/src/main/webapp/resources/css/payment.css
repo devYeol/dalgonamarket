@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+/* 결제페이지-메인 */
+#payment-box {
+	width: 900px;
+ 	margin: 0 auto;
+}
+
+
+.payment-table {
+/* 	background-color: beige; */
+	width: 900px;
+	border-collapse: separate;
+  	border-spacing: 0 10px;
+  	
+}
+
 /* 결제, 취소 버튼 */
 /* #payment-cancle-btn {
 	
@@ -9,14 +24,6 @@
 	
 } */
 
-.payment-table{
-/* 	background-color: beige; */
-	width: 900px;
-	border-collapse: separate;
-  	border-spacing: 0 10px;
-  	
-}
-
 /* #payment-tr {
 	border-collapse: separate;
 	border-spacing: 0 20px;
@@ -25,7 +32,7 @@
 #payment-container {
 /*  	background-color: lightgray; */
 	width: 900px;
-	height: 1100px;
+	height: 1040px;
  	margin: 0 auto;
 }
 
@@ -58,4 +65,11 @@
 .payment-btn-1 {
 	margin: auto;
 }
+
+
+/* payment success */
+
+
+
+
 
