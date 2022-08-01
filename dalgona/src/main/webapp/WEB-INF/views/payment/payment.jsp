@@ -12,11 +12,19 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 
+&nbsp;
+&nbsp;
+
 <section id="payment-content">
 
-		<h2>주문/결제</h2>
-		<hr class="my-4">
-
+<!-- 		<h2>주문/결제</h2>
+		<hr class="my-4"> -->
+		
+		<div id="payment-box">
+			<h2>주문/결제</h2>
+			<hr class="my-4">
+		</div>
+		
 		&nbsp;
 		
 		<div id="payment-container">
@@ -28,23 +36,27 @@
 						<tr class="payment-tr">
 							<th scope="row" id="payment-th"><label for="">이름</label></th>
 							<td>
-								<input class="form-control" id="" placeholder="홍길동" readonly>
+								$ name
+								<!-- <input class="form-control" id="" placeholder="홍길동" readonly> -->
 							</td>
 						<tr class="payment-tr">
 							<th scope="row" id="payment-th"><label for="">이메일</label></th>
 							<td>
-								<input class="form-control" id="" placeholder="a@a.com" readonly>
+								$ email
+								<!-- <input class="form-control" id="" placeholder="a@a.com" readonly> -->
 							</td>
 						</tr>
 						<tr class="payment-tr">
 							<th scope="row" id="payment-th"><label for="">전화번호</label></th>
 							<td>
-								<input class="form-control" id="" placeholder="01012341234" readonly>
+								$ phone
+								<!-- <input class="form-control" id="" placeholder="01012341234" readonly> -->
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				
+				<br>
 				<br>
 				
 				<div class="deli-btn-content">
@@ -59,26 +71,30 @@
 						<tr class="payment-tr">
 							<th scope="row" id="payment-th"><label for="">이름</label></th>
 							<td>
-								<input class="form-control" id="" placeholder="신사임당" readonly>
+								$ name
+								<!-- <input class="form-control" id="" placeholder="신사임당" readonly> -->
 							</td>
 						</tr>
 						<tr class="payment-tr">
 							<th scope="row" id="payment-th"><label for="">배송주소</label></th>
 							<td>
-								<input class="form-control" id="" placeholder="서울시 금천구" readonly>
+								$ address
+								<!-- <input class="form-control" id="" placeholder="서울시 금천구" readonly> -->
 							</td>
 						</tr>
 						<tr class="payment-tr">
 							<th scope="row" id="payment-th"><label for="">전화번호</label></th>
 							<td>
-								<input class="form-control" id="" placeholder="01043214321" readonly>
+								$ phone
+								<!-- <input class="form-control" id="" placeholder="01043214321" readonly> -->
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			
-			&nbsp;
+			<br>
+			<br>
 			
 			<!-- 배송정보 -->
 			<div class="deli-2">
@@ -90,7 +106,7 @@
 			
 			<table class="payment-table" id="payment-deli-table">
 				<thead>
-<!-- 					<tr class="payment-tr">
+<!-- 				<tr class="payment-tr">
 						<th scope="col" colspan="2" id="deli-th">@요일 N/N 도착예정</th>
 						<th scope="col" colspan="5">수량</th>
 						<th scope="col" colspan="5">배송비</th>
@@ -108,7 +124,8 @@
 				</tbody>
 			</table>
 			
-			&nbsp;
+			<br>
+			<br>
 			
 			<!-- 결제 정보 -->
 			<div class="">
@@ -163,19 +180,25 @@
 						</tr>
 						<tr class="payment-tr">
 							<th scope="row" id="payment-th"><label for=""></label></th>
-							<td>
+							<!-- <td>
 								<input class="form-control" id="" placeholder="내용을 입력해주세요.">
-							</td>
+							</td> -->
 						</tr>
 					</tbody>
 				</table>
 				
 				&nbsp;
 				
-				<div class="d-grid gap-2 col-6 mx-auto">
+ 				<div class="d-grid gap-2 row">
+					<button type="button" class="btn btn-secondary col-4 btn-lg">취소</button>
+					<button type="button" class="btn btn-primary col-4 btn-lg">결제</button>
+				</div>
+				
+				<div class="d-grid gap-2 col-4 mx-auto">
 					<button type="button" class="btn btn-secondary btn-lg">취소</button>
 					<button type="button" class="btn btn-primary btn-lg">결제</button>
 				</div>
+
 			</div>
 			
 			&nbsp;
