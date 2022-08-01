@@ -38,10 +38,12 @@
 							<a href="#" class="text-white">ADMIN</a>
 						</div>
 						<ul class="navbar-nav flex-column mt-4">
-							<li class="nav-item"><a href="#"
-								class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-									class="fas fa-home text-white fa-lg mr-3"></i>메인페이지
-							</a> <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+							<li class="nav-item">
+								<a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"> 
+									<i class="fas fa-home text-white fa-lg mr-3"></i>메인페이지
+								</a>
+							</li>
+							<a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
 									<i class="fas fa-home text-white fa-lg mr-3"></i>상품등록
 							</a> <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
 									<i class="fas fa-home text-white fa-lg mr-3"></i>상품관리
