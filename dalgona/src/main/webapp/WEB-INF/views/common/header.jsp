@@ -63,7 +63,7 @@
 				<div>검색,마이페이지,로그인,장바구니</div> -->
 			</div>
 			<div>
-				<div class="headcontainer border-top" style="padding-left:30px; padding-right:30px;  ">
+				<div class="headcontainer border-top" style="padding-left:60px; padding-right:60px;  ">
 					<header class="d-flex flex-wrap justify-content-center py-3 mb-1">
 						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
 							 <span class="fs-4">DALGONA MARKET</span>

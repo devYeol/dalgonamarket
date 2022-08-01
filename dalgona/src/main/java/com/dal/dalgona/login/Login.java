@@ -26,4 +26,9 @@ public class Login {
 		return "common/enrollPage";
 	}
 	
+	@RequestMapping("/address")
+	public String address() {
+		return "common/address";
+	}
+	
 }
