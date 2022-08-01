@@ -1,13 +1,6 @@
 @charset "UTF-8";
 
-/* 결제, 취소 버튼 */
-/* #payment-cancle-btn {
-	
-}
-
-#payment-btn {
-	
-} */
+/* 결제페이지-메인 */
 
 .payment-table{
 /* 	background-color: beige; */
@@ -16,6 +9,15 @@
   	border-spacing: 0 10px;
   	
 }
+
+/* 결제, 취소 버튼 */
+/* #payment-cancle-btn {
+	
+}
+
+#payment-btn {
+	
+} */
 
 /* #payment-tr {
 	border-collapse: separate;
@@ -58,4 +60,11 @@
 .payment-btn-1 {
 	margin: auto;
 }
+
+
+/* payment success */
+
+
+
+
 

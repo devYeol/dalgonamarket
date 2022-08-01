@@ -4,7 +4,7 @@
 		"oracle_thin-18242e751a9-2b369873fe17809": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "61.78.121.242",
+			"name": "dalgona",
 			"save-password": true,
 			"read-only": false,
 			"configuration": {
@@ -13,6 +13,36 @@
 				"database": "XE",
 				"url": "jdbc:oracle:thin:@61.78.121.242:8877:XE",
 				"home": "C:\\app\\dnjs1\\product\\18.0.0\\dbhomeXE",
+				"type": "dev",
+				"provider-properties": {
+					"show-only-one-schema@": "false",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "true",
+					"@dbeaver-meta-use-alternative-table-query@": "false",
+					"oracle.meta-search-in-synonyms": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SID"
+				},
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-18257d98f27-7d45eb0ce201a6e8": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "localhost",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XE",
+				"url": "jdbc:oracle:thin:@localhost:1521:XE",
+				"home": "C:\\app\\RA\\product\\18.0.0\\dbhomeXE",
 				"type": "dev",
 				"provider-properties": {
 					"show-only-one-schema@": "false",

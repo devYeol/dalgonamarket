@@ -20,6 +20,7 @@ public class DeliveryLocation {
 	@Id
 	private String addressCode;
 	
+//	private Memberrrr memberId;
 	private String memberId;
 	
 	private String adrPostNum;
@@ -33,5 +34,7 @@ public class DeliveryLocation {
 	private String addrPhone;
 	
 	private String addrBase;
+	
+	
 
 }

@@ -13,10 +13,12 @@
 </jsp:include>
 
 <section id="payment-content">
-
-		<h2>주문/결제</h2>
-		<hr class="my-4">
-
+		
+		<div id="payment-title">
+			<h2>주문/결제</h2>
+			<hr class="my-4">
+		</div>
+		
 		&nbsp;
 		
 		<div id="payment-container">

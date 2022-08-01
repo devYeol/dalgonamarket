@@ -3,10 +3,14 @@ server:
   
 spring :
   datasource:
-    url: jdbc:oracle:thin:@61.78.121.242:8877:xe
+    #url: jdbc:oracle:thin:@61.78.121.242:8877:xe
+    #driver-class-name: oracle.jdbc.driver.OracleDriver
+    #username: dal
+    #password: gona1234!
+    url: jdbc:oracle:thin:@localhost:1521:xe
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: dal
-    password: gona1234!
+    username: spring
+    password: spring
     
     hikari:
       minimum-idle: 10
@@ -20,6 +24,11 @@ spring :
       prefix: /WEB-INF/views/
       suffix: .jsp
   
-  # JPA 작동시 SQL문 로그 출력용
+  # JPA 환경설정
   jpa:
+    generate-ddl: true
     show-sql: true
+    database: oracle
+    database-platform: org.hibernate.dialect.Oracle9iDialect
+    hibernate:
+      ddl-auto: create
