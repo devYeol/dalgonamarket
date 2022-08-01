@@ -90,7 +90,7 @@
 			
 			<table class="payment-table" id="payment-deli-table">
 				<thead>
-<!-- 					<tr class="payment-tr">
+<!-- 				<tr class="payment-tr">
 						<th scope="col" colspan="2" id="deli-th">@요일 N/N 도착예정</th>
 						<th scope="col" colspan="5">수량</th>
 						<th scope="col" colspan="5">배송비</th>
