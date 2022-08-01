@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/header.css" />
+<script href="${path}/js/jquery-3.6.0.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <html>
@@ -62,7 +63,7 @@
 				<div>검색,마이페이지,로그인,장바구니</div> -->
 			</div>
 			<div>
-				<div class="headcontainer border-top" style="padding-left:30px; padding-right:30px;  ">
+				<div class="headcontainer border-top" style="padding-left:60px; padding-right:60px;  ">
 					<header class="d-flex flex-wrap justify-content-center py-3 mb-1">
 						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
 							 <span style="font-size:40px;">DALGONA MARKET</span>

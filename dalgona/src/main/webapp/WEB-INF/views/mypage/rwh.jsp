@@ -23,15 +23,14 @@
 .sidebar {
 	width: 100%;
 	height: 600px; 
-	width: 200px; position : sticky;
-	top: 0;
-	position: sticky; top : 0;
+	width: 200px;
+	position: sticky; top : 30;
 	color: black;
 	background-color: white;
 	border: 1px solid #adb5bd;
 }
 
-#l2 {
+.orderlist-form {
 	margin-left: 100px;
 	margin-right: 100px;
 }
@@ -165,54 +164,33 @@ img{
 
 </style>
 
-<div class="headcontainer border-top" style="padding-top: 20px">
-
-	<!-- test -->
-	<section id="l2">
-		<div class="container1">
-			<div>
-				<div class="sidebar">
-					<label for="expand-menu"><div style="margin-top: 10px"><h2 style="font-weight: bold">마이페이지</h2></div></label>&nbsp;
-					<ul id="side">
-						<li id="firstMenu" class="sideMenu"><a href="#" class="item">쇼핑정보</a></li> <br>
-						<li class="sideMenu"><a href="#" class="item">찜 목록</a></li> <br>
-						<li class="sideMenu"><a href="#" class="item">장바구니</a></li> <br>
-						<li class="sideMenu"><a href="#" class="item">구매내역</h3></li> <br>
-						<li class="sideMenu"><a href="#" class="item">상품문의</a></li>
-						<br>
-						<li class="sideMenu"><a href="#" class="item">내정보</a></li> <br>
-						<li class="sideMenu"><a href="#" class="item">내정보 수정</a></li> <br> 
-						<li class="sideMenu"><a href="#" class="item">포인트 내역</a></li> <br>
-						<li class="sideMenu"><a href="#" class="item">주소록</h3></a></li> <br>
-					</ul>
-				</div>
-			</div>
-			<div class="content">
-				<h1 id="main2">구매내역</h1>
-				<nav>
-					<ul>
-						<li id="pay1" class="pay"><a href="#">1<br>전체 구매 내역</a></li>
-						<li class="pay"><a href="#">1<br>배송 중</a></li>
-						<li class="pay"><a href="#">1<br>배송 완료</a></li>
-						<li class="pay"><a href="#">1<br>환불 요청</a></li>
-						<li class="pay"><a href="#">1<br>환불 완료</a></li>
-					</ul>
-				</nav>
-				<div style="border: 1px solid #adb5bd; width: 850px; margin-left: 130px;">
-					<input id="someDate" class="someDate2" type="date">
-					<h2 class="someDate2">~</h2>
-					<input class="someDate2" type="date">
-				</div>
-				<div style="border: 1px solid #adb5bd; width: 850px; margin-left: 130px;">
+	<div class="headcontainer border-top" style="padding-top: 20px"></div>
+   	<section class="orderlist-form">
+		<div>
+            <div class="sidebar">
+               <h4><strong>마이페이지</strong></h4>
+               <ul>
+                  <li id="firstMenu" class="sideMenu" style=""><h5>쇼핑정보</h5></li>
+                  <li class="sideMenu"><a href="#">찜 목록</a></li> 
+                  <li class="sideMenu"><a href="#">장바구니</a></li> 
+                  <li class="sideMenu"><a href="#">구매내역</a></li> 
+                  <li class="sideMenu"><a href="#">상품문의</a></li>
+                  <li class="sideMenu"><h5>내정보</h5></li>
+                  <li class="sideMenu"><a href="#">내정보 수정</a></li>
+                  <li class="sideMenu"><a href="#">포인트 내역</a></li> 
+                  <li class="sideMenu"><a href="#">주소록</a></li>
+               </ul>
+            </div>
+         </div>
+				<div style=" margin-left: 130px;">
 					<p id="p1">한번에 조회 가능한 기간은 최대 6개월 이고 환불은 배송 완료 후 7일 내만 가능합니다.</p>
 				</div>
 				<div>
 					<div id="check1">
-						<div style="border: 1px solid #adb5bd;">
+						<div  >
 							<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..." style="margin-top: 10px">
 							<p id="check3">전체선택</p>
 							<button type="button" class="btn btn-outline-primary" id="btnDelete">선택삭제</button>
-						 	<a href="#" class="link-primary">주문상세 보기</a>
 						</div>
 						<hr class="my-4">
 						<div id="shipping1">
@@ -251,8 +229,6 @@ img{
 							</div>
 						</div>
 					</div>
-					
-					
 				</div>
 			</div>
 		</div>

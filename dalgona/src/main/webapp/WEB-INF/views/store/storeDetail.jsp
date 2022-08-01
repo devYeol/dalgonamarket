@@ -8,38 +8,38 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 <section id="content">
-	<main class="container">
+	<main class="container" style="width: 1050px;">
 
-		<div class="row mb-2">
+		<div class="row mb-2 d-grid gap-4">
 
 
 			<div class="row g-5">
-				<div class="col-md-6" style="border-right:1px solid; black; padding-right: 10px;">
+				<div class="col-md border-end">
 					<div class="position-sticky" style="top: 2rem;">
 						<img
 							src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-							class="d-block w-100" alt="..." height="500" width="410px">
+							class="d-block w-100" alt="..." height="410" width="410px">
 					</div>
 				</div>
 
-				<div class="col-md-6 d-grid gap-5">
+				<div class="col-md d-grid gap-5" style="margin-left	: 10px;">
 					<div class="row border-bottom"> 
 						<div class="col-8"><h4>맛있는 초코비</h4></div>
 						<div class="col-2">별점</div>
 						<div class="col-2"><span><i class="fas fa-heart" ></i> 찜 </span></div>
 					</div>
 					
-					<div class="row border-bottom" >
-						<div class="col-9 ">판매가</div>
+					<div class="row border-bottom " >
+						<div class="col-8 ">판매가</div>
 						
-						<div class="col-3 ">
+						<div class="col-4 ">
 							<div> 1400원</div>
 							<div>(재고수량 : 00)</div>
 						</div>
 					</div>
 					
-					<div class="row border-bottom">
-						<div>배송비 : 2500원</div>	
+					<div class="row border-bottom ">
+						<div >배송비 : 2500원</div>	
 						<div >도착예정일</div>
 					</div>
 					
