@@ -21,18 +21,37 @@
 }
 
 .sidebar {
-	width: 100%;
+/* 	width: 100%;
 	height: 600px; 
 	width: 200px;
 	position: sticky; top : 30;
 	color: black;
 	background-color: white;
 	border: 1px solid #adb5bd;
+	 */
+	width: 100%;
+    height: 600px; 
+    width: 200px; 
+    position : sticky; 
+    top: 50px;
 }
 
+.sidebar ul{
+	padding: 0;
+    margin-top: 30px;
+}
+.sidebar ul li {
+   list-style: none;
+   margin-top: 20px;
+}
+.sidebar ul li a {
+   text-decoration: none;
+   color: black;
+}
 .orderlist-form {
 	margin-left: 100px;
-	margin-right: 100px;
+ 	margin-right: 100px;
+    display: flex;
 }
 
 #main2 {
