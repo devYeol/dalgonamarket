@@ -18,11 +18,11 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" class="d-block w-100" alt="..."
+      <img src="https://i.pinimg.com/564x/74/8d/d1/748dd1a5810cfe4393cc90c063df3a49.jpg" class="d-block w-100" alt="..."
       height="520" width="400 px">
     </div>
     <div class="carousel-item">
-      <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" class="d-block w-100" alt="..."
+      <img src="http://korean.visitseoul.net/comm/getImage?srvcId=MEDIA&parentSn=19242&fileTy=MEDIA&fileNo=2" class="d-block w-100" alt="..."
       height="520">
     </div>
     <div class="carousel-item">
@@ -42,7 +42,7 @@
 <!-- 배너 끝 -->
   
 	<!-- 카테고리 시작-->  
-  <div class="album py-5 bg-light">
+  <div class="album py-5" >
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col">
