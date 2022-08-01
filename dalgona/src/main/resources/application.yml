@@ -19,3 +19,7 @@ spring :
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+  
+  # JPA 작동시 SQL문 로그 출력용
+  jpa:
+    show-sql: true
