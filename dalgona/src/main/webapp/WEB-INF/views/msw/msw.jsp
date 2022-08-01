@@ -154,7 +154,7 @@
 		          
 		          <div>
 		          	<button class="btnnone" style="font-size:7px;">&gt;&gt;상세보기</button>
-					<h4 style="float:right;"><strong>1400원</strong></h4> 
+					<h4 style="float:right;">1400원</h4> 
 		          </div>
         		
 	          </div> <!-- 상품1개끝 -->

@@ -12,8 +12,8 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
-<body>
-	<div id="container">
+<body style="background-color: white; font-family: 'NeoDunggeunmo';">
+	<div id="container" style="font-size: 30px;">
 		<header>
 			<div>
 			    <div class="px-3 py-2">
@@ -65,7 +65,7 @@
 				<div class="headcontainer border-top" style="padding-left:30px; padding-right:30px;  ">
 					<header class="d-flex flex-wrap justify-content-center py-3 mb-1">
 						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-							 <span class="fs-4">DALGONA MARKET</span>
+							 <span style="font-size:40px;">DALGONA MARKET</span>
 						</a>
 						<ul class="nav nav-pills">
 							<li class="nav-item"><a href="${path}/admin/adminMain.do" class="nav-link" style="color: gray">ADMIN</a></li>
