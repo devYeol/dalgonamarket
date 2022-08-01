@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+/* 결제, 취소 버튼 */
+/* #payment-cancle-btn {
+	
+}
+
+#payment-btn {
+	
+} */
+
+.payment-table{
+/* 	background-color: beige; */
+	width: 900px;
+	border-collapse: separate;
+  	border-spacing: 0 10px;
+  	
+}
+
+/* #payment-tr {
+	border-collapse: separate;
+	border-spacing: 0 20px;
+} */
+
+#payment-container {
+/*  	background-color: lightgray; */
+	width: 900px;
+	height: 1100px;
+ 	margin: 0 auto;
+}
+
+#payment-th {
+	width: 150px;
+}
+
+.deli-btn {
+	display: inline-block;
+}
+
+#deli-btn {
+	margin-bottom: 15px;
+}
+
+.deli-btn-content {
+	display: inline-block;
+}
+
+#deli-th {
+	margin: auto;
+}
+
+#payment-deli-table {
+	background-color: #e6e6fa;
+	border-radius: 20px;
+	text-align: center;
+}
+
+.payment-btn-1 {
+	margin: auto;
+}
+
