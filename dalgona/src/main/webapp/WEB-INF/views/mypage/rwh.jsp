@@ -8,37 +8,36 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 <style>
-.container1 {
-	display: flex;
-	flex-flow: row nowrap; 
-	max-width: 1920px;
-}
-
-.content {
+.orderlist-container {
 	width: 100%;
-	height: 1000px;
-	background-color: white;
+    position: relative;
+    margin-left: 50px;
 }
 
 .sidebar {
 	width: 100%;
-	height: 600px; 
-	width: 200px;
-	position: sticky; top : 30;
-	color: black;
-	background-color: white;
-	border: 1px solid #adb5bd;
+    height: 600px; 
+    width: 200px; 
+    position : sticky; 
+    top: 50px;
 }
 
+.sidebar ul{
+	padding: 0;
+    margin-top: 30px;
+}
+.sidebar ul li {
+   list-style: none;
+   margin-top: 20px;
+}
+.sidebar ul li a {
+   text-decoration: none;
+   color: black;
+}
 .orderlist-form {
 	margin-left: 100px;
-	margin-right: 100px;
-}
-
-#main2 {
-	font-weight: bold;
-	margin-top: 30px;
-	margin-left: 20px;
+ 	margin-right: 100px;
+    display: flex;
 }
 
 #pay1 {
@@ -170,29 +169,48 @@ img{
             <div class="sidebar">
                <h4><strong>마이페이지</strong></h4>
                <ul>
-                  <li id="firstMenu" class="sideMenu" style=""><h5>쇼핑정보</h5></li>
-                  <li class="sideMenu"><a href="#">찜 목록</a></li> 
-                  <li class="sideMenu"><a href="#">장바구니</a></li> 
-                  <li class="sideMenu"><a href="#">구매내역</a></li> 
-                  <li class="sideMenu"><a href="#">상품문의</a></li>
-                  <li class="sideMenu"><h5>내정보</h5></li>
-                  <li class="sideMenu"><a href="#">내정보 수정</a></li>
-                  <li class="sideMenu"><a href="#">포인트 내역</a></li> 
-                  <li class="sideMenu"><a href="#">주소록</a></li>
+                  <li><h5>쇼핑정보</h5></li>
+                  <li><a href="#">찜 목록</a></li> 
+                  <li><a href="#">장바구니</a></li> 
+                  <li><a href="#">구매내역</a></li> 
+                  <li><a href="#">상품문의</a></li>
+                  <li><h5>내정보</h5></li>
+                  <li><a href="#">내정보 수정</a></li>
+                  <li><a href="#">포인트 내역</a></li> 
+                  <li><a href="#">주소록</a></li>
                </ul>
             </div>
          </div>
+         <div class="orderlist-container">
+				<h4><b>구매내역</b></h4>
+	         	<div>
+					<nav>
+						<ul>
+							<li id="pay1" class="pay"><a href="#">1<br>전체 구매 내역</a></li>
+							<li class="pay"><a href="#">1<br>배송 중</a></li>
+							<li class="pay"><a href="#">1<br>배송 완료</a></li>
+							<li class="pay"><a href="#">1<br>환불 요청</a></li>
+							<li class="pay"><a href="#">1<br>환불 완료</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div style="border: 1px solid #adb5bd;">
+					<input id="someDate" class="someDate2" type="date">
+					<h2 class="someDate2">~</h2>
+					<input class="someDate2" type="date">
+				</div>
 				<div style=" margin-left: 130px;">
 					<p id="p1">한번에 조회 가능한 기간은 최대 6개월 이고 환불은 배송 완료 후 7일 내만 가능합니다.</p>
 				</div>
 				<div>
 					<div id="check1">
-						<div  >
-							<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..." style="margin-top: 10px">
-							<p id="check3">전체선택</p>
+						<div style="display: flex; justify-content: space-between;">
+							<div style="margin-top: 8px;">
+								<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+								<div id="check3">전체선택</div>
+							</div>
 							<button type="button" class="btn btn-outline-primary" id="btnDelete">선택삭제</button>
 						</div>
-						<hr class="my-4">
 						<div id="shipping1">
 							<div>
 								<h3 style="font-weight: bold; margin-left: 30px; margin-top: 5px;">2022.xx.xx</h3>
@@ -230,8 +248,8 @@ img{
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+        	 </div>
+
 	</section>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
