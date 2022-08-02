@@ -18,22 +18,22 @@
 	
 		<div class="payment-success-img">
 <!-- 			<img src="./images/payment/payment-success-icon.png" width="85" height="90" border="0" /> -->
-			<img src="resources/images/payment/payment-success-icon.png" width="350" height="300" border="0" />
+			<img src="resources/images/payment/payment-fail-icon.png" width="350" height="300" border="0" />
 		</div>
 		
 		<br>
 		<br>
 		
-		<div class="payment-success-content">
+<!-- 		<div class="payment-success-content">
 			<h2><strong>$ totalPrice</strong></h2>
+		</div> -->
+		
+		<div class="payment-success-content">
+			<h4>주문이 실패했습니다.</h4>
 		</div>
 		
 		<div class="payment-success-content">
-			<h4>주문이 완료되었습니다!</h4>
-		</div>
-		
-		<div class="payment-success-content">
-			<h5>주문번호 : #############</h5>
+			<h5>에러코드 : #############</h5>
 		</div>
 		
 		<br>
