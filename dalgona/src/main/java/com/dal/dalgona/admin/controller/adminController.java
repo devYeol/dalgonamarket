@@ -8,6 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class adminController {
 	@RequestMapping("adminMain.do")
 	public String adminMain() {
-		return "admin/adminMain3";
+		return "admin/adminMain";
+	}
+	
+	@RequestMapping("adminEnrollProduct.do")
+	public String adminEnrollProduct() {
+		return "admin/adminEnrollProduct";
+	}
+	
+	@RequestMapping("adminManageProduct.do")
+	public String adminManageProduct() {
+		return "admin/adminManageProduct";
 	}
 }
