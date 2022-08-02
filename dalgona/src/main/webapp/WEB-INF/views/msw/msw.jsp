@@ -147,6 +147,10 @@
 			            </div>
 		       		   		<!-- <area shape="circle" coords="x10,y10"> -->
 						<div id="zzim" type="button" onclick="zzimc();">
+							<img id="fullheart" style="width:80; height:80;" 
+							src="https://w7.pngwing.com/pngs/998/886/png-transparent-8-bit-color-heart-pixel-art-heart-8-bit-color-heart-pixel-art.png">
+							<img id="beanheart" 
+							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAD1BMVEX///8AAAClpaWhoaHV1dXjUlKlAAACcklEQVR4nO2d0W7CQAwEKeH/v7mPqLoCvrPXt4dmns1mhyaVDGlzuwEAAAAAAAAAAMAeHtf9E9fDLHmO6+czl1nyHPdAj7tZsksPDDGsAkMMdyS79MAQwyowxHBHsksPDDFcI7B3R/hnN9clzzHu3ZF3cfxpjLu5LnmOMXGtx/gqXfIcGK6/CsPKPvWJGGqT58Bw/VUYVvapT8RQmzwHhuuvwrCyT33i2YaRfSyy++mS31H1TfrS/l6V/DYn+w69pv7sep387lzo7LEn2aWHLtmlhy7ZpYcu2aWHLtmlhy7ZpYcu2aWHLtmlhy7ZpYcu2aWHLtmlhy7ZpYcu2aWHLtmlhy5Z12PcPKvu2HYxHHbzsrvuXQx1YJiZ9gDDzLQHGGamPcAwM+0BhplpDzDMTHuAYWbaAwwz0x5gmJn2AMPMtAcYZqY9wDAz7QGGmWkPMMxMe4BhZtoDDDPTHmD4F9193jrm7vN2+a93nQ3X/ipCR/1Z5nZldvzNDIZaMHRIdOuDYTcYOiS69cGwGwwdEt36YNhNfR+3rb9+X9279e85eufWv+cM6rwy9/wWwPDUY+05KobnHxXD84+K4flHxfD8o2J4/lEx1NC5s+35Bvr7n503UvVOu30m9KTqanH7XO8Jht059WDYnVMPht059WDYnVMPht059WDYnVMPht059VTtdW73lD9Z2819N/oIkZ+G70YfIXJF+V51ETCMzviCYXTGFwyjM75gGJ3xBcPojC8YRmd8wTA644vu2Xku6J6d58vZ52QEDM8Hw/PB8HwwPB8MzwfD88HwfL7fUPfsPBd0z84DAAAAAAAAAACAHn4BQt8nu4gj/FAAAAAASUVORK5CYII=">
 							♡
 							<!-- <img id="zzim2" src="https://cdn-icons-png.flaticon.com/512/458/458534.png"
 								  style="width:30px; hight:30px;"> -->
