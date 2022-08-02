@@ -140,8 +140,9 @@ input::placeholder {
 			</h4>
 			<ul>
 				<li><h5>
-						<b>쇼핑정보</b>
+						<b></b>
 					</h5></li>
+				<li><a href="#">쇼핑정보</a></li>
 				<li><a href="#">구매내역</a></li>
 				<li><a href="#">장바구니</a></li>
 				<li><a href="#">찜 목록</a></li>
