@@ -5,9 +5,9 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class QnaId implements Serializable {
+public class OrderDetailId implements Serializable {
 	
-	private String member;
+	private String productOrder;
 	
 	private String product;
 

@@ -23,30 +23,27 @@ import lombok.NoArgsConstructor;
 //@IdClass(QnaId.class)
 public class Qna {
 	
-	// 상품문의
-	
 	@Id
 	private String qnaCode;
 	
 	@ManyToOne
 	@JoinColumn(name="memberId")
-	private Memberrrr member;
+	private Member member;
 	
+	// 상품문의
 	@ManyToOne
 	@JoinColumn(name="productCode")
 	private Product product;
 	
-	/*
-	 * private String memberId;
-	 * 
-	 * private String productCode;
-	 */
-	
 	private String qnaContent;
 	
 	private Date qnaDate;
+
+
 	
-	public void setMemberrrr(Memberrrr m) {
+	
+	
+	public void setMember(Member m) {
 		
 		if(this.member!=null) {
 			this.member.getQna().remove(this);

@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class Memberrrr {
+public class Member {
 	
 	@Id
 	private String memberId;
@@ -59,7 +59,10 @@ public class Memberrrr {
 	@OneToMany(mappedBy="product")
 	private List<Qna> qna=new ArrayList();
 	
-//	@OneToMany(mappedBy="memberId")
-//	private List<DeliveryLocation> memberdelivery=new ArrayList();
+
+	
+	// 배송주소 양방향
+	//	@OneToMany(mappedBy="memberId")
+	//	private List<DeliveryLocation> memberdelivery=new ArrayList();
 
 }
