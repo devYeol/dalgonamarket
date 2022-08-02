@@ -12,6 +12,7 @@
 .cart-form {
 	margin-left: 100px;
 	margin-right: 100px;
+	margin-top: 50px;
 	display: flex;
 }
 
@@ -25,7 +26,7 @@
 
 .sidebar ul {
 	padding: 0;
-	margin-top: 30px;
+	margin-top: 40px;
 }
 
 .sidebar ul li {
@@ -35,6 +36,10 @@
 
 .sidebar ul li a {
 	text-decoration: none;
+	color: #999;
+}
+
+.sidebar ul li a :hover{
 	color: black;
 }
 
