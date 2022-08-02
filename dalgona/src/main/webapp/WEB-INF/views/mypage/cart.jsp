@@ -96,6 +96,7 @@ div img{
                </tr>
             </tbody>
          </table>
+         <hr>
 		 </div>
 	</section>
 
