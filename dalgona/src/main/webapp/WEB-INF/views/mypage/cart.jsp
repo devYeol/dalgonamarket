@@ -11,6 +11,7 @@
 .cart-form {
 	margin-left: 100px;
  	margin-right: 100px;
+ 	margin-top: 50px;
     display: flex;
 }
 .sidebar {
@@ -23,16 +24,23 @@
 
 .sidebar ul{
 	padding: 0;
-    margin-top: 30px;
+    margin-top: 40px;
 }
+
 .sidebar ul li {
    list-style: none;
    margin-top: 20px;
 }
+
 .sidebar ul li a {
    text-decoration: none;
-   color: black;
+   color: #999;
 }
+
+.sidebar ul li a :hover{
+	color: black;
+}
+
 .cart-container {
 	width: 100%;
     position: relative;
@@ -49,14 +57,13 @@ div img{
             <div class="sidebar">
                <h4><strong>마이페이지</strong></h4>
                <ul>
-                  <li><h5>쇼핑정보</h5></li>
-                  <li><a href="#">찜 목록</a></li> 
-                  <li><a href="#">장바구니</a></li> 
+                  <li><h5><b>쇼핑정보</b></h5></li>
                   <li><a href="#">구매내역</a></li> 
-                  <li><a href="#">상품문의</a></li>
-                  <li><h5>내정보</h5></li>
-                  <li><a href="#">내정보 수정</a></li>
-                  <li><a href="#">포인트 내역</a></li> 
+                  <li><a href="#">장바구니</a></li> 
+                  <li><a href="#">찜 목록</a></li>
+                  <br>
+                  <li><h5><b>내정보</b></h5></li>
+                  <li><a href="#">프로필 정보</a></li>
                   <li><a href="#">주소록</a></li>
                </ul>
             </div>
