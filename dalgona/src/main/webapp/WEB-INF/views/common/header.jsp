@@ -70,7 +70,7 @@
 						</a>
 						<ul class="nav nav-pills">
 							<li class="nav-item"><a href="${path}/admin/adminMain.do" class="nav-link" style="color: gray">ADMIN</a></li>
-							<li class="nav-item"><a href="#" class="nav-link" style="color: red">CUSTOMER</a></li>
+							<li class="nav-item"><a href="${path }/mypage/zzim" class="nav-link" style="color: red">CUSTOMER</a></li>
 							<li class="nav-item"><a href="#" class="nav-link">SHOP</a></li>
 							<li class="nav-item"><a href="#" class="nav-link">EVENT</a></li>
 						</ul>

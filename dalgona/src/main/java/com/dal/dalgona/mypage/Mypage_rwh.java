@@ -16,6 +16,12 @@ public class Mypage_rwh {
 		return "sang";
 	}
 	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/mypage/zzim")
 	public String zzim(){
 		return "mypage/zzim";

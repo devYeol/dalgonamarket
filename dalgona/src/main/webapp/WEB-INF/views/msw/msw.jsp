@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
    <jsp:param name="title" value=""/>
 </jsp:include>
@@ -57,11 +56,14 @@
 	background-color:white;
 } 
 
-.zzim{
-border:0px;
-background-color:white;
- position:absolute;
-left:290px; 
+#zzim{
+	border:0px;
+	color:white;
+    position:absolute;
+	left:275px;
+	top:1px; 
+	font-size:30px;
+	
 }
 </style>
 
@@ -139,11 +141,20 @@ left:290px;
     	<div class="item">
 	        <div class="row">
 		    	<div class="col-3" type="button" onclick="ppp();"  > <!-- 상품1개 -->
-	       		   	<div style="position:relative;" >
-			        	<img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" />
-	       		   		<area shape="circle" coords="x10,y10">
-		            	<button class="zzim" onclick="zzim();" >♡</button>
-		            </div>
+	       		   	<div>
+		       		   	<div style="position:relative; " >
+				        	<img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" />
+			            </div>
+		       		   		<!-- <area shape="circle" coords="x10,y10"> -->
+						<div id="zzim" type="button" onclick="zzimc();">
+							♡
+							<!-- <img id="zzim2" src="https://cdn-icons-png.flaticon.com/512/458/458534.png"
+								  style="width:30px; hight:30px;"> -->
+							<!-- <img src="https://w7.pngwing.com/pngs/337/920/png-transparent-red-heart-illustration-red-curry-heart-heart-no-background-love-logo-red.png"
+								style="width:30px; hight:30px;"> -->
+			            	
+						</div>
+	       		   	</div>
 	
 		          	<div class="leftbox">
 						<span> 해바라기 씨</span>
@@ -288,10 +299,15 @@ left:290px;
 		console.log('상세페이지');
 	}
 
-	const zzim=()=>{
+
+	
+	 const zzim = document.getElementById("zzim");
+		const zzimc =()=>{
+		event.stopPropagation();
 		console.log('클릭 이벤트 처리');
-	}
-			
+		 zzim.style.color = "red";
+		 /* zzim.style.background-color = "red";  */
+	}  
 
 		
 		
