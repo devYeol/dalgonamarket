@@ -39,7 +39,7 @@
 	color: #999;
 }
 
-.sidebar ul li a :hover{
+.sidebar ul li a:hover{
 	color: black;
 }
 
@@ -59,22 +59,19 @@
 <div class="headcontainer border-top" style="padding-top: 20px"></div>
 <section class="cart-form">
 	<div>
-		<div class="sidebar">
-			<h4>
-				<strong>마이페이지</strong>
-			</h4>
-			<ul>
-				<li><h5>쇼핑정보</h5></li>
-				<li><a href="#">찜 목록</a></li>
-				<li><a href="#">장바구니</a></li>
-				<li><a href="#">구매내역</a></li>
-				<li><a href="#">상품문의</a></li>
-				<li><h5>내정보</h5></li>
-				<li><a href="#">내정보 수정</a></li>
-				<li><a href="#">포인트 내역</a></li>
-				<li><a href="#">주소록</a></li>
-			</ul>
-		</div>
+    	<div class="sidebar">
+        	<h4><strong>마이페이지</strong></h4>
+               <ul>
+                  <li><h5><b>쇼핑정보</b></h5></li>
+                  <li><a href="#">구매내역</a></li> 
+                  <li><a href="#">장바구니</a></li> 
+                  <li><a href="#">찜 목록</a></li>
+                  <br>
+                  <li><h5><b>내정보</b></h5></li>
+                  <li><a href="#">프로필 정보</a></li>
+                  <li><a href="#">주소록</a></li>
+               </ul>
+         </div>
 	</div>
 
 	<div class="cart-container">

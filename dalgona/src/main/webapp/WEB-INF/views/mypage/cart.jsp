@@ -37,7 +37,7 @@
    color: #999;
 }
 
-.sidebar ul li a :hover{
+.sidebar ul li a:hover{
 	color: black;
 }
 
