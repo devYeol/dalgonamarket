@@ -30,5 +30,9 @@ public class Login {
 	public String address() {
 		return "common/address";
 	}
+	@RequestMapping("/infochange")
+	public String infochange() {
+		return "common/infochange";
+	}
 	
 }
