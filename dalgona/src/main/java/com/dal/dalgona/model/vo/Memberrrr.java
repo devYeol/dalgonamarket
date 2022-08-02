@@ -1,5 +1,6 @@
 package com.dal.dalgona.model.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +27,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Memberrrr {
 	
 	@Id
@@ -40,12 +47,17 @@ public class Memberrrr {
 	
 	private Date memberEnrollDate;
 	
+	// 찜
 	@ManyToMany
 	@JoinTable(name="likes",
 				joinColumns=@JoinColumn(name="memberId"),
 				inverseJoinColumns=@JoinColumn(name="productCode")
 			)
 	private List<Product> products;
+	
+	// 상문문의
+	@OneToMany(mappedBy="product")
+	private List<Qna> qna=new ArrayList();
 	
 //	@OneToMany(mappedBy="memberId")
 //	private List<DeliveryLocation> memberdelivery=new ArrayList();
