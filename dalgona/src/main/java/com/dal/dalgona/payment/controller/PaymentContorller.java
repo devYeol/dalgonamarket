@@ -10,6 +10,15 @@ public class PaymentContorller {
 	public String paymentTest() {
 		return "payment/payment";
 	}
+	
+	@RequestMapping("/paymentSuccess")
+	public String paymentSuccess() {
+		return "payment/paymentSuccess";
+	}
+	
+	@RequestMapping("/paymentFail")
+	public String paymentFail() {
+		return "payment/paymentFail";
+	}
 
 }
-	

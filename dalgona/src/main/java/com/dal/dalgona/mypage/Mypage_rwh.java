@@ -21,4 +21,9 @@ public class Mypage_rwh {
 		return "mypage/zzim";
 	}
 	
+	@RequestMapping("/mypage/cart")
+	public String cart() {
+		return "mypage/cart";
+	
+	}
 }
