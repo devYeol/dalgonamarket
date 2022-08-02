@@ -8,6 +8,13 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 <style>
+.orderlist-form {
+	margin-left: 100px;
+ 	margin-right: 100px;
+ 	margin-top: 50px;
+    display: flex;
+}
+
 .orderlist-container {
 	width: 100%;
     position: relative;
@@ -24,65 +31,84 @@
 
 .sidebar ul{
 	padding: 0;
-    margin-top: 30px;
+    margin-top: 40px;
 }
+
 .sidebar ul li {
    list-style: none;
    margin-top: 20px;
 }
+
 .sidebar ul li a {
    text-decoration: none;
-   color: black;
-}
-.orderlist-form {
-	margin-left: 100px;
- 	margin-right: 100px;
-    display: flex;
+   color: #999;
 }
 
-#pay1 {
-	display: inline;
-	margin-left: 115px
+.sidebar ul li a :hover{
+	color: black;
 }
 
 .pay {
-	display: inline;
-	float: left;
+	display: flex;
 	text-align: center;
-	margin-top: 30px;
-	margin-right: 60px;
-	font-weight: bold;
-	font-size: 25px;
+	justify-content:center;
+	margin-top: 40px;
+	font-size: 22px;
 }
-.pay a{
+
+.pay div {
+	margin-left: 35px;
+	margin-right: 35px;
+}
+.pay a {
 	color: black;
 	text-decoration: none;
 }
-#someDate {
-	margin-left: 200px;
+
+.somedate-search {
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin-top: 40px;
+	height: 40px;
 }
-.someDate2 {
-	margin-top: 30px;
-	margin-right: 80px;
-	display: inline-block;
+
+.someDate {
+	margin-left: 30px;
+	margin-right: 30px;
 }
-#p1{
-	font-weight: bold;
-	margin-top: 30;
-	margin-left: 100;
+
+.btn-somedate { 
+	width: 60px; 
+	height: 30px;
+	font-size: 16px;
+	background-color: white;
+	border: 1px solid #999;
+	border-radius: 10px;
 }
+
+.btn-somedate:hover {
+	background-color: black;
+	color: #fff;
+}
+
 /* #checkboxNoLabel{
 	margin-left: 100px;
 } */
-#check2{
-	margin-top: 30px;
+
+.btn-delete {
+	width: 100px; 
+	height: 35px;
+	font-size: 16px;
+	background-color: white;
+	border: 1px solid #999;
+	border-radius: 10px;
 }
-.btn-outline-primary{
-	font-weight: bolder;
-	text-align: center;
-	width: 150px;
-	/* height: 30px; */
-	display: inline-block;
+
+.btn-delete:hover {
+	background-color: black;
+	color: #fff;
 }
 
 .btn-outline-primary1{
@@ -91,6 +117,7 @@
 	width: 150px;
 	height: 30px;
 }
+
 #btnDelete{
 	width:90px;
 }
@@ -99,55 +126,25 @@
 	justify-content: right;
 	float: right;
 }
-#check3{
+.all-check{
 	display: inline-block;
 	font-weight: bold;
+	margin-left: 7px;
 }
-#check1{
-	width: 850px;
-	margin-top: 30px;
-	margin-left: 130px;
+.orderlist-box{
+	width: 100%;
+	margin-top: 100;
 }
-#btnfont2 {
-	float: right;
-	justify-content: flex-end;
-	/* margin-top: 10px; */
-	margin-bottom: 15px;
+
+#order-data{
+	justify-content: space-between;
 }
-#btnfont2 div{
-	margin-bottom: 10px;
-}
-#shipping{
-	font-weight: bold;
-	font-size: 20px;
-	margin-top: 20px;
-}
-#shipping1{
-	height: 285px; 
-	border: 1px solid #adb5bd;
-	margin-top: 15px;
-	border-radius: 10px;
-}
-#shipping2{
-	margin: 15px;
-	border: 1px solid #adb5bd;
-	height: 215px;
-	border-radius: 10px;
-}
-#shipping3{
-	margin: 15px 15px;
-	height: 180px;
-}
-#shipping3 span{
+#order-data span{
 	margin-top: 10px;
 }
 img{
 	margin-top: 10px;
 	height:150px;
-}
-#shipping4{
-	margin: 15px;
-	width: 200px;
 }
 .item{
 	color: black;
@@ -159,7 +156,43 @@ img{
 	
 }
 
+.check-itembox {
+	display: flex;
+	height: 160px;
+}
 
+.check-item:after {
+	display: inline-block;
+	height: 100%;
+	content: "";
+	vertical-align: middle;
+	margin-left: 20px;
+}
+
+.check-item input {
+	vertical-align: middle;
+}
+
+.check-btn {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.check-btn button {
+	width: 140px; 
+	height: 35px;
+	font-size: 16px;
+	background-color: white;
+	border: 1px solid #999;
+	border-radius: 10px;
+	margin-top:5px; 
+	margin-bottom: 5px;
+}
+.check-btn button:hover {
+	background-color: black;
+	color: #fff;
+}
 
 </style>
 
@@ -169,78 +202,73 @@ img{
             <div class="sidebar">
                <h4><strong>마이페이지</strong></h4>
                <ul>
-                  <li><h5>쇼핑정보</h5></li>
-                  <li><a href="#">찜 목록</a></li> 
-                  <li><a href="#">장바구니</a></li> 
+                  <li><h5><b>쇼핑정보</b></h5></li>
                   <li><a href="#">구매내역</a></li> 
-                  <li><a href="#">상품문의</a></li>
-                  <li><h5>내정보</h5></li>
-                  <li><a href="#">내정보 수정</a></li>
-                  <li><a href="#">포인트 내역</a></li> 
+                  <li><a href="#">장바구니</a></li> 
+                  <li><a href="#">찜 목록</a></li>
+                  <br>
+                  <li><h5><b>내정보</b></h5></li>
+                  <li><a href="#">프로필 정보</a></li>
                   <li><a href="#">주소록</a></li>
                </ul>
             </div>
          </div>
          <div class="orderlist-container">
 				<h4><b>구매내역</b></h4>
-	         	<div>
-					<nav>
-						<ul>
-							<li id="pay1" class="pay"><a href="#">1<br>전체 구매 내역</a></li>
-							<li class="pay"><a href="#">1<br>배송 중</a></li>
-							<li class="pay"><a href="#">1<br>배송 완료</a></li>
-							<li class="pay"><a href="#">1<br>환불 요청</a></li>
-							<li class="pay"><a href="#">1<br>환불 완료</a></li>
-						</ul>
-					</nav>
-				</div>
-				<div style="border: 1px solid #adb5bd;">
-					<input id="someDate" class="someDate2" type="date">
-					<h2 class="someDate2">~</h2>
-					<input class="someDate2" type="date">
-				</div>
-				<div style=" margin-left: 130px;">
-					<p id="p1">한번에 조회 가능한 기간은 최대 6개월 이고 환불은 배송 완료 후 7일 내만 가능합니다.</p>
+				<div>
+		         	<div class="pay">
+						<div><a href="#">1<br>전체 구매 내역</a></div>
+						<div><a href="#">1<br>배송 중</a></div>
+						<div><a href="#">1<br>배송 완료</a></div>
+						<div><a href="#">1<br>환불 요청</a></div>
+						<div><a href="#">1<br>환불 완료</a></div>
+					</div>
+					<div class="somedate-search">
+						<input class="somedate" type="date"><b>~</b>
+						<input class="somedate" type="date">
+						<button class="btn-somedate">조회</button>
+					</div>
+					<div class="somedate-search">
+						<p>한번에 조회 가능한 기간은 최대 6개월 이고 환불은 배송 완료 후 7일 내만 가능합니다.</p>
+					</div>
 				</div>
 				<div>
-					<div id="check1">
+					<div class="orderlist-box">
 						<div style="display: flex; justify-content: space-between;">
 							<div style="margin-top: 8px;">
 								<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-								<div id="check3">전체선택</div>
+								<div class="all-check">전체선택</div>
 							</div>
-							<button type="button" class="btn btn-outline-primary" id="btnDelete">선택삭제</button>
+							<button type="button" class="btn-delete">선택삭제</button>
 						</div>
-						<div id="shipping1">
+						<hr style="margin-top: 8px; margin-bottom: 8px;">
+						<div>
 							<div>
-								<h3 style="font-weight: bold; margin-left: 30px; margin-top: 5px;">2022.xx.xx</h3>
+								<h3 style="margin-bottom: 0px; margin-left: 40px;">2022.02.02</h3>
 							</div>
-							<div id="shipping2">
-								<div id="shipping3" style="display: flex;">
-									<div style="border-right: 1px solid #adb5bd; padding-right: 215px; margin-right:15px; height: 185;">
-									<span id="shipping">배송완료 7.31(일) 도착</span><br>
-										<div style="display: flex;">
+							<div>
+								<div id="order-data" style="display: flex;">
+									<div style="padding-right: 215px; margin-right:15px; height: 160;">
+										<div class="check-itembox">
+											<div class="check-item"><input class="form-check-input" type="checkbox" value=""></div>
 											<div>
-												<img alt="" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" class="d-block w-100">
+												<img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" class="d-block w-100">
 											</div>
-											<div id="shipping4">
-												<span style="font-size: 20px"><b>초코송이</b></span><br><br>
+											<div style="margin-top: 20px; margin-left: 30px">
+												<span style="font-size: 20px"><b>초코송이</b></span><br>
 												<span>1500원 1개</span>
+												<div style="margin-top: 40px">
+													<!-- <span>1500원 1개</span><br> -->
+													<span id="shipping">7.31(일) 도착 배송완료</span><br>
+												</div>
 											</div>
 										</div>
 									</div>
-									<div id="btnfont2">
-										<div>
-											<button type="button" class="btn btn-outline-primary">교환,반품신청</button>
-										</div>
-										<div>
-											<button type="button" class="btn btn-outline-primary">장바구니 담기</button><br>
-										</div>
-										<div>
-											<button type="button" class="btn btn-outline-primary">리뷰작성</button>
-										</div>
-										<div>
-											<button type="button" class="btn btn-outline-primary">상품문의</button>
+									<div class="check-btnbox" style="display: flex;">
+										<div class="check-btn">
+											<button type="button" class="btn">교환,반품신청</button>
+											<button type="button" class="btn">장바구니 담기</button>
+											<button type="button" class="btn">리뷰작성</button>
 										</div>
 									</div>
 								</div>
@@ -248,6 +276,7 @@ img{
 						</div>
 					</div>
 				</div>
+				<hr>
         	 </div>
 
 	</section>

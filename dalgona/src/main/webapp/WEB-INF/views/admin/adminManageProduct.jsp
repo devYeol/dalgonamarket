@@ -24,7 +24,7 @@
 	<div class="container">
 		<!-- 사이드바 영역 -->
 		<jsp:include page="/WEB-INF/views/admin/adminSidebarForm.jsp">
-			<jsp:param name="title" value="" />
+			<jsp:param name="title" value=""/>
 		</jsp:include>
 		<!-- end of sidebar -->
 		<!-- 
@@ -32,45 +32,21 @@
             - 더미 텍스트(Lorem ipsum)을 활용하여 내용 강제로 늘려 테스트
         -->
 		<div class="contents">
-			<div class="contentstitle">메인페이지</div>
-			<div class="maindiv">
-				<div class="card">
-					<table style="width: 85%;">
-						<tr>
-							<td style="height: 80px;">문의</td>
-						</tr>
-						<tr>
-							<td style="height: 120px; border-top: 1px solid #808080; font-size: 40px;">0</td>
-						</tr>
-					</table>
-				</div>
-				<div class="card">
-					<table style="width: 85%;">
-						<tr>
-							<td style="height: 80px;">주문</td>
-						</tr>
-						<tr>
-							<td style="height: 120px; border-top: 1px solid #808080; font-size: 40px;">0</td>
-						</tr>
-					</table>
-				</div>
-				<div class="card">
-					<table style="width: 85%;">
-						<tr>
-							<td style="height: 80px;">환불</td>
-						</tr>
-						<tr>
-							<td style="height: 120px; border-top: 1px solid #808080; font-size: 40px;">0</td>
-						</tr>
-					</table>
-				</div>
+		<div class="contentstitle">상품관리</div>
+			<div class="searchdiv">
 			</div>
-			<div class="contentsdiv">
-				<div class="content"></div>
-			</div>
-			<div class="statsdiv">
-				<div class="stats" style="background-size:75%; background-image: url(/resources/images/chart.png)" ></div>
-				<div class="stats" style="background-size:60%; background-image: url(/resources/images/graph.png)"></div>
+			<div class="listdiv">
+				<table class="listtable">
+					<tr>
+						<th>체크박스</th>
+						<th>상품코드</th>
+						<th>상품명</th>
+						<th>상품수량</th>
+						<th>상품등록일</th>
+						<th>상품등록</th>
+						<th>상품삭제</th>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<!-- end of contents -->
