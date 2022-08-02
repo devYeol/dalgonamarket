@@ -1,9 +1,11 @@
 package com.dal.dalgona.model.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,5 +37,8 @@ public class Product {
 	private String productImage;
 	
 	private Date productDate;
+	
+	@ManyToMany(mappedBy="products")
+	private List<Memberrrr> members;
 
 }
