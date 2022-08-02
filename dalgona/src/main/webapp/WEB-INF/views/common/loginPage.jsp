@@ -43,7 +43,7 @@
 	width: 100%;
 	padding: 10px 0px 5px;
 	border: none;
-	border-bottom: 1px solid #ebebeb;
+	border-bottom: 1px solid #999;
 	outline: none;
 } 
 
@@ -52,7 +52,7 @@
 }
 
 input::placeholder {
-	color:#ebebeb;
+	color:#999;
 }
 
 .btn-area {
@@ -62,6 +62,7 @@ input::placeholder {
 .btn-area button {
 	width: 100%; 
 	height: 50px;
+	background-color: #999;
 	color: #fff;
 	font-size: 18px;
 	border: none;
