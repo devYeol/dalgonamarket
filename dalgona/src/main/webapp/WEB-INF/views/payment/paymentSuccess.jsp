@@ -40,8 +40,8 @@
 		<br>
 		
 		<div class="row gap-2" id="payment-btn" style="width: 400px;">
-			<button type="button" class="btn col btn-secondary btn-lg">장바구니 이동</button>
-			<button type="button" class="btn col btn-primary btn-lg">HOME</button>
+			<button type="button" class="btn col btn-secondary btn-lg">HOME</button>
+			<button type="button" class="btn col btn-primary btn-lg">구매내역 이동</button>
 		</div>
 		
 		
