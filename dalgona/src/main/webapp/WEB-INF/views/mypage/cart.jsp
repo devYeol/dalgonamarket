@@ -49,6 +49,67 @@
 div img{
 	width: 100px;
 }
+
+/* 드롭다운 css */
+#browsers{
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 0.2em 0.2em 0.2em 0.2em;    
+}
+
+.close {
+	display:inline-block;
+	font-weight: bold;
+	}
+.close:after {
+	content: "\00d7";
+	font-size:15pt;
+	
+	}
+/* 선택금액표시 div */
+.allprice-container{
+	border: 4px solid black;
+	text-align: center;
+	margin-top: 50;
+}
+
+.allprice-content{
+	display: inline-block;
+	margin: 0 auto;
+	vertical-align: top;
+}
+
+.allprice-form{
+	padding: 20px 15px 18px;
+    line-height: 17px;
+    color: #555;
+    text-align: center;
+}
+.all-plus{
+	margin: 0 11px 0 10px;
+	/* vertical-align: -4px; */
+}
+
+.allprice-form i{
+	padding: 0 4px 0 5px;
+	font: 700 17px/17px tahoma;
+	color: #111;
+}
+
+.allprice-form
+.final-price{
+	color: red;
+	font-size: 20px;
+}
+
+.cartandprice button{
+	width: 400;
+	height: 50;
+	margin: 30;
+	margin-top: 70;
+}
+
 </style>
 
 <div class="headcontainer border-top" style="padding-top: 20px"></div>
@@ -70,7 +131,7 @@ div img{
          </div>
          <div class="cart-container">
 				<h4><b>장바구니</b></h4>
-				<!-- <div style="margin-top: 20px">
+				<div style="margin-top: 20px">
 					<div>
 						<div style="display: flex; justify-content: space-between;">
 							<div style="margin-top: 8px; margin-left: 10; display: flex">
@@ -80,7 +141,7 @@ div img{
 							<button type="button" class="btn btn-outline-primary" style="margin-right: 10">선택삭제</button>
 						</div>
 					</div>
-				</div>		 -->
+				</div>		
 				<hr>
 				<table style="margin-left: 10; width:100%;">
             <tbody>
@@ -91,19 +152,54 @@ div img{
                         <img src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" width="85" height="90" border="0" />
                      </a>
                   </td>
-                  <td style="width: 65%;">
+                  <td style="width: 40%">
                      <a href="#">상품타이틀</a><br>
-                     수량 N 개
+                     <div style="margin-top:5;">30,000원</div>
+                  </td>
+                  <td style="text-align: center;">
+                  	<select id="browsers">
+					    <option>1개</option>
+					    <option>2개</option>
+					    <option>3개</option>
+					    <option>4개</option>
+					    <option>5개</option>
+					</select>
+					<div style="margin-top: 5px">1,000원</div>
                   </td>
                   <td>
-                  	<div>
+                  	<div style="display: flex; flex-direction: row-reverse; margin-right:15px;">
                   		<button type="button" class="btn btn-danger">구매하기</button>
                   	</div>
+                  </td>
+                  <td style="display: flex;">
+                  	<div class="close"></div>
                   </td>
                </tr>
             </tbody>
          </table>
          <hr>
+         <div class="allprice-container">
+         	<div class="allrprice-content">
+         		<div class="allprice-form">
+         			총 상품가격 
+         			<i>0</i>
+         			원
+         			<span class="all-plus"><img src="/resources/images/mypage/img_plus.png" style="width:14;" > </span>
+         			총 배송비
+         			<i>2,000</i>
+         			원
+         			<span><img src="/resources/images/mypage/img_equals.png" style="width:14;"></span>
+         			총 주문금액
+         			<i class="final-price">31,000</i>
+         		</div>
+         	</div>
+         </div>
+	         <div class="cartandprice"style="text-align: center;">
+			 	<button>쇼핑계속하기</button>
+			 	<button>구매하기</button>
+	         </div>
+		 </div>
+		 <div>
 		 </div>
 	</section>
 
