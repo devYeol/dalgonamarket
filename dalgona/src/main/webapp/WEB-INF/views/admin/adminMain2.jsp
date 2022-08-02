@@ -28,7 +28,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-3 sidebar fixed-top"></div>
-					<div class="col-lg-9 ml-auto bg-dark fixed-top py-2"></div>
+					<div class="col-lg-9 ml-auto bg-dark fixed-top py-2" style="position-left: 200px"></div>
 				</div>
 			</div>
 		</div>
