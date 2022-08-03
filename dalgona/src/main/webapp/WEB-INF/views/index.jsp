@@ -23,8 +23,10 @@
 		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="${path }/resources/images/mainpage/과자광고.png"
+				<img src="https://kream-phinf.pstatic.net/MjAyMjA0MDVfMjg3/MDAxNjQ5MTQxNDQ2MzE5.KmWw8NmaqtTEZQUwNB-qnk94UoRvQjTBz6HE-wcsUPwg.uKnTAOmBZVasnEheK77-WjBLVGkrxaev02tgaOLhqz0g.JPEG/a_e84bc8e4c55041b29479627fc78a2469.jpg"
 					style="width: 100%; height: 72%;">
+<%-- 				<img src="${path }/resources/images/mainpage/과자광고.png"
+					style="width: 100%; height: 72%;"> --%>
 			</div>
 			<div class="carousel-item">
 				<img
