@@ -34,9 +34,16 @@
 		<div class="contents">
 		<div class="contentstitle">상품관리</div>
 			<div class="searchdiv">
+				<div>
+					<img src="${path}/resources/images/glass.png" style="width:24px; height:24px">
+				</div>
+				&nbsp;
+				<div>
+					<input class="search" type="text" placeholder="검색하실 상품명을 입력하세요">
+				</div>
 			</div>
 			<div class="listdiv">
-				<table class="listtable">
+				<!-- <table class="listtable">
 					<tr>
 						<th>체크박스</th>
 						<th>상품코드</th>
@@ -45,6 +52,36 @@
 						<th>상품등록일</th>
 						<th>상품등록</th>
 						<th>상품삭제</th>
+					</tr>
+				</table> -->
+				<div style="display: flex; padding-bottom: 8px;">
+					<div style="padding-top: 10px;">
+						<input type="checkbox" style="width: 15px; height: 15px;">
+					</div>
+					<div style="padding-top: 10px; padding-left: 5px;">
+						<b>전체선택</b>
+					</div>
+					&nbsp;
+					<div style="">
+						<button class="adminbt" style="width: 80px; background-color: #6FB67F;">선택삭제</button>
+					</div>
+				</div>
+				<table class="listtable">
+					
+					<tr>
+						<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
+						<td style="width:90px;" >20142504</td>
+						<td>
+							<img src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" width="95" height="100" border="0" />
+						</td>
+						<td style="width:59%; text-align: left; padding-left:30px">달고나<br>30000원</td>
+						<td>
+							<input style="width:50px; font-size: 15px; padding-right:10px;" type="number" value="5">
+						</td>
+						<td>
+							<button class="adminbt" style="width: 80px; background-color: #6FB67F;">수정</button>
+							<button class="adminbt" style="width: 80px; background-color: #D56B5A;">삭제</button>
+						</td>
 					</tr>
 				</table>
 			</div>
