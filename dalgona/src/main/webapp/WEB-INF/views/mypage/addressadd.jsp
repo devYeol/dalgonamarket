@@ -6,15 +6,14 @@
 <html>
 <body>
 
-<style>
+	<style>
 .cart-form {
-	justify-content:center;
+	justify-content: center;
 	margin-left: 100px;
 	margin-right: 100px;
 	margin-top: 50px;
 	display: flex;
 }
-
 
 .cart-container {
 	width: 100%;
@@ -33,8 +32,8 @@ div img {
 }
 
 .login-form {
-	display:flex;
-	width:70%;
+	display: flex;
+	width: 70%;
 	justify-content: center;
 	align-items: center;
 	min-height: 150vh;
@@ -103,69 +102,76 @@ input::placeholder {
 	background-color: black;
 	color: #fff;
 }
+
 .btn-area2 button {
 	background-color: #999;
-	font-size:10px;
+	font-size: 10px;
 	color: #fff;
 	border: none;
 	border-radius: 10px;
-	width:100px;
-	height:20px;
-	float:right;
-	
+	width: 100px;
+	height: 20px;
+	float: right;
 }
+
 .btn-area2 button:hover {
 	background-color: black;
 	color: #fff;
 }
 </style>
 
-<section class="cart-form">
+	<section class="cart-form">
 		<div class="login-container">
 			<h2>
 				<b>주소록 추가</b>
 			</h2>
-			<br> 
+			<br>
 			<form action="${path}/mypage/shippingset">
 				<div class="int-area">
 					<label for="name"><b>이름</b></label> <br> <input type="text"
-						name="name" placeholder="수령인 이름" autocomplete="off" >
+						name="name" placeholder="수령인 이름" autocomplete="off">
 				</div>
 				<br>
 				<div class="int-area">
-					<label for="phone"><b>휴대폰 번호</b></label> <br> <input type="tel"
-						name="phone" placeholder="-없이 입력" required>
+					<label for="phone"><b>휴대폰 번호</b></label> <br> <input
+						type="tel" name="phone" placeholder="-없이 입력" required>
 				</div>
 				<br>
 				<div class="int-area" style="">
-					<div  class="btn-area2" style="justify-content: space-between;">
+					<div class="btn-area2" style="justify-content: space-between;">
 						<label for="zipcode" style=""><b>우편번호</b></label>
-							<button type="button"style="">우편번호 검색</button>
+						<button type="button" style="">우편번호 검색</button>
 					</div>
 
 					<div>
-					 <input	type="text" name="zipcode" placeholder="우편번호를 검색하세요" autocomplete="off"
-						required>
+						<input type="text" name="zipcode" placeholder="우편번호를 검색하세요"
+							autocomplete="off" required>
 					</div>
 				</div>
 				<br>
 				<div class="int-area">
 					<label for="address"><b>주소</b></label> <br> <input type="text"
-						name="address" placeholder="우편번호 검색후,자동 입력됩니다" autocomplete="off" required>
+						name="address" placeholder="우편번호 검색후,자동 입력됩니다" autocomplete="off"
+						required>
 				</div>
 				<br>
 				<div class="int-area">
-					<label for="address"><b>상세주소</b></label> <br> <input type="text"
-						name="detailaddress" placeholder="건물,아파트 동/호수 입력" autocomplete="off" required>
+					<label for="address"><b>상세주소</b></label> <br> <input
+						type="text" name="detailaddress" placeholder="건물,아파트 동/호수 입력"
+						autocomplete="off" required>
 				</div>
 				<br>
 				<div>
-					<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-					
-					<label>기본배송지로 설정</label>
+					<input class="form-check-input" type="checkbox"
+						id="checkboxNoLabel" value="" aria-label="..."> <label>기본배송지로
+						설정</label>
 				</div>
-				<div class="btn-area" style="display:flex; justify-content: space-between; margin-bottom:10px;">
-					<button type="reset"><b>취소</b>	</button> &nbsp;&nbsp;
+				<div class="btn-area"
+					style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+					<button type="reset">
+						<b>취소</b>
+					</button>
+					&nbsp;&nbsp;
 					<button type="submit" class="">설정하기</button>
 				</div>
 			</form>
@@ -173,6 +179,6 @@ input::placeholder {
 
 
 
-</section>
+	</section>
 </body>
 </html>
