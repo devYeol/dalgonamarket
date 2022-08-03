@@ -243,8 +243,9 @@ img{
 						</div>
 						<hr style="margin-top: 8px; margin-bottom: 8px;">
 						<div>
-							<div>
+							<div style="display: flex">
 								<h3 style="margin-bottom: 0px; margin-left: 40px;">2022.02.02</h3>
+								<h4 style="margin-bottom: 0px; margin-left: 10px">주문</h4>
 							</div>
 							<div>
 								<div id="order-data" style="display: flex;">
@@ -256,10 +257,11 @@ img{
 											</div>
 											<div style="margin-top: 20px; margin-left: 30px">
 												<span style="font-size: 20px"><b>초코송이</b></span><br>
-												<span>1500원 1개</span>
+												<span style="font-size: 15"><b>오우오우 오예스~</b></span><br>
+												<span style="font-size: 15">1500원 1개</span>
 												<div style="margin-top: 40px">
 													<!-- <span>1500원 1개</span><br> -->
-													<span id="shipping">7.31(일) 도착 배송완료</span><br>
+													<span>7.31(일) 도착 배송완료</span><br>
 												</div>
 											</div>
 										</div>

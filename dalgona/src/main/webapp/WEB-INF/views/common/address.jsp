@@ -94,6 +94,20 @@
 	color: #fff;
 }
 
+.btn-basicaddr {
+	width: 100px; 
+	height: 30px;
+	font-size: 14px;
+	background-color: white;
+	border: 1px solid #999;
+	border-radius: 10px;
+}
+
+.btn-basicaddr:hover{
+	background-color: black;
+	color: #fff;
+}
+
 .btn-container:after {
 	display:inline-block; 
 	height:100%; 
@@ -149,6 +163,7 @@
 						<div style="font-size: 15px;">(08772) 서울시 강남구 224 (구디동, 구디아파트) 204동 504호</div>					
 					</div>
 					<div class="btn-container">
+						<button class="btn-basicaddr">기본 배송지</button>
 						<button class="btn-addr">수정</button>
 						<button class="btn-addr">삭제</button>					
 					</div>
