@@ -17,7 +17,7 @@
 		<br>
 		<div class="menu">리뷰관리</div>
 		<br>
-		<div class="menu">주문관리</div>
+		<div class="menu" onclick="location.assign('${path}/admin/adminManageOrder.do')">주문관리</div>
 		<br>
 		<div class="menu">매출통계</div>
 		<br>

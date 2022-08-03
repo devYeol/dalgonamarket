@@ -28,6 +28,7 @@
 			            </li>
 			            <li>
 			              <a href="#" class="nav-link text-black" >
+			              	<i class="bi bi-search"></i>
 			                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#instagram"/></svg>
 			              </a>
 			            </li>
@@ -39,14 +40,19 @@
 			          </ul>
 			        </div>
 			        <div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
+			        	<div>
+			        		<button id="modal-btn" style="border: 1px solid white; background-color: white">
+			        			<img src="/resources/images/header/search.svg" style="width:24; height:24; background-color: white">
+			        		</button>
+			        	</div>
 			          <ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
+			         <!--    <li>
+			            	<a href="#" class="nav-link text-black">
+								<img src="/resources/images/header/search.svg" style="width:24; height:24">
+			            	</a>
+			            </li> -->
 			            <li>
-			              <a href="#" class="nav-link text-black">
-			                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#facebook"/></svg>
-			              </a>
-			            </li>
-			            <li>
-			              <a href="#" class="nav-link text-black" >
+			              <a id ="search-open" href="#" class="nav-link text-black" >
 			                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#instagram"/></svg>
 			              </a>
 			            </li>
