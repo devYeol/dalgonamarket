@@ -21,6 +21,72 @@
 
 <style>
 
+.manageorderdiv { /* 임시 */
+	width: 1000px;
+}
+
+.pay {
+	display: flex;
+	text-align: center;
+	justify-content:center;
+	margin-top: 40px;
+	font-size: 22px;
+}
+
+.pay div {
+ 	margin-left: 35px;
+	margin-right: 35px;
+}
+
+.pay a {
+	color: black;
+	text-decoration: none;
+}
+
+.somedate-search {
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin-top: 40px;
+	height: 40px;
+}
+
+.someDate {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.btn-somedate { 
+	width: 60px; 
+	height: 30px;
+	font-size: 16px;
+	background-color: white;
+	border: 1px solid #999;
+	border-radius: 10px;
+}
+
+.btn-somedate:hover {
+	background-color: black;
+	color: #fff;
+}
+
+.manage-table {
+	height: 200px;
+	width: 1040px;
+	text-align: center;
+}
+
+.manage-detail {
+ 	background-color: beige;
+ 	border-radius: 20px;
+	text-align: center;
+	width: 800px;
+	border-collapse: separate;
+  	border-spacing: 0 10px;
+  	margin: 0 auto;
+}
+
 </style>
 
 </head>
@@ -39,12 +105,162 @@
 		<div class="contents">
 		
 		
-		<h1>dddddddddddddddddddddddddddddddddd</h1>
-		
-		
+			<div class="contentstitle">
+				주문관리
+			</div>
+			
+			<div class="manageorderdiv" style="">
+		         <div class="pay">
+					<div><a href="#">1<br>전체 구매 내역</a></div>
+					<div><a href="#">1<br>배송 중</a></div>
+					<div><a href="#">1<br>배송 완료</a></div>
+					<div><a href="#">1<br>환불 요청</a></div>
+					<div><a href="#">1<br>환불 완료</a></div>
+				</div>
+				<div class="somedate-search">
+					<input class="somedate" type="date"><b>~</b>
+					<input class="somedate" type="date">
+					<button class="btn-somedate">조회</button>
+				</div>
+			</div>
+			
+			<br>
+			<br>
+			
+			<div class="manage-table-div">
+				<table class="manage-table">
+					<tr style="background-color:lightgrey;">
+						<th>
+							<div>
+								<input class="" type="checkbox" value="" id="">
+								<label>전체선택</label>
+							</div>
+						</th>
+						<th>주문번호</th>
+						<th>상품명</th>		
+						<th>주문수량</th>
+						<th>상품가격</th>
+						<th>배송비</th>
+						<th>소계</th>
+						<th>입금일시</th>
+						<th>주문상태</th>
+					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>2500</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>구매확정</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>무료배송</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>결제완료</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>  
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>무료배송</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>환불요청</td>
+					</tr>
+				</table>
+				
+				<br>
+				
+				<h1 style="text-align: center;">페이지바 위치</h1>
+
+			</div>
+			
+			<div class="manage-table-div">
+				<table class="manage-table">
+				
+					<thead>
+						<tr>
+							<th>
+								2022. 8. 8 결제
+							</th>
+						</tr>
+					</thead>
+				
+					<tbody>
+						<tr style="background-color:lightgrey;">
+							<th>주문번호</th>
+							<th>상품명</th>		
+							<th>주문수량</th>
+							<th>상품가격</th>
+						</tr>
+						<tr>
+							<td>
+								<input class="" type="checkbox" value="" id="">
+							</td>
+							<td>2312123123</td>
+							<td>쫀드기</td>		
+							<td>10</td>
+							<td>ㅇㅇ</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			
+			<br><br><br>
+			
+			<table class="manage-detail" id="">
+				
+				<thead>
+					<tr>
+						<th>
+							배송중
+							7/25 도착예정
+						</th>
+					</tr>
+				</thead>
+			
+				<tbody>
+					<tr class="manage-detail-tr">
+						<td class="">
+							<a href="#" style="text-decoration: none;">
+								<img src="https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/09/15c135f1-1ac3-43dd-89c3-b91a1be39bb2.png" width="85" height="90" border="0" />
+							</a>
+						</td>
+						<td>
+							<a href="#">상품타이틀</a><br>
+							수량 N 개
+						</td>
+						<td>
+							배송비 N 원
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			
+			
+		</div>
 		
 		</div>
 		<!-- end of contents -->
-	</div>
+		
 </body>
 </html>
