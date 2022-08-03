@@ -20,4 +20,9 @@ public class adminController {
 	public String adminManageProduct() {
 		return "admin/adminManageProduct";
 	}
+	
+	@RequestMapping("adminManageOrder.do")
+	public String adminManageOrder() {
+		return "admin/adminManageOrder";
+	}
 }
