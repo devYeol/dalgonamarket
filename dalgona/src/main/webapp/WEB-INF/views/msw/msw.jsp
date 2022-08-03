@@ -54,23 +54,24 @@
 	background-color: white;
 }
 
-
 .zzim {
 	float: right;
-	position:absolute; 
-	top:1; 
-	width:24%;
-	margin-left:-8px;
+	position: absolute;
+	top: 1;
+	width: 24%;
+	margin-left: -8px;
 }
+
 #fullheart {
 	width: 55;
-	 height: 40;
-	 float: right;
+	height: 40;
+	float: right;
 }
-#beanheart{
+
+#beanheart {
 	width: 50;
-	 height: 40;
-	 float: right;
+	height: 40;
+	float: right;
 }
 </style>
 
@@ -78,7 +79,7 @@
 <section id="content">
 
 
-<div>
+	<div>
 		<button class="button category1" id="cate">ALL</button>
 		<button class="button category1">과자</button>
 		<button class="button category1">사탕</button>
@@ -87,7 +88,8 @@
 		<button class="button category1">완구</button>
 		<button class="button category1">기타</button>
 	</div>
-	<br><br>
+	<br>
+	<br>
 
 	<!-- 배너 시작 -->
 	<div id="carouselExampleIndicators" class="carousel slide"
@@ -103,13 +105,11 @@
 		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img
-					src="/resources/images/msw/digivice.png"
-					class="d-block w-100" alt="..." height="150" width="400 px">
+				<img src="/resources/images/msw/digivice.png" class="d-block w-100"
+					alt="..." height="150" width="400 px">
 			</div>
 			<div class="carousel-item">
-				<img
-					src="/resources/images/msw/snackcollection.png"
+				<img src="/resources/images/msw/snackcollection.png"
 					class="d-block w-100" alt="..." height="150">
 			</div>
 			<div class="carousel-item">
@@ -131,11 +131,7 @@
 	</div>
 	<!-- 배너 끝 -->
 
-	<br> <br>
-
-	
-
-	<br>
+	<br> <br> <br>
 	<div style="display: inline-block;">
 		<span class="search" id="search">검색 결과:00 건</span>
 	</div>
@@ -148,11 +144,11 @@
 			<option value="">리뷰 순</option>
 		</select>
 	</div>
-		<div class="chartsoon" >
-			<button style="border:none; background-color:white;">올림차 순</button>
-			<br>
-			<button style="border:none; background-color:white;">내림차 순</button>
-		</div>	
+	<div class="chartsoon">
+		<button style="border: none; background-color: white;">올림차 순</button>
+		<br>
+		<button style="border: none; background-color: white;">내림차 순</button>
+	</div>
 	<br> <br>
 
 	<!--  -->
@@ -164,21 +160,20 @@
 				<div class="row">
 					<div class="col-3" type="button" onclick="ppp();">
 						<!-- 상품1개 -->
-						<div class="" >
-							<div style="position:relative;">
-							<img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-								alt="Image" style="max-width: 100%;" />
+						<div class="">
+							<div style="position: relative;">
+								<img
+									src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
+									alt="Image" style="max-width: 100%;" />
 							</div>
 							<div class="zzim">
-								<img id="fullheart" 
-									src="/resources/images/msw/fullheart.png">
-								 <img id="beanheart" 
-									src="/resources/images/msw/beanheart.png">
-							</div>	
+								<img id="fullheart" src="/resources/images/msw/fullheart.png">
+								<img id="beanheart" src="/resources/images/msw/beanheart.png">
+							</div>
 						</div>
-							<!-- <div class="zzim">
+						<!-- <div class="zzim">
 							</div> -->
-						
+
 
 						<div class="leftbox">
 							<span> 해바라기 씨</span>
