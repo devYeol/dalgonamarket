@@ -9,7 +9,7 @@
 
 <style>
 .button {
-	background-color: hotpink; /* Green */
+	background-color: lightgray; /* Green */
 	color: white;
 	padding: 15px 32px;
 	text-align: center;
@@ -76,6 +76,19 @@
 
 
 <section id="content">
+
+
+<div>
+		<button class="button category1" id="cate">ALL</button>
+		<button class="button category1">과자</button>
+		<button class="button category1">사탕</button>
+		<button class="button category1">초코</button>
+		<button class="button category1">젤리</button>
+		<button class="button category1">완구</button>
+		<button class="button category1">기타</button>
+	</div>
+	<br><br>
+
 	<!-- 배너 시작 -->
 	<div id="carouselExampleIndicators" class="carousel slide"
 		data-bs-ride="carousel">
@@ -91,18 +104,18 @@
 		<div class="carousel-inner">
 			<div class="carousel-item active">
 				<img
-					src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-					class="d-block w-100" alt="..." height="520" width="400 px">
+					src="/resources/images/msw/digivice.png"
+					class="d-block w-100" alt="..." height="150" width="400 px">
+			</div>
+			<div class="carousel-item">
+				<img
+					src="/resources/images/msw/snackcollection.png"
+					class="d-block w-100" alt="..." height="150">
 			</div>
 			<div class="carousel-item">
 				<img
 					src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-					class="d-block w-100" alt="..." height="520">
-			</div>
-			<div class="carousel-item">
-				<img
-					src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-					class="d-block w-100" alt="..." height="520">
+					class="d-block w-100" alt="..." height="150">
 			</div>
 		</div>
 		<button class="carousel-control-prev" type="button"
@@ -120,15 +133,7 @@
 
 	<br> <br>
 
-	<div>
-		<button class="button category1" id="cate">ALL</button>
-		<button class="button category1">스낵</button>
-		<button class="button category1">사탕</button>
-		<button class="button category1">초코</button>
-		<button class="button category1">젤리</button>
-		<button class="button category1">기타</button>
-		<button class="button category1">완구</button>
-	</div>
+	
 
 	<br>
 	<div style="display: inline-block;">
@@ -143,11 +148,11 @@
 			<option value="">리뷰 순</option>
 		</select>
 	</div>
-	<!-- 	<div class="chartsoon" >
+		<div class="chartsoon" >
 			<button style="border:none; background-color:white;">올림차 순</button>
 			<br>
 			<button style="border:none; background-color:white;">내림차 순</button>
-		</div>	 -->
+		</div>	
 	<br> <br>
 
 	<!--  -->
