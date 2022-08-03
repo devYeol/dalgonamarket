@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,5 +43,9 @@ public class Review {
 	private int reviewLevel;
 	
 	// 자기자신을 참조 시 컬럼은 어떻게 추가해야하는지?
+	// Review 자신이 자신 참조
+	@OneToOne
+	@JoinColumn(name="reviewRef")
+	private Review review;
 
 }

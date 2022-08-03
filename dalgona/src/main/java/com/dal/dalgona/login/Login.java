@@ -34,5 +34,8 @@ public class Login {
 	public String infochange() {
 		return "common/infochange";
 	}
-	
+	@RequestMapping("/changePage")
+	public String changePage() {
+		return "common/changePage";
+	}
 }

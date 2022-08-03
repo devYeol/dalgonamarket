@@ -59,6 +59,14 @@ public class Member {
 	@OneToMany(mappedBy="product")
 	private List<Qna> qna=new ArrayList();
 	
+	// 장바구니
+	@ManyToMany
+	@JoinTable(name="cart",
+				joinColumns=@JoinColumn(name="memberId"),
+				inverseJoinColumns=@JoinColumn(name="productCode")
+			)
+	private List<Product> productCart;
+	
 
 	
 	// 배송주소 양방향

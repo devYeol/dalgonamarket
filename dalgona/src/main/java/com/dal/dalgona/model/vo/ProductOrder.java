@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -34,6 +35,10 @@ public class ProductOrder {
 	private String orderStatus;
 	
 	private Date orderDate;
+	
+	@OneToOne
+	@JoinColumn(name="addressCode")
+	private DeliveryLocation selectLocation;
 	
 	// 주문
 	@ManyToOne
