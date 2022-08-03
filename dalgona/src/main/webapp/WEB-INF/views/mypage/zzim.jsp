@@ -51,6 +51,26 @@
 div img {
 	width: 100px;
 }
+
+.zzimlistcon{
+	display: flex;
+	justify-content: space-between;
+}
+
+.zzimlistcheck{
+	float:left;
+	margin-top:1%;
+}
+
+#zzimproduct{
+	max-width: 100%;
+	max-height: 100%;
+	margin-left:30px;
+}
+
+.zzimproductname{
+	margin-left:30px;
+}
 </style>
 
 <div class="headcontainer border-top" style="padding-top: 20px"></div>
@@ -81,48 +101,49 @@ div img {
 			<b>찜목록</b>
 		</h4>
 		<div style="margin-top: 20px">
-					<div>
-						<div style="display: flex; justify-content: space-between;">
-							<div style="margin-top: 8px; margin-left: 10; display: flex">
-								<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-								<div style="margin-left: 10">전체선택</div>
-							</div>
-							<button type="button" class="btn btn-outline-primary" style="margin-right: 10">선택삭제</button>
-						</div>
+			<div>
+				<div style="display: flex; justify-content: space-between;">
+					<div style="margin-top: 8px; display: flex">
+						<input class="form-check-input" type="checkbox"
+							id="checkboxNoLabel" value="" aria-label="...">
+						<div style="margin-left: 10">전체선택</div>
 					</div>
-				</div>		
+					<button type="button" class="btn btn-outline-primary"
+						style="float: right">선택삭제</button>
+				</div>
+			</div>
+		</div>
 		<hr>
-		<table style="margin-left: 10; width: 100%;">
-			<tbody>
-				<tr class="payment-tr">
-					<td style="width: 15%; margin-right:100px;">
-						<div style="float: left">
-							<input class="form-check-input" type="checkbox"
-								style="margin-top: 40px;">
-						</div>
-						<div style="float:right;">
-							<a href="" style="text-decoration: none;"> <img
-								src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
-								width="85" height="90" border="0" />
-							</a>
-						</div>
-					</td>
-					
-					<td style=""><a href="#">상품타이틀</a><br><br>
-						1400원</td>
-					<td style="padding:60px;">
-						<div style="float: right; ">
-							<button type="button" class="btn btn-danger">장바구니 담기</button>
-							<input type="radio" class="btn-check" name="options" id="option1"
-								autocomplete="off" checked> <label
-								class="btn btn-secondary" for="option1">x</label>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<hr>
+		<br>
+
+			<div class="zzimlistcon">
+				<div class="zzimlistcheck"> 
+					<input type="checkbox" value="">
+					<img src="https://m.nemone.co.kr/file_data/nemonekr/2021/01/27/bc59f985c289db3d919e9c24a9466517.jpeg"
+						id="zzimproduct">
+						<label class="zzimproductname"><a href="#">상품타이틀</a><br>수량 N 개</label>
+				</div>
+				
+					<div style="margin-top:30px;">
+                  		<button type="button" class="btn btn-danger">장바구니 담기</button>
+                  		 <button class="btn btn-secondary " type="button">x</button>
+                  	</div>
+
+
+
+			</div>
+
+
+
 	</div>
+
+
+
+
+
+
+	</div>
+
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

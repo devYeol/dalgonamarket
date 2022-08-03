@@ -34,17 +34,9 @@ public class QnaRe {
 	
 	private Date qnaReDate;
 	
+	// 문의답변
 	@OneToOne
 	@JoinColumn(name="qnaCode")
 	private Qna qna;
-	
-	/*
-	 * @Id
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="memberId") private Memberrrr member;
-	 */
-
 	
 }

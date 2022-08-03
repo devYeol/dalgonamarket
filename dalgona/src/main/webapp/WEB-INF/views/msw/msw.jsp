@@ -54,18 +54,23 @@
 	background-color: white;
 }
 
-.zzim {
-	border: 0px;
-	color: white;
-	position: absolute;
-	float:right;
-	left: 260px;
-	top: 1px;
-	font-size: 30px;
-}
 
-.zzim:hover {
-	
+.zzim {
+	float: right;
+	position:absolute; 
+	top:1; 
+	width:24%;
+	margin-left:-8px;
+}
+#fullheart {
+	width: 55;
+	 height: 40;
+	 float: right;
+}
+#beanheart{
+	width: 50;
+	 height: 40;
+	 float: right;
 }
 </style>
 
@@ -113,8 +118,7 @@
 	</div>
 	<!-- 배너 끝 -->
 
-	<br>
-	<br>
+	<br> <br>
 
 	<div>
 		<button class="button category1" id="cate">ALL</button>
@@ -144,8 +148,7 @@
 			<br>
 			<button style="border:none; background-color:white;">내림차 순</button>
 		</div>	 -->
-	<br>
-	<br>
+	<br> <br>
 
 	<!--  -->
 
@@ -156,18 +159,21 @@
 				<div class="row">
 					<div class="col-3" type="button" onclick="ppp();">
 						<!-- 상품1개 -->
-						<div style="position: relative;">
-							<img
-								src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
+						<div class="" >
+							<div style="position:relative;">
+							<img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
 								alt="Image" style="max-width: 100%;" />
-							<!-- <area shape="circle" coords="x10,y10"> -->
-							<div class="zzim">
-								<img id="fullheart" style="width: 50; height: 20;"
-									src="/resources/images/msw/fullheart.png"> <img
-									id="beanheart" style="width: 46; height: 20;"
-									src="/resources/images/msw/beanheart.png">
 							</div>
+							<div class="zzim">
+								<img id="fullheart" 
+									src="/resources/images/msw/fullheart.png">
+								 <img id="beanheart" 
+									src="/resources/images/msw/beanheart.png">
+							</div>	
 						</div>
+							<!-- <div class="zzim">
+							</div> -->
+						
 
 						<div class="leftbox">
 							<span> 해바라기 씨</span>
@@ -177,19 +183,19 @@
 						</div>
 						<hr class="line">
 
-						<div class="leftbox">
-							<span class="">&nbsp;컨텐츠</span>
-						</div>
-						<div class="rightbox">
-							<button onclick="" style="border: 0px; background-color: white;">♡</button>
-							<span class="">(1,227)</span>
-						</div>
-						<br>
-						<br>
-
 						<div>
-							<span style="font-size: 7px;">&gt;&gt;상세보기</span>
-							<h4 style="float: right;">1400원</h4>
+							<div class="leftbox">
+								<span class="">&nbsp;컨텐츠</span>
+								<!-- <div class="rightbox">
+								<button onclick="" style="border: 0px; background-color: white;">♡</button>
+								<span class="">(1,227)</span>
+							</div> -->
+								<!-- <br>
+							<br> -->
+							</div>
+							<div class="rightbox">
+								<h4>1400원</h4>
+							</div>
 						</div>
 
 					</div>
@@ -281,13 +287,11 @@
 
 
 				</div>
-				<br>
-				<br>
+				<br> <br>
 			</div>
 		</div>
 	</div>
-	<br>
-	<br>
+	<br> <br>
 
 	<nav aria-label="Page navigation example">
 		<ul class="pagination justify-content-center">
@@ -327,7 +331,6 @@
      /*웹페이지 열었을 때*/
      $("#beanheart").show();
      $("#fullheart").hide();
-     /* event.stopPropagation(); */
      console.log('클릭 이벤트 처리');
 
      /*img1을 클릭했을 때 img2를 보여줌*/
