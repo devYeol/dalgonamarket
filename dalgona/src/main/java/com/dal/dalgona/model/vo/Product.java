@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -30,8 +32,6 @@ public class Product {
 	@Id
 	private String productCode;
 	
-	private String categoryCode;
-	
 	private int productPrice;
 	
 	private String productContent;
@@ -46,10 +46,19 @@ public class Product {
 	
 	// 찜
 	@ManyToMany(mappedBy="products")
-	private List<Memberrrr> members;
+	private List<Member> members;
 	
 	// 상품문의
 	@OneToMany(mappedBy="member")
 	private List<Qna> qna=new ArrayList();
+	
+	// 카테고리
+	@ManyToOne
+	@JoinColumn(name="categoryCode")
+	private Category category;
+	
+	// 주문상세내역
+	@OneToMany(mappedBy="product")
+	private List<OrderDetail> orderdetails=new ArrayList();
 
 }

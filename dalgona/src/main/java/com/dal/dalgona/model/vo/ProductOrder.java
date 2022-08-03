@@ -1,10 +1,13 @@
 package com.dal.dalgona.model.vo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -22,16 +25,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class Category {
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+public class ProductOrder {
 	
 	@Id
-	private String categoryCode;
+	private String orderCode;
 	
-	private String categoryName;
+	private String orderStatus;
 	
-	// 상품과 카테고리의 양방향을 위함
-	@OneToMany(mappedBy="category")
-	private List<Product> products;
+	private Date orderDate;
+	
+	// 주문
+	@ManyToOne
+	@JoinColumn(name="memberId")
+	private Member member;
+	
+	// 주문상세내역
+	@OneToMany(mappedBy="productOrder")
+	private List<OrderDetail> orderdetails=new ArrayList();
 
 }

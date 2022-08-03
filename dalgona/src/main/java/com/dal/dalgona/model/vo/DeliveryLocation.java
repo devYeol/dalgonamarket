@@ -2,6 +2,8 @@ package com.dal.dalgona.model.vo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,9 +22,6 @@ public class DeliveryLocation {
 	@Id
 	private String addressCode;
 	
-//	private Memberrrr memberId;
-	private String memberId;
-	
 	private String adrPostNum;
 	
 	private String addrRoadName;
@@ -35,6 +34,9 @@ public class DeliveryLocation {
 	
 	private String addrBase;
 	
+	// 배송지
+	@ManyToOne
+	@JoinColumn(name="memberId")
+	private Member member;
 	
-
 }
