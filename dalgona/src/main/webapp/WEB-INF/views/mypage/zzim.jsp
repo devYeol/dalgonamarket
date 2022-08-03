@@ -124,7 +124,7 @@ div img {
 						<label class="zzimproductname"><a href="#">상품타이틀</a><br>수량 N 개</label>
 				</div>
 				
-					<div style="margin-top:20px;">
+					<div style="margin-top:30px;">
                   		<button type="button" class="btn btn-danger">장바구니 담기</button>
                   		 <button class="btn btn-secondary " type="button">x</button>
                   	</div>
