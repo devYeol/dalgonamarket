@@ -26,4 +26,14 @@ public class Mypage_rwh {
 		return "mypage/cart";
 	
 	}
+	@RequestMapping("/mypage/addressadd")
+	public String addressadd() {
+		return "mypage/addressadd";
+		
+	}
+	@RequestMapping("/mypage/shippingset")
+	public String shippingset() {
+		return "mypage/shippingset";
+		
+	}
 }

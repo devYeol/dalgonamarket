@@ -48,28 +48,107 @@
 	margin-left: 50px;
 }
 
-div img {
+.btn-delete {
 	width: 100px;
+	height: 35px;
+	font-size: 16px;
+	background-color: white;
+	border: 1px solid #999;
+	border-radius: 10px;
 }
 
-.zzimlistcon{
-	display: flex;
-	justify-content: space-between;
+.btn-delete:hover {
+	background-color: black;
+	color: #fff;
 }
 
-.zzimlistcheck{
-	float:left;
-	margin-top:1%;
+.check-input {
+	border-radius: 0.25em;
+	width: 16;
+	height: 16;
 }
 
-#zzimproduct{
-	max-width: 100%;
-	max-height: 100%;
-	margin-left:30px;
+/* 드롭다운 css */
+#browsers {
+	background-color: white;
+	border: 1px solid gray;
+	border-radius: 6px;
+	padding: 0.2em 0.2em 0.2em 0.2em;
 }
 
-.zzimproductname{
-	margin-left:30px;
+.close {
+	display: inline-block;
+	font-weight: bold;
+}
+
+.close:after {
+	content: "\00d7";
+	font-size: 15pt;
+}
+/* 선택금액표시 div */
+.allprice-container {
+	border: 4px solid black;
+	text-align: center;
+	margin-top: 50;
+}
+
+.allprice-content {
+	display: inline-block;
+	margin: 0 auto;
+	vertical-align: top;
+}
+
+.allprice-form {
+	padding: 20px 15px 18px;
+	line-height: 17px;
+	color: #555;
+	text-align: center;
+}
+
+.all-plus {
+	margin: 0 11px 0 10px;
+	/* vertical-align: -4px; */
+}
+
+.allprice-form i {
+	padding: 0 4px 0 5px;
+	font: 700 17px/17px tahoma;
+	color: #111;
+}
+
+.allprice-form
+.final-price {
+	color: red;
+	font-size: 20px;
+}
+
+.cartandprice button {
+	width: 400;
+	height: 50;
+	margin: 30;
+	margin-top: 70;
+	border-radius: 6px;
+	font-size: 19;
+}
+
+.btn-cart {
+	background-color: #999;
+	color: white;
+	border: 1px solid #999;
+}
+
+.btn-cart:hover {
+	background: black;
+}
+
+.btn-buy {
+	color: #fff;
+	background-color: #dc3545;
+	border: 1px solid #dc3545;
+}
+
+.btn-buy:hover {
+	background-color: #bb2d3b;
 }
 </style>
 
@@ -98,52 +177,47 @@ div img {
 	</div>
 	<div class="cart-container">
 		<h4>
-			<b>찜목록</b>
+			<b>장바구니</b>
 		</h4>
 		<div style="margin-top: 20px">
 			<div>
 				<div style="display: flex; justify-content: space-between;">
-					<div style="margin-top: 8px; display: flex">
+					<div style="margin-top: 8px; margin-left: 10; display: flex">
 						<input class="form-check-input" type="checkbox"
 							id="checkboxNoLabel" value="" aria-label="...">
 						<div style="margin-left: 10">전체선택</div>
 					</div>
-					<button type="button" class="btn btn-outline-primary"
-						style="float: right">선택삭제</button>
+					<button type="button" class="btn-delete" style="margin-right: 10">선택삭제</button>
 				</div>
 			</div>
 		</div>
 		<hr>
-		<br>
-
-			<div class="zzimlistcon">
-				<div class="zzimlistcheck"> 
-					<input type="checkbox" value="">
-					<img src="https://m.nemone.co.kr/file_data/nemonekr/2021/01/27/bc59f985c289db3d919e9c24a9466517.jpeg"
-						id="zzimproduct">
-						<label class="zzimproductname"><a href="#">상품타이틀</a><br>수량 N 개</label>
-				</div>
-				
-					<div style="margin-top:30px;">
-                  		<button type="button" class="btn btn-danger">장바구니 담기</button>
-                  		 <button class="btn btn-secondary " type="button">x</button>
-                  	</div>
-
-
-
-			</div>
-
-
-
+		<table style="margin-left: 10; width: 98%;">
+			<tbody>
+				<tr class="payment-tr">
+					<td style="width: 20%;"><input class="check-input"
+						type="checkbox" style="margin-top: 40;"> <a href="#"
+						style="text-decoration: none;"> <img
+							src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
+							width="150" height="150" border="1" style="margin-left: 10" />
+					</a></td>
+					<td style="width: 55%"><a href="#"
+						style="color: black; text-decoration: none; font-size: 17"><b>상품타이틀</b></a><br>
+						<div style="margin-top: 5; font-size: 15px">오예오예 오예스~</div>
+						<div style="margin-top: 5;">30,000원</div>
+						<div style="margin-top: 5; font-size: 15px">08.11.목요일 배송도착
+							예정</div></td>
+					<td style="padding-left: 140px;">
+						<button type="button" class="btn btn-danger"
+							style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
+					</td>
+					<div class="close" style="float: right; margin-bottom: 10px;"></div>
+				</tr>
+			</tbody>
+		</table>
+		<hr>
 	</div>
-
-
-
-
-
-
-	</div>
-
+	<div></div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

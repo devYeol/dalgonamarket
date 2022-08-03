@@ -60,5 +60,9 @@ public class Product {
 	// 주문상세내역
 	@OneToMany(mappedBy="product")
 	private List<OrderDetail> orderdetails=new ArrayList();
+	
+	// 장바구니
+	@ManyToMany(mappedBy="productCart")
+	private List<Member> memberCart;
 
 }

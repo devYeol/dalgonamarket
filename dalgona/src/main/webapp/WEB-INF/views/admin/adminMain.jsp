@@ -37,40 +37,42 @@
 				<div class="card">
 					<table style="width: 85%;">
 						<tr>
-							<td style="height: 80px;">문의</td>
+							<td style="height: 40%;">문의</td>
 						</tr>
 						<tr>
-							<td style="height: 120px; border-top: 1px solid #808080; font-size: 40px;">0</td>
-						</tr>
-					</table>
-				</div>
-				<div class="card">
-					<table style="width: 85%;">
-						<tr>
-							<td style="height: 80px;">주문</td>
-						</tr>
-						<tr>
-							<td style="height: 120px; border-top: 1px solid #808080; font-size: 40px;">0</td>
+							<td style="height: 60%; border-top: 1px solid #808080; font-size: 40px;">0</td>
 						</tr>
 					</table>
 				</div>
 				<div class="card">
 					<table style="width: 85%;">
 						<tr>
-							<td style="height: 80px;">환불</td>
+							<td style="height: 40%;">주문</td>
 						</tr>
 						<tr>
-							<td style="height: 120px; border-top: 1px solid #808080; font-size: 40px;">0</td>
+							<td style="height: 60%; border-top: 1px solid #808080; font-size: 40px;">0</td>
+						</tr>
+					</table>
+				</div>
+				<div class="card">
+					<table style="width: 85%;">
+						<tr>
+							<td style="height: 40%;">환불</td>
+						</tr>
+						<tr>
+							<td style="height: 60%; border-top: 1px solid #808080; font-size: 40px;">0</td>
 						</tr>
 					</table>
 				</div>
 			</div>
+			
 			<div class="contentsdiv">
 				<div class="content"></div>
 			</div>
+			
 			<div class="statsdiv">
-				<div class="stats" style="background-size:75%; background-image: url(/resources/images/chart.png)" ></div>
-				<div class="stats" style="background-size:60%; background-image: url(/resources/images/graph.png)"></div>
+				<div class="stats" style="margin-right: 20px; background-size: 75%; background-image: url(/resources/images/chart.png)" ></div>
+				<div class="stats" style="margin-left: 20px; background-size: 60%; background-image: url(/resources/images/graph.png)"></div>
 			</div>
 		</div>
 		<!-- end of contents -->

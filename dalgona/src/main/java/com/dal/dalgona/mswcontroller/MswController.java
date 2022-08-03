@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MswController {
 
 	
-	@RequestMapping("/msw/msw.do")
+	@RequestMapping("/msw/msw")
 	public String msw() {
 		return "/msw/msw";
 	}

@@ -116,13 +116,9 @@
 			<table class="payment-table" id="payment-deli-table">
 			
 				<thead>
-				<h5>(@요일 N/N 도착예정)</h5>
-<!-- 				<tr class="payment-tr">
-						<th scope="col" colspan="2" id="deli-th">@요일 N/N 도착예정</th>
-						<th scope="col" colspan="5">수량</th>
-						<th scope="col" colspan="5">배송비</th>
-					</tr> -->
+					<h5>(@요일 N/N 도착예정)</h5> <!-- 에러나는데 작동은 함 -->
 				</thead>
+				
 				<tbody>
 					<tr class="payment-tr">
 						<!-- <td class=""><a href="#"><img src="https://img.mywisa.com/freeimg/smartwing/_data/product/201709/22/e4ee83bdcacc45b92130f10aeef309f1.jpg" width="73" height="90" border="0"></a></td>
@@ -144,9 +140,7 @@
 							배송비 N 원
 						</td>
 					</tr>
-					<tr>
-					
-					</tr>
+
 				</tbody>
 			</table>
 			
