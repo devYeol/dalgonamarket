@@ -1,4 +1,4 @@
-package com.dal.dalgona.model.vo;
+package com.dal.dalgona.common.model.vo;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,9 +7,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -27,26 +27,42 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class ProductOrder {
+public class Product {
 	
 	@Id
-	private String orderCode;
+	private String productCode;
 	
-	private String orderStatus;
+	private int productPrice;
 	
-	private Date orderDate;
+	private String productContent;
 	
-	@OneToOne
-	@JoinColumn(name="addressCode")
-	private DeliveryLocation selectLocation;
+	private int productAmount;
 	
-	// 주문
+	private String productThumb;
+
+	private String productImage;
+	
+	private Date productDate;
+	
+	// 찜
+	@ManyToMany(mappedBy="products")
+	private List<Member> members;
+	
+	// 상품문의
+	@OneToMany(mappedBy="member")
+	private List<Qna> qna=new ArrayList();
+	
+	// 카테고리
 	@ManyToOne
-	@JoinColumn(name="memberId")
-	private Member member;
+	@JoinColumn(name="categoryCode")
+	private Category category;
 	
 	// 주문상세내역
-	@OneToMany(mappedBy="productOrder")
+	@OneToMany(mappedBy="product")
 	private List<OrderDetail> orderdetails=new ArrayList();
+	
+	// 장바구니
+	@ManyToMany(mappedBy="productCart")
+	private List<Member> memberCart;
 
 }

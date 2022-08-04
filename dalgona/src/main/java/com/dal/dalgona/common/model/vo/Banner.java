@@ -1,4 +1,4 @@
-package com.dal.dalgona.model.vo;
+package com.dal.dalgona.common.model.vo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
