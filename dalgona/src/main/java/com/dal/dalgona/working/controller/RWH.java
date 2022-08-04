@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RWH {
 	
-	@RequestMapping("/mypage/rwh")
+	@RequestMapping("/member/mypage/rwh")
 	public String rwh() {
- 		return "mypage/rwh";
+ 		return "/member/mypage/rwh";
 	}
 	
 	@RequestMapping("/sang")
@@ -16,14 +16,14 @@ public class RWH {
 		return "sang";
 	}
 	
-	@RequestMapping("/mypage/zzim")
+	@RequestMapping("/member/mypage/zzim")
 	public String zzim(){
-		return "mypage/zzim";
+		return "/member/mypage/zzim";
 	}
 	
-	@RequestMapping("/mypage/cart")
+	@RequestMapping("/member/mypage/cart")
 	public String cart() {
-		return "mypage/cart";
+		return "/member/mypage/cart";
 	
 	}
 	@RequestMapping("/mypage/addressadd")

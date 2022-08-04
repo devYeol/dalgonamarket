@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MswController {
 
 	@RequestMapping("/product/productList")
-	public String msw() {
+	public String productList() {
 		return "/product/productList";
+	}
+	@RequestMapping("/member/mypage/mypageMain")
+	public String mypageMain() {
+		return "/member/mypage/mypageMain";
 	}
 	
 }
