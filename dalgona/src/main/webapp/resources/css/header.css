@@ -12,4 +12,7 @@
 	font-weight: 500;
 }
 
-/* modal구현 */
+/* modal구현 부트스트랩*/
+#exampleModal{
+	height: 40%;
+}

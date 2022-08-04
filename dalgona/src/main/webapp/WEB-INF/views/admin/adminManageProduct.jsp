@@ -62,8 +62,8 @@
 						<b>전체선택</b>
 					</div>
 					&nbsp;
-					<div style="">
-						<button class="adminbt" style="width: 80px; background-color: #6FB67F;">선택삭제</button>
+					<div style="padding-left: 85%;">
+						<button class="adminbt" style="width: 80px; background-color: #D56B5A;">선택삭제</button>
 					</div>
 				</div>
 				<table class="listtable">

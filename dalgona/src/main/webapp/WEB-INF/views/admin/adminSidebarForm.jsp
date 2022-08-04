@@ -25,6 +25,8 @@
 		<br>
 		<div class="menu">문의내역</div>
 		<br>
+		<div class="menu" onclick="location.assign('${path}/')">나가기</div>
+		<br>
 	</div>
 </div>
 <!-- end of sidebar -->
