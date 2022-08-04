@@ -85,6 +85,8 @@
 					</tr>
 				</table>
 			</div>
+			<button class="adminbt" style="width: 80px; background-color: #D56B5A;"
+			onclick="location.assign('${path}/admin/enrollProductTest')">상품등록</button>
 		</div>
 		<!-- end of contents -->
 	</div>
