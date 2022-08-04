@@ -8,6 +8,149 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 <style>
+.cart-form {
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top: 50px;
+	display: flex;
+}
+
+.sidebar {
+	width: 100%;
+	height: 600px;
+	width: 200px;
+	position: sticky;
+	top: 50px;
+}
+
+.sidebar ul {
+	padding: 0;
+	margin-top: 40px;
+}
+
+.sidebar ul li {
+	list-style: none;
+	margin-top: 20px;
+}
+
+.sidebar ul li a {
+	text-decoration: none;
+	color: #999;
+}
+
+.sidebar ul li a:hover {
+	color: black;
+}
+
+.cart-container {
+	width: 100%;
+	position: relative;
+	margin-left: 50px;
+}
+
+.btn-delete {
+	width: 100px;
+	height: 35px;
+	font-size: 16px;
+	background-color: white;
+	border: 1px solid #999;
+	border-radius: 10px;
+}
+
+.btn-delete:hover {
+	background-color: black;
+	color: #fff;
+}
+
+.check-input {
+	border-radius: 0.25em;
+	width: 16;
+	height: 16;
+}
+
+/* 드롭다운 css */
+#browsers {
+	background-color: white;
+	border: 1px solid gray;
+	border-radius: 6px;
+	padding: 0.2em 0.2em 0.2em 0.2em;
+}
+
+.close {
+	display: inline-block;
+	font-weight: bold;
+}
+
+.close:after {
+	content: "\00d7";
+	font-size: 15pt;
+}
+/* 선택금액표시 div */
+.allprice-container {
+	border: 4px solid black;
+	text-align: center;
+	margin-top: 50;
+}
+
+.allprice-content {
+	display: inline-block;
+	margin: 0 auto;
+	vertical-align: top;
+}
+
+.allprice-form {
+	padding: 20px 15px 18px;
+	line-height: 17px;
+	color: #555;
+	text-align: center;
+}
+
+.all-plus {
+	margin: 0 11px 0 10px;
+	/* vertical-align: -4px; */
+}
+
+.allprice-form i {
+	padding: 0 4px 0 5px;
+	font: 700 17px/17px tahoma;
+	color: #111;
+}
+
+.allprice-form
+.final-price {
+	color: red;
+	font-size: 20px;
+}
+
+.cartandprice button {
+	width: 400;
+	height: 50;
+	margin: 30;
+	margin-top: 70;
+	border-radius: 6px;
+	font-size: 19;
+}
+
+.btn-cart {
+	background-color: #999;
+	color: white;
+	border: 1px solid #999;
+}
+
+.btn-cart:hover {
+	background: black;
+}
+
+.btn-buy {
+	color: #fff;
+	background-color: #dc3545;
+	border: 1px solid #dc3545;
+}
+
+.btn-buy:hover {
+	background-color: #bb2d3b;
+}
+
 .orderlist-form {
 	margin-left: 100px;
 	margin-right: 100px;
@@ -200,9 +343,7 @@ img {
 	color: #fff;
 }
 </style>
-
-<div class="headcontainer border-top" style="padding-top: 20px"></div>
-<section class="orderlist-form">
+<section class="cart-form">
 	<div>
 		<div class="sidebar">
 			<h4>
@@ -210,9 +351,9 @@ img {
 			</h4>
 			<ul>
 				<li><h5>
+						<b>쇼핑정보</b>
 					</h5></li>
-				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
-				<li><a href="${path }/member/mypage/rwh"></a><h5><b>구매내역</b></h5></li>
+				<li><a href="${path }/member/mypage/rwh">구매내역</a></li>
 				<li><a href="${path }/member/mypage/cart">장바구니</a></li>
 				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
 				<br>
@@ -226,95 +367,48 @@ img {
 	</div>
 	<div class="orderlist-container">
 		<h4>
-			<b>구매내역</b>
+			<b>쇼핑정보</b>
 		</h4>
-		<div>
-			<div class="pay">
-				<div>
-					<a href="#">1<br>전체 구매 내역
-					</a>
-				</div>
-				<div>
-					<a href="#">1<br>배송 중
-					</a>
-				</div>
-				<div>
-					<a href="#">1<br>배송 완료
-					</a>
-				</div>
-				<div>
-					<a href="#">1<br>환불 요청
-					</a>
-				</div>
-				<div>
-					<a href="#">1<br>환불 완료
-					</a>
-				</div>
+		<div class="pay" style="justify-content: space-between;">
+			<div></div>
+
+			<div>
+				<a href="#">1<br>구매 내역
+				</a>
 			</div>
-			<div class="somedate-search">
-				<input class="somedate" type="date"><b>~</b> <input
-					class="somedate" type="date">
-				<button class="btn-somedate">조회</button>
+			<div>
+				<a href="#">1<br>찜한상품
+				</a>
 			</div>
-			<div class="somedate-search">
-				<p>한번에 조회 가능한 기간은 최대 6개월 이고 환불은 배송 완료 후 7일 내만 가능합니다.</p>
+			<div>
+				<a href="#">1<br>장바구니
+				</a>
 			</div>
+			<div></div>
 		</div>
-		<div>
-			<div class="orderlist-box">
-				<div style="display: flex; justify-content: space-between;">
-					<div style="margin-top: 8px;">
-						<input class="form-check-input" type="checkbox"
-							id="checkboxNoLabel" value="" aria-label="...">
-						<div class="all-check">전체선택</div>
-					</div>
-					<button type="button" class="btn-delete">선택삭제</button>
-				</div>
-				<hr style="margin-top: 8px; margin-bottom: 8px;">
-				<div>
-					<div style="display: flex">
-						<h3 style="margin-bottom: 0px; margin-left: 40px;">2022.02.02</h3>
-						<h4 style="margin-bottom: 0px; margin-left: 10px">주문</h4>
-					</div>
-					<div>
-						<div id="order-data" style="display: flex;">
-							<div
-								style="padding-right: 215px; margin-right: 15px; height: 160;">
-								<div class="check-itembox">
-									<div class="check-item">
-										<input class="form-check-input" type="checkbox" value="">
-									</div>
-									<div>
-										<img
-											src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-											class="d-block w-100">
-									</div>
-									<div style="margin-top: 20px; margin-left: 30px">
-										<span style="font-size: 20px"><b>초코송이</b></span><br> <span
-											style="font-size: 15"><b>오우오우 오예스~</b></span><br> <span
-											style="font-size: 15">1500원 1개</span>
-										<div style="margin-top: 40px">
-											<!-- <span>1500원 1개</span><br> -->
-											<span>7.31(일) 도착 배송완료</span><br>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="check-btnbox" style="display: flex;">
-								<div class="check-btn">
-									<button type="button" class="btn">교환,반품신청</button>
-									<button type="button" class="btn">장바구니 담기</button>
-									<button type="button" class="btn">리뷰작성</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+		<div style="margin-top:15%;"></div>
+		<h4>
+			<b>배송 정보</b>
+		</h4>
+
+		<div class="pay" style="justify-content: space-between;">
+			<div></div>
+
+			<div>
+				<a href="#">0<br>배송 대기
+				</a>
 			</div>
+			<div>
+				<a href="#">0<br>배송 중
+				</a>
+			</div>
+			<div>
+				<a href="#">1<br>배송 완료
+				</a>
+			</div>
+			<div></div>
 		</div>
-		<hr>
+
 	</div>
-
 </section>
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

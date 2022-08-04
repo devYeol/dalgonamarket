@@ -161,11 +161,11 @@
 			</h4>
 			<ul>
 				<li><h5>
-						<b>쇼핑정보</b>
 					</h5></li>
-				<li><a href="#">구매내역</a></li>
-				<li><a href="#">장바구니</a></li>
-				<li><a href="#">찜 목록</a></li>
+				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
+				<li><a href="${path }/member/mypage/rwh">구매내역</a></li>
+				<li><a href="${path }/member/mypage/cart">장바구니</a></li>
+				<li><a href="${path }/member/mypage/zzim"></a><h5><b>찜 목록</b></h5></li>
 				<br>
 				<li><h5>
 						<b>내정보</b>
@@ -216,7 +216,6 @@
 		</table>
 		<hr>
 	</div>
-	<div></div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
