@@ -7,10 +7,6 @@ spring :
     driver-class-name: oracle.jdbc.driver.OracleDriver
     username: dal
     password: gona1234!
-    #url: jdbc:oracle:thin:@localhost:1521:xe
-    #driver-class-name: oracle.jdbc.driver.OracleDriver
-    #username: spring
-    #password: spring
     
     hikari:
       minimum-idle: 10
