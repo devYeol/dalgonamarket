@@ -1,10 +1,10 @@
-package com.dal.dalgona.payment.controller;
+package com.dal.dalgona.working.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PaymentContorller {
+public class JDHController {
 	
 	@RequestMapping("/payment")
 	public String paymentTest() {
