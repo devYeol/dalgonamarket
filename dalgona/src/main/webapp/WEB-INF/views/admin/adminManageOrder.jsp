@@ -72,7 +72,7 @@
 }
 
 .manage-table {
-	height: 200px;
+	height: 600px;
 	width: 1040px;
 	text-align: center;
 }
@@ -118,7 +118,8 @@
 					<div><a href="#">1<br>환불 완료</a></div>
 				</div>
 				<div class="somedate-search">
-					<input class="somedate" type="date"><b>~</b>
+					<input class="somedate" type="date">
+					<b>~</b>
 					<input class="somedate" type="date">
 					<button class="btn-somedate">조회</button>
 				</div>
@@ -141,7 +142,7 @@
 						<th>주문수량</th>
 						<th>상품가격</th>
 						<th>배송비</th>
-						<th>소계</th>
+						<th>합계</th>
 						<th>입금일시</th>
 						<th>주문상태</th>
 					</tr>
@@ -184,49 +185,154 @@
 						<td>SYSDATE</td>
 						<td>환불요청</td>
 					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>  
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>무료배송</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>환불요청</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>  
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>무료배송</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>환불요청</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>  
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>무료배송</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>환불요청</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>  
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>무료배송</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>환불요청</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>  
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>무료배송</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>환불요청</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>  
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>무료배송</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>환불요청</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="" type="checkbox" value="" id="">
+						</td>  
+						<td>2312123123</td>
+						<td>쫀드기</td>		
+						<td>10</td>
+						<td>1000</td>
+						<td>무료배송</td>
+						<td>12500</td>
+						<td>SYSDATE</td>
+						<td>환불요청</td>
+					</tr>
 				</table>
 				
 				<br>
 				
-				<h1 style="text-align: center;">페이지바 위치</h1>
+				<h2 style="text-align: center;">페이지바 - 1페이지 10개, &lt; 1 2 3 4 5  &gt;</h2>
 
 			</div>
 			
-			<div class="manage-table-div">
-				<table class="manage-table">
-				
-					<thead>
-						<tr>
-							<th>
-								2022. 8. 8 결제
-							</th>
-						</tr>
-					</thead>
-				
-					<tbody>
-						<tr style="background-color:lightgrey;">
-							<th>주문번호</th>
-							<th>상품명</th>		
-							<th>주문수량</th>
-							<th>상품가격</th>
-						</tr>
-						<tr>
-							<td>
-								<input class="" type="checkbox" value="" id="">
-							</td>
-							<td>2312123123</td>
-							<td>쫀드기</td>		
-							<td>10</td>
-							<td>ㅇㅇ</td>
-						</tr>
-					</tbody>
-				</table>
-
+			<div style="padding-bottom: 8px;">
+				<div style="padding-top: 10px;">
+					<h2>2022. 07. 07 결제</h2>
+				</div>
+				<div style="display: flex;">	
+					<h2 style="color: green;">구매확정</h2>
+					<h3 style="padding-top: 5px;">&nbsp;(7/25 도착예정)</h3>
+				</div>
 			</div>
+
+			<table class="" style="width: 1030px; height: 300px; background-color: FAFAFA; border-radius: 10px;">
+			
+<!-- 			<thead>
+				<tr>
+					<th style="padding-top: 20px;">
+						<b style="font-size: 25px; color: green;">구매확정</b> <br>
+						(7/25 도착예정)
+					</th>
+				</tr>
+			</thead> -->
+			
+			<tbody>
+				<tr>
+<!-- 					<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td> -->
+					<td style="width:150px; padding-left: 50px; padding-right: 50px;">
+						20142504
+					</td>
+					<td>
+						<img src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
+						width="180" height="200" border="0" style="beige; border-radius: 10px;"/>
+					</td>
+					<td style="width:59%; text-align: left; padding-left:60px;">달고나@@@@@@@, 10개입<br>
+					옵션 (선택안함)<br>
+					배송비 무료<br>
+					10,000원 / 1개<br><br>
+					<b>합계 : 10,000원</b>
+					</td>
+					<td style="padding-right: 40px;">
+						<button class="adminbt" style="width: 80px; background-color: #6FB67F; margin-bottom: 20px;">리뷰확인</button>
+						<button class="adminbt" style="width: 80px; background-color: #D56B5A;">삭제</button>
+					</td>
+				</tr>
+			</tbody>
+			
+			</table>
 			
 			<br><br><br>
 			
-			<table class="manage-detail" id="">
+			<!-- <table class="manage-detail" id="">
 				
 				<thead>
 					<tr>
@@ -253,7 +359,7 @@
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</table> -->
 			
 			
 			

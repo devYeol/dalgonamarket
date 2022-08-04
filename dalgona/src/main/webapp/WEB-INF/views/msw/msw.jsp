@@ -8,26 +8,13 @@
 </jsp:include>
 
 <style>
-.button {
-	background-color: lightgray; /* Green */
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	/* text-decoration: none; */
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	cursor: pointer;
-	border: 2px solid black;
-}
 
-.category1 {
-	width: 140px;
-	margin-right: 50px;
-}
+.category11{
+padding:12px 10px;
+text-decoration:none;
+color:black;
+font-size:18px;
 
-#cate {
-	margin-left: 95px;
 }
 
 #search {
@@ -62,13 +49,13 @@
 	margin-left: -8px;
 }
 
-#fullheart {
+.fullheart {
 	width: 55;
 	height: 40;
 	float: right;
 }
 
-#beanheart {
+.beanheart {
 	width: 50;
 	height: 40;
 	float: right;
@@ -78,19 +65,39 @@
 
 <section id="content">
 
+	<hr style="background:lightgray;">
+	<div style="margin:auto 0; ">
+		<div style="diplay:block; ">
+			<div style="display: flex; margin:0 auto; max-width:1200px; justify-content: space-between;">
+				<div class="category11"  >
+					<a class="button1 category11" id="cate1">ALL</a>
+				</div>
+				<div class="category11">
+					<a class="button1 category11">과자</a>
+				</div>
+				<div class="category11">
+					<a class="button1 category11">사탕</a>
+				</div>
+				<div class="category11">
+					<a class="button1 category11">초코</a>
+				</div>
+				<div class="category11">
+					<a class="button1 category11">젤리</a>
+				</div>
+				<div class="category11">
+					<a class="button1 category11">완구</a>
+				</div>
+				<div class="category11">
+					<a class="button1 category11">기타</a>
+				</div>
+			</div>
+		</div>
 
-	<div>
-		<button class="button category1" id="cate">ALL</button>
-		<button class="button category1">과자</button>
-		<button class="button category1">사탕</button>
-		<button class="button category1">초코</button>
-		<button class="button category1">젤리</button>
-		<button class="button category1">완구</button>
-		<button class="button category1">기타</button>
+
+
+
 	</div>
-	<br>
-	<br>
-
+<hr style="background:lightgray;">
 	<!-- 배너 시작 -->
 	<div id="carouselExampleIndicators" class="carousel slide"
 		data-bs-ride="carousel">
@@ -105,8 +112,12 @@
 		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="/resources/images/msw/digivice.png" class="d-block w-100"
+				<!-- 				<img src="/resources/images/msw/digivice.png" class="d-block w-100"
 					alt="..." height="150" width="400 px">
+ -->
+				<img
+					src="https://kream-phinf.pstatic.net/MjAyMjA0MDVfMjg3/MDAxNjQ5MTQxNDQ2MzE5.KmWw8NmaqtTEZQUwNB-qnk94UoRvQjTBz6HE-wcsUPwg.uKnTAOmBZVasnEheK77-WjBLVGkrxaev02tgaOLhqz0g.JPEG/a_e84bc8e4c55041b29479627fc78a2469.jpg"
+					class="d-block w-100" alt="..." height="150" width="400 px">
 			</div>
 			<div class="carousel-item">
 				<img src="/resources/images/msw/snackcollection.png"
@@ -131,23 +142,28 @@
 	</div>
 	<!-- 배너 끝 -->
 
-	<br> <br> <br>
-	<div style="display: inline-block;">
+	<br> <br>
+	
+	<div style="position:absolute; font-size:25px; top:70%;">
 		<span class="search" id="search">검색 결과:00 건</span>
 	</div>
-	<div style="display: inline-block; float: right; margin-right: 120px;">
-		<select>
+	<br>
+	<div style="display:flex;float: right; margin-right:6%;">
+	<div style="display: inline-block; margin-top:5%; padding-bottom:10%;">
+		<select style=" text-align:center; font-size:15px;">
 			<option value="">최신 순</option>
 			<option value="">인기 순</option>
 			<option value="">가격 순</option>
-			<option value="">별점 순</option>
+			<option value="">별점 순</option>e
 			<option value="">리뷰 순</option>
 		</select>
 	</div>
+	&nbsp;
 	<div class="chartsoon">
 		<button style="border: none; background-color: white;">올림차 순</button>
 		<br>
 		<button style="border: none; background-color: white;">내림차 순</button>
+	</div>
 	</div>
 	<br> <br>
 
@@ -167,14 +183,10 @@
 									alt="Image" style="max-width: 100%;" />
 							</div>
 							<div class="zzim">
-								<img id="fullheart" src="/resources/images/msw/fullheart.png">
-								<img id="beanheart" src="/resources/images/msw/beanheart.png">
+								<img class="fullheart" src="/resources/images/msw/fullheart.png">
+								<img class="beanheart" src="/resources/images/msw/beanheart.png">
 							</div>
 						</div>
-						<!-- <div class="zzim">
-							</div> -->
-
-
 						<div class="leftbox">
 							<span> 해바라기 씨</span>
 						</div>
@@ -186,12 +198,6 @@
 						<div>
 							<div class="leftbox">
 								<span class="">&nbsp;컨텐츠</span>
-								<!-- <div class="rightbox">
-								<button onclick="" style="border: 0px; background-color: white;">♡</button>
-								<span class="">(1,227)</span>
-							</div> -->
-								<!-- <br>
-							<br> -->
 							</div>
 							<div class="rightbox">
 								<h4>1400원</h4>
@@ -200,90 +206,102 @@
 
 					</div>
 					<!-- 상품1개끝 -->
+					<div class="col-3" type="button" onclick="ppp();">
+						<!-- 상품1개 -->
+						<div class="">
+							<div style="position: relative;">
+								<img
+									src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
+									alt="Image" style="max-width: 100%;" />
+							</div>
+							<div class="zzim">
+								<img class="fullheart" src="/resources/images/msw/fullheart.png">
+								<img class="beanheart" src="/resources/images/msw/beanheart.png">
+							</div>
+						</div>
+						<div class="leftbox">
+							<span> 해바라기 씨</span>
+						</div>
+						<div class="rightbox">
+							<span>★4.8/5</span>
+						</div>
+						<hr class="line">
 
+						<div>
+							<div class="leftbox">
+								<span class="">&nbsp;컨텐츠</span>
+							</div>
+							<div class="rightbox">
+								<h4>1400원</h4>
+							</div>
+						</div>
 
-					<!-- <div class="col-3" type="button" onclick=""> 상품1개
-	          	  	<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		            </div>
-	
-		          	<div class="leftbox">
-						<span> 해바라기 씨</span>
 					</div>
-					<div class="rightbox">		         
-						<span>★4.8/5</span>
-					</div>
-	           	    <hr class="line">
-			          
-		          	<div class="leftbox">
-						<span class="">&nbsp;컨텐츠</span>
-					</div>
-					<div class="rightbox">
-					 	<button onclick="" style="border:0px; background-color:white;">♡</button>
-					 	<span class="">(1,227)</span>
-	  				 </div><br><br>
-			          
-			          <div>
-			          	<span style="font-size:7px;">&gt;&gt;상세보기</span>
-						<h4 style="float:right;">1400원</h4> 
-			          </div>
-		          </div> 상품1개끝
-	
-	
-		          <div class="col-3" type="button" onclick=""> 상품1개
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		            </div>
-		          	<div class="leftbox">
-						<span> 해바라기 씨</span>
+					<!-- 상품1개끝 -->
+					<div class="col-3" type="button" onclick="ppp();">
+						<!-- 상품1개 -->
+						<div class="">
+							<div style="position: relative;">
+								<img
+									src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
+									alt="Image" style="max-width: 100%;" />
+							</div>
+							<div class="zzim">
+								<img class="fullheart" src="/resources/images/msw/fullheart.png">
+								<img class="beanheart" src="/resources/images/msw/beanheart.png">
+							</div>
 						</div>
-						<div class="rightbox">		         
-							<span >★4.8/5</span>
+						<div class="leftbox">
+							<span> 해바라기 씨</span>
 						</div>
-			         	 <hr class="line">
-			          
-			          	<div class="leftbox">
-							<span class="">&nbsp;컨텐츠</span>
+						<div class="rightbox">
+							<span>★4.8/5</span>
 						</div>
-						<div class="rightbox" >
-						<button onclick="" style="border:0px; background-color:white;">♡</button>
-							<span class="">(1,227)</span>
-						</div><br><br>
-			          
-			          <div>
-			          	<span style="font-size:7px;">&gt;&gt;상세보기</span>
-						<h4 style="float:right;">1400원</h4> 
-			          </div>
-		          </div> 상품1개끝
-		          
-		          
-		          <div class="col-3" type="button" onclick=""> 상품1개
-	          		<div>
-			          <a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width:100%;" /></a>
-		            </div>
-		 
-	          	   <div class="leftbox">
-					<span> 해바라기 씨</span>
-				   </div>
-					<div class="rightbox">		         
-						<span >★4.8/5</span>
+						<hr class="line">
+
+						<div>
+							<div class="leftbox">
+								<span class="">&nbsp;컨텐츠</span>
+							</div>
+							<div class="rightbox">
+								<h4>1400원</h4>
+							</div>
+						</div>
+
 					</div>
-	         	   <hr class="line">
-			          
-		          	<div class="leftbox">
-						<span class="">&nbsp;컨텐츠</span>
+					<!-- 상품1개끝 -->
+					<div class="col-3" type="button" onclick="ppp();">
+						<!-- 상품1개 -->
+						<div class="">
+							<div style="position: relative;">
+								<img
+									src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
+									alt="Image" style="max-width: 100%;" />
+							</div>
+							<div class="zzim">
+								<img class="fullheart" src="/resources/images/msw/fullheart.png">
+								<img class="beanheart" src="/resources/images/msw/beanheart.png">
+							</div>
+						</div>
+						<div class="leftbox">
+							<span> 해바라기 씨</span>
+						</div>
+						<div class="rightbox">
+							<span>★4.8/5</span>
+						</div>
+						<hr class="line">
+
+						<div>
+							<div class="leftbox">
+								<span class="">&nbsp;컨텐츠</span>
+							</div>
+							<div class="rightbox">
+								<h4>1400원</h4>
+							</div>
+						</div>
+
 					</div>
-					<div class="rightbox" >
-						<button onclick="" style="border:0px; background-color:white;">♡</button>
-						<span class="">(1,227)</span>
-					</div><br><br>
-			          
-			          <div>
-			          	<span style="font-size:7px;">&gt;&gt;상세보기</span>
-						<h4 style="float:right;">1400원</h4> 
-			          </div>
-	        		
-		          </div> 상품1개끝 -->
+					<!-- 상품1개끝 -->
 
 
 				</div>
@@ -318,33 +336,25 @@
 	}
 
 
-	
-/* 	 const zzim = document.getElementById("zzim");
-		const zzimc =()=>{
-		event.stopPropagation();
-		console.log('클릭 이벤트 처리');
-		 zzim.style.color = "red";
-	}  
- */
 		
  $(document).ready(function(){
      /*웹페이지 열었을 때*/
-     $("#beanheart").show();
-     $("#fullheart").hide();
+     $(".beanheart").show();
+     $(".fullheart").hide();
      console.log('클릭 이벤트 처리');
 
      /*img1을 클릭했을 때 img2를 보여줌*/
-     $("#beanheart").click(function(){
-    	 $("#beanheart").hide();
-         $("#fullheart").show();
+     $(".beanheart").click(function(){
+    	 $(".beanheart").hide();
+         $(".fullheart").show();
     	 event.stopPropagation();
     	 console.log('클릭 이벤트 처리');
      });
 
      /*img2를 클릭했을 때 img1을 보여줌*/
-     $("#fullheart").click(function(){
-         $("#beanheart").show();
-         $("#fullheart").hide();
+     $(".fullheart").click(function(){
+         $(".beanheart").show();
+         $(".fullheart").hide();
     	 event.stopPropagation();
     	 console.log('클릭 이벤트 처리');
      });

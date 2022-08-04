@@ -177,7 +177,7 @@
 	</div>
 	<div class="cart-container">
 		<h4>
-			<b>장바구니</b>
+			<b>찜목록</b>
 		</h4>
 		<div style="margin-top: 20px">
 			<div>
@@ -187,7 +187,8 @@
 							id="checkboxNoLabel" value="" aria-label="...">
 						<div style="margin-left: 10">전체선택</div>
 					</div>
-					<button type="button" class="btn-delete" style="margin-right: 10">선택삭제</button>
+					<button type="button" class="btn btn-danger"
+							style="font-size: 14px; height: 4 0px; margin-right:1%;">선택삭제</button>
 				</div>
 			</div>
 		</div>
@@ -202,11 +203,9 @@
 							width="150" height="150" border="1" style="margin-left: 10" />
 					</a></td>
 					<td style="width: 55%"><a href="#"
-						style="color: black; text-decoration: none; font-size: 17"><b>상품타이틀</b></a><br>
-						<div style="margin-top: 5; font-size: 15px">오예오예 오예스~</div>
+						style="color: black; text-decoration: none; font-size: 17"><b>상품타이틀</b></a><br><br>
+						<div style="margin-top: 5; font-size: 15px">오예오예 오예스~</div><br>
 						<div style="margin-top: 5;">30,000원</div>
-						<div style="margin-top: 5; font-size: 15px">08.11.목요일 배송도착
-							예정</div></td>
 					<td style="padding-left: 140px;">
 						<button type="button" class="btn btn-danger"
 							style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
