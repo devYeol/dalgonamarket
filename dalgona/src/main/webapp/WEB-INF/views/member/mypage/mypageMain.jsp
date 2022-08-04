@@ -8,6 +8,7 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 <style>
+
 .cart-form {
 	margin-left: 100px;
 	margin-right: 100px;
@@ -193,10 +194,13 @@
 
 .pay {
 	display: flex;
-	text-align: center;
 	justify-content: center;
-	margin-top: 40px;
+	margin-top: 4%;
 	font-size: 22px;
+	border:1px solid black;
+	border-radius:10px;
+	padding-bottom:6%;
+	text-align: center;
 }
 
 .pay div {
@@ -204,9 +208,13 @@
 	margin-right: 35px;
 }
 
-.pay a {
+.pay div a {
 	color: black;
 	text-decoration: none;
+}
+
+.payinfo {
+	margin-top:4%;
 }
 
 .somedate-search {
@@ -370,20 +378,20 @@ img {
 			<b>쇼핑정보</b>
 		</h4>
 		<div class="pay" style="justify-content: space-between;">
-			<div></div>
+			<div ></div>
 
-			<div>
-				<a href="#">1<br>구매 내역
+			<div class="payinfo">
+				<a href="${path }/member/mypage/rwh">1<br>구매 내역
 				</a>
 			</div>
-			<div>
-				<a href="#">1<br>찜한상품
+			<div class="payinfo">
+				<a href="${path }/member/mypage/cart">1<br>장바구니
 				</a>
 			</div>
-			<div>
-				<a href="#">1<br>장바구니
+			<div class="payinfo">
+				<a href="${path }/member/mypage/zzim">1<br>찜 목록
 				</a>
-			</div>
+			</div >
 			<div></div>
 		</div>
 		<div style="margin-top:15%;"></div>
@@ -394,16 +402,16 @@ img {
 		<div class="pay" style="justify-content: space-between;">
 			<div></div>
 
-			<div>
+			<div class="payinfo">
 				<a href="#">0<br>배송 대기
 				</a>
 			</div>
-			<div>
-				<a href="#">0<br>배송 중
+			<div class="payinfo">
+				<a href="#">1<br>배송 중
 				</a>
 			</div>
-			<div>
-				<a href="#">1<br>배송 완료
+			<div class="payinfo">
+				<a href="#">2<br>배송 완료
 				</a>
 			</div>
 			<div></div>
