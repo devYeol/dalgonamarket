@@ -1,10 +1,10 @@
-package com.dal.dalgona.login;
+package com.dal.dalgona.working;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class Login {
+public class KCL {
 
 	@RequestMapping("/login")
 	public String login() {
