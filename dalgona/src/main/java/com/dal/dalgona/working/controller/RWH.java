@@ -1,11 +1,11 @@
-package com.dal.dalgona.mypage;
+package com.dal.dalgona.working.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class Mypage_rwh {
-
+public class RWH {
+	
 	@RequestMapping("/mypage/rwh")
 	public String rwh() {
  		return "mypage/rwh";
