@@ -30,19 +30,19 @@ import lombok.NoArgsConstructor;
 public class Product {
 	
 	@Id
-	private String productCode;
+	private String productCode;//상품코드 PK
 	
-	private int productPrice;
+	private int productPrice; //상품가격
 	
-	private String productContent;
+	private String productContent; //상품정보
 	
-	private int productAmount;
+	private int productAmount; //상품수량
 	
-	private String productThumb;
+	private String productThumb; //상품썸네임
 
-	private String productImage;
+	private String productImage; //상품이미지
 	
-	private Date productDate;
+	private Date productDate; //상품등록일
 	
 	// 찜
 	@ManyToMany(mappedBy="products")
