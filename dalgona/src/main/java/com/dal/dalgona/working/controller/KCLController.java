@@ -11,6 +11,8 @@ public class KCLController {
 		return "member/login/loginPage";
 	}
 	
+	
+	
 	@RequestMapping("/findId")
 	public String findId() {
 		return "member/login/findIdPage";
