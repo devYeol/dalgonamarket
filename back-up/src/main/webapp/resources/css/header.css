@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.middle-btn {
+	
+}
+
+@font-face {
+	font-family: 'NeoDunggeunmo';
+	src: url('/resources/fonts/NeoDunggeunmoPro-Regular.woff2')
+		format('woff2');
+	/* 이런식으로 weight를 지정해서 사용할 수도 있다!*/
+	font-weight: 500;
+}
+
+/* modal구현 부트스트랩*/
+#exampleModal{
+	height: 30%;
+}

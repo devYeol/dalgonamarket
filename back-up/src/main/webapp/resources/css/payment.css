@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+/* 결제페이지-메인 */
+#payment-box {
+	width: 900px;
+ 	margin: 0 auto;
+}
+
+.payment-table {
+/* 	background-color: beige; */
+	width: 800px;
+	border-collapse: separate;
+  	border-spacing: 0 10px;
+  	
+}
+
+#payment-container {
+/*  	background-color: lightgray; */
+	width: 800px;
+	height: 1100px;
+ 	margin: 0 auto;
+}
+
+#payment-btn {
+	margin: 0 auto;
+}
+
+/* 결제, 취소 버튼 */
+/* #payment-cancle-btn {
+	
+}
+
+#payment-btn {
+	
+} */
+
+/* #payment-tr {
+	border-collapse: separate;
+	border-spacing: 0 20px;
+} */
+
+#payment-th {
+	width: 150px;
+}
+
+.deli-btn {
+	display: inline-block;
+}
+
+#deli-btn {
+/* 	margin-bottom: 15px; */
+	float: right;
+}
+
+.deli-btn-content {
+	display: inline-block;
+/* 	float: left; */
+ 
+}
+
+#deli-th {
+	margin: auto;
+}
+
+#payment-deli-table {
+	background-color: #FAFAFA;
+	border-radius: 20px;
+	text-align: center;
+}
+
+.payment-btn-1 {
+	margin: auto;
+}
+
+.pro-price {
+	text-align: right;
+}
+
+/* .my-1 {
+	border: 1px;
+	color: red;
+} */
+
+
+/* payment success, fail */
+
+.payment-success-container {
+	display: table;
+	width: 800px;
+	height: 700px;
+	margin: 0 auto;
+/*   	background-color: lightgray; */
+}
+
+.payment-success-img {
+	display: flex;
+	justify-content:center;
+	margin-top: 90px;
+}
+
+.payment-success-content {
+ 	display: flex;
+	justify-content:center;
+}
+
+
+
+

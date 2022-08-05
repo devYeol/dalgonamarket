@@ -41,10 +41,10 @@ public class SecurityConfig { // Security 설정 클래스
 //								 "/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
 					
 					// 임시로 모든 페이지 보안에서 제외시키기
-					.antMatchers("/**").permitAll()
+//					.antMatchers("/**").permitAll()
 					
 					
-//					.antMatchers("/**").hasRole("USER") // user만 access 가능
+					.antMatchers("/**").hasRole("USER") // user만 access 가능
 					
 					// 권한을 줘서 디비에 있는 것으로 주기
 					// .antMatchers("접근차단 할 url 주소").access("hasRole(dddd)")
