@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -46,7 +48,8 @@ public class Member {
 	@Column(unique=true)
 	private String memberEmail;
 	
-	private Date memberEnrollDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date memberEnrollDate; // default값 주는 어노테이션 찾아서 적용하기 timestamp?
 	
 	// 찜
 	@ManyToMany
