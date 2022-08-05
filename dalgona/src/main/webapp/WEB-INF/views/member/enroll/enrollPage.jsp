@@ -126,10 +126,10 @@ input::placeholder {
 				<br>
 				<div class=genderbox style="margin-left: 5px;">
 					<div>
-						<input type="radio" name="gender" value="남" required><div style="width:70px; margin-left: 10px;">남</div>
+						<input type="radio" name="gender" value="M" required><div style="width:70px; margin-left: 10px;">남</div>
 					</div>
 					<div>
-						<input type="radio" name="gender" value="여" required><div style="width:70px; margin-left: 10px;">여</div>
+						<input type="radio" name="gender" value="F" required><div style="width:70px; margin-left: 10px;">여</div>
 					</div>
 				</div>
 			</div>
