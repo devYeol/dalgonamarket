@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,10 +23,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@SequenceGenerator(name="seq_review_code", sequenceName = "seq_review_code")
 public class Review {
 	
 	@Id
-	private String reviewCode;
+	@GeneratedValue(generator = "seq_review_code", strategy = GenerationType.SEQUENCE)
+	private long reviewCode;
 	
 	private String productCode;
 	

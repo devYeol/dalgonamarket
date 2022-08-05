@@ -5,11 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -27,10 +30,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+@SequenceGenerator(name="seq_order_code", sequenceName = "seq_order_code")
 public class ProductOrder {
 	
 	@Id
-	private String orderCode;
+	@GeneratedValue(generator = "seq_order_code", strategy = GenerationType.SEQUENCE)
+	private long orderCode;
 	
 	private String orderStatus;
 	
