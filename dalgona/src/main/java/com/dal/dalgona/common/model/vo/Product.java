@@ -5,11 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -27,10 +30,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+@SequenceGenerator(name="seq_prono", sequenceName="seq_prono")
 public class Product {
 	
 	@Id
-	private String productCode; //상품코드 PK
+	@GeneratedValue(generator="seq_prono", strategy=GenerationType.SEQUENCE)
+	private long productCode; //상품코드 PK
 	
 	private String productName; //상품명
 	

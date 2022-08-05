@@ -2,6 +2,7 @@ package com.dal.dalgona.common.model.vo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,13 +24,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 /* @IdClass(QnaReId.class) */
-@SequenceGenerator(name = "seq_qnareno",sequenceName = "seq_qnareno")
+@SequenceGenerator(name = "seq_qnare_code",sequenceName = "seq_qnare_code")
 public class QnaRe {
 	
 	@Id
-	@GeneratedValue(generator = "seq_qnareno", strategy = GenerationType.SEQUENCE)
-	private int qnaReNo;
+	@GeneratedValue(generator = "seq_qnare_code", strategy = GenerationType.SEQUENCE)
+	private long qnaReCode;
 	
+	@Column(length=1000)
 	private String qnaReContent;
 	
 	private Date qnaReDate;

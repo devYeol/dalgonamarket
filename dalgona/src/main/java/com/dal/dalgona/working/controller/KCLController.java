@@ -4,38 +4,38 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class KCL {
+public class KCLController {
 
 	@RequestMapping("/login")
 	public String login() {
-		return "common/loginPage";
+		return "member/login/loginPage";
 	}
 	
 	@RequestMapping("/findId")
 	public String findId() {
-		return "common/findIdPage";
+		return "member/login/findIdPage";
 	}
 	
 	@RequestMapping("/findPw")
 	public String findPw() {
-		return "common/findPwPage";
+		return "member/login/findPwPage";
 	}
 	
 	@RequestMapping("/enroll")
 	public String enroll() {
-		return "common/enrollPage";
+		return "member/enroll/enrollPage";
 	}
 	
 	@RequestMapping("/address")
 	public String address() {
-		return "common/address";
+		return "member/mypage/address";
 	}
 	@RequestMapping("/infochange")
 	public String infochange() {
-		return "common/infochange";
+		return "member/mypage/infochange";
 	}
 	@RequestMapping("/changePage")
 	public String changePage() {
-		return "common/changePage";
+		return "member/mypage/changePage";
 	}
 }
