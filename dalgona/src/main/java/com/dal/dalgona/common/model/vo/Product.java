@@ -32,6 +32,8 @@ public class Product {
 	@Id
 	private String productCode;
 	
+	private String productName;
+	
 	private int productPrice;
 	
 	private String productContent;
