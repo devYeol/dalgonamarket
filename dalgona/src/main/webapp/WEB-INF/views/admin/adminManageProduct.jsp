@@ -70,7 +70,7 @@
 				</div>
 				<table class="listtable">
 					<tr>
-						<th>체크박스</th>
+						<th>체크</th>
 						<th>상품코드</th>
 						<th>이미지</th>
 						<th>상품명/가격</th>
