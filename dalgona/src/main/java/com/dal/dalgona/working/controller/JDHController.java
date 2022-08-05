@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.working.model.service.JDHMemberService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class JDHController {
 	
 	@RequestMapping("/payment")
@@ -38,13 +41,13 @@ public class JDHController {
 	public Member jdhInsertTest() {
 		
 		Member m=Member.builder()
-						.memberId("user01")
+						.memberId("admin")
 						.memberPwd("1234!")
-						.memberName("김유저")
+						.memberName("관리자")
 						.memberBirth("1999-01-01")
-						.memberGender("남")
-						.memberPhone("01012345678")
-						.memberEmail("user01@dalgona.com")
+						.memberGender("여")
+						.memberPhone("01012341234")
+						.memberEmail("admin@dalgona.com")
 						.memberEnrollDate(new Date())
 						.build();
 		
@@ -53,12 +56,6 @@ public class JDHController {
 		return result;
 		
 	}
-	
-	
-	
-	
-	
-	
 	
 
 }

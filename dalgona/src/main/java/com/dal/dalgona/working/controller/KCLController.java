@@ -1,15 +1,45 @@
 package com.dal.dalgona.working.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.working.model.service.KCLService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class KCLController {
+	
+	@Autowired
+	private KCLService service;
 
 	@RequestMapping("/login")
 	public String login() {
 		return "member/login/loginPage";
 	}
+	
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public String loginId(Member m,Model model) {
+		
+		Member loginMember=service.login(m);
+		
+		String viewName="redirect:/";
+		
+		if(loginMember!=null) {
+			model.addAttribute("loginMember", loginMember);
+		}else {
+			
+		}
+		log.debug(viewName);
+		return viewName;
+	}
+	
+	
 	
 	@RequestMapping("/findId")
 	public String findId() {

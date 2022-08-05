@@ -77,26 +77,49 @@
 						<th>상품수량</th>
 						<th>등록/삭제</th>
 					</tr>
-					<tr>
-						<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
-						<td style="width:90px;" >20142504</td>
-						<td>
-							<img src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" width="95" height="100" border="0" />
-						</td>
-						<td style="width:59%; text-align: left; padding-left:30px">달고나<br>30000원</td>
-						<td>
-							<input style="width:50px; font-size: 15px; padding-right:10px;" type="number" value="5">
-						</td>
-						<td>
-							<button class="adminbt" style="width: 80px; background-color: #6FB67F;">수정</button>
-							<button class="adminbt" style="width: 80px; background-color: #D56B5A;">삭제</button>
-						</td>
-					</tr>
+					<c:if test="${not empty products}">
+		            	<c:forEach var="p" items="${products}">
+							<tr>
+								<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
+								<td style="width:90px;" ><c:out value="${p.productCode}"/></td>
+								<td>
+									<img src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" width="95" height="100" border="0" />
+								</td>
+								<td style="width:59%; text-align: left; padding-left:30px"><c:out value="${p.productName}"/><br><c:out value="${p.productPrice}"/>원</td>
+								<td>
+									<input style="width:50px; font-size: 15px; padding-right:10px;" type="number" value="<c:out value="${p.productAmount}"/>">
+								</td>
+								<td>
+									<button class="adminbt" style="width: 80px; background-color: #6FB67F;">수정</button>
+									<button class="adminbt" id="<c:out value="${p.productCode}"/>_" name="<c:out value="${p.productCode}"/>" 
+										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event);">삭제</button>
+								</td>
+							</tr>
+						</c:forEach>
+		            </c:if>
+		            <c:if test="${empty products}">
+		            	<tr>
+		            		<td colspan="6">조회결과 없음</td>
+		            	</tr>
+		            </c:if>
 				</table>
 			</div>
 			
 		</div>
 		<!-- end of contents -->
 	</div>
+	<script>
+		const adminDeleteProduct=(e)=>{
+			$.ajax({
+				url:"${path}/admin/adminDeleteProduct.do",
+				data:{productCode:$(e.target).attr("name")},
+				success:data=>{
+					if(data){
+						$(e.target).parents("tr").remove();
+					}
+				}
+			});
+		}
+	</script>
 </body>
 </html>
