@@ -121,17 +121,17 @@ input::placeholder {
 	<div class="login-container">
 		<h2><b>DALGONA MARKET</b></h2>
 		<h5><b>추억속으로의 여행</b></h5>
-		<form action="">
+		<form method="post" action="/login">
 			<div class="int-area">
 				<label for="id"><b>아이디</b></label>
 				<br>
-				<input type="text" name="id" placeholder="아이디를 입력해주세요" autocomplete="off" required>
+				<input type="text" name="userId" placeholder="아이디를 입력해주세요" autocomplete="off" required>
 			</div>
 			<br>
 			<div class="int-area">
 				<label for="pw"><b>비밀번호</b></label>
 				<br>
-				<input type="password" name="pw" placeholder="비밀번호를 입력해주세요" autocomplete="off" required>
+				<input type="password" name="userPw" placeholder="비밀번호를 입력해주세요" autocomplete="off" required>
 			</div>
 			<label class="login-checkbox">
 					<input type="checkbox" name="" value="" style="width: 15px; height:15px;">
