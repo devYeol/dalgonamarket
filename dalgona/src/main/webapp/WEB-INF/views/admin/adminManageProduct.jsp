@@ -62,12 +62,21 @@
 						<b>전체선택</b>
 					</div>
 					&nbsp;
-					<div style="padding-left: 85%;">
+					<div style="padding-left: 75%;">
 						<button class="adminbt" style="width: 80px; background-color: #D56B5A;">선택삭제</button>
+						<button class="adminbt" style="width: 80px; background-color: #8295F7;"
+						onclick="location.assign('${path}/admin/enrollProductTest')">상품등록</button>
 					</div>
 				</div>
 				<table class="listtable">
-					
+					<tr>
+						<th>체크박스</th>
+						<th>상품코드</th>
+						<th>이미지</th>
+						<th>상품명/가격</th>
+						<th>상품수량</th>
+						<th>등록/삭제</th>
+					</tr>
 					<tr>
 						<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
 						<td style="width:90px;" >20142504</td>
@@ -85,8 +94,7 @@
 					</tr>
 				</table>
 			</div>
-			<button class="adminbt" style="width: 80px; background-color: #D56B5A;"
-			onclick="location.assign('${path}/admin/enrollProductTest')">상품등록</button>
+			
 		</div>
 		<!-- end of contents -->
 	</div>
