@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/admin.css" />
-<%-- <script type="text/javascript" src="${path}/resources/js/admin.js"></script> --%>
 <!-- <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -20,6 +19,7 @@
 <title>관리자 페이지</title>
 </head>
 <body>
+<script type="text/javascript" src="${path}/resources/js/jquery-3.6.0.min.js"></script>
 	<!-- 메인 영역 -->
 	<div class="container">
 		<!-- 사이드바 영역 -->
@@ -59,8 +59,21 @@
 					</tr>
 					<tr>
 						<td class="theader">옵션</td>
-						<td><input class="adminin" type="text"
-							placeholder="내용을 입력해 주세요"></td>
+						<td>
+							<div>
+							<button id="addOptionBtn" class="adminbt" type="button">옵션추가하기</button>
+							</div>
+							<div style="display:flex;justify-content:left;align-items:center;margin:2%">
+								<div>옵션</div>
+								<div>
+									<input class="adminin" name="oprionName" type="text"
+									placeholder="옵션이름을 입력해주세요">
+									<input class="adminin" name="optionPrice" type="number" min="1000"
+									placeholder="옵션가격을 입력해주세요">
+								</div>
+								<div><button class="adminbt" type="button" onclick="deleteOption();">삭제</button></div>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td class="theader">수량</td>
@@ -91,5 +104,11 @@
 		</div>
 		<!-- end of contents -->
 	</div>
+	<script>
+		$("#addOptionBtn").click(e=>{
+			const optionTemplate=$(e.target).parent().next().clone();
+			$(e.target).parent().next().after(optionTemplate);
+		});
+	</script>
 </body>
 </html>
