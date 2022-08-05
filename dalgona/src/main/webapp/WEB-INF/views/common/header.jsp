@@ -74,22 +74,34 @@
 							<!-- <button class="modal-btn" style="border: 1px solid white; background-color: white">
 			        		</button> -->
 
-							<ul
-								class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
+							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
 								<!--    <li>
 			            	<a href="#" class="nav-link text-black">
 								<img src="/resources/images/header/search.svg" style="width:24; height:24">
 			            	</a>
 			            </li> -->
-								<li><a id="search-open" href="#"
-									class="nav-link text-black"> <svg
-											class="bi d-block mx-auto mb-1" width="24" height="24">
-											<use xlink:href="#instagram" /></svg>
-								</a></li>
-								<li><a href="${path }/member/mypage/mypageMain" class="nav-link text-black"> <svg
-											class="bi d-block mx-auto mb-1" width="24" height="24">
-											<use xlink:href="#twitter" /></svg>
-								</a></li>
+								<li>
+									<a id="search-open" href="#" class="nav-link text-black"> 
+										<svg class="bi d-block mx-auto mb-1" width="24" height="24">
+											<use xlink:href="#instagram" />
+										</svg>
+									</a>
+								</li>
+								<c:if test="${loginMember == null  }">
+								<li>
+									<a href="${path }/login" class="nav-link text-black">
+										<svg class="bi d-block mx-auto mb-1" width="24" height="24">
+											<use xlink:href="#twitter" />
+										</svg>
+									</a>
+								</li>
+								</c:if>
+								<c:if test="${loginMember != null }">
+									<span>
+										환영합니다
+									</span>
+									<button>로그아웃</button>
+								</c:if>
 							</ul>
 						</div>
 					</div>

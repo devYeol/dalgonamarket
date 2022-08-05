@@ -8,14 +8,14 @@ import com.dal.dalgona.working.model.dao.JDHMemberRepository;
 
 @Service
 public class JDHMemberService {
-	
-	@Autowired
-	private JDHMemberRepository repo;
-	
-	public Member jdhInsertTest(Member m) {
-		
-		return repo.save(m);
-		
-	}
+   
+   @Autowired
+   private JDHMemberRepository repo;
+   
+   public Member jdhInsertTest(Member m) {
+      
+      return repo.save(m);
+      
+   }
 
 }
