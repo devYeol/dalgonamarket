@@ -33,6 +33,7 @@
         -->
 		<div class="contents">
 			<div class="contentstitle">상품등록</div>
+		<form action="${path }/insertProduct" method="post">
 			<div class="enrolltablediv">
 				<table class="enrolltable">
 					<tr>
@@ -68,7 +69,10 @@
 					</tr>
 					<tr>
 						<td class="theader">이미지</td>
-						<td><input type="file" name="upfile" multiple></td>
+						<td>
+							<input type="file" name="upfile" style="margin-bottom: 5px" >
+							<input type="file" name="upfile">
+						</td>
 					</tr>
 					<tr>
 						<td class="theader">상품설명</td>
@@ -83,6 +87,7 @@
 					<button class="adminbt">등록</button>
 				</div>
 			</div>
+		</form>
 		</div>
 		<!-- end of contents -->
 	</div>

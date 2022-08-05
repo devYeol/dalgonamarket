@@ -30,7 +30,9 @@ import lombok.NoArgsConstructor;
 public class Product {
 	
 	@Id
-	private String productCode;//상품코드 PK
+	private String productCode; //상품코드 PK
+	
+	private String productName; //상품명
 	
 	private int productPrice; //상품가격
 	
