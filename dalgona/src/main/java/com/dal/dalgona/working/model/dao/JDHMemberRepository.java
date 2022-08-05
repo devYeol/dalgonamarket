@@ -9,5 +9,7 @@ import com.dal.dalgona.common.model.vo.Member;
 public interface JDHMemberRepository extends JpaRepository<Member, String> { // <Entity, @Id자료형>
 	
 	Member save(Member m);
+	
+	Member findByMemberId(String memberId);
 
 }
