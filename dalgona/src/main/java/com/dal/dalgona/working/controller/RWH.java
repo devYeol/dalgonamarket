@@ -45,7 +45,7 @@ public class RWH {
 	}
 	
 	@RequestMapping("/insertProduct") 
-	public String insertProduct(@RequestParam(value="productCode") String product_Code,
+	public String insertProduct(@RequestParam(value="productCode") long product_Code,
 			  					@RequestParam(value="productAmount") int product_Ampont,
 			  					@RequestParam(value="productContent") String product_Content,
 			  					@RequestParam(value="productDate") Date produnt_Date,
@@ -59,15 +59,20 @@ public class RWH {
 			  					) {
 		
 		
-		Product p = Product.builder().productCode(product_Code).productAmount(product_Ampont).productContent(product_Content)
-					.productDate(produnt_Date).productImage(product_Image).productPrice(product_Price).productThumb(product_Tumb)
-					.productName(product_Name).build();
-		
+									/*
+									 * Product p =
+									 * Product.builder().productCode(product_Code).productAmount(product_Ampont).
+									 * productContent(product_Content)
+									 * .productDate(produnt_Date).productImage(product_Image).productPrice(
+									 * product_Price).productThumb(product_Tumb) .productName(product_Name).build();
+									 */		
 		List<ProductOption> options=new ArrayList();
 		
-		for(int i=0;i<optionName.length;i++) {
-			options.add(ProductOption.builder().oprionName(optionName[i]).optionPrice(optionPrice[i]).product(p).build());
-		}
+		/*
+		 * for(int i=0;i<optionName.length;i++) {
+		 * options.add(ProductOption.builder().oprionName(optionName[i]).optionPrice(
+		 * optionPrice[i]).product(p).build()); }
+		 */
 		
 		//service.inserProduct(p);
 		
