@@ -33,12 +33,12 @@
         -->
 		<div class="contents">
 			<div class="contentstitle">상품등록</div>
-		<form action="${path }/insertProduct" method="post">
+		<form action="${path }/insertProduct" method="post" enctype="multipart/form-data">
 			<div class="enrolltablediv">
 				<table class="enrolltable">
 					<tr>
 						<td class="theader">상품명</td>
-						<td><input class="adminin" type="text"
+						<td><input class="adminin" name="productName" type="text"
 							placeholder="내용을 입력해 주세요"></td>
 					</tr>
 					<tr>
@@ -54,30 +54,29 @@
 					</tr>
 					<tr>
 						<td class="theader">가격</td>
-						<td><input class="adminin" type="text"
+						<td><input class="adminin" type="text" name="productPrice"
 							placeholder="내용을 입력해 주세요"></td>
 					</tr>
 					<tr>
 						<td class="theader">옵션</td>
 						<td>
-							<div>
-							<button id="addOptionBtn" class="adminbt" type="button">옵션추가하기</button>
+							<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
+							<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
 							</div>
 							<div style="display:flex;justify-content:left;align-items:center;margin:2%">
-								<div>옵션</div>
 								<div>
-									<input class="adminin" name="oprionName" type="text"
+									<input class="adminin" name="optionName" type="text"
 									placeholder="옵션이름을 입력해주세요">
 									<input class="adminin" name="optionPrice" type="number" min="1000"
 									placeholder="옵션가격을 입력해주세요">
 								</div>
-								<div><button class="adminbt" type="button" onclick="deleteOption();">삭제</button></div>
+								<div><button class="adminbt" type="button" onclick="deleteOption();" style="width:50; font-size:13">삭제</button></div>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td class="theader">수량</td>
-						<td><input class="adminin" type="text"
+						<td><input class="adminin" type="text" name="productAmount"
 							placeholder="내용을 입력해 주세요"></td>
 					</tr>
 					<tr>
@@ -89,7 +88,7 @@
 					</tr>
 					<tr>
 						<td class="theader">상품설명</td>
-						<td><input class="adminin" type="text"
+						<td><input class="adminin" type="text" name="productContent"
 							placeholder="내용을 입력해 주세요"></td>
 					</tr>
 				</table>
@@ -109,6 +108,12 @@
 			const optionTemplate=$(e.target).parent().next().clone();
 			$(e.target).parent().next().after(optionTemplate);
 		});
+		    function deleteOption(){
+			   if(confirm("옵션이 삭제됩니다!")==true){
+				
+			     }   
+			 };
+			
 	</script>
 </body>
 </html>
