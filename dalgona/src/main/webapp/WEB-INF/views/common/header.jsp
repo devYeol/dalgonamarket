@@ -86,7 +86,7 @@
 											class="bi d-block mx-auto mb-1" width="24" height="24">
 											<use xlink:href="#instagram" /></svg>
 								</a></li>
-								<li><a href="#" class="nav-link text-black"> <svg
+								<li><a href="${path }/member/mypage/mypageMain" class="nav-link text-black"> <svg
 											class="bi d-block mx-auto mb-1" width="24" height="24">
 											<use xlink:href="#twitter" /></svg>
 								</a></li>
