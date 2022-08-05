@@ -2,11 +2,15 @@ package com.dal.dalgona.common.model.vo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,10 +25,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 //@IdClass(QnaId.class)
+@SequenceGenerator(name="seq_qna_code", sequenceName = "seq_qna_code")
 public class Qna {
 	
 	@Id
-	private String qnaCode;
+	@GeneratedValue(generator = "seq_qna_code", strategy = GenerationType.SEQUENCE)
+	private long qnaCode;
 	
 	@ManyToOne
 	@JoinColumn(name="memberId")
@@ -35,6 +41,7 @@ public class Qna {
 	@JoinColumn(name="productCode")
 	private Product product;
 	
+	@Column(length=1000)
 	private String qnaContent;
 	
 	private Date qnaDate;
