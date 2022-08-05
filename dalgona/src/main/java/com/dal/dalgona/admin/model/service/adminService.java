@@ -13,9 +13,9 @@ public class adminService {
 	@Autowired
 	adminDao dao;
 	
-	public Page<Product> selectProducts(PageRequest pageRequest) {
-		return dao.findAll(pageRequest);
-	}
+//	public Page<Product> selectProducts(PageRequest pageRequest) {
+//		return dao.findAll(pageRequest);
+//	}
 	
 	public Long deleteByProductCode(long productCode) {
 		return dao.deleteByProductCode(productCode);

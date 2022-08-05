@@ -37,9 +37,9 @@ public class adminController {
 	// 상품관리 페이지 이동
 	@RequestMapping("adminManageProduct.do")
 	public ModelAndView adminManageProduct(ModelAndView mv) {
-		PageRequest pageRequest = PageRequest.of(0, 5);
-		Page<Product> list=service.selectProducts(pageRequest);
-		mv.addObject("products",list);
+//		PageRequest pageRequest = PageRequest.of(0, 5);
+//		Page<Product> list=service.selectProducts(pageRequest);
+//		mv.addObject("products",list);
 		mv.setViewName("admin/adminManageProduct");
 		return mv;
 	}

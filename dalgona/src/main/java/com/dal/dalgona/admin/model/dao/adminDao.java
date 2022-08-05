@@ -11,7 +11,7 @@ import com.dal.dalgona.common.model.vo.Product;
 
 @Repository
 public interface adminDao extends JpaRepository<Product, Long> {
-	Page<Product> findAll(Pageable pagable);
+//	Page<Product> findAll(Pageable pagable);
 	
 	@Transactional
 	Long deleteByProductCode(long productCode);
