@@ -1,9 +1,12 @@
 package com.dal.dalgona.common.model.vo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,10 +20,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@SequenceGenerator(name="seq_address_code", sequenceName = "seq_address_code")
 public class DeliveryLocation {
 	
 	@Id
-	private String addressCode;
+	@GeneratedValue(generator = "seq_address_code", strategy = GenerationType.SEQUENCE)
+	private long addressCode;
 	
 	private String adrPostNum;
 	
