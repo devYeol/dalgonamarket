@@ -38,13 +38,13 @@ public class JDHController {
 	public Member jdhInsertTest() {
 		
 		Member m=Member.builder()
-						.memberId("admin")
+						.memberId("user01")
 						.memberPwd("1234!")
-						.memberName("관리자")
+						.memberName("김유저")
 						.memberBirth("1999-01-01")
-						.memberGender("여")
-						.memberPhone("01012341234")
-						.memberEmail("admin@dalgona.com")
+						.memberGender("남")
+						.memberPhone("01012345678")
+						.memberEmail("user01@dalgona.com")
 						.memberEnrollDate(new Date())
 						.build();
 		
