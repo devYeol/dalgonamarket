@@ -2,6 +2,7 @@ package com.dal.dalgona.common.model.vo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,7 @@ public class QnaRe {
 	@GeneratedValue(generator = "seq_qnareno", strategy = GenerationType.SEQUENCE)
 	private int qnaReNo;
 	
+	@Column(length=1000)
 	private String qnaReContent;
 	
 	private Date qnaReDate;

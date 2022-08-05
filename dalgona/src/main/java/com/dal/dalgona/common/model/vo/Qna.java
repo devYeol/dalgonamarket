@@ -2,6 +2,7 @@ package com.dal.dalgona.common.model.vo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -35,6 +36,7 @@ public class Qna {
 	@JoinColumn(name="productCode")
 	private Product product;
 	
+	@Column(length=1000)
 	private String qnaContent;
 	
 	private Date qnaDate;

@@ -1,5 +1,6 @@
 package com.dal.dalgona.common.model.vo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,6 +23,7 @@ public class Refund {
 	
 	private String refundStatus;
 	
+	@Column(length=1000)
 	private String refundContent;
 	
 	// 환불

@@ -2,6 +2,7 @@ package com.dal.dalgona.common.model.vo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -30,6 +31,7 @@ public class Review {
 	
 	private String reviewTtitle;
 	
+	@Column(length=1000)
 	private String reviewContent;
 	
 	private String reviewImage;
