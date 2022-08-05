@@ -423,6 +423,7 @@ html {
 
 .listtable th{
 	height: 50px;
+	text-align: center;
 }
 
 .listtable td{

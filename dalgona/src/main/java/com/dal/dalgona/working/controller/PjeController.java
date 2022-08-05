@@ -17,13 +17,13 @@ public class PjeController {
 	@Autowired
 	private PjeService service;
 	
-	@RequestMapping("/enrollProductTest")
 //	@ResponseBody
+	@RequestMapping("/enrollProductTest")
 	public String insertStudent() {
-		Product p=Product.builder().productCode("네").productAmount(10).productContent("이것은 달고나").productDate(new Date())
+		Product p=Product.builder().productAmount(10).productContent("이것은 달고나").productDate(new Date())
 				.productPrice(1000).productName("달고나").build();
 		
 		service.insertProduct(p);
-		return "redirect:admin/enrollProductTest";
+		return "redirect:adminManageProduct.do";
 	}
 }
