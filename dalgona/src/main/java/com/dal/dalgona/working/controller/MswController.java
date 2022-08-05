@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member")
 public class MswController {
 
-	@RequestMapping("/member/mypage/mypageMain")
+	@RequestMapping("/mypage/mypageMain")
 	public String mypageMain() {
-		return "/member/mypage/mypageMain";
+		return "member/mypage/mypageMain";
 	}
 	
 }
