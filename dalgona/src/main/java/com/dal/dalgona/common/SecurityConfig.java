@@ -32,7 +32,7 @@ public class SecurityConfig { // Security 설정 클래스
 //					.loginPage(null) // 로그인 페이지 설정
 //					.successForwardUrl("/successlogin") // 로그인 성공시 이동 url
 					.successForwardUrl("/")
-					.and() // and() 로 구분
+					.and()
 					
 				// 인증 권한에 대한 설정 interceptor-url 같은 역할
 				.authorizeRequests()
@@ -41,10 +41,10 @@ public class SecurityConfig { // Security 설정 클래스
 //								 "/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
 					
 					// 임시로 모든 페이지 보안에서 제외시키기
-					.antMatchers("/**").permitAll()
+//					.antMatchers("/**").permitAll()
 					
 					
-//					.antMatchers("/**").hasRole("USER") // user만 access 가능
+					.antMatchers("/**").hasRole("USER") // user만 access 가능
 					
 					// 권한을 줘서 디비에 있는 것으로 주기
 					// .antMatchers("접근차단 할 url 주소").access("hasRole(dddd)")
@@ -53,7 +53,7 @@ public class SecurityConfig { // Security 설정 클래스
 					.and()
 					
 				.logout() // 로그아웃 설정
-					.logoutUrl("/JDHLogout")
+					.logoutUrl("/JDHLogout") // .do로 설정하면 바꾸기
 					.and()
 					
 				.authenticationProvider(ap()) // AuthenticationProvider

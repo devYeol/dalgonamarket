@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.working.model.service.JDHMemberService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class JDHController {
 	
 	@RequestMapping("/payment")
@@ -53,12 +56,6 @@ public class JDHController {
 		return result;
 		
 	}
-	
-	
-	
-	
-	
-	
 	
 
 }
