@@ -16,11 +16,6 @@ public class RWH {
  		return "/member/mypage/rwh";
 	}
 	
-	@RequestMapping("/sang")
-	public String sang() {
-		return "sang";
-	}
-	
 	@RequestMapping("/member/mypage/zzim")
 	public String zzim(){
 		return "/member/mypage/zzim";
