@@ -53,7 +53,7 @@ public class SecurityConfig { // Security 설정 클래스
 					.and()
 					
 				.logout() // 로그아웃 설정
-					.logoutUrl("/JDHLogout") // .do로 설정하면 바꾸기
+					.logoutUrl("/JDHLogout") // .do로 설정하면 변경
 					.and()
 					
 				.authenticationProvider(ap()) // AuthenticationProvider

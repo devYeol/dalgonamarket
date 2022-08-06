@@ -14,7 +14,7 @@ import com.dal.dalgona.working.model.dao.JDHMemberRepository;
 public class SecurityService implements UserDetailsService {
 	
 	@Autowired
-	private JDHMemberRepository memberRepo;
+	private JDHMemberRepository memberRepo; // Member table repository
 
 	@Override
 	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
