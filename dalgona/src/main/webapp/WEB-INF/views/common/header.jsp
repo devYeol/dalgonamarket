@@ -87,7 +87,7 @@
 										</svg>
 									</a>
 								</li>
-								<c:if test="${loginMember == null  }">
+								<c:if test="${loginMember == null}">
 								<li>
 									<a href="${path }/login" class="nav-link text-black">
 										<svg class="bi d-block mx-auto mb-1" width="24" height="24">

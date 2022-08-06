@@ -26,10 +26,11 @@ public class SecurityConfig { // Security 설정 클래스
 	@Bean
 	public SecurityFilterChain authenticatePath(HttpSecurity http) throws Exception { // HttpSecurity = <security:@@> 태그와 같은 역할
 		
-		return http.csrf().disable()
+		return http.csrf().disable() // csrf 보안 제거
+				.httpBasic().disable() // 기본 제공 로그인 폼 제거
 				
 				.formLogin() // 로그인 설정
-//					.loginPage(null) // 로그인 페이지 설정
+					.loginPage("/login") // 로그인 페이지 설정
 //					.successForwardUrl("/successlogin") // 로그인 성공시 이동 url
 					.successForwardUrl("/")
 					.and()
@@ -43,7 +44,6 @@ public class SecurityConfig { // Security 설정 클래스
 					// 임시로 모든 페이지 보안에서 제외시키기
 					.antMatchers("/**").permitAll()
 					
-					
 //					.antMatchers("/**").hasRole("USER") // user만 access 가능
 					
 					// 권한을 줘서 디비에 있는 것으로 주기
@@ -53,7 +53,7 @@ public class SecurityConfig { // Security 설정 클래스
 					.and()
 					
 				.logout() // 로그아웃 설정
-					.logoutUrl("/JDHLogout") // .do로 설정하면 바꾸기
+					.logoutUrl("/JDHLogout") // .do로 설정하면 변경
 					.and()
 					
 				.authenticationProvider(ap()) // AuthenticationProvider
