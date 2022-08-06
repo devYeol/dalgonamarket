@@ -18,19 +18,18 @@ public class JDHController {
 	
 	@RequestMapping("/payment")
 	public String paymentTest() {
-		return "payment/payment";
+		return "order/payment/payment";
 	}
 	
 	@RequestMapping("/paymentSuccess")
 	public String paymentSuccess() {
-		return "payment/paymentSuccess";
+		return "order/payment/paymentSuccess";
 	}
 	
 	@RequestMapping("/paymentFail")
 	public String paymentFail() {
-		return "payment/paymentFail";
+		return "order/payment/paymentFail";
 	}
-	
 	
 	@Autowired
 	private JDHMemberService service;
