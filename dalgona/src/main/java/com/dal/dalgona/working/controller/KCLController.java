@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.working.model.service.KCLService;
@@ -12,6 +13,7 @@ import com.dal.dalgona.working.model.service.KCLService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@SessionAttributes({"loginMember"})
 @Slf4j
 public class KCLController {
 	
@@ -31,9 +33,13 @@ public class KCLController {
 		String viewName="redirect:/";
 		
 		if(loginMember!=null) {
+			//로그인 성공
 			model.addAttribute("loginMember", loginMember);
 		}else {
-			
+			//로그인 실패
+			model.addAttribute("msg","로그인실패");
+			model.addAttribute("loc","/");
+			viewName="common/msg";
 		}
 		log.debug(viewName);
 		return viewName;
