@@ -17,6 +17,7 @@ public class PjeController {
 	@Autowired
 	private PjeService service;
 	
+	// 상품등록버튼
 //	@ResponseBody
 	@RequestMapping("/enrollProductTest")
 	public String insertStudent() {
@@ -25,5 +26,10 @@ public class PjeController {
 		
 		service.insertProduct(p);
 		return "redirect:adminManageProduct.do";
+	}
+	
+	@RequestMapping("/adminManageMember.do")
+	public String adminManageMember() {
+		return "admin/adminManageMember";
 	}
 }
