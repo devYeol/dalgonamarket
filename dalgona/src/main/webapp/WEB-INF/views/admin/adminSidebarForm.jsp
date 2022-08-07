@@ -28,6 +28,8 @@
 		<br>
 		<div class="menu" onclick="location.assign('${path}/')">나가기</div>
 		<br>
+		<div class="menu" onclick="location.assign('${path}/admin/pagingTest.do')">페이징테스트</div>
+		<br>
 	</div>
 </div>
 <!-- end of sidebar -->
