@@ -1,7 +1,10 @@
 package com.dal.dalgona.working.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-public class RWH {
+public class RWHController {
 	
 	@Autowired
 	private RwhService service;
@@ -56,10 +59,6 @@ public class RWH {
 	@ResponseBody
 	public Category insertCategory() {
 		Category cate = Category.builder().categoryName("기타").build();
-		/*Category cate2 = Category.builder().categoryCode(3).categoryName("초코").build();
-		Category cate3 = Category.builder().categoryCode(4).categoryName("젤리").build();
-		Category cate4 = Category.builder().categoryCode(5).categoryName("완구").build();
-		Category cate5 = Category.builder().categoryCode(6).categoryName("기타").build();*/
 		Category result=service.insertCategory(cate);
 		
 		return result;
@@ -71,12 +70,13 @@ public class RWH {
 	public String insertProduct(
 			  					@RequestParam(value="productAmount") int product_Ampont,
 			  					@RequestParam(value="productContent") String product_Content,
-			  					MultipartFile[] upfile,
+			  					MultipartFile thumbnail,
+			  					MultipartFile detailedImage,
 			  					@RequestParam(value="productPrice") int product_Price,
 			  					@RequestParam(value="productName") String product_Name,
 			  					String categoryName,
 			  					String[] optionName,
-			  					int[] optionPrice
+			  					int[] optionPrice, HttpServletRequest rs
 			  					) {
 									
 		Category c=service.selectCategory(categoryName);
@@ -85,6 +85,19 @@ public class RWH {
 		Product p = Product.builder().productAmount(product_Ampont).
 				productContent(product_Content).productPrice(
 				product_Price).productName(product_Name).category(c).build();
+		
+		thumbnail.getOriginalFilename();
+		String path = rs.getServletContext().getRealPath("/resources/upload/product/");
+		File uploadDir = new File(path);
+		//폴더없으면생성
+		if(!uploadDir.exists()) uploadDir.mkdirs();
+		
+		
+		
+		  if(!thumbnail.isEmpty()) {
+		  }
+		 
+		 
 									 		
 		List<ProductOption> options= new ArrayList();
 		
@@ -97,8 +110,11 @@ public class RWH {
 		 log.debug("{}",p);
 		 log.debug("{}",options);
 		 
+		 String oriName = thumbnail.getOriginalFilename();
+		 
+		 
 		
-		//service.insertProduct(p);
+		Product pro = service.insertProduct(p);
 		
 		
 		return "admin/adminManageProduct";

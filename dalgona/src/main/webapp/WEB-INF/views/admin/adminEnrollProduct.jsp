@@ -82,8 +82,8 @@
 					<tr>
 						<td class="theader">이미지</td>
 						<td>
-							<input type="file" name="upfile" style="margin-bottom: 5px" >
-							<input type="file" name="upfile">
+							<input type="file" name="thumbnail" style="margin-bottom: 5px" >
+							<input type="file" name="detailedImage">
 						</td>
 					</tr>
 					<tr>

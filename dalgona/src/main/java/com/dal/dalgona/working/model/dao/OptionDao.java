@@ -7,5 +7,5 @@ import com.dal.dalgona.common.model.vo.ProductOption;
 
 @Repository
 public interface OptionDao extends JpaRepository<ProductOption, Long> {
-
+	
 }

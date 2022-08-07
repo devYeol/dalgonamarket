@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -28,7 +31,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name="product")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 @SequenceGenerator(name="seq_prono", sequenceName="seq_prono")
 public class Product {
@@ -48,6 +51,7 @@ public class Product {
 	private String productThumb; //상품썸네임
 
 	private String productImage; //상품이미지
+	
 	
 	private Date productDate; //상품등록일
 	
