@@ -15,4 +15,7 @@ public interface adminDao extends JpaRepository<Product, Long> {
 	
 	@Transactional
 	Long deleteByProductCode(long productCode);
+	
+	Product saveAndFlush(Product p);
+	
 }

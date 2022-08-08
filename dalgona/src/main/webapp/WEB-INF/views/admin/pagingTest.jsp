@@ -56,14 +56,14 @@
 				</table> -->
 				<div style="display: flex; padding-bottom: 8px;">
 					<div style="padding-top: 10px;">
-						<input type="checkbox" style="width: 15px; height: 15px;">
+						<input type="checkbox" style="width: 15px; height: 15px;" oninput="selectAll();" id="productEntry">
 					</div>
 					<div style="padding-top: 10px; padding-left: 5px;">
 						<b>전체선택</b>
 					</div>
 					&nbsp;
 					<div style="padding-left: 75%;">
-						<button class="adminbt" style="width: 80px; background-color: #D56B5A;">선택삭제</button>
+						<button class="adminbt" style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteSelect();">선택삭제</button>
 						<button class="adminbt" style="width: 80px; background-color: #8295F7;"
 						onclick="location.assign('${path}/admin/enrollProductTest')">상품등록</button>
 					</div>
@@ -80,7 +80,7 @@
 					<c:if test="${not empty products}">
 		            	<c:forEach var="p" items="${products}">
 							<tr>
-								<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
+								<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;" id="<c:out value="${p.productCode}"/>" name="check"></td>
 								<td style="width:90px;" ><c:out value="${p.productCode}"/></td>
 								<td>
 									<img src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" width="95" height="100" border="0" />
@@ -111,7 +111,7 @@
 		<!-- end of contents -->
 	</div>
 	<script>
-		// 개별삭제 버튼
+		// 개별 삭제 버튼
 		const adminDeleteProduct=(e)=>{
 			$.ajax({
 				url:"${path}/admin/adminDeleteProduct.do",
@@ -124,8 +124,49 @@
 			});
 		}
 		
-		// 전체 선택
+	    // 선택 삭제
+	    const adminDeleteSelect=()=>{
+	        const cnt = $("input[name='check']:checked").length;
+	        const arr = new Array();
+	        $("input[name='check']:checked").each(function() {
+	            arr.push($(this).attr('id'));
+	        });
+	        console.log(cnt);
+	        console.log(arr);
+	        $.ajax({
+				url:"${path}/admin/adminDeleteSelect.do",
+				data:{deleteArr:arr},
+				success:data=>{
+					if(data){
+						$("input[name='check']:checked").parents("tr").remove();
+					}
+				}
+			});
+            /* $.ajax = {
+                url:"${path}/admin/adminDeleteSelect.do",
+                traditional : true,
+                data:{deleteArr:arr},
+                // dataType: "json",
+                success: data=>{ */
+               /*      if(data != 1) {
+                        alert("삭제 오류");
+                    }
+                    else{
+                        alert("삭제 성공");
+                    } */
+                // }
+            // };
+	    }
 		
+		// 전체 선택
+		const selectAll=()=>{
+     	const entry = document.getElementById("productEntry");
+	 	const check = document.getElementsByName("check");
+	        for (let i = 0; i < check.length; i++) {
+	        	check[i].checked = entry.checked;
+	        }
+	    };
+	    
 		
 	</script>
 </body>

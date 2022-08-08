@@ -1,9 +1,13 @@
 package com.dal.dalgona.working.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.Qna;
+import com.dal.dalgona.common.model.vo.Review;
 
 @Repository
 public class KojDaoImpl implements KojDao {
@@ -11,7 +15,23 @@ public class KojDaoImpl implements KojDao {
 	@Override
 	public Product selectProduct(SqlSession session,long productCode) {
 		// TODO Auto-generated method stub
-		return session.selectOne("product.selectProduc",productCode);
+		return session.selectOne("product.selectProduct",productCode);
 	}
+
+	@Override
+	public List<Review> reviewList(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("review.reviewList");
+	}
+
+	@Override
+	public List<Qna> qnaList(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("qna.qnaList");
+	}
+	
+	
+	
+	
 
 }

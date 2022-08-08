@@ -1,10 +1,14 @@
 package com.dal.dalgona.working.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -18,6 +22,9 @@ public class KCLController {
 	@Autowired
 	private KCLService service;
 
+	@Value(value = "${spring.mail.username}")
+	private String adminEmail;
+	
 	@RequestMapping("/member/login")
 	public String login() {
 		return "member/login/loginPage";
@@ -96,4 +103,22 @@ public class KCLController {
 	public String changePage() {
 		return "member/mypage/changePage";
 	}
+	
+	@RequestMapping("/authmail")
+	@ResponseBody
+	public Boolean sendmail(String email,HttpSession session) {
+		session.setAttribute("emailKey",service.authSendEmail(adminEmail,email));
+		return true;
+	}
+	
+	@RequestMapping("/checkauthkey")
+	@ResponseBody
+	public Boolean checkEmailAuthKey(String key,HttpSession session) {
+		Boolean result=key.equals((String)session.getAttribute("emailKey"));
+		if(result) session.removeAttribute("emailKey");
+		return result;
+		
+	}
+	
+	
 }
