@@ -121,17 +121,17 @@ input::placeholder {
 	<div class="login-container">
 		<h2><b>DALGONA MARKET</b></h2>
 		<h5><b>추억속으로의 여행</b></h5>
-		<form action="${path}/login" method="post">
+		<form action="${path}/member/loginEnd" method="post">
 			<div class="int-area">
 				<label for="id"><b>아이디</b></label>
 				<br>
-				<input type="text" name="userId" placeholder="아이디를 입력해주세요" autocomplete="off" required>
+				<input type="text" name="memberId" placeholder="아이디를 입력해주세요" autocomplete="off" required>
 			</div>
 			<br>
 			<div class="int-area">
 				<label for="pw"><b>비밀번호</b></label>
 				<br>
-				<input type="password" name="userPw" placeholder="비밀번호를 입력해주세요" autocomplete="off" required>
+				<input type="password" name="memberPwd" placeholder="비밀번호를 입력해주세요" autocomplete="off" required>
 			</div>
 			<label class="login-checkbox">
 					<input type="checkbox" name="" value="" style="width: 15px; height:15px;">
@@ -150,7 +150,7 @@ input::placeholder {
 					<a href="" style="border-right:1px solid gray;"><b>&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
 				</div>
 				<div>
-					<a href=""><b>&nbsp;&nbsp;회원가입</b>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<a href="${path}/member/enroll"><b>&nbsp;&nbsp;회원가입</b>&nbsp;&nbsp;&nbsp;&nbsp;</a>
 				</div>
 			</div>
 		<br>

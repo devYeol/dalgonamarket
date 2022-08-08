@@ -6,46 +6,47 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.working.model.service.KCLService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Controller
 @SessionAttributes({"loginMember"})
-@Slf4j
 public class KCLController {
 	
 	@Autowired
 	private KCLService service;
 
-	@RequestMapping("/login")
+	@RequestMapping("/member/login")
 	public String login() {
 		return "member/login/loginPage";
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@RequestMapping(value="/member/loginEnd", method = RequestMethod.POST)
 	public String loginId(Member m,Model model) {
 		
 		Member loginMember=service.login(m);
-		
-		String viewName="redirect:/";
+
+		String view="redirect:/";
 		
 		if(loginMember!=null) {
-			//로그인 성공
-			model.addAttribute("loginMember", loginMember);
+			model.addAttribute("loginMember",loginMember);
 		}else {
-			//로그인 실패
-			model.addAttribute("msg","로그인실패");
-			model.addAttribute("loc","/");
-			viewName="common/msg";
+			model.addAttribute("msg","로그인 실패");
+			model.addAttribute("loc","/login");
+			view="common/msg";
 		}
-		log.debug(viewName);
-		return viewName;
+		return view;
 	}
 	
-	
+	@RequestMapping("/member/logout")
+	public String logout(SessionStatus status) {
+		if(!status.isComplete()) {
+			status.setComplete();
+		}
+		return "redirect:/";
+	}
 	
 	@RequestMapping("/findId")
 	public String findId() {
@@ -57,10 +58,31 @@ public class KCLController {
 		return "member/login/findPwPage";
 	}
 	
-	@RequestMapping("/enroll")
+	@RequestMapping("/member/enroll")
 	public String enroll() {
 		return "member/enroll/enrollPage";
 	}
+	
+	@RequestMapping("/member/enrollEnd")
+	public String enrollEnd(Member m,Model model) {
+		
+		int result=service.insertMember(m);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="회원가입 성공";
+			loc="/";
+		}else {
+			msg="회원가입 실패";
+			loc="/member/enroll";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
+	}
+	
+	
 	
 	@RequestMapping("/address")
 	public String address() {
