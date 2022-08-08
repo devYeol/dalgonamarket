@@ -20,4 +20,8 @@ public class PjeService {
 	public Page<Product> selectProducts(PageRequest pagerequest) {
 		return dao.findAll(pagerequest);
 	}
+	
+	public Long deleteByProductCode(long productCode) {
+		return dao.deleteByProductCode(productCode);
+	}
 }

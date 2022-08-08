@@ -14,8 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dal.dalgona.admin.model.service.adminService;
 import com.dal.dalgona.common.model.vo.Product;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RequestMapping("/admin")
 @Controller
+@Slf4j
 public class adminController {
 	@Autowired
 	adminService service;
