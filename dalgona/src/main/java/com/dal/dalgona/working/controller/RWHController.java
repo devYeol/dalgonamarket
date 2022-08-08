@@ -31,22 +31,7 @@ public class RWHController {
 	
 	@Autowired
 	private RwhService service;
-	
-	@RequestMapping("/member/mypage/rwh")
-	public String rwh() {
- 		return "/member/mypage/rwh";
-	}
-	
-	@RequestMapping("/member/mypage/zzim")
-	public String zzim(){
-		return "/member/mypage/zzim";
-	}
-	
-	@RequestMapping("/member/mypage/cart")
-	public String cart() {
-		return "/member/mypage/cart";
-	
-	}
+
 	@RequestMapping("/mypage/addressadd")
 	public String addressadd() {
 		return "mypage/addressadd";
