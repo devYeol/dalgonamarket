@@ -1,10 +1,14 @@
 package com.dal.dalgona.working.model.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.Qna;
+import com.dal.dalgona.common.model.vo.Review;
 import com.dal.dalgona.working.model.dao.KojDao;
 
 @Service
@@ -21,5 +25,19 @@ public class KojServiceImpl implements KojService {
 		// TODO Auto-generated method stub
 		return dao.selectProduct(session,productCode);
 	}
+
+	@Override
+	public List<Review> reviewList() {
+		// TODO Auto-generated method stub
+		return dao.reviewList(session);
+	}
+
+	@Override
+	public List<Qna> qnaList() {
+		// TODO Auto-generated method stub
+		return dao.qnaList(session);
+	}
+	
+	
 
 }

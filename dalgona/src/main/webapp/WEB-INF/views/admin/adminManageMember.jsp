@@ -39,7 +39,7 @@
 			</div>
 			<table class="listtable">
 					<tr style="width: 80%">
-						<th>체크</th>
+						<th style="width:50px;">체크</th>
 						<th>이름</th>
 						<th>아이디</th>
 						<th>성별</th>
@@ -48,10 +48,10 @@
 						<th>등록/삭제</th>
 					</tr>
 					<c:if test="${not empty members}">
-		            	<c:forEach var="p" items="${members}">
+		            	<c:forEach var="m" items="${members}">
 							<tr>
-								<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
-								<td></td>
+								<td><input type="checkbox" style="width: 15px; height: 15px;"></td>
+								<td><c:out value="${m.memberName}"/></td>
 								<td></td>
 								<td></td>
 								<td></td>
