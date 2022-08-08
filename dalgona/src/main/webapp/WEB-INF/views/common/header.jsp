@@ -6,68 +6,47 @@
 <link rel="stylesheet" href="${path}/resources/css/header.css" />
 <script type="text/javascript"
 	src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body style="background-color: white; font-family: 'NeoDunggeunmo';">
 	<div id="container" style="font-size: 30px;">
 		<header>
 			<div>
 				<div class="px-3 py-2">
-					<div class="headcontainer"
-						style="display: flex; justify-content: space-between;">
+					<div class="headcontainer" style="display: flex; justify-content: space-between;">
 						<div
 							class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
-							<ul
-								class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
-								<li><a href="#" class="nav-link text-black"> <svg
-											class="bi d-block mx-auto mb-1" width="24" height="24">
-											<use xlink:href="#facebook" /></svg>
+							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
+								<li><a href="#" class="nav-link text-black"> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+										<use xlink:href="#facebook" /></svg>
 								</a></li>
-								<li><a href="#" class="nav-link text-black"> <i
-										class="bi bi-search"></i> <svg class="bi d-block mx-auto mb-1"
-											width="24" height="24">
-											<use xlink:href="#instagram" /></svg>
+								<li><a href="#" class="nav-link text-black"> <i class="bi bi-search"></i> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+										<use xlink:href="#instagram" /></svg>
 								</a></li>
-								<li><a href="#" class="nav-link text-black"> <svg
-											class="bi d-block mx-auto mb-1" width="24" height="24">
-											<use xlink:href="#twitter" /></svg>
+								<li><a href="#" class="nav-link text-black"> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+										<use xlink:href="#twitter" /></svg>
 								</a></li>
 							</ul>
 						</div>
-						<div
-							class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
-							<button type="button" class="btn btn-primary"
-								data-bs-toggle="modal" data-bs-target="#exampleModal"
-								style="border: 1px solid white; background-color: white">
-								<img src="/resources/images/header/search.svg"
-									style="width: 24; height: 24; background-color: white">
+						<div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start"">
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+								style="border: 1px solid white; background-color: white; padding: 8 16 8 16;">
+								<img src="/resources/images/header/search.svg" style="width: 24; height: 22; background-color: white; margin: 0;" >
 							</button>
-
 							<!-- Modal -->
-							<div class="modal fade" id="exampleModal" tabindex="-1"
-								aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog modal-fullscreen">
 									<div class="modal-content">
 										<div class="modal-header">
-											<button type="button" class="btn-close"
-												data-bs-dismiss="modal" aria-label="Close"></button>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
-
-										<button type="button" class="btn btn-secondary"
-											data-bs-dismiss="modal">Close</button>
+										<div>
+										</div>
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 									</div>
 								</div>
 							</div>
@@ -75,32 +54,31 @@
 			        		</button> -->
 
 							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
-								<!--    <li>
-			            	<a href="#" class="nav-link text-black">
-								<img src="/resources/images/header/search.svg" style="width:24; height:24">
-			            	</a>
-			            </li> -->
 								<li>
 									<a id="search-open" href="#" class="nav-link text-black"> 
-										<svg class="bi d-block mx-auto mb-1" width="24" height="24">
-											<use xlink:href="#instagram" />
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+											<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
 										</svg>
 									</a>
 								</li>
 								<c:if test="${loginMember == null}">
 								<li>
-									<a href="${path }/login" class="nav-link text-black">
-										<svg class="bi d-block mx-auto mb-1" width="24" height="24">
-											<use xlink:href="#twitter" />
+									<a href="${path }/member/login" class="nav-link text-black">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+ 											<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
 										</svg>
 									</a>
 								</li>
 								</c:if>
 								<c:if test="${loginMember != null }">
-									<span>
-										환영합니다
-									</span>
-									<button>로그아웃</button>
+									<li>
+										<a href="${path }" class="nav-link text-black">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+		  										<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+											</svg>
+										</a>
+									</li>
+										<button class="btn" onclick="location.replace('${path }/member/logout')">로그아웃</button>
 								</c:if>
 							</ul>
 						</div>

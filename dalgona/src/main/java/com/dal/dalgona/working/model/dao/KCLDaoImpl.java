@@ -1,6 +1,6 @@
 package com.dal.dalgona.working.model.dao;
 
-import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.dal.dalgona.common.model.vo.Member;
@@ -9,8 +9,12 @@ import com.dal.dalgona.common.model.vo.Member;
 public class KCLDaoImpl implements KCLDao {
 
 	@Override
-	public Member login(SqlSession session, Member m) {
+	public Member login(SqlSessionTemplate session, Member m) {
 		return session.selectOne("member.selectMember",m);
 	}
 
+	@Override
+	public int insertMember(SqlSessionTemplate session, Member m) {
+		return session.insert("member.insertMember",m);
+	}
 }

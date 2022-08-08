@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.working.model.dao.KCLDao;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
 public class KCLServiceImpl implements KCLService {
 
@@ -21,4 +23,8 @@ public class KCLServiceImpl implements KCLService {
 		return dao.login(session, m);
 	}
 
+	@Override
+	public int insertMember(Member m) {
+		return dao.insertMember(session,m);
+	}	
 }

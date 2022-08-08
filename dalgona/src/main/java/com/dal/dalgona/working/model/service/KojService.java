@@ -1,8 +1,9 @@
 package com.dal.dalgona.working.model.service;
 
-import org.springframework.stereotype.Service;
+import com.dal.dalgona.common.model.vo.Product;
 
-@Service
-public class KojService {
+public interface KojService {
+	
+	Product selectProduct(long productCode);
 
 }
