@@ -52,6 +52,8 @@ public class JDHController {
 		
 		Member result=service.jdhInsertTest(m);
 		
+		log.debug("dd");
+		
 		return result;
 		
 	}
