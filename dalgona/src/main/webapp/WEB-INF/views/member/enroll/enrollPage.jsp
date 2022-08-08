@@ -154,19 +154,19 @@ input::placeholder {
 			<br>
 			<div class="int-area">
 				<div style="display: flex; justify-content: space-between;">
-				
 					<label for="email"><b>이메일*</b></label>
-					<button class=btn-email>이메일 인증</button>
+					<button class=btn-email id="mail-send-Btn">이메일 인증</button>
 				</div>
-				<input type="email" name="memberEmail" placeholder="이메일" autocomplete="off" required>
+				<input id="userEmail" type="email" name="memberEmail" placeholder="이메일" autocomplete="off" required>
 			</div>
 			<br>
 			<div class="int-area">
 				<div style="display: flex; justify-content: space-between;">
 					<label for="email"><b>인증번호</b></label>
-					<button class=btn-email>인증 확인</button>
+					<button class=btn-email id="mail-Check-Btn">인증 확인</button>
 				</div>
-				<input type="text" placeholder="인증번호 6자리를 입력해주세요" autocomplete="off" required>
+				<input id="mail-check-input" type="text" placeholder="인증번호 6자리를 입력해주세요" autocomplete="off" required>
+				<span id="mail-check-warn"></span>
 			</div>
 			<br>
 			<div class="int-area">
@@ -183,20 +183,31 @@ input::placeholder {
 	</div>
 </section>
 <script>
-$(function()=>{
-	$("#pwch").keyup(e=>{
-		const pwVal=$("#pw").val();
-		const pwCkVal=$(e.target).val();
-		if(pwCkVal.trim().length>4){
-			if(pwCkVal===pwVal){
-				$("#pwresult").text("비밀번호가 일치합니다.").css("color","green");
-			}else{
-				$("#pwresult").text("비밀번호가 불일치합니다.").css("color","red");
-			}
-		}else{
-			$("#pwresult").text("");
-		}
+//인증메일 보내기
+$('#mail-send-Btn').click(function() {
+		const email = $('#userEmail').val()// 이메일 주소값 얻어오기
+		console.log('이메일 : ' + email); // 이메일 오는지 확인
+		const checkInput = $('#mail-check-input') // 인증번호 입력하는곳 
+		
+		$.ajax({
+			type : 'get',
+			url : '<c:url value ="/authmail?email="/>'+email, 
+			success : function (data) {
+				console.log("data : " +  data);
+				checkInput.attr('disabled',false);
+				code =data;
+				alert('인증번호가 전송되었습니다.')
+			}			
+		});
 	});
-})
+//인증번호 비교
+	$("#mail-Check-Btn").click(e=>{
+		$.get("${path}/checkauthkey?key="+$("#mail-check-input").val(),data=>{
+			if(data) alert("인증완료");
+			else {
+				alert("인증실패");
+			}
+		})
+	});
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
