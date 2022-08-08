@@ -18,7 +18,7 @@ public class SecurityConfig { // Security 설정 클래스
 	};
 	
 	@Bean
-	public BCryptPasswordEncoder bc() {
+	public BCryptPasswordEncoder bc() { // 암호화 bean
 		return new BCryptPasswordEncoder();
 	}
 	
