@@ -160,11 +160,13 @@
 				<strong>마이페이지</strong>
 			</h4>
 			<ul>
-				<li><h5>
-					</h5></li>
+				<li><h5></h5></li>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
-				<li><a href="${path }/member/mypage/rwh">구매내역</a></li>
-				<li><a href="${path }/member/mypage/cart"></a><h5><b>장바구니</b></h5></li>
+				<li><a href="${path }/member/mypage/productOrder">구매내역</a></li>
+				<li><a href="${path }/member/mypage/cart"></a>
+					<h5>
+						<b>장바구니</b>
+					</h5></li>
 				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
 				<br>
 				<li><h5>
@@ -183,60 +185,74 @@
 			<div>
 				<div style="display: flex; justify-content: space-between;">
 					<div style="margin-top: 8px; margin-left: 10; display: flex">
-						<input class="form-check-input" type="checkbox"
-							id="checkboxNoLabel" value="" aria-label="...">
+						<input class="form-check-input" type="checkbox" id="selectAll"
+							value="selectall" name="selectAll" aria-label="...">
 						<div style="margin-left: 10">전체선택</div>
 					</div>
-					<button type="button" class="btn-delete" style="margin-right: 10">선택삭제</button>
+					<button type="button" class="btn-delete" id="selectDelete"
+						style="margin-right: 10">선택삭제</button>
 				</div>
 			</div>
 		</div>
 		<hr>
-		<table style="margin-left: 10; width: 100%;">
-			<tbody>
-				<tr class="payment-tr">
-					<td style="width: 20%;"><input class="check-input"
-						type="checkbox" style="margin-top: 40;"> <a href="#"
-						style="text-decoration: none;"> <img
-							src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
-							width="150" height="150" border="0" style="margin-left: 10" />
-					</a></td>
-					<c:forEach items="${cartList }" var="c" >
-					<td style="width: 55%"><a href="#"
-						style="color: black; text-decoration: none; font-size: 17"><b>상품타이틀</b></a><br>
-						<div style="margin-top: 5; font-size: 15px"><c:out value="${c.productName}"/></div><!-- 오예오예 오예스~ -->
-						<div style="margin-top: 5;"><c:out value="${c.productPrice }"/></div><%-- 30,000원 --%>
-						<div style="margin-top: 5; font-size: 15px">08.11.목요일 배송도착
-							예정</div></td>
-					<td style="text-align: center;"><select id="browsers">
-							<option>1개</option>
-							<option>2개</option>
-							<option>3개</option>
-							<option>4개</option>
-							<option>5개</option>
-					</select>
-						<div style="margin-top: 5px">1,000원</div></td>
-					</c:forEach>
-					<td style="width: 100">
-						<div style="display: flex; text-alian: center;">
-							<button type="button" class="btn btn-danger">구매하기</button>
-						</div>
-					</td>
-					<td style="display: flex;">
-						<div class="close"></div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<hr>
+		<c:forEach items="${cartList }" var="c">
+		<br>
+			<table style="margin-left: 10; width: 100%;">
+				<tbody>
+					<tr class="payment-tr" name="selectP">
+						<td style="width: 20%;"><input class="check-input"
+							type="checkbox" style="margin-top: 40;"> <a href="#"
+							style="text-decoration: none;"> <img
+								src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
+								width="150" height="150" border="0" style="margin-left: 10" />
+						</a></td>
+						<td style="width: 55%"><a href="#"
+							style="color: black; text-decoration: none; font-size: 17"><b><c:out
+										value="${c.proTitle}" /></b></a><br>
+							<div style="margin-top: 5; font-size: 15px">
+								<c:out value="${c.proName}" />
+							</div> <!-- 오예오예 오예스~ -->
+							<div style="margin-top: 5;">
+								<c:out value="${c.proPrice }" />
+							</div> <%-- 30,000원 --%>
+							<div style="margin-top: 5; font-size: 15px">
+								<c:out value="${c.orderDate}" />
+								도착 예정
+							</div></td>
+
+						<td style="text-align: center;"><select id="browsers">
+								<option>1개</option>
+								<option>2개</option>
+								<option>3개</option>
+								<option>4개</option>
+								<option>5개</option>
+						</select>
+							<div style="margin-top: 5px">1,000원</div></td>
+						<td style="width: 100">
+							<div style="display: flex; text-alian: center;">
+								<button type="button" class="btn btn-danger">구매하기</button>
+							</div>
+						</td>
+						<td style="display: flex;">
+							<div class="close"></div>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+			<br>
+			<hr>
+		</c:forEach>
+
+
 		<div class="allprice-container">
 			<div class="allrprice-content">
 				<div class="allprice-form">
-					총 상품가격 <i>0</i> 원 <span class="all-plus"><img
+					총 상품가격 <i>29000</i> 원 <span class="all-plus"><img
 						src="/resources/images/mypage/img_plus.png" style="width: 14;">
 					</span> 총 배송비 <i>2,000</i> 원 <span class="all-plus"><img
 						src="/resources/images/mypage/img_equals.png" style="width: 14;"></span>
-					총 주문금액 <i class="final-price">31,000</i>
+					총 주문금액 <i class="final-price"><c:out value="31000원" /></i>
 				</div>
 			</div>
 		</div>
@@ -247,5 +263,45 @@
 	</div>
 	<div></div>
 </section>
+
+<script>
+function selectAll(selectAll)  {
+	  const checkboxes 
+	       = document.getElementsByName('selectAll');
+	  
+	  checkboxes.forEach((checkbox) => {
+	    checkbox.checked = selectAll.checked;
+	  })
+	}
+	
+	
+	
+$(document).ready(function(){
+    //체크박스 전체 선택&해제
+    $('#selectAll').click(function(){
+         if($("#selectAll").prop("checked")){
+            $("input[type=checkbox]").prop("checked",true); 
+        }else{
+            $("input[type=checkbox]").prop("checked",false); 
+        }
+    });
+    
+     
+        $('#selectDelete').click(function(){
+            if(confirm("삭제하시겠습니까?")){
+                $("input[name=selectP]:checked").each(function(){
+                    var tr_value =$(this).val();
+                    var tr=$("tr[data-tr_value='"+tr_value+"']");
+                    tr.remove();
+                });
+            }else{
+                return false;
+            }
+        });
+     
+    });
+
+    
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
