@@ -201,10 +201,11 @@
 							src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
 							width="150" height="150" border="0" style="margin-left: 10" />
 					</a></td>
+					<c:forEach items="${cartList }" var="c" >
 					<td style="width: 55%"><a href="#"
 						style="color: black; text-decoration: none; font-size: 17"><b>상품타이틀</b></a><br>
-						<div style="margin-top: 5; font-size: 15px">오예오예 오예스~</div>
-						<div style="margin-top: 5;">30,000원</div>
+						<div style="margin-top: 5; font-size: 15px"><c:out value="${c.productName}"/></div><!-- 오예오예 오예스~ -->
+						<div style="margin-top: 5;"><c:out value="${c.productPrice }"/></div><%-- 30,000원 --%>
 						<div style="margin-top: 5; font-size: 15px">08.11.목요일 배송도착
 							예정</div></td>
 					<td style="text-align: center;"><select id="browsers">
@@ -215,6 +216,7 @@
 							<option>5개</option>
 					</select>
 						<div style="margin-top: 5px">1,000원</div></td>
+					</c:forEach>
 					<td style="width: 100">
 						<div style="display: flex; text-alian: center;">
 							<button type="button" class="btn btn-danger">구매하기</button>
