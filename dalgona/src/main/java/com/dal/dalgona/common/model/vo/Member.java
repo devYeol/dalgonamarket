@@ -57,24 +57,32 @@ public class Member implements UserDetails {
 	private Date memberEnrollDate; // default값 주는 어노테이션 찾아서 적용하기 timestamp?
 	
 	// 찜
-	@ManyToMany
-	@JoinTable(name="likes",
-				joinColumns=@JoinColumn(name="memberId"),
-				inverseJoinColumns=@JoinColumn(name="productCode")
-			)
-	private List<Product> products;
+//	@ManyToMany
+//	@JoinTable(name="likes",
+//				joinColumns=@JoinColumn(name="memberId"),
+//				inverseJoinColumns=@JoinColumn(name="productCode")
+//			)
+//	private List<Product> products;
+	
+	// 찜
+	@OneToMany(mappedBy="member")
+	private List<Likes> likes=new ArrayList();
 	
 	// 상문문의
 	@OneToMany(mappedBy="product")
 	private List<Qna> qna=new ArrayList();
 	
 	// 장바구니
-	@ManyToMany
-	@JoinTable(name="cart",
-				joinColumns=@JoinColumn(name="memberId"),
-				inverseJoinColumns=@JoinColumn(name="productCode")
-			)
-	private List<Product> productCart;
+//	@ManyToMany
+//	@JoinTable(name="cart",
+//				joinColumns=@JoinColumn(name="memberId"),
+//				inverseJoinColumns=@JoinColumn(name="productCode")
+//			)
+//	private List<Product> productCart;
+	
+	// 장바구니
+	@OneToMany(mappedBy="member")
+	private List<Cart> cart=new ArrayList();
 	
 	
 	// security

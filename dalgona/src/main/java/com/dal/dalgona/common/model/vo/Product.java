@@ -59,8 +59,12 @@ public class Product {
 	private Date productDate; //상품등록일
 	
 	// 찜
-	@ManyToMany(mappedBy="products")
-	private List<Member> members;
+//	@ManyToMany(mappedBy="products")
+//	private List<Member> members;
+	
+	// 찜
+	@OneToMany(mappedBy="product")
+	private List<Likes> likes=new ArrayList();
 	
 	// 상품문의
 	@OneToMany(mappedBy="member")
@@ -76,8 +80,12 @@ public class Product {
 	private List<OrderDetail> orderdetails=new ArrayList();
 	
 	// 장바구니
-	@ManyToMany(mappedBy="productCart")
-	private List<Member> memberCart;
+//	@ManyToMany(mappedBy="productCart")
+//	private List<Member> memberCart;
+	
+	// 장바구니
+	@OneToMany(mappedBy="product")
+	private List<Cart> cart=new ArrayList();
 	
 	//옵션
 	@OneToMany(mappedBy = "optionCode")
