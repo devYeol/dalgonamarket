@@ -209,10 +209,12 @@ img {
 				<strong>마이페이지</strong>
 			</h4>
 			<ul>
-				<li><h5>
-					</h5></li>
+				<li><h5></h5></li>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
-				<li><a href="${path }/member/mypage/rwh"></a><h5><b>구매내역</b></h5></li>
+				<li><a href="${path }/member/mypage/productOrder"></a>
+				<h5>
+						<b>구매내역</b>
+					</h5></li>
 				<li><a href="${path }/member/mypage/cart">장바구니</a></li>
 				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
 				<br>
@@ -264,57 +266,93 @@ img {
 			<div class="orderlist-box">
 				<div style="display: flex; justify-content: space-between;">
 					<div style="margin-top: 8px;">
-						<input class="form-check-input" type="checkbox"
-							id="checkboxNoLabel" value="" aria-label="...">
+						<input class="form-check-input" type="checkbox" id="selectAll"
+							value="" aria-label="...">
 						<div class="all-check">전체선택</div>
 					</div>
 					<button type="button" class="btn-delete">선택삭제</button>
 				</div>
 				<hr style="margin-top: 8px; margin-bottom: 8px;">
-				<div>
-					<div style="display: flex">
-						<h3 style="margin-bottom: 0px; margin-left: 40px;">2022.02.02</h3>
-						<h4 style="margin-bottom: 0px; margin-left: 10px">주문</h4>
-					</div>
+				<c:forEach var="o" items="${orderList }">
+				<br>
 					<div>
-						<div id="order-data" style="display: flex;">
-							<div
-								style="padding-right: 215px; margin-right: 15px; height: 160;">
-								<div class="check-itembox">
-									<div class="check-item">
-										<input class="form-check-input" type="checkbox" value="">
-									</div>
-									<div>
-										<img
-											src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-											class="d-block w-100">
-									</div>
-									<div style="margin-top: 20px; margin-left: 30px">
-										<span style="font-size: 20px"><b>초코송이</b></span><br> <span
-											style="font-size: 15"><b>오우오우 오예스~</b></span><br> <span
-											style="font-size: 15">1500원 1개</span>
-										<div style="margin-top: 40px">
-											<!-- <span>1500원 1개</span><br> -->
-											<span>7.31(일) 도착 배송완료</span><br>
+						<div style="display: flex">
+							<h3 style="margin-bottom: 0px; margin-left: 40px;">
+								<c:out value="${o.orderDate}" />
+								주문
+							</h3>
+						</div>
+						<div>
+							<div id="order-data" style="display: flex;">
+								<div
+									style="padding-right: 215px; margin-right: 15px; height: 160;">
+									<div class="check-itembox">
+										<div class="check-item">
+											<input class="form-check-input" type="checkbox" value="">
+										</div>
+										<div>
+											<img
+												src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
+												class="d-block w-100">
+										</div>
+										<div style="margin-top: 20px; margin-left: 30px">
+											<span style="font-size: 20px"><b><c:out
+														value="${o.proTitle }" /></b></span><br> <span
+												style="font-size: 15"><b><c:out
+														value="${o.proName }" /></b></span><br> <span
+												style="font-size: 15"><c:out value="${o.proPrice }원" />&nbsp;&nbsp;<c:out
+													value="${o.proAmount}개" /></span>
+											<div style="margin-top: 40px">
+												<!-- <span>1500원 1개</span><br> -->
+												<span><c:out value="${o.arriveDate }" />&nbsp;&nbsp;도착
+													배송완료</span><br>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="check-btnbox" style="display: flex;">
-								<div class="check-btn">
-									<button type="button" class="btn">교환,반품신청</button>
-									<button type="button" class="btn">장바구니 담기</button>
-									<button type="button" class="btn">리뷰작성</button>
+								<div class="check-btnbox" style="display: flex;">
+									<div class="check-btn">
+										<button type="button" class="btn">교환,반품신청</button>
+										<button type="button" class="btn">장바구니 담기</button>
+										<button type="button" class="btn">리뷰작성</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					<br>
+				</c:forEach>
 			</div>
 		</div>
 		<hr>
 	</div>
 
 </section>
+
+<script>
+	$(document).ready(function() {
+		//체크박스 전체 선택&해제
+		$('#selectAll').click(function() {
+			if ($("#selectAll").prop("checked")) {
+				$("input[type=checkbox]").prop("checked", true);
+			} else {
+				$("input[type=checkbox]").prop("checked", false);
+			}
+		});
+
+		$('#selectDelete').click(function() {
+			if (confirm("삭제하시겠습니까?")) {
+				$("input[name=selectP]:checked").each(function() {
+					var tr_value = $(this).val();
+					var tr = $("tr[data-tr_value='" + tr_value + "']");
+					tr.remove();
+				});
+			} else {
+				return false;
+			}
+		});
+
+	});
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
