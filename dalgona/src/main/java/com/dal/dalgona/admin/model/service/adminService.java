@@ -1,8 +1,9 @@
 package com.dal.dalgona.admin.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.admin.model.dao.adminDao;
@@ -13,9 +14,9 @@ public class adminService {
 	@Autowired
 	adminDao dao;
 	
-//	public Page<Product> selectProducts(PageRequest pageRequest) {
-//		return dao.findAll(pageRequest);
-//	}
+	public List<Product> selectProducts() {
+		return dao.findAll(Sort.by(Sort.Direction.DESC,"productCode"));
+	}
 	
 	public Long deleteByProductCode(long productCode) {
 		return dao.deleteByProductCode(productCode);
