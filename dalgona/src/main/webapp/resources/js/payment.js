@@ -106,6 +106,7 @@ function paymentCard(data) {
 				var msg = '결제실패 : ';
 				msg += rsp.error_msg;
 
+
 			}
 
 			alert(msg);

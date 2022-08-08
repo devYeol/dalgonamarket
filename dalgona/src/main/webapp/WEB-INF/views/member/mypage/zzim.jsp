@@ -163,7 +163,7 @@
 				<li><h5>
 					</h5></li>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
-				<li><a href="${path }/member/mypage/rwh">구매내역</a></li>
+				<li><a href="${path }/member/mypage/productOrder">구매내역</a></li>
 				<li><a href="${path }/member/mypage/cart">장바구니</a></li>
 				<li><a href="${path }/member/mypage/zzim"></a><h5><b>찜 목록</b></h5></li>
 				<br>
@@ -184,7 +184,7 @@
 				<div style="display: flex; justify-content: space-between;">
 					<div style="margin-top: 8px; margin-left: 10; display: flex">
 						<input class="form-check-input" type="checkbox"
-							id="checkboxNoLabel" value="" aria-label="...">
+							id="selectAll" value="" aria-label="...">
 						<div style="margin-left: 10">전체선택</div>
 					</div>
 					<button type="button" class="btn btn-danger"
@@ -193,6 +193,8 @@
 			</div>
 		</div>
 		<hr>
+			<c:forEach var="z" items="${zzimList }">
+			<br>
 		<table style="margin-left: 10; width: 98%;">
 			<tbody>
 				<tr class="payment-tr">
@@ -203,9 +205,9 @@
 							width="150" height="150" border="1" style="margin-left: 10" />
 					</a></td>
 					<td style="width: 55%"><a href="#"
-						style="color: black; text-decoration: none; font-size: 17"><b>상품타이틀</b></a><br><br>
-						<div style="margin-top: 5; font-size: 15px">오예오예 오예스~</div><br>
-						<div style="margin-top: 5;">30,000원</div>
+						style="color: black; text-decoration: none; font-size: 17"><b><c:out value="${z.proTitle }"/></b></a><br><br>
+						<div style="margin-top: 5; font-size: 15px"><c:out value="${z.proName }"/></div><br>
+						<div style="margin-top: 5;"><c:out value="${z.proPrice }원"/></div>
 					<td style="padding-left: 140px;">
 						<button type="button" class="btn btn-danger"
 							style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
@@ -214,8 +216,44 @@
 				</tr>
 			</tbody>
 		</table>
-		<hr>
+		<br>	
+		<hr>	
+	</c:forEach>
 	</div>
 </section>
+
+<script>
+$(document).ready(function(){
+    //체크박스 전체 선택&해제
+    $('#selectAll').click(function(){
+         if($("#selectAll").prop("checked")){
+            $("input[type=checkbox]").prop("checked",true); 
+        }else{
+            $("input[type=checkbox]").prop("checked",false); 
+        }
+    });
+    
+     
+        $('#selectDelete').click(function(){
+            if(confirm("삭제하시겠습니까?")){
+                $("input[name=selectP]:checked").each(function(){
+                    var tr_value =$(this).val();
+                    var tr=$("tr[data-tr_value='"+tr_value+"']");
+                    tr.remove();
+                });
+            }else{
+                return false;
+            }
+        });
+     
+    });
+
+</script>
+
+
+
+
+
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

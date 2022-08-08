@@ -35,16 +35,16 @@ public class ProductOrder {
 	
 	@Id
 	@GeneratedValue(generator = "seq_order_code", strategy = GenerationType.SEQUENCE)
-	private long orderCode;
+	private long orderCode; //주문코드
 	
-	private String orderStatus;
+	private String orderStatus; //주문상태 (배송 대기/ 중 / 배송완료)
 	
-	private Date orderDate;
+	private Date orderDate; //주문날짜
 	
 	@OneToOne
 	@JoinColumn(name="addressCode")
-	private DeliveryLocation selectLocation;
-	
+	private DeliveryLocation selectLocation; //선택 배송지
+
 	// 주문
 	@ManyToOne
 	@JoinColumn(name="memberId")
@@ -52,6 +52,6 @@ public class ProductOrder {
 	
 	// 주문상세내역
 	@OneToMany(mappedBy="productOrder")
-	private List<OrderDetail> orderdetails=new ArrayList();
+	private List<OrderDetail> orderdetails=new ArrayList(); //주문 상세
 
 }

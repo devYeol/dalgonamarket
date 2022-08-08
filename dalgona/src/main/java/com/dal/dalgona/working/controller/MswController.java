@@ -6,60 +6,55 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dal.dalgona.working.model.service.MswService;
 import com.dal.dalgona.working.model.vo.Msw;
 
 @Controller
 @RequestMapping("/member")
 public class MswController {
-	
-//	@Autowired
-//	private MswService service;
+
+	@Autowired
+	private MswService service;
 
 	@RequestMapping("/mypage/mypageMain")
 	public String mypageMain() {
 		return "member/mypage/mypageMain";
 	}
-	
-//	@RequestMapping(value="/mypage/cart",method=RequestMethod.GET)
-//	@RequestMapping("/mypage/cart")
+
 	@GetMapping("/mypage/cart")
 	public String cart(Model m) {
-//		System.out.println("되컨?");
-//		List<Msw> cartList =service.cartList();
-//		System.out.println("되컨2?");
-//		m.addAttribute("cartList",cartList);
-//		System.out.println(cartList);
+		List<Msw> cartList = service.cartList();
+		m.addAttribute("cartList", cartList);
 		return "member/mypage/cart";
-////		${path }/member/mypage/mypageMain
+	}
+
+
+	@RequestMapping("/mypage/zzim") //찜
+	public String zzim(Model m) {
+		List<Msw> zzimList = service.zzimList();
+		m.addAttribute("zzimList",zzimList);
+		return "member/mypage/zzim";
+	}
+
+	@RequestMapping("/mypage/productOrder") //구매내역
+	public String productOrder(Model m) {
+		List<Msw> orderList = service.orderList();
+		m.addAttribute("orderList",orderList);
+		return "member/mypage/productOrder";
 	}
 	
-	@RequestMapping("/member/mypage/rwh")
-	public String rwh() {
- 		return "/member/mypage/rwh";
-	}
-	
-	@RequestMapping("/member/mypage/zzim")
-	public String zzim(){
-		return "/member/mypage/zzim";
-	}
-	
-	
-	@RequestMapping("/baesong")
+	@RequestMapping("/baesong") //배송
 	public String baesong() {
 		return "/member/baesong";
 	}
 }
 
-
-
-
-/*
- * class Msw2Controller {
- * 
- * @RequestMapping("/product/productList") public String productList() { return
- * "/product/productList"; } }
- */
+@Controller
+class MswController2 { //검색 리스트
+	@RequestMapping("/product/productList")
+	public String productList() {
+		return "/product/productList";
+	}
+}
