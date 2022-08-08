@@ -26,16 +26,26 @@ public class MswController {
 	
 //	@RequestMapping(value="/mypage/cart",method=RequestMethod.GET)
 //	@RequestMapping("/mypage/cart")
-//	@GetMapping("/mypage/cart")
-//	public String cart(Model m) {
-////		System.out.println("되컨?");
-////		List<Msw> cartList =service.cartList();
-////		System.out.println("되컨2?");
-////		m.addAttribute("cartList",cartList);
-////		System.out.println(cartList);
-//		return "member/mypage/cart";
+	@GetMapping("/mypage/cart")
+	public String cart(Model m) {
+//		System.out.println("되컨?");
+//		List<Msw> cartList =service.cartList();
+//		System.out.println("되컨2?");
+//		m.addAttribute("cartList",cartList);
+//		System.out.println(cartList);
+		return "member/mypage/cart";
 ////		${path }/member/mypage/mypageMain
-//	}
+	}
+	
+	@RequestMapping("/member/mypage/rwh")
+	public String rwh() {
+ 		return "/member/mypage/rwh";
+	}
+	
+	@RequestMapping("/member/mypage/zzim")
+	public String zzim(){
+		return "/member/mypage/zzim";
+	}
 	
 	
 	@RequestMapping("/baesong")
