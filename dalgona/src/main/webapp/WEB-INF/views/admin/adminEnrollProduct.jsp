@@ -33,7 +33,7 @@
         -->
 		<div class="contents">
 			<div class="contentstitle">상품등록</div>
-		<form action="${path }/insertProduct" method="post" enctype="multipart/form-data">
+		<form action="${path }/insertProduct.do" method="post" enctype="multipart/form-data">
 			<div class="enrolltablediv">
 				<table class="enrolltable">
 					<tr>
@@ -70,7 +70,7 @@
 									<input class="adminin" name="optionPrice" type="number" min="1000"
 									placeholder="옵션가격을 입력해주세요">
 								</div>
-								<div><button class="adminbt" type="button" onclick="deleteOption();" style="width:50; font-size:13">삭제</button></div>
+								<div><button class="adminbt" type="button" id="remove"  style="width:50; font-size:13">삭제</button></div>
 							</div>
 						</td>
 					</tr>
@@ -108,11 +108,15 @@
 			const optionTemplate=$(e.target).parent().next().clone();
 			$(e.target).parent().next().after(optionTemplate);
 		});
+	/* 	$('#remove').click(function() {
+			$('input:last-child').remove(); 
+				//.remove 하면 모든 input이 삭제되어 버리기 때문에 따로 input에 class나 id를 안줬으면 last-child로 마지막 것 부터 하나씩 잡아 지워나간다.
+				})	 */
 		    function deleteOption(){
 			   if(confirm("옵션이 삭제됩니다!")==true){
-				
+					$("input")
 			     }   
-			 };
+			 }; 
 			
 	</script>
 </body>

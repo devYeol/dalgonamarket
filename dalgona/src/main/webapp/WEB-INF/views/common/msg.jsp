@@ -9,7 +9,7 @@
 <body>
 <script>
 	alert("${msg}");
-	location.replace("${path}/{loc}");
+	location.replace("${path}${loc}");
 </script>
 </body>
 </head>

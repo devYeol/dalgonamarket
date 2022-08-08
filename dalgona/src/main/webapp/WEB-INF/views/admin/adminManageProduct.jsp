@@ -65,7 +65,7 @@
 					<div style="padding-left: 75%;">
 						<button class="adminbt" style="width: 80px; background-color: #D56B5A;">선택삭제</button>
 						<button class="adminbt" style="width: 80px; background-color: #8295F7;"
-						onclick="location.assign('${path}/admin/enrollProductTest')">상품등록</button>
+						onclick="location.assign('${path}/admin/adminEnrollProduct.do')">상품등록</button>
 					</div>
 				</div>
 				<table class="listtable">
@@ -77,13 +77,14 @@
 						<th>상품수량</th>
 						<th>등록/삭제</th>
 					</tr>
-					<c:if test="${not empty products}">
-		            	<c:forEach var="p" items="${products}">
+					<c:if test="${not empty pro}">
+		            	<c:forEach var="p" items="${pro}">
 							<tr>
 								<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
 								<td style="width:90px;" ><c:out value="${p.productCode}"/></td>
 								<td>
-									<img src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" width="95" height="100" border="0" />
+									<img src="" width="95" height="100" border="0" />
+									<c:out value="${p.productThumb }"/>
 								</td>
 								<td style="width:59%; text-align: left; padding-left:30px"><c:out value="${p.productName}"/><br><c:out value="${p.productPrice}"/>원</td>
 								<td>
@@ -91,13 +92,13 @@
 								</td>
 								<td>
 									<button class="adminbt" style="width: 80px; background-color: #6FB67F;">수정</button>
-									<button class="adminbt" id="<c:out value="${p.productCode}"/>_" name="<c:out value="${p.productCode}"/>" 
+									<button class="adminbt" id="<c:out value="${productCode}"/>_" name="<c:out value="${productCode}"/>" 
 										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event);">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
 		            </c:if>
-		            <c:if test="${empty products}">
+		            <c:if test="${empty pro}">
 		            	<tr>
 		            		<td colspan="6">조회결과 없음</td>
 		            	</tr>

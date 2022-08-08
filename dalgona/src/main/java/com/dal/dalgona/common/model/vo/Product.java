@@ -78,5 +78,9 @@ public class Product {
 	// 장바구니
 	@ManyToMany(mappedBy="productCart")
 	private List<Member> memberCart;
+	
+	//옵션
+	@OneToMany(mappedBy = "optionCode")
+	private List<ProductOption> optionCode;
 
 }

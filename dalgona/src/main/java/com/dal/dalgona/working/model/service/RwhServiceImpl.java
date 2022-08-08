@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.common.model.vo.Category;
 import com.dal.dalgona.common.model.vo.Product;
@@ -53,5 +54,12 @@ public class RwhServiceImpl implements RwhService {
 	public Category selectCategory(String categoryName) {
 		return categoryDao.findByCategoryName(categoryName);
 	}
+
+	@Override
+	public List<Product> productList() {
+		return productDao.findAll();
+	}
+	
+	
 
 }
