@@ -1,6 +1,8 @@
 package com.dal.dalgona.common.model.vo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +34,7 @@ public class ProductOption {
 	private int optionPrice;
 	
 	// 상품옵션
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="productCode")
 	private Product product;
 	
