@@ -25,7 +25,9 @@
 				<div class="col-md d-grid gap-5" style="margin-left: 10px;">
 					<div class="row border-bottom">
 						<div class="col-8">
-							<h4>맛있는 초코비</h4>
+							<h4>
+								<c:out value="${pro.productName}" />
+							</h4>
 						</div>
 						<div class="col-2">별점</div>
 						<div class="col-2">
@@ -37,8 +39,14 @@
 						<div class="col-8 ">판매가</div>
 
 						<div class="col-4 ">
-							<div>1400원</div>
-							<div>(재고수량 : 00)</div>
+							<div>
+								<c:out value="${pro.productPrice}" />
+							</div>
+							<div>
+								(재고수량 :
+								<c:out value="${pro.productAmount}" />
+								)
+							</div>
 						</div>
 					</div>
 
@@ -66,8 +74,8 @@
 						<button type="button" class="btn col btn-secondary btn-lg">장바구니</button>
 						<button type="button" class="btn col btn-primary btn-lg">결제하기</button>
 					</div>
-					
-			<!-- 	<table >
+
+					<!-- 	<table >
 					<tr>
 						<td>맛있는 초코비</td>
 						<td>별점</td>
@@ -102,7 +110,7 @@
 						<button type="button" class="btn col btn-secondary btn-lg">장바구니</button>
 						<button type="button" class="btn col btn-primary btn-lg">결제하기</button>
 				</div> -->
-					
+
 
 
 
@@ -130,7 +138,7 @@
 			<!-- 리뷰 탭 -->
 			<ul class="comment">
 				<li>
-					<form class="mb-3" name="myform" id="myform" method="post">
+					<form class="mb-3" name="myform" id="myform" method="post" action="${path }/review/insertreview.do">
 						<fieldset>
 							<span class="text-bold">별점을 선택해주세요</span> <input type="radio"
 								name="reviewStar" value="5" id="rate1"><label
@@ -148,7 +156,7 @@
 									id="reviewContents" placeholder="내용을 입력해주세요"></textarea>
 							</div>
 							<div class="col-2">
-								<button>작성완료</button>
+								<button type="submit">작성완료</button>
 							</div>
 						</div>
 					</form>
@@ -183,29 +191,37 @@
 
 
 
-
 				<hr>
-				<table style="margin-left: 10; width: 98%;">
-					<tbody>
-						<tr class="payment-tr">
+				<c:if test="${not empty reivew }">
+					<c:forEach var="re" items="${reivew }">
+						<table style="margin-left: 10; width: 98%;">
+							<tbody>
+								<tr class="payment-tr">
 
-							<td style="width: 55%"><a href="#"
-								style="color: black; text-decoration: none; font-size: 17"><b>아이디</b></a><br>
-								<div style="margin-top: 5; font-size: 15px">날짜</div>
-								<div style="margin-top: 5;">별점</div>
-								<div style="margin-top: 5; font-size: 15px">리뷰내용</div></td>
+									<td style="width: 55%"><a href="#"
+										style="color: black; text-decoration: none; font-size: 17"><b><c:out
+													value="${re.memberId }" /></b></a><br>
+										<div style="margin-top: 5; font-size: 15px">
+											<c:out value="${re.reviewDate }" />
+										</div>
+										<div style="margin-top: 5;">
+											<c:out value="${re.reviewStar }" />
+										</div>
+										<div style="margin-top: 5; font-size: 15px">
+											<c:out value="${re.reviewContent }" />
+										</div></td>
 
 
-							<td style="width: 20%;"><a href="#"
-								style="text-decoration: none;"> <img
-									src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
-									width="150" height="150" border="1" />
-							</a></td>
-
-						</tr>
-					</tbody>
-				</table>
-				<hr>
+									<td style="width: 20%;"><a href="#"
+										style="text-decoration: none;"> <img src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
+											width="150" height="150" border="1" />
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+					</c:forEach>
+				</c:if>
 
 			</ul>
 			<!-- 리뷰 탭 -->
