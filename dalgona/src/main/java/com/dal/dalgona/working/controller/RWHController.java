@@ -72,39 +72,70 @@ public class RWHController {
 		Category c=service.selectCategory(categoryName);
 		log.debug("{}",c); 
 
-		
+		//저장경로 가져옴
 		String path = rs.getServletContext().getRealPath("/resources/upload/product/");
 		File uploadDir = new File(path);
 		//폴더없으면생성
 		if(!uploadDir.exists()) uploadDir.mkdirs();
 		
-		File thumbnailFile = new File(path + "/" + thumbnail.getOriginalFilename());
-		thumbnail.transferTo(thumbnailFile);
-		File detailedImageFile = new File(path + "/" + detailedImage.getOriginalFilename());
-		detailedImage.transferTo(detailedImageFile);
-	
-		String thumbnailFile1 = path+thumbnailFile;
-		 log.debug("{}",thumbnailFile1);
-		//System.out.println(thumbnailFile1);
+		File thumbnailFile=new File(path);
+		File detailedImageFile=new File(path);
 		
-		List<ProductOption> options= new ArrayList();
+		if(!(thumbnail.isEmpty() && detailedImage.isEmpty())) {
+
+			String originalFilename = thumbnail.getOriginalFilename();
+			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			String secondFilename = detailedImage.getOriginalFilename();
+			String exts = secondFilename.substring(secondFilename.lastIndexOf("."));
+			int random =(int) (Math.random()*10000);
+			String rename = "admin_" + random+ext;
+			String secondRename = "admin_" + random+exts;
+			
+			thumbnailFile = new File(path + "/" + rename);
+			thumbnail.transferTo(thumbnailFile);
+			detailedImageFile = new File(path + "/" + secondRename);
+			detailedImage.transferTo(detailedImageFile);
+			
+		}
+		
+		String aa = path+thumbnailFile.getName();
+		
+		//이미지주소자르기 썸네일
+		String target = "resources";
+		int target_num = aa.indexOf(target)-1; 
+		String thumbnailPath = aa.substring(target_num);
+		
+		
+		int target_num1 = aa.indexOf(target)-1; 
+		String detailedPath = aa.substring(target_num);
 		
 		//여기에
 		Product p = Product.builder().productAmount(product_Ampont)
-									 .productContent(product_Content)
-									 .productPrice(product_Price)
-									 .productName(product_Name)
-									 .productThumb(thumbnail.getOriginalFilename())
-									 .productImage(detailedImage.getOriginalFilename())
-									 .productDate(new Date()).category(c).optionCode(options).build();
+				 .productContent(product_Content)
+				 .productPrice(product_Price)
+				 .productName(product_Name)
+				 .productThumb(thumbnailPath)
+				 .productImage(detailedPath)
+				 .productDate(new Date()).category(c).build();
 		  
-		 log.debug("{}",p);
-		 log.debug("{}",options);
+		List<ProductOption> options= new ArrayList();
+		//option을 for문돌려 컬럼안에 집어넣음
+		for(int i=0;i<optionName.length;i++) {
+			options.add(ProductOption.builder().product(p).oprionName(optionName[i]).optionPrice(optionPrice[i]).build());
+		}
+		
+		p.setOptionCode(options);
+		
+		log.debug("{}",p);
+		log.debug("{}",options);
 		 
-		 String oriName = thumbnail.getOriginalFilename();
+		String oriName = thumbnail.getOriginalFilename();
 		
-		Product pro = service.insertProduct(p);
+		Product pro = service.insertProduct(p); //product insert
+		List<ProductOption> resultOption=service.insertProduct(options); //option을 보내주는구문
 		
+		
+		//log.debug("{}",resultOption);
 		String msg = "";
 		String loc = "";
 		
@@ -119,7 +150,7 @@ public class RWHController {
 		model.addAttribute("loc",loc);
 		return "common/msg";
 	}
-	 
+	
 	@GetMapping("/admin/adminManageProduct.do")
 	public String productList(Model model) {
 			List<Product> result = service.productList();

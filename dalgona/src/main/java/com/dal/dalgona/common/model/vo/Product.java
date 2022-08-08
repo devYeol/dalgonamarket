@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +28,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 
@@ -36,6 +39,7 @@ import lombok.NoArgsConstructor;
 @Entity(name="product")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 @SequenceGenerator(name="seq_prono", sequenceName="seq_prono")
+@ToString(exclude= {"members","qna","category","orderdetails","memberCart","optionCode"})
 public class Product {
 	
 	@Id
@@ -58,7 +62,7 @@ public class Product {
 	// update시에도 되는걸로 하는지 확인할 것 @CreationTimestamp = insert, update시 둘 다 적용됨
 	private Date productDate; //상품등록일
 	
-	// 찜
+//	찜
 //	@ManyToMany(mappedBy="products")
 //	private List<Member> members;
 	
