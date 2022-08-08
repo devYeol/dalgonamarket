@@ -8,13 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dal.dalgona.common.model.vo.Member;
-import com.dal.dalgona.working.model.service.JDHMemberService;
+import com.dal.dalgona.working.model.service.JdhService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-public class JDHController {
+public class JdhController {
+	
+	@Autowired
+	private JdhService service;
+	
+//	@Autowired
+//	BCryptPasswordEncoder bc; // config 내부 bean으로 등록된 bcrypt 가져오기
 	
 	@RequestMapping("/payment")
 	public String paymentTest() {
@@ -30,9 +36,6 @@ public class JDHController {
 	public String paymentFail() {
 		return "order/payment/paymentFail";
 	}
-	
-	@Autowired
-	private JDHMemberService service;
 	
 	// save 테스트
 	@RequestMapping("/JDHinsertTest")
@@ -52,9 +55,36 @@ public class JDHController {
 		
 		Member result=service.jdhInsertTest(m);
 		
+		log.debug("dd");
+		
 		return result;
 		
 	}
+	
+//	@RequestMapping("/jdhEnrollTest")
+//	public String enroll() {
+//		return "member/enroll/enrollPage";
+//	}
+//	
+//	@RequestMapping("/enrollTestEnd")
+//	public String enrollEnd(Member m,Model model) {
+//		
+//		int result=service.insertMember(m);
+//		String msg="";
+//		String loc="";
+//		if(result>0) {
+//			msg="회원가입 성공";
+//			loc="/";
+//		}else {
+//			msg="회원가입 실패";
+//			loc="/member/enroll";
+//		}
+//		model.addAttribute("msg",msg);
+//		model.addAttribute("loc",loc);
+//		
+//		return "common/msg";
+//	}
+	
 	
 
 }

@@ -83,8 +83,7 @@
 								<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
 								<td style="width:90px;" ><c:out value="${p.productCode}"/></td>
 								<td>
-									<img src="" width="95" height="100" border="0" />
-									<c:out value="${p.productThumb }"/>
+									<img src="${p.productThumb }" width="95" height="100" border="0" />
 								</td>
 								<td style="width:59%; text-align: left; padding-left:30px"><c:out value="${p.productName}"/><br><c:out value="${p.productPrice}"/>원</td>
 								<td>
