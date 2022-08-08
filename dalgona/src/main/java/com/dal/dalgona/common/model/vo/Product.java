@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -49,6 +51,8 @@ public class Product {
 
 	private String productImage; //상품이미지
 	
+	// @Temporal(TemporalType.TIMESTAMP)
+	// update시에도 되는걸로 하는지 확인할 것 @CreationTimestamp = insert, update시 둘 다 적용됨
 	private Date productDate; //상품등록일
 	
 	// 찜
