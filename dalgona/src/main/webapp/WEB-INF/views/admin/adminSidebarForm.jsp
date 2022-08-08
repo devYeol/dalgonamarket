@@ -22,11 +22,13 @@
 		<br>
 		<div class="menu">매출통계</div>
 		<br>
-		<div class="menu">회원통계</div>
+		<div class="menu" onclick="location.assign('${path}/admin/adminManageMember.do')">회원통계</div>
 		<br>
 		<div class="menu">문의내역</div>
 		<br>
 		<div class="menu" onclick="location.assign('${path}/')">나가기</div>
+		<br>
+		<div class="menu" onclick="location.assign('${path}/admin/pagingTest.do')">페이징테스트</div>
 		<br>
 	</div>
 </div>

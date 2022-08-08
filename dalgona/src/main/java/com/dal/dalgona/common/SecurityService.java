@@ -17,7 +17,7 @@ public class SecurityService implements UserDetailsService {
 	private JDHMemberRepository memberRepo; // Member table repository
 
 	@Override
-	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException { // 유저를 찾을 수 없을 때 exception 처리
 		// TODO Auto-generated method stub
 		
 		Member m=memberRepo.findByMemberId(memberId);
