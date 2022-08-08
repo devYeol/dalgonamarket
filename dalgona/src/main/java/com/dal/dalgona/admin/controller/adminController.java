@@ -1,13 +1,11 @@
 package com.dal.dalgona.admin.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,9 +35,8 @@ public class adminController {
 	// 상품관리 페이지 이동
 	@RequestMapping("adminManageProduct.do")
 	public ModelAndView adminManageProduct(ModelAndView mv) {
-//		PageRequest pageRequest = PageRequest.of(0, 5);
-//		Page<Product> list=service.selectProducts(pageRequest);
-//		mv.addObject("products",list);
+		List<Product> list=service.selectProducts();
+		mv.addObject("products",list);
 		mv.setViewName("admin/adminManageProduct");
 		return mv;
 	}
