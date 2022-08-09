@@ -43,13 +43,13 @@ public class adminController {
 	}
 	
 	// 상품관리 페이지 이동
-	@RequestMapping("adminManageProduct.do")
-	public ModelAndView adminManageProduct(ModelAndView mv) {
-		List<Product> list=service.selectProducts();
-		mv.addObject("products",list);
-		mv.setViewName("admin/adminManageProduct");
-		return mv;
-	}
+//	@RequestMapping("adminManageProduct.do")
+//	public ModelAndView adminManageProduct(ModelAndView mv) {
+//		List<Product> list=service.selectProducts();
+//		mv.addObject("products",list);
+//		mv.setViewName("admin/adminManageProduct");
+//		return mv;
+//	}
 	
 	// 상품등록버튼
 //	@ResponseBody
@@ -90,15 +90,15 @@ public class adminController {
 	}
 	
 	// 페이지테스트
-	@RequestMapping("/pagingTest.do")
+	@RequestMapping("adminManageProduct.do")
 	public ModelAndView adminManageProduct(ModelAndView mv,
 			@RequestParam(defaultValue="1") int cPage,
 			@RequestParam(defaultValue="10") int numPerpage) {
 		PageRequest pagerequest=PageRequest.of(cPage-1, numPerpage, Sort.by(Sort.Direction.DESC,"productCode"));
 		Page<Product> list=service.selectProducts(pagerequest);
 		mv.addObject("products",list.getContent());
-		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "pagingTest.do"));
-		mv.setViewName("admin/pagingTest");
+		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
+		mv.setViewName("admin/adminManageProduct");
 		return mv;
 	}
 }

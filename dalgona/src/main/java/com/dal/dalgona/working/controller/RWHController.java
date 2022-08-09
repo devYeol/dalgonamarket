@@ -141,12 +141,12 @@ public class RWHController {
 		return "common/msg";
 	}
 	
-	@GetMapping("/admin/adminManageProduct.do")
-	public String productList(Model model) {
-			List<Product> result = service.productList();
-			model.addAttribute("pro",result);
-		return "admin/adminManageProduct";
-	}
+//	@GetMapping("/admin/adminManageProduct.do")
+//	public String productList(Model model) {
+//			List<Product> result = service.productList();
+//			model.addAttribute("pro",result);
+//		return "admin/adminManageProduct";
+//	}
 	
 	//페이징처리
 //	@RequestMapping("/admin/pageBar.do")
