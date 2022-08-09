@@ -56,10 +56,10 @@ public class RwhServiceImpl implements RwhService {
 		return categoryDao.findByCategoryName(categoryName);
 	}
 
-	@Override
-	public List<Product> productList() {
-		return productDao.findAll();
-	}
+//	@Override
+//	public List<Product> productList() {
+//		return productDao.findAll();
+//	}
 	
 	
 	

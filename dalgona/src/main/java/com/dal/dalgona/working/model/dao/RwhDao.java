@@ -14,7 +14,7 @@ public interface RwhDao  extends JpaRepository<Product, Long>{
 	
 	 Product save(Product p); 
 	 
-	 List<Product> findAll();
+//	 List<Product> findAll();
 	
 	
 }

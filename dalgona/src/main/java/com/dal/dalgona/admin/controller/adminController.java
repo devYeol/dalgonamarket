@@ -90,7 +90,6 @@ public class adminController {
 	}
 	
 	// 페이지테스트
-
 	@RequestMapping("adminManageProduct.do")
 	public ModelAndView adminManageProduct(ModelAndView mv,
 			@RequestParam(defaultValue="1") int cPage,
