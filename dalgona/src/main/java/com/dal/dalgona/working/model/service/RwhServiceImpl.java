@@ -61,10 +61,6 @@ public class RwhServiceImpl implements RwhService {
 		return productDao.findAll();
 	}
 	
-	//페이징처리
-//	public Page<Product> selectProducts(PageRequest pagerequest){
-//		return productDao.findAll(pagerequest);
-//	}
 	
 	
 

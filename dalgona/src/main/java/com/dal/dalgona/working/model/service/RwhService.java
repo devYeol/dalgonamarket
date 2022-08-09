@@ -24,6 +24,5 @@ public interface RwhService {
 	
 	List<Product> productList();
 	
-//	Page<Product> selectProducts(PageRequest pagerequest);//페이징처리
 	
 }

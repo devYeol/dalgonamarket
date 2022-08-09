@@ -16,6 +16,5 @@ public interface RwhDao  extends JpaRepository<Product, Long>{
 	 
 	 List<Product> findAll();
 	
-//	 Page<Product> findAll(PageRequest pagerequest);
 	
 }
