@@ -9,4 +9,6 @@ public interface KCLDao {
 	Member login(SqlSessionTemplate session, Member m);
 	
 	int insertMember(SqlSessionTemplate session, Member m);
+	
+	int idCheck(SqlSessionTemplate session, String memberId);
 }
