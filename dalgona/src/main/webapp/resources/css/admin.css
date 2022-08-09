@@ -393,6 +393,25 @@ html {
 	align-items: center;
 }
 
+.searchdiv2 {
+	/* border: 1px solid black; */
+	
+	margin-top: 30px;
+	margin-bottom: 30px;
+	position:relative;
+	height: 50px;
+	width: 94%;
+	
+	border-radius: 7px;
+	border: 1px solid #808080; 
+	
+	padding: 50px 25px 50px 25px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .search {
 	padding: 10px;
 	
@@ -430,4 +449,14 @@ html {
 	border-bottom: 1px solid #808080;
 	font-weight: bolder;
 	text-align: center;
+}
+
+.pageBar {
+	margin-bottom: 50px;
+	position:relative;
+	height: auto;
+	width: 94%;
+	
+	display: flex;
+	justify-content: center;
 }

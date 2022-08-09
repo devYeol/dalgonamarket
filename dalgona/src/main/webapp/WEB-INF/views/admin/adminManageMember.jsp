@@ -37,8 +37,19 @@
 				<div class="stats" style="margin-right: 20px; background-size: 75%; background-image: url(/resources/images/chart.png)" ></div>
 				<div class="stats" style="margin-left: 20px; background-size: 60%; background-image: url(/resources/images/graph.png)"></div>
 			</div>
-			<div style="width:94%">
-			<table class="listtable">
+			<div class="searchdiv2">
+				<div style="color: #808080; font-size: 30px; font-weight: border;">회원검색</div>
+				<div style="display: flex;">
+					<div style="padding-top: 3px; padding-right: 10px;">
+						<img src="${path}/resources/images/glass.png" style="width:24px; height:24px">
+					</div>
+					<div>
+						<input class="search" type="text" placeholder="검색어를 입력하세요">
+					</div>
+				</div>
+			</div>
+			<div class="listdiv">
+				<table class="listtable">
 					<tr>
 						<th style="width:90px;">체크</th>
 						<th style="width:180px;">이름</th>
@@ -75,6 +86,9 @@
 		            	</tr>
 		            </c:if>
 				</table>
+			</div>
+			<div class="pageBar">
+				${pageBar}
 			</div>
 		</div>
 		<!-- end of contents -->
