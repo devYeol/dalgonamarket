@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class KCLServiceImpl implements KCLService {
 
+	@Autowired
 	private JavaMailSender mailSender;
 		
 	@Autowired

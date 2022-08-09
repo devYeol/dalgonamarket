@@ -205,9 +205,9 @@
 							width="150" height="150" border="1" style="margin-left: 10" />
 					</a></td>
 					<td style="width: 55%"><a href="#"
-						style="color: black; text-decoration: none; font-size: 17"><b><c:out value="${z.proTitle }"/></b></a><br><br>
-						<div style="margin-top: 5; font-size: 15px"><c:out value="${z.proName }"/></div><br>
-						<div style="margin-top: 5;"><c:out value="${z.proPrice }원"/></div>
+						style="color: black; text-decoration: none; font-size: 17"><b><c:out value="${z.productCode }"/></b></a><br><br>
+						<div style="margin-top: 5; font-size: 15px"><c:out value="${z.productName }"/></div><br>
+						<div style="margin-top: 5;"><c:out value="${z.productPrice }원"/></div>
 					<td style="padding-left: 140px;">
 						<button type="button" class="btn btn-danger"
 							style="font-size: 14px; height: 4 0px;">장바구니 담기</button>

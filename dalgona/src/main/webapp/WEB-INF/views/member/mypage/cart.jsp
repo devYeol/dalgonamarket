@@ -196,27 +196,27 @@
 		</div>
 		<hr>
 		<c:forEach items="${cartList }" var="c">
-		<br>
+			<br>
 			<table style="margin-left: 10; width: 100%;">
 				<tbody>
 					<tr class="payment-tr" name="selectP">
 						<td style="width: 20%;"><input class="check-input"
 							type="checkbox" style="margin-top: 40;"> <a href="#"
-							style="text-decoration: none;"> <img
-								src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
+							style="text-decoration: none;"> <img src="${c.productThumb}"
 								width="150" height="150" border="0" style="margin-left: 10" />
+								<!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
 						</a></td>
 						<td style="width: 55%"><a href="#"
 							style="color: black; text-decoration: none; font-size: 17"><b><c:out
-										value="${c.proTitle}" /></b></a><br>
+										value="${c.productCode}" /></b></a><br>
 							<div style="margin-top: 5; font-size: 15px">
-								<c:out value="${c.proName}" />
+								<c:out value="${c.productName}" />
 							</div> <!-- 오예오예 오예스~ -->
 							<div style="margin-top: 5;">
-								<c:out value="${c.proPrice }" />
+								<c:out value="${c.productPrice }원" />
 							</div> <%-- 30,000원 --%>
 							<div style="margin-top: 5; font-size: 15px">
-								<c:out value="${c.orderDate}" />
+								<%-- <c:out value="${c.orderDate}" /> --%>
 								도착 예정
 							</div></td>
 

@@ -278,7 +278,7 @@ img {
 					<div>
 						<div style="display: flex">
 							<h3 style="margin-bottom: 0px; margin-left: 40px;">
-								<c:out value="${o.orderDate}" />
+								<c:out value="" />
 								주문
 							</h3>
 						</div>
@@ -297,14 +297,14 @@ img {
 										</div>
 										<div style="margin-top: 20px; margin-left: 30px">
 											<span style="font-size: 20px"><b><c:out
-														value="${o.proTitle }" /></b></span><br> <span
+														value="${o.productTitle }" /></b></span><br> <span
 												style="font-size: 15"><b><c:out
-														value="${o.proName }" /></b></span><br> <span
-												style="font-size: 15"><c:out value="${o.proPrice }원" />&nbsp;&nbsp;<c:out
-													value="${o.proAmount}개" /></span>
+														value="${o.productName }" /></b></span><br> <span
+												style="font-size: 15"><c:out value="${o.productPrice }원" />&nbsp;&nbsp;<c:out
+													value="${o.productAmount}개" /></span>
 											<div style="margin-top: 40px">
 												<!-- <span>1500원 1개</span><br> -->
-												<span><c:out value="${o.arriveDate }" />&nbsp;&nbsp;도착
+												<span><c:out value="" />&nbsp;&nbsp;도착
 													배송완료</span><br>
 											</div>
 										</div>
