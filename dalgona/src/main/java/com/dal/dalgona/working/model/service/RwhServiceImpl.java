@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.common.model.vo.Category;
 import com.dal.dalgona.common.model.vo.Product;
@@ -60,6 +61,10 @@ public class RwhServiceImpl implements RwhService {
 		return productDao.findAll();
 	}
 	
+	//페이징처리
+//	public Page<Product> selectProducts(PageRequest pagerequest){
+//		return productDao.findAll(pagerequest);
+//	}
 	
 	
 

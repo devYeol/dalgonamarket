@@ -9,6 +9,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.dal.dalgona.common.PageFactroyNoBootStrap;
 import com.dal.dalgona.common.model.vo.Category;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
@@ -104,12 +109,10 @@ public class RWHController {
 		String target = "resources";
 		int target_num = aa.indexOf(target)-1; 
 		String thumbnailPath = aa.substring(target_num);
-		
-		
+		//이미지주소 자르기 상세이미지
 		int target_num1 = aa.indexOf(target)-1; 
 		String detailedPath = aa.substring(target_num);
 		
-		//여기에
 		Product p = Product.builder().productAmount(product_Ampont)
 				 .productContent(product_Content)
 				 .productPrice(product_Price)
@@ -134,8 +137,6 @@ public class RWHController {
 		Product pro = service.insertProduct(p); //product insert
 		List<ProductOption> resultOption=service.insertProduct(options); //option을 보내주는구문
 		
-		
-		//log.debug("{}",resultOption);
 		String msg = "";
 		String loc = "";
 		
@@ -157,5 +158,18 @@ public class RWHController {
 			model.addAttribute("pro",result);
 		return "admin/adminManageProduct";
 	}
+	
+	//페이징처리
+//	@RequestMapping("/admin/pageBar.do")
+//	public ModelAndView adminManageProduct(ModelAndView mv,
+//			@RequestParam(defaultValue="1") int cPage,
+//			@RequestParam(defaultValue="10") int numPerpage) {
+//		PageRequest pagerequest=PageRequest.of(cPage-1, numPerpage, Sort.by(Sort.Direction.DESC,"productCode"));
+//		Page<Product> list=service.selectProducts(pagerequest);
+//		mv.addObject("products",list.getContent());
+//		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
+//		mv.setViewName("admin/adminManageProduct");
+//		return mv;
+//	}
 	
 }

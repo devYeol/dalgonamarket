@@ -12,6 +12,33 @@
 <meta charset="UTF-8">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
+<style>
+	.input-searchModa{
+		display: flex;
+		width: 60%;
+	}
+	.search-modal{
+		display: flex;
+		justify-content: center;
+		padding: 1rem 1rem;
+		margin-top: 20;
+	}
+	.search-form{
+		background-color: #E2E2E2;
+		width: 100%;
+		padding: 0.375rem 0.75rem;
+		font-size: 1rem;
+		border: 0px solid #6c757d;
+		color: black;
+		border-radius: 10px;
+	}
+	.btn-secondary{
+	background-color: #fff;
+	border: 1px solid #fff;
+	color: black;
+	border-radius: 10px;
+	}
+</style>
 <body style="background-color: white; font-family: 'NeoDunggeunmo';">
 	<div id="container" style="font-size: 30px;">
 		<header>
@@ -41,17 +68,18 @@
 							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog modal-fullscreen">
 									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										<div class="search-modal">
+											<div class="input-searchModa">
+											  <input type="text" class="search-form" placeholder="상품명을 입력하세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
+											  <div>
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="margin-left:15px;">close</button>
+											</div>
+											</div>									
 										</div>
-										<div>
-										</div>
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+										
 									</div>
 								</div>
 							</div>
-							<!-- <button class="modal-btn" style="border: 1px solid white; background-color: white">
-			        		</button> -->
 
 							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
 								<li>
