@@ -41,6 +41,8 @@ public class ProductOrder {
 	
 	private Date orderDate; //주문날짜
 	
+	private String impUid; // 아임포트 결제번호
+	
 	@OneToOne
 	@JoinColumn(name="addressCode")
 	private DeliveryLocation selectLocation; //선택 배송지
