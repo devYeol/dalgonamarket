@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -54,17 +55,7 @@ public class KCLController {
 		}
 		return "redirect:/";
 	}
-	
-	@RequestMapping("/findId")
-	public String findId() {
-		return "member/login/findIdPage";
-	}
-	
-	@RequestMapping("/findPw")
-	public String findPw() {
-		return "member/login/findPwPage";
-	}
-	
+
 	@RequestMapping("/member/enroll")
 	public String enroll() {
 		return "member/enroll/enrollPage";
@@ -89,19 +80,10 @@ public class KCLController {
 		return "common/msg";
 	}
 	
-	
-	
-	@RequestMapping("/address")
-	public String address() {
-		return "member/mypage/address";
-	}
-	@RequestMapping("/infochange")
-	public String infochange() {
-		return "member/mypage/infochange";
-	}
-	@RequestMapping("/changePage")
-	public String changePage() {
-		return "member/mypage/changePage";
+	@RequestMapping(value="/idCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public int idCheck(@RequestParam("memberId") String memberId) {
+		return service.idCheck(memberId);
 	}
 	
 	@RequestMapping("/authmail")
@@ -117,8 +99,26 @@ public class KCLController {
 		Boolean result=key.equals((String)session.getAttribute("emailKey"));
 		if(result) session.removeAttribute("emailKey");
 		return result;
-		
 	}
 	
-	
+	@RequestMapping("/findId")
+	public String findId() {
+		return "member/login/findIdPage";
+	}
+	@RequestMapping("/findPw")
+	public String findPw() {
+		return "member/login/findPwPage";
+	}
+	@RequestMapping("/address")
+	public String address() {
+		return "member/mypage/address";
+	}
+	@RequestMapping("/infochange")
+	public String infochange() {
+		return "member/mypage/infochange";
+	}
+	@RequestMapping("/changePage")
+	public String changePage() {
+		return "member/mypage/changePage";
+	}
 }

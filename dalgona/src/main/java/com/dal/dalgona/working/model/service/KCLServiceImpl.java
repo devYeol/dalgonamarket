@@ -38,6 +38,11 @@ public class KCLServiceImpl implements KCLService {
 		return dao.insertMember(session,m);
 	}
 	
+	@Override
+	public int idCheck(String memberId) {
+		return dao.idCheck(session,memberId);
+	}
+	
 	@Override 
 	public String authSendEmail(String senderEmail,String receiverEmail) {
 		
@@ -47,7 +52,7 @@ public class KCLServiceImpl implements KCLService {
 		Random random=new Random();
 		String key="";
 		
-		int numIndex=random.nextInt(999999)+100000;
+		int numIndex=random.nextInt(888888)+111111;
 		key+=numIndex;
 		
 		try { 
