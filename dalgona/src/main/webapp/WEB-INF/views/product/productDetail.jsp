@@ -138,7 +138,7 @@
 			<!-- 리뷰 탭 -->
 			<ul class="comment">
 				<li>
-					<form class="mb-3" name="myform" id="myform" method="post" action="${path }/review/insertreview.do">
+					<form class="mb-3" name="myform" id="myform" method="post" action="${path }/review/reviewWrite.do">
 						<fieldset>
 							<span class="text-bold">별점을 선택해주세요</span> <input type="radio"
 								name="reviewStar" value="5" id="rate1"><label

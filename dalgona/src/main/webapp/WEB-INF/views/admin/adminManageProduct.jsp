@@ -104,9 +104,8 @@
 		            </c:if>
 				</table>
 			</div>
-			
 		</div>
-		<!-- end of contents -->
+		<div>${pageBar}</div>
 	</div>
 	<script>
 		const adminDeleteProduct=(e)=>{

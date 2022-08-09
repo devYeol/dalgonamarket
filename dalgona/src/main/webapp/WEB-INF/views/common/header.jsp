@@ -12,6 +12,33 @@
 <meta charset="UTF-8">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
+<style>
+	.input-searchModa{
+		display: flex;
+		width: 60%;
+	}
+	.search-modal{
+		display: flex;
+		justify-content: center;
+		padding: 1rem 1rem;
+		margin-top: 20;
+	}
+	.search-form{
+		background-color: #E2E2E2;
+		width: 100%;
+		padding: 0.375rem 0.75rem;
+		font-size: 1rem;
+		border: 0px solid #6c757d;
+		color: black;
+		border-radius: 10px;
+	}
+	.btn-secondary{
+	background-color: #fff;
+	border: 1px solid #fff;
+	color: black;
+	border-radius: 10px;
+	}
+</style>
 <body style="background-color: white; font-family: 'NeoDunggeunmo';">
 	<div id="container" style="font-size: 30px;">
 		<header>
@@ -21,7 +48,7 @@
 						<div
 							class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
 							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
-								<li><a href="#" class="nav-link text-black"> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+								<li><a href="" class="nav-link text-black"> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
 										<use xlink:href="#facebook" /></svg>
 								</a></li>
 								<li><a href="#" class="nav-link text-black"> <i class="bi bi-search"></i> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
@@ -41,21 +68,21 @@
 							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog modal-fullscreen">
 									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										<div class="search-modal">
+											<div class="input-searchModa">
+											  <input type="text" class="search-form" placeholder="상품명을 입력하세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
+											  <div>
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="margin-left:15px;">close</button>
+											</div>
+											</div>									
 										</div>
-										<div>
-										</div>
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+										
 									</div>
 								</div>
 							</div>
-							<!-- <button class="modal-btn" style="border: 1px solid white; background-color: white">
-			        		</button> -->
-
 							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
 								<li>
-									<a id="search-open" href="#" class="nav-link text-black"> 
+									<a id="search-open" href="${path }/member/mypage/cart" class="nav-link text-black"> 
 										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
 											<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
 										</svg>
@@ -72,15 +99,17 @@
 								</c:if>
 								<c:if test="${loginMember != null }">
 									<li>
-										<a href="${path }" class="nav-link text-black">
+										<a href="${path}/member/mypage/mypageMain" class="nav-link text-black">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
 		  										<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+		  										
 											</svg>
 										</a>
 									</li>
 										<button class="btn" onclick="location.replace('${path }/member/logout')">로그아웃</button>
 								</c:if>
 							</ul>
+							
 						</div>
 					</div>
 				</div>
