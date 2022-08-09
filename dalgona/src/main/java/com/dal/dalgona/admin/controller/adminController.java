@@ -72,7 +72,7 @@ public class adminController {
 	// 상품관리 - 선택삭제기능
 	@RequestMapping("adminDeleteSelect.do")
 	@ResponseBody
-	public boolean deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public boolean adminDeleteSelect(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String[] deleteArr=request.getParameterValues("deleteArr[]");
 		boolean result=false;
 		for(int i=0; i<deleteArr.length; i++) {
