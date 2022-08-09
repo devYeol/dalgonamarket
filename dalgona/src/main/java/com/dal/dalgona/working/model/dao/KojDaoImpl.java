@@ -29,6 +29,14 @@ public class KojDaoImpl implements KojDao {
 		// TODO Auto-generated method stub
 		return session.selectList("qna.qnaList");
 	}
+
+	@Override
+	public int reviewWrite(SqlSession session, Review r) {
+		// TODO Auto-generated method stub
+		return session.insert("review.insertreview",r);
+	}
+	
+	
 	
 	
 	

@@ -158,7 +158,7 @@ input::placeholder {
 			<div class="int-area">
 				<div style="display: flex; justify-content: space-between;">
 					<label for="email"><b>이메일*</b></label>
-					<button class=btn-email id="mail-send-Btn">이메일 인증</button>
+					<button class=btn-email id="mail-send-Btn" type="button">이메일 인증</button>
 				</div>
 				<input id="userEmail" type="email" name="memberEmail" placeholder="이메일" autocomplete="off" required>
 			</div>
@@ -166,7 +166,7 @@ input::placeholder {
 			<div class="int-area">
 				<div style="display: flex; justify-content: space-between;">
 					<label for="email"><b>인증번호</b></label>
-					<button class=btn-email id="mail-Check-Btn">인증 확인</button>
+					<button class=btn-email id="mail-Check-Btn" type="button">인증 확인</button>
 				</div>
 				<input id="mail-check-input" type="text" placeholder="인증번호 6자리를 입력해주세요" autocomplete="off" required>
 				<span id="mail-check-warn"></span>
@@ -178,7 +178,7 @@ input::placeholder {
 				<input type="tel" name="memberPhone" placeholder="-없이 입력" autocomplete="off" required>
 			</div>
 			<br>
-			<div class="btn-area">
+			<div class="btn-area" id="btn-enrollEnd">
 				<button type="submit"><b>가입하기</b></button>
 			</div>
 			<br>
@@ -186,6 +186,7 @@ input::placeholder {
 	</div>
 </section>
 <script>
+let checkAuthEmail=false;
 //인증메일 보내기
 $('#mail-send-Btn').click(function() {
 		const email = $('#userEmail').val()// 이메일 주소값 얻어오기
@@ -205,16 +206,22 @@ $('#mail-send-Btn').click(function() {
 	});
 //인증번호 비교
 	$("#mail-Check-Btn").click(e=>{
+		const input=document.getElementById("#mail-check-input");
 		$.get("${path}/checkauthkey?key="+$("#mail-check-input").val(),data=>{
-			if(data) alert("인증완료");
-			else {
+			if(data) {
+				alert("인증완료");
+				/* $("#btn-enrollEnd").find('button').attr("disabled",false); */
+				checkAuthEmail=true;
+			}else {
 				alert("인증실패");
+				$("#mail-check-input").val(null);
+				$("#mail-check-input").focus();
 			}
 		})
 	});
 //아이디 중복확인
 $("#userId").blur(function(){
-	var userId = $("#userId").val();
+	const userId = $("#userId").val();
 	if(userId == "" || userId.length < 4){
 		$(".successIdChk").text("아이디는 4자 이상으로 입력해주세요.");
 			$(".successIdChk").css("color", "red");
@@ -254,6 +261,12 @@ $(()=>{
 	    }
 	   });
    })
-
+//이메일 미인증 유효성검사
+$("#btn-enrollEnd").click(e=>{
+	if(!checkAuthEmail) {
+		alert("이메일 인증이 필요합니다.");
+		return false;
+	}
+});
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

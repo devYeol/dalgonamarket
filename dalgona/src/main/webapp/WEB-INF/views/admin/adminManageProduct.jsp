@@ -77,35 +77,37 @@
 						<th>상품수량</th>
 						<th>등록/삭제</th>
 					</tr>
-					<c:if test="${not empty pro}">
-		            	<c:forEach var="p" items="${pro}">
+					<c:if test="${not empty products}">
+		            	<c:forEach var="p" items="${products}">
 							<tr>
 								<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
 								<td style="width:90px;" ><c:out value="${p.productCode}"/></td>
 								<td>
 									<img src="${p.productThumb }" width="95" height="100" border="0" />
 								</td>
-								<td style="width:59%; text-align: left; padding-left:30px"><c:out value="${p.productName}"/><br><c:out value="${p.productPrice}"/>원</td>
+								<td style="width:59%; text-align: center; padding-left:30px"><c:out value="${p.productName}"/><br><c:out value="${p.productPrice}"/>원</td>
 								<td>
 									<input style="width:50px; font-size: 15px; padding-right:10px;" type="number" value="<c:out value="${p.productAmount}"/>">
 								</td>
 								<td>
-									<button class="adminbt" style="width: 80px; background-color: #6FB67F;">수정</button>
+									<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="admin-Pupdate(event);">수정</button>
 									<button class="adminbt" id="<c:out value="${productCode}"/>_" name="<c:out value="${productCode}"/>" 
-										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event);">삭제</button>
+										style="width: 80px; background-color: #D56B5A;" onclick="location.assign('${path}/admin/adminUpdateProduct.do')">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
 		            </c:if>
-		            <c:if test="${empty pro}">
+		            <c:if test="${empty products}">
 		            	<tr>
 		            		<td colspan="6">조회결과 없음</td>
 		            	</tr>
 		            </c:if>
 				</table>
 			</div>
+			<div class="pageBar">
+				${pageBar}
+			</div>
 		</div>
-		<div>${pageBar}</div>
 	</div>
 	<script>
 		const adminDeleteProduct=(e)=>{
@@ -119,6 +121,7 @@
 				}
 			});
 		}
+		
 	</script>
 </body>
 </html>

@@ -4,4 +4,12 @@
 	<select id="reviewList"  resultType="review" >
 		SELECT * FROM REVIEW 
 	</select>
+	<!-- <insert id="insertreview" parameterType="review">
+		INSERT INTO REVIEW VALUES(SEQ_BOARDNO.NEXTVAL,#{boardTitle},#{boardWriter},
+				#{boardContent},default,default)
+		<selectKey keyProperty="boardNo" resultType="_int" order="AFTER">
+			SELECT SEQ_BOARDNO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert> -->
+	
 </mapper>

@@ -22,8 +22,7 @@ public interface RwhService {
 	
 	Category insertCategory(Category cate);
 	
-	List<Product> productList();
+//	List<Product> productList();
 	
-//	Page<Product> selectProducts(PageRequest pagerequest);//페이징처리
 	
 }
