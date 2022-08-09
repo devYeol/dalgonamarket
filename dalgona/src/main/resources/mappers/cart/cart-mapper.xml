@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cart">
+
+	<!-- <resultMap type="msw" id="mswMap"> <result property="proTitle" column="pro_title"/> 
+		<result property="proName" column="pro_name"/> <result property="proPrice" 
+		column="pro_price"/> <result property="proAmount" column="pro_amount"/> <result 
+		property="orderDate" column="order_date"/> <result property="arriveDate" 
+		column="arrive_date"/> </resultMap> -->
+	<resultMap type="product" id="mswMap">
+		<result property="productCode" column="product_code" />
+		<result property="productAmount" column="product_amount" />
+		<result property="productContent" column="product_content" />
+		<result property="productDate" column="product_date" />
+		<result property="productImage" column="order_image" />
+		<result property="productName" column="product_name" />
+		<result property="productPrice" column="product_price" />
+		<result property="productThumb" column="product_thumb" />
+		<!-- <result property="category" column="category"/> -->
+		<!-- <result property="product" column="category_code"/> -->
+	</resultMap>
+
+	<select id="selectProduct" parameterType="product"
+		resultMap="mswMap">
+		select * from product
+	</select>
+
+	<!-- <select id="cartList" parameterType="product" resultMap="mswMap" > 
+		SELECT * FROM PRODUCT </select> -->
+
+	<select id="cartList" resultType="cart">
+		SELECT *
+		FROM PRODUCT
+		<!-- LEFT JOIN CARt using (PRODUCT_CODE)
+		WHERE MEMBER_Id=#{memberId}; -->
+
+	</select>
+
+	<select id="zzimList" parameterType="product" resultMap="mswMap">
+		select * from product
+	</select>
+
+	<select id="orderList" parameterType="product"
+		resultMap="mswMap">
+		select * from product
+	</select>
+</mapper>

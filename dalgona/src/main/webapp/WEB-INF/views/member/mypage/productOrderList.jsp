@@ -211,7 +211,7 @@ img {
 			<ul>
 				<li><h5></h5></li>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
-				<li><a href="${path }/member/mypage/productOrder"></a>
+				<li><a href="${path }/member/mypage/productOrderList"></a>
 				<h5>
 						<b>구매내역</b>
 					</h5></li>
@@ -297,7 +297,7 @@ img {
 										</div>
 										<div style="margin-top: 20px; margin-left: 30px">
 											<span style="font-size: 20px"><b><c:out
-														value="${o.productTitle }" /></b></span><br> <span
+														value="" /></b></span><br> <span
 												style="font-size: 15"><b><c:out
 														value="${o.productName }" /></b></span><br> <span
 												style="font-size: 15"><c:out value="${o.productPrice }원" />&nbsp;&nbsp;<c:out

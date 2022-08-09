@@ -163,7 +163,7 @@
 				<li><h5>
 					</h5></li>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
-				<li><a href="${path }/member/mypage/productOrder">구매내역</a></li>
+				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
 				<li><a href="${path }/member/mypage/cart">장바구니</a></li>
 				<li><a href="${path }/member/mypage/zzim"></a><h5><b>찜 목록</b></h5></li>
 				<br>

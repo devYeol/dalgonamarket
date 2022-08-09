@@ -9,7 +9,10 @@ public interface MswService {
 	
 	List<Product> selectProduct();
 	
-//	List<Product> cartList(Member m);
+//	List<Product> cartList(String memberId); 
+//
+//	int sumMoney(String memberId); //총 금액 
+	
 	List<Product> cartList();
 
 	List<Product> zzimList();

@@ -361,7 +361,7 @@ img {
 				<li><h5>
 						<b>쇼핑정보</b>
 					</h5></li>
-				<li><a href="${path }/member/mypage/productOrder">구매내역</a></li>
+				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
 				<li><a href="${path }/member/mypage/cart">장바구니</a></li>
 				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
 				<br>

@@ -12,7 +12,9 @@ public interface MswDao {
 	
 	List<Product> selectProduct(SqlSessionTemplate session );
 	
-//	List<Product> cartList(SqlSessionTemplate session,Member m );
+//	List<Product> cartList(SqlSessionTemplate session,String memberId );
+//	int sumMoney(SqlSessionTemplate session,String memberId );
+	
 	List<Product> cartList(SqlSessionTemplate session);
 	
 	List<Product> zzimList(SqlSessionTemplate session );

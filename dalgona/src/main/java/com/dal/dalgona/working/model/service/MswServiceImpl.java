@@ -24,9 +24,15 @@ public class MswServiceImpl implements MswService {
 	}
 
 //	@Override
-//	public List<Product> cartList(Member m){
-//		return dao.cartList(session,m);
+//	public List<Product> cartList(String memberId){
+//		return dao.cartList(session,memberId);
 //	}
+//
+//	@Override
+//	public int sumMoney(String memberId){
+//		return dao.sumMoney(session,memberId);
+//	}
+	
 	@Override
 	public List<Product> cartList(){
 		return dao.cartList(session);

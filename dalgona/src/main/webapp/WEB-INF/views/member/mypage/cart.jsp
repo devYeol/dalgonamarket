@@ -162,7 +162,7 @@
 			<ul>
 				<li><h5></h5></li>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
-				<li><a href="${path }/member/mypage/productOrder">구매내역</a></li>
+				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
 				<li><a href="${path }/member/mypage/cart"></a>
 					<h5>
 						<b>장바구니</b>

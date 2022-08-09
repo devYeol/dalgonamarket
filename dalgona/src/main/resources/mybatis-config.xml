@@ -6,7 +6,8 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.dal.dalgona.common.model.vo.Member" alias="member"/>
-		<typeAlias type="com.dal.dalgona.working.model.vo.Msw" alias="msw"/>
+		<!-- <typeAlias type="com.dal.dalgona.working.model.vo.Msw" alias="msw"/> -->
+		<typeAlias type="com.dal.dalgona.common.model.vo.Product" alias="cart"/>
 		<typeAlias type="com.dal.dalgona.common.model.vo.Product" alias="product"/>
 		<typeAlias type="com.dal.dalgona.common.model.vo.Review" alias="review"/>
 		<typeAlias type="com.dal.dalgona.common.model.vo.Qna" alias="qna"/>
