@@ -77,8 +77,8 @@
 						<th>상품수량</th>
 						<th>등록/삭제</th>
 					</tr>
-					<c:if test="${not empty pro}">
-		            	<c:forEach var="p" items="${pro}">
+					<c:if test="${not empty products}">
+		            	<c:forEach var="p" items="${products}">
 							<tr>
 								<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
 								<td style="width:90px;" ><c:out value="${p.productCode}"/></td>
@@ -97,15 +97,17 @@
 							</tr>
 						</c:forEach>
 		            </c:if>
-		            <c:if test="${empty pro}">
+		            <c:if test="${empty products}">
 		            	<tr>
 		            		<td colspan="6">조회결과 없음</td>
 		            	</tr>
 		            </c:if>
 				</table>
 			</div>
+			<div class="pageBar">
+				${pageBar}
+			</div>
 		</div>
-		<div>${pageBar}</div>
 	</div>
 	<script>
 		const adminDeleteProduct=(e)=>{

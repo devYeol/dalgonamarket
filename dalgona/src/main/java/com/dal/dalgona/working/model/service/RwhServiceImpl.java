@@ -56,15 +56,11 @@ public class RwhServiceImpl implements RwhService {
 		return categoryDao.findByCategoryName(categoryName);
 	}
 
-	@Override
-	public List<Product> productList() {
-		return productDao.findAll();
-	}
-	
-	//페이징처리
-//	public Page<Product> selectProducts(PageRequest pagerequest){
-//		return productDao.findAll(pagerequest);
+//	@Override
+//	public List<Product> productList() {
+//		return productDao.findAll();
 //	}
+	
 	
 	
 
