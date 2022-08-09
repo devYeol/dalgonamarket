@@ -9,7 +9,7 @@ public class CreateRndNum { // productcode에 삽입 불가능/불필요시 삭�
 		Calendar cal=Calendar.getInstance();
  
 		int y=cal.get(Calendar.YEAR);
-		int m=cal.get(Calendar.MONTH) + 1;
+		int m=cal.get(Calendar.MONTH)+1;
 		int d=cal.get(Calendar.DATE);
  
 		StringBuilder sb=new StringBuilder();

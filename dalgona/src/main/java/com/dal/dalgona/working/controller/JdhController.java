@@ -2,13 +2,20 @@ package com.dal.dalgona.working.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.working.model.service.JdhService;
+import com.dal.dalgona.working.model.service.KCLServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,10 +29,10 @@ public class JdhController {
 //	@Autowired
 //	BCryptPasswordEncoder bc; // config 내부 bean으로 등록된 bcrypt 가져오기
 	
-	@RequestMapping("/payment")
-	public String paymentTest() {
-		return "order/payment/payment";
-	}
+//	@RequestMapping("/payment")
+//	public String paymentTest() {
+//		return "order/payment/payment";
+//	}
 	
 	@RequestMapping("/paymentSuccess")
 	public String paymentSuccess() {
@@ -60,6 +67,20 @@ public class JdhController {
 		return result;
 		
 	}
+	
+	// 결제시 로그인, 비로그인 구분
+//	@GetMapping("/payment")
+//	public String payment(HttpSession session, Model model) {
+////						@AuthenticationPrincipal KCLServiceImpl user) {
+//		
+//		Cart cartList=(Cart)session.getAttribute("cartList");
+//		
+//		model.addAttribute("cartList", cartList);
+//		
+//		
+//		
+//	}
+	
 	
 //	@RequestMapping("/jdhEnrollTest")
 //	public String enroll() {
