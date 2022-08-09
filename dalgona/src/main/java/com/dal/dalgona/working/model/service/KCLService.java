@@ -8,5 +8,7 @@ public interface KCLService {
 	
 	int insertMember(Member m);
 	
+	int idCheck(String memberId);
+	
 	String authSendEmail(String senderEmail, String receiver);
 }

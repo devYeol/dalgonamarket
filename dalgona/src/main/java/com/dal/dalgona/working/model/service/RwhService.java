@@ -2,11 +2,11 @@ package com.dal.dalgona.working.model.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.common.model.vo.Category;
-import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 
@@ -23,5 +23,7 @@ public interface RwhService {
 	Category insertCategory(Category cate);
 	
 	List<Product> productList();
+	
+//	Page<Product> selectProducts(PageRequest pagerequest);//페이징처리
 	
 }

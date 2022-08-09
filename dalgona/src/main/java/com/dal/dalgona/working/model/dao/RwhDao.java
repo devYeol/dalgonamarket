@@ -2,6 +2,8 @@ package com.dal.dalgona.working.model.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +16,6 @@ public interface RwhDao  extends JpaRepository<Product, Long>{
 	 
 	 List<Product> findAll();
 	
+//	 Page<Product> findAll(PageRequest pagerequest);
 	
 }

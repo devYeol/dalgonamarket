@@ -61,9 +61,9 @@
 						<td class="theader">옵션</td>
 						<td>
 							<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
-							<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
+								<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
 							</div>
-							<div style="display:flex;justify-content:left;align-items:center;margin:2%">
+							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
 								<div>
 									<input class="adminin" name="optionName" type="text"
 									placeholder="옵션이름을 입력해주세요">
@@ -104,14 +104,11 @@
 		<!-- end of contents -->
 	</div>
 	<script>
-		$("#addOptionBtn").click(e=>{
-			const optionTemplate=$(e.target).parent().next().clone();
-			$(e.target).parent().next().after(optionTemplate);
-		});
-	/* 	$('#remove').click(function() {
-			$('input:last-child').remove(); 
-				//.remove 하면 모든 input이 삭제되어 버리기 때문에 따로 input에 class나 id를 안줬으면 last-child로 마지막 것 부터 하나씩 잡아 지워나간다.
-				})	 */
+	 $("#addOptionBtn").click(e=>{
+	        const optionTemplate=$(e.target).parent().next().clone();
+	        $(e.target).parent().next().after(optionTemplate);
+	    });
+			
 		    function deleteOption(){
 			   if(confirm("옵션이 삭제됩니다!")==true){
 					$("input")
