@@ -1,8 +1,15 @@
 package com.dal.dalgona.working.model.service;
 
+import java.io.IOException;
+
 import com.dal.dalgona.common.model.vo.Member;
 
 public interface JdhService {
+	
+	// 결제
+	String getToken() throws IOException;
+	int paymentInfo(String imp_uid, String access_token) throws IOException;
+	public void payMentCancle(String access_token, String imp_uid, String amount, String reason);
 
 	public Member jdhInsertTest(Member m);
 	

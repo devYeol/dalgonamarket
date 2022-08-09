@@ -32,21 +32,20 @@ function payment() {
 		//		deleveryAddress3: $("#deleveryAddress3").val(),
 		//		totalPrice: $("#totalPrice").text()
 
-		payMethod: $("input[type='radio']:checked").val(),
+		payMethod: $("input[type='button']:checked").val(),
 		orderNum: rndNumber(),
-		name: $(".store_name1").text(),
+		name: $(".store_name1d").text(),
 		phone: $("#hiddenphone").val(),
 		request: $("select[name='request']").val(),
-		nickname: $("#nickname1").val(),
 		email: $("#hiddenemail").val(),
-		address1: $("#deleveryAddress2").val(),
-		address2: $("#deleveryAddress2").val(),
-		address3: $("#deleveryAddress3").val(),
+		deleveryAddress1: $("#deleveryAddress2").val(),
+		deleveryAddress2: $("#deleveryAddress2").val(),
+		deleveryAddress3: $("#deleveryAddress3").val(),
 		totalPrice: $("#totalPrice").text()
 
 	}
 
-	if (!data.address1) {
+	if (!data.deleveryAddress2) {
 		alert('배달 받으실 주소를 입력해 주세요')
 		return;
 	}
@@ -67,6 +66,11 @@ function payment() {
 /* 온라인결제 */
 function paymentCard(data) {
 
+	// 모바일로 결제시 이동페이지
+	// const pathName = location.pathname;
+	// const href = location.href;
+	// const m_redirect = href.replaceAll(pathName, "");
+
 	var IMP = window.IMP;
 	IMP.init("imp87022146");
 
@@ -74,44 +78,30 @@ function paymentCard(data) {
 	IMP.request_pay({ // param
 
 		pg: "html5_inicis",
-		pay_method: "card",
-		merchant_uid: rndOrderNum(),
-		name: data.name,
-		// amount: data.totalPrice,
-		amount: 100,
-		buyer_email: data.email,
-		buyer_name: data.nickname,
-		buyer_tel: data.phone,
-		buyer_addr: data.deleveryAddress2 + " " + data.deleveryAddress3,
-		buyer_postcode: "",
-		m_redirect_url: "/"
+		// pay_method: "card",
+		pay_method: data.payMethod, // 결제형태
+		merchant_uid: data.orderNum, // 주문번호
+		name: data.name, // 상품명
+		amount: data.amount, // 수량
+		buyer_email: data.email, // 구매자 이메일
+		buyer_name: data.nickname, // 구매자 이름
+		buyer_tel: data.phone, // 구매자 연락처
+		buyer_postcode: "", // 우편번호
+		buyer_addr: data.deleveryAddress2 + " " + data.deleveryAddress3, // 구매자 주소 + 상세
+		m_redirect_url: "/" // 결제 완료 후 url
 
 	},
 
 		function(rsp) { // callback
-
-			if (rsp.success) { // 성공로직
-
+			if (rsp.success) {
+				// 결제 성공 시 로직,
+				data.impUid = rsp.imp_uid;
+				data.merchant_uid = rsp.merchant_uid;
 				paymentComplete(data);
 
-				// 테스트용
-				/*  var msg="주문성공";
-					msg+='고유ID : '+rsp.imp+uid;
-					msg+='상점거래ID : '+rsp.merchang_uid;
-					msg+='결제금액 : '+rsp.paid_amount;
-					msg+='카드승인번호 : '+rsp.apply_num; */
-
-			} else { // 실패로직
-
-				var msg = '결제실패 : ';
-				msg += rsp.error_msg;
-
-
+			} else {
+				// 결제 실패 시 로직,
 			}
-
-			alert(msg);
-			console.log(rsp);
-
 		});
 
 }
@@ -127,18 +117,17 @@ function paymentComplete(data) {
 
 		.done(function(result) {
 			messageSend();
-			alert({
+			swal({
 				text: result,
 				closeOnClickOutside: false
 			})
 				.then(function() {
-					location.replace("/payment.do");
+					location.replace("/orderList");
 				})
 
 		}) // done
-
 		.fail(function() {
-			alert("주문성공");
+			alert("결제실패");
 			location.replace("/");
 		});
 
