@@ -84,7 +84,7 @@ public class JdhServiceImpl implements JdhService {
 		conn.setRequestProperty("Accept", "application/json");
 		conn.setDoOutput(true);
 
-		JsonObject json = new JsonObject();
+		JsonObject json = new JsonObject(); // 디펜던시 추가
 
 		json.addProperty("imp_key", impKey);
 		json.addProperty("imp_secret", impSecret);
@@ -97,7 +97,7 @@ public class JdhServiceImpl implements JdhService {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
 
-		Gson gson = new Gson();
+		Gson gson = new Gson(); // 디펜던시 추가
 
 		String response = gson.fromJson(br.readLine(), Map.class).get("response").toString();
 
