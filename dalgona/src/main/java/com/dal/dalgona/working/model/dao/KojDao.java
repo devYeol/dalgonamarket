@@ -15,5 +15,7 @@ public interface KojDao {
 	List<Review> reviewList(SqlSession session);
 	
 	List<Qna> qnaList(SqlSession session);
+	
+	int reviewWrite(SqlSession session,Review r);
 
 }

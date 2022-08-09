@@ -141,24 +141,13 @@ public class RWHController {
 		return "common/msg";
 	}
 	
-	@GetMapping("/admin/adminManageProduct.do")
-	public String productList(Model model) {
-			List<Product> result = service.productList();
-			model.addAttribute("pro",result);
-		return "admin/adminManageProduct";
-	}
-	
-	//페이징처리
-//	@RequestMapping("/admin/pageBar.do")
-//	public ModelAndView adminManageProduct(ModelAndView mv,
-//			@RequestParam(defaultValue="1") int cPage,
-//			@RequestParam(defaultValue="10") int numPerpage) {
-//		PageRequest pagerequest=PageRequest.of(cPage-1, numPerpage, Sort.by(Sort.Direction.DESC,"productCode"));
-//		Page<Product> list=service.selectProducts(pagerequest);
-//		mv.addObject("products",list.getContent());
-//		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
-//		mv.setViewName("admin/adminManageProduct");
-//		return mv;
+//	@GetMapping("/admin/adminManageProduct.do")
+//	public String productList(Model model) {
+//			List<Product> result = service.productList();
+//			model.addAttribute("pro",result);
+//		return "admin/adminManageProduct";
 //	}
+	
+	
 	
 }
