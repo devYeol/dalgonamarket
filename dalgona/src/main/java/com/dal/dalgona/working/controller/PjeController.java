@@ -32,10 +32,14 @@ public class PjeController {
 	private PjeService service;
 	
 	// 회원관리 페이지 이동
-	@RequestMapping("/adminManageMember.do")
-	public ModelAndView adminManageMember(ModelAndView mv) {
-		List<Member> list=service.selectMembers();
-		mv.addObject("members",list);
+	@RequestMapping("adminManageMember.do")
+	public ModelAndView adminManageMember(ModelAndView mv,
+			@RequestParam(defaultValue="1") int cPage,
+			@RequestParam(defaultValue="25") int numPerpage) {
+		PageRequest pagerequest=PageRequest.of(cPage-1, numPerpage, Sort.by(Sort.Direction.ASC,"memberEnrollDate"));
+		Page<Member> list=service.selectMembers(pagerequest);
+		mv.addObject("members",list.getContent());
+		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
 		mv.setViewName("admin/adminManageMember");
 		return mv;
 	}

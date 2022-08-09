@@ -104,7 +104,7 @@
 		            </c:if>
 				</table>
 			</div>
-			<div>
+			<div class="pageBar">
 				${pageBar}
 			</div>
 		</div>
