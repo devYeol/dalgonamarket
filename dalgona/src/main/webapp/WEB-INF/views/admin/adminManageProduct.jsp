@@ -85,14 +85,14 @@
 								<td>
 									<img src="${p.productThumb }" width="95" height="100" border="0" />
 								</td>
-								<td style="width:59%; text-align: left; padding-left:30px"><c:out value="${p.productName}"/><br><c:out value="${p.productPrice}"/>원</td>
+								<td style="width:59%; text-align: center; padding-left:30px"><c:out value="${p.productName}"/><br><c:out value="${p.productPrice}"/>원</td>
 								<td>
 									<input style="width:50px; font-size: 15px; padding-right:10px;" type="number" value="<c:out value="${p.productAmount}"/>">
 								</td>
 								<td>
-									<button class="adminbt" style="width: 80px; background-color: #6FB67F;">수정</button>
+									<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="admin-Pupdate(event);">수정</button>
 									<button class="adminbt" id="<c:out value="${productCode}"/>_" name="<c:out value="${productCode}"/>" 
-										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event);">삭제</button>
+										style="width: 80px; background-color: #D56B5A;" onclick="location.assign('${path}/admin/adminUpdateProduct.do')">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -121,6 +121,7 @@
 				}
 			});
 		}
+		
 	</script>
 </body>
 </html>
