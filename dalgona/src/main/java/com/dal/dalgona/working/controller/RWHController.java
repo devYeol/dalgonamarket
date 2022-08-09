@@ -9,19 +9,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.dal.dalgona.common.PageFactroyNoBootStrap;
 import com.dal.dalgona.common.model.vo.Category;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
@@ -141,24 +135,34 @@ public class RWHController {
 		return "common/msg";
 	}
 	
-	@GetMapping("/admin/adminManageProduct.do")
-	public String productList(Model model) {
-			List<Product> result = service.productList();
-			model.addAttribute("pro",result);
-		return "admin/adminManageProduct";
+//	@GetMapping("/admin/adminManageProduct.do")
+//	public String productList(Model model) {
+//			List<Product> result = service.productList();
+//			model.addAttribute("pro",result);
+//		return "admin/adminManageProduct";
+//	}
+	
+	//상품수정하기
+	@RequestMapping("/admin/adminUpdateProduct.do")
+	public String updateProduct(@RequestParam(value="productAmount") int product_Ampont,
+								@RequestParam(value="productContent") String product_Content,
+								@RequestParam(value="thumbnail") MultipartFile thumbnail,
+								@RequestParam(value="detailedImage") MultipartFile detailedImage,
+								@RequestParam(value="productPrice") int product_Price,
+								@RequestParam(value="productName") String product_Name,
+								String categoryName,
+								String[] optionName,
+								int[] optionPrice,
+								HttpServletRequest rs,Model model
+								)throws IllegalStateException, IOException {
+		//카테고리 가져오기
+		Category c=service.selectCategory(categoryName);
+		log.debug("{}",c); 
+		//파일 저장경로 가져옴
+		String path = rs.getServletContext().getRealPath("/resources/upload/product/");
+		return "";
 	}
 	
-	//페이징처리
-//	@RequestMapping("/admin/pageBar.do")
-//	public ModelAndView adminManageProduct(ModelAndView mv,
-//			@RequestParam(defaultValue="1") int cPage,
-//			@RequestParam(defaultValue="10") int numPerpage) {
-//		PageRequest pagerequest=PageRequest.of(cPage-1, numPerpage, Sort.by(Sort.Direction.DESC,"productCode"));
-//		Page<Product> list=service.selectProducts(pagerequest);
-//		mv.addObject("products",list.getContent());
-//		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
-//		mv.setViewName("admin/adminManageProduct");
-//		return mv;
-//	}
+	
 	
 }

@@ -60,7 +60,7 @@ public class KCLServiceImpl implements KCLService {
 		msg.setFrom(senderEmail);
 		msg.setTo(receiverEmail); 
 		msg.setSubject("달고나 인증번호 발송"); 
-		msg.setText("달고나 인증번호 "+key); 
+		msg.setText("달고나마켓 [인증번호] : "+key); 
 		}catch (MessagingException e) { 
 			e.printStackTrace(); 
 		}

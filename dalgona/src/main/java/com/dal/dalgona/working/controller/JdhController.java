@@ -1,10 +1,13 @@
 package com.dal.dalgona.working.controller;
 
+import java.io.IOException;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dal.dalgona.common.CreateRndNum;
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.working.model.service.JdhService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -84,6 +88,28 @@ public class JdhController {
 		
 	}
 	
+	@RequestMapping("/order/payment/paymentComplete")
+	public ResponseEntity<String> paymentComplete
+			(HttpSession session, OrderDetail orderDetail, long totalPrice) throws IOException {
+		
+		// 1. 아임포트 API키, SECRET키로 토큰 생성
+		// 2. 토큰으로 결제 완료된 주문정보 가져오기
+		// 3. DB에서 실제 계산 될 금액 가져오기
+		// 4. 결제 완료 금액과 실제 계산 금액이 다를 경우 결제취소
+		// 5. 결제에러시 결제취소
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+		
+	}
+	
+	// 토큰 생성 확인용
+	public void testToken() throws IOException {
+		
+		String token=service.getToken();
+		log.debug("토큰값 : "+token);
+		
+	}
+	
 	
 //	@RequestMapping("/jdhEnrollTest")
 //	public String enroll() {
@@ -108,7 +134,5 @@ public class JdhController {
 //		
 //		return "common/msg";
 //	}
-	
-	
 
 }
