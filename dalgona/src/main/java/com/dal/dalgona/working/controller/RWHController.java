@@ -37,17 +37,6 @@ public class RWHController {
 	@Autowired
 	private RwhService service;
 
-	@RequestMapping("/mypage/addressadd")
-	public String addressadd() {
-		return "mypage/addressadd";
-		
-	}
-	@RequestMapping("/mypage/shippingset")
-	public String shippingset() {
-		return "mypage/shippingset";
-		
-	}
-	
 	//category
 	@RequestMapping("/categoryDemo")
 	@ResponseBody

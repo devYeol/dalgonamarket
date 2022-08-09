@@ -17,4 +17,9 @@ public class KCLDaoImpl implements KCLDao {
 	public int insertMember(SqlSessionTemplate session, Member m) {
 		return session.insert("member.insertMember",m);
 	}
+	
+	@Override
+	public int idCheck(SqlSessionTemplate session, String memberId) {
+		return session.selectOne("member.idCheck", memberId);
+	}
 }

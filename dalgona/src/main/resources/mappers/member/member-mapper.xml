@@ -19,4 +19,7 @@
 		INSERT INTO MEMBER VALUES(#{memberId},#{memberBirth},#{memberEmail},SYSDATE,#{memberGender},#{memberName},#{memberPhone},#{memberPwd})
 	</insert>
 	
+	<select id="idCheck" parameterType="string" resultType="integer">
+		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID=#{memberId}
+	</select>
 </mapper>

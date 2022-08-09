@@ -109,23 +109,26 @@ input::placeholder {
 			<div class="int-area">
 				<div style="display: flex; justify-content: space-between;">
 					<label for="id"><b>아이디*</b></label>
-					<!-- <button class=btn-idck>중복확인</button> -->
+					<span id="id-duplication"></span>
 				</div>
-				<input type="text" name="memberId" placeholder="아이디" autocomplete="off" required>
+				<input type="text" id="userId" name="memberId" placeholder="아이디" autocomplete="off" required>
 			</div>
+				<span class="successIdChk" style="font-size: 14px; color: #999;">아이디는 4자 이상으로 입력해주세요.</span>
 			<br>
 			<div class="int-area">
 				<label for="pw"><b>비밀번호*</b></label>
 				<br>
-				<input type="password" name="memberPwd" id="pw" placeholder="비밀번호" autocomplete="off" required>
+				<input type="password" id="userPwd" name="memberPwd" placeholder="비밀번호" autocomplete="off" required>
 			</div>
 			<br>
 			<div class="int-area">
-				<label for="pw"><b>비밀번호 확인*</b></label>
-				<br>
-				<input type="password" id="pwck" placeholder="비밀번호 확인" autocomplete="off" required>
-				<span id="pwresult"></span>
+				<div style="display: flex; justify-content: space-between;">
+					<label for="pw"><b>비밀번호 확인*</b></label>
+					<input type="hidden" id=""></input>
+				</div>
+				<input type="password" id="userPwdCk" placeholder="비밀번호 확인" autocomplete="off" required>
 			</div>
+				<span id="successPwChk"></span>
 			<br>
 			<div class="int-area">
 				<label for="name"><b>이름*</b></label>
@@ -209,5 +212,48 @@ $('#mail-send-Btn').click(function() {
 			}
 		})
 	});
+//아이디 중복확인
+$("#userId").blur(function(){
+	var userId = $("#userId").val();
+	if(userId == "" || userId.length < 4){
+		$(".successIdChk").text("아이디는 4자 이상으로 입력해주세요.");
+			$(".successIdChk").css("color", "red");
+	}else{
+		$(".successIdChk").css("color", "#999");
+		$.ajax({
+			url : '${path}/idCheck?memberId='+ userId,
+			type : 'post',
+			success : function(data) {
+				console.log(data);
+				if (data == 0) {
+					$("#id-duplication").text("사용가능한 아이디입니다.");
+					$("#id-duplication").css("color", "green");
+				}else {
+					$("#id-duplication").text("사용중인 아이디입니다.");
+					$("#id-duplication").css("color", "red");
+				}
+			}, error : function() {
+				console.log("실패");
+			}
+		});
+	}
+});
+//비밀번호 확인
+$(()=>{
+	$("#userPwdCk").keyup(e=>{
+	    const pwVal=$("#userPwd").val();
+	    const pwCkVal=$(e.target).val();
+	    if(pwCkVal.trim().length>2){
+	    	if(pwCkVal===pwVal){
+	    		$("#successPwChk").text("비밀번호가 일치합니다.").css("color","green");
+	    	}else{
+	    		$("#successPwChk").text("비밀번호가 불일치합니다.").css("color","red");
+	    	}
+	    }else{
+	    	$("#successPwChk").text("");
+	    }
+	   });
+   })
+
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
