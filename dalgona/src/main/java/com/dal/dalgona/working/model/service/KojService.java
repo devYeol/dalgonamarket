@@ -13,5 +13,7 @@ public interface KojService {
 	List<Review> reviewList();
 	
 	List<Qna> qnaList();
+	
+	int reviewWrite(Review r);
 
 }

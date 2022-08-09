@@ -65,7 +65,6 @@ public class KojController {
 //			}
 //		}
 //		
-//		r.setFiles(files);
 //		String msg="";
 //		String loc="";
 //		try {

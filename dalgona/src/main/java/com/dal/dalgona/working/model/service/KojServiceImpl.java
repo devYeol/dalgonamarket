@@ -37,6 +37,13 @@ public class KojServiceImpl implements KojService {
 		// TODO Auto-generated method stub
 		return dao.qnaList(session);
 	}
+
+	@Override
+	public int reviewWrite(Review r) {
+		// TODO Auto-generated method stub
+		return dao.reviewWrite(session,r);
+	}
+	
 	
 	
 
