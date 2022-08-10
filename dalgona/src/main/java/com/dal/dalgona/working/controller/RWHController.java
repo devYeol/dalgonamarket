@@ -143,14 +143,18 @@ public class RWHController {
 //	}
 	
 	//상품수정하기
-	@RequestMapping("/admin/adminUpdateProduct.do")
-	public String updateProduct(long productCode)throws IllegalStateException, IOException {
+	@RequestMapping("/selectUpdateProduct.do")
+	public String selectUpdateProduct(Long pro, Model model){
 		//카테고리 가져오기
-//		Category c=service.selectCategory(categoryName);
-//		log.debug("{}",c); 
-//		//파일 저장경로 가져옴
-//		String path = rs.getServletContext().getRealPath("/resources/upload/product/");
-		return "";
+		System.out.println(pro);
+		Product p = service.selectOneProduct(pro);
+		Category c = service.selectOneCate(p);
+		
+		log.debug("{}",c);
+		log.debug("{}",p);
+		model.addAttribute("p",p);
+		model.addAttribute("c",c);
+		return "admin/selectUpdateProduct";
 	}
 	
 	

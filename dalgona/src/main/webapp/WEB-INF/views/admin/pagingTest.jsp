@@ -142,20 +142,6 @@
 					}
 				}
 			});
-            /* $.ajax = {
-                url:"${path}/admin/adminDeleteSelect.do",
-                traditional : true,
-                data:{deleteArr:arr},
-                // dataType: "json",
-                success: data=>{ */
-               /*      if(data != 1) {
-                        alert("삭제 오류");
-                    }
-                    else{
-                        alert("삭제 성공");
-                    } */
-                // }
-            // };
 	    }
 		
 		// 전체 선택

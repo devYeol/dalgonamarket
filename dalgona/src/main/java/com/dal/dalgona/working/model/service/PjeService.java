@@ -16,4 +16,8 @@ public class PjeService {
 	public Page<Member> selectMembers(PageRequest pagerequest) {
 		return dao.findAll(pagerequest);
 	}
+	
+//	public Page<Member> selectMembers(PageRequest pagerequest, String searchType, String keyword, String searchGen) {
+//		return dao.findby(pagerequest, searchType, keyword, searchGen);
+//	}
 }

@@ -42,7 +42,7 @@ public class KCLController {
 			model.addAttribute("loginMember",loginMember);
 		}else {
 			model.addAttribute("msg","로그인 실패");
-			model.addAttribute("loc","/login");
+			model.addAttribute("loc","/member/login");
 			view="common/msg";
 		}
 		return view;

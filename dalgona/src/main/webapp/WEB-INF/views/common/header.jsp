@@ -59,7 +59,7 @@
 								</a></li>
 							</ul>
 						</div>
-						<div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start"">
+						<div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
 								style="border: 1px solid white; background-color: white; padding: 8 16 8 16;">
 								<img src="/resources/images/header/search.svg" style="width: 24; height: 22; background-color: white; margin: 0;" >
