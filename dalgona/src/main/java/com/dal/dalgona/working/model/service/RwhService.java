@@ -22,6 +22,14 @@ public interface RwhService {
 	
 	Category insertCategory(Category cate);
 	
+	Product selectOneProduct(Long pro);
+	
+//	ProductOption selectOneOption(Long pro);
+	
+	Category selectOneCate(Product p);
+	
+	
+	
 //	List<Product> productList();
 	
 	

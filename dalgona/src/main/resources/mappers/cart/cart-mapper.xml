@@ -7,7 +7,7 @@
 		column="pro_price"/> <result property="proAmount" column="pro_amount"/> <result 
 		property="orderDate" column="order_date"/> <result property="arriveDate" 
 		column="arrive_date"/> </resultMap> -->
-	<resultMap type="product" id="mswMap">
+	<resultMap type="product" id="cartMap">
 		<result property="productCode" column="product_code" />
 		<result property="productAmount" column="product_amount" />
 		<result property="productContent" column="product_content" />
@@ -21,27 +21,40 @@
 	</resultMap>
 
 	<select id="selectProduct" parameterType="product"
-		resultMap="mswMap">
+		resultMap="cartMap">
 		select * from product
 	</select>
 
-	<!-- <select id="cartList" parameterType="product" resultMap="mswMap" > 
+	<!-- <select id="cartList" parameterType="product" resultMap="cartMap" > 
 		SELECT * FROM PRODUCT </select> -->
 
 	<select id="cartList" resultType="cart">
-		SELECT *
-		FROM PRODUCT
-		<!-- LEFT JOIN CARt using (PRODUCT_CODE)
-		WHERE MEMBER_Id=#{memberId}; -->
+		SELECT c.PRODUCT_CODE,c.MEMBER_ID ,PRODUCT_name, c.cart_amount
+		,product_price,(p.product_price*c.cart_amount)
+		FROM CART
+		c,PRODUCT p ,MEMBER m
+		WHERE 	m.MEMBER_Id = c.MEMBER_Id
+		AND	c.PRODUCT_CODE = p.PRODUCT_CODE 
+		AND c.MEMBER_Id =#{memberId}
 
 	</select>
 
-	<select id="zzimList" parameterType="product" resultMap="mswMap">
+	<select id="sumMoney" resultType="_int">
+		SELECT NVL(SUM(product_price*cart_amount),0)
+		FROM CART c ,PRODUCT p
+		WHERE P.PRODUCT_CODE = c.PRODUCT_CODE 
+	    AND c.MEMBER_Id =#{memberId}
+	</select>
+
+	<!-- <select id="zzimList" parameterType="product" resultMap="cartMap"> 
+		select * from product </select> -->
+	<select id="zzimList" resultMap="cartMap">
 		select * from product
 	</select>
 
-	<select id="orderList" parameterType="product"
-		resultMap="mswMap">
+	<select id="orderList" resultMap="cartMap">
 		select * from product
 	</select>
+	<!-- <select id="orderList" parameterType="product" resultMap="cartMap"> 
+		select * from product </select> -->
 </mapper>
