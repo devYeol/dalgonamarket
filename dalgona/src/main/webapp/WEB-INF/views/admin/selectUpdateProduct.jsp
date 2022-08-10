@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+   <jsp:param name="title" value=""/>
+</jsp:include>
+<section id="content">
+	<div class="contents">
+			<div class="contentstitle">상품수정</div>
+		<form action="${path }/insertProduct.do" method="post" enctype="multipart/form-data">
+			<div class="enrolltablediv">
+				<table class="enrolltable">
+				<%-- <c:if test="${not empty products}">
+		            	<c:forEach var="p" items="${products}"> --%>
+					<tr>
+						<td class="theader">상품명</td>
+						<td><input class="adminin" name="productName" type="text" value="<c:out value="${p.productName}"/>"></td>
+					</tr>
+					<tr>
+						<td class="theader">카테고리</td>
+						<td style="font-size: 15px; color: #808080;">
+							<%-- <c:out value="${p.categoryCode}"/> --%>
+							<label><input type="radio" name="categoryName" value="스낵" ${Arrays.toString(c.categoryCode).contains("스낵")?"checked":"" }>스낵</label> 
+							<label><input type="radio" name="categoryName" value="사탕" ${Arrays.toString(c.categoryCode).contains("사탕")?"checked":"" }>사탕</label> 
+							<label><input type="radio" name="categoryName" value="초코" ${Arrays.toString(c.categoryCode).contains("초코")?"checked":"" }>초코</label> 
+							<label><input type="radio" name="categoryName" value="젤리" ${Arrays.toString(c.categoryCode).contains("젤리")?"checked":"" }>젤리</label> 
+							<label><input type="radio" name="categoryName" value="완구" ${Arrays.toString(c.categoryCode).contains("완구")?"checked":"" }>완구</label> 
+							<label><input type="radio" name="categoryName" value="기타" ${Arrays.toString(c.categoryCode).contains("기타")?"checked":"" }>기타</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="theader">가격</td>
+						<td><input class="adminin" type="text" name="productPrice"
+							placeholder="내용을 입력해 주세요"><c:out value="${p.productPrice}"/></td>
+					</tr>
+					<tr>
+						<td class="theader">옵션</td>
+						<td>
+							<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
+								<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
+							</div>
+							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
+								<div>
+									<input class="adminin" name="optionName" type="text"
+									placeholder="옵션이름을 입력해주세요">
+									<input class="adminin" name="optionPrice" type="number" min="1000"
+									placeholder="옵션가격을 입력해주세요">
+								</div>
+								<div><button class="adminbt" type="button" id="remove"  style="width:50; font-size:13">삭제</button></div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="theader">수량</td>
+						<td><input class="adminin" type="text" name="productAmount"
+							placeholder="내용을 입력해 주세요"><c:out value="${p.productAmount}"/></td>
+					</tr>
+					<tr>
+						<td class="theader">이미지</td>
+						<td>
+							<input type="file" name="thumbnail" style="margin-bottom: 5px" >
+								<img src="${p.productThumb }" width="95" height="100" border="0" />
+							<input type="file" name="detailedImage">
+								<img src="${p.productImage }" width="95" height="100" border="0" />
+						</td>
+					</tr>
+					<tr>
+						<td class="theader">상품설명</td>
+						<td><input class="adminin" type="text" name="productContent"
+							placeholder="내용을 입력해 주세요"><c:out value="${p.productContent}"/></td>
+					</tr>
+				<%-- 	</c:forEach>
+		            </c:if> --%>
+				</table>
+				<div style="position: relative; top: 10px; left: 25%;">
+					<button class="adminbt"
+						style="background-color: #E0E0E0; color: black;">취소</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="adminbt">등록</button>
+				</div>
+			</div>
+		</form>
+		</div>
+		<!-- end of contents -->
+	</div>
+</section>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

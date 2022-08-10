@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.common.model.vo.Category;
@@ -55,6 +53,26 @@ public class RwhServiceImpl implements RwhService {
 	public Category selectCategory(String categoryName) {
 		return categoryDao.findByCategoryName(categoryName);
 	}
+	
+	//productCode로 불러오기
+	@Override
+	public Product selectOneProduct(Long pro) {
+		return productDao.findByProductCode(pro);
+	}
+
+	//@Override
+//	public ProductOption selectOneOption(Long pro) {
+//		return optionDao.findByOptionCode(pro);
+//	}
+
+	@Override
+	public Category selectOneCate(Product p) {
+		return categoryDao.findByProducts(p);
+	}
+	
+	
+
+
 
 //	@Override
 //	public List<Product> productList() {
