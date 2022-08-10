@@ -264,6 +264,7 @@ $(()=>{
 //비밀번호 유효성 확인
 const chkPw=()=>{
 	 const pw = $("#userPwd").val();
+	 const pwck	= $("#userPwdCk").val();
 	 const num = pw.search(/[0-9]/g);
 	 const eng = pw.search(/[a-z]/ig);
 	 const spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
@@ -274,6 +275,10 @@ const chkPw=()=>{
 		return false;
 	}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
 		alert("비밀번호는 영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+		$("#userPwd").focus();
+		return false;
+	}else if(pw != pwck){
+		alert("비밀번호가 일치하지 않습니다.")
 		$("#userPwd").focus();
 		return false;
 	}else {
