@@ -12,6 +12,7 @@
 		<result property="memberEnrollDate" column="member_enroll_date"/>
 		<result property="roles" column="roles"/>
 	</resultMap>
+	
 	<select id="selectMember" parameterType="member" resultMap="memberMap">
       SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_PWD=#{memberPwd}
     </select>
