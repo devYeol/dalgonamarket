@@ -28,6 +28,11 @@ public class MswDaoImpl implements MswDao{
 	public int sumMoney(SqlSessionTemplate session,Member m){
 		return session.selectOne("cart.sumMoney",m);
 	}
+	
+	@Override
+	public long delete(SqlSessionTemplate session,long productCode) {
+		return session.delete("cart.deletecart",productCode);
+	}
 
 //	@Override
 //	public List<Product> zzimList(SqlSessionTemplate session){

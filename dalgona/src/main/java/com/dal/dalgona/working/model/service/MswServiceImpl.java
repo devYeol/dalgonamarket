@@ -30,7 +30,12 @@ public class MswServiceImpl implements MswService {
 	public List<Cart> cartList(Member m){
 		return dao.cartList(session,m);
 	}
-
+	
+	@Override
+	public long delete(long productCode) {
+		return dao.delete(session,productCode);
+	}
+	
 	@Override
 	public int sumMoney(Member m){
 		return dao.sumMoney(session,m);

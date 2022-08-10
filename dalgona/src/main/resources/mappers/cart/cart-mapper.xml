@@ -36,8 +36,15 @@
 		WHERE 	m.MEMBER_Id = c.MEMBER_Id
 		AND	c.PRODUCT_CODE = p.PRODUCT_CODE 
 		AND c.MEMBER_Id =#{memberId}
-
 	</select>
+	
+	<delete id="deletecart">
+		delete from cart
+		where product_code =#{productCode}
+		
+	</delete>
+	
+	
 
 	<select id="sumMoney" resultType="_int">
 		SELECT NVL(SUM(product_price*cart_amount),0)
