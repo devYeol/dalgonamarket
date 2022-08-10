@@ -30,7 +30,7 @@ public class Review {
 	@GeneratedValue(generator = "seq_review_code", strategy = GenerationType.SEQUENCE)
 	private long reviewCode;
 	
-	private String productCode;
+	private long productCode;
 	
 	private String memberId;
 	

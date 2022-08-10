@@ -2,7 +2,7 @@ package com.dal.dalgona.common;
 
 import java.util.Calendar;
 
-public class CreateRndNum { // productcode에 삽입 불가능/불필요시 삭제
+public class CreateRndNum { // productcode에 삽입 예정 불가능/불필요시 삭제
 	
 	public static String rndNum() {
 		

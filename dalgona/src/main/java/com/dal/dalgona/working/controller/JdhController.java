@@ -18,6 +18,7 @@ import com.dal.dalgona.common.CreateRndNum;
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.working.model.service.JdhService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -89,26 +90,47 @@ public class JdhController {
 	}
 	
 	// 결제 성공
-	@RequestMapping("/order/payment/paymentComplete")
-	public ResponseEntity<String> paymentComplete
-			(HttpSession session, OrderDetail orderDetail, long totalPrice) throws IOException {
-//							@AuthenticationPrincipal LoginMember user) throws IOException {
-		
-		// 1. 아임포트 API키, SECRET키로 토큰 생성
-		// 2. 토큰으로 결제 완료된 주문정보 가져오기
-		// 3. DB에서 실제 계산 될 금액 가져오기
-		// 4. 결제 완료 금액과 실제 계산 금액이 다를 경우 결제취소
-		// 5. 결제에러시 결제취소
-		
-		String token=service.getToken();
-		log.debug("토큰값 : "+token);
-		
-		// 결제 완료된 금액
-//		int amount = service.paymentInfo(service.getImpUid(), token);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
-		
-	}
+//	@RequestMapping("/order/payment/paymentComplete")
+//	public ResponseEntity<String> paymentComplete
+//			(HttpSession session, ProductOrder productOrder, long totalPrice) throws IOException {
+////							@AuthenticationPrincipal LoginMember user) throws IOException {
+//		
+//		// 1. 아임포트 API키, SECRET키로 토큰 생성
+//		// 2. 토큰으로 결제 완료된 주문정보 가져오기
+//		// 3. DB에서 실제 계산 될 금액 가져오기
+//		// 4. 결제 완료 금액과 실제 계산 금액이 다를 경우 결제취소
+//		// 5. 결제에러시 결제취소
+//		
+//		String token=service.getToken();
+//		log.debug("토큰값 : "+token);
+//		
+//		// 결제 완료된 금액
+//		int amount = service.paymentInfo(productOrder.getImpUid(), token);
+//		
+//		try {
+//	        
+//			Cart cart = (Cart) session.getAttribute("cartList");
+//	        // 실제 계산 금액 가져오기
+//	        long orderPriceCheck = service.orderPriceCheck(cart);
+//	        
+//		    if (orderPriceCheck != amount) {
+//		    	service.payMentCancle(token, productOrder.getImpUid(), amount, "결제 금액 오류");
+//		    	return new ResponseEntity<String>("결제 금액 오류, 결제 취소", HttpStatus.BAD_REQUEST);
+//		    }
+//	        
+//	        service.order(cartList, orderInfo, user);
+//	        session.removeAttribute("cartList");
+//	        
+//	        return new ResponseEntity<>("주문이 완료되었습니다", HttpStatus.OK);
+//	        
+//	    } catch (Exception e) {
+//	        service.payMentCancle(token, productOrder.getImpUid(), amount, "결제 에러");
+//	        return new ResponseEntity<String>("결제 에러", HttpStatus.BAD_REQUEST);
+//	    }
+//		
+//		return new ResponseEntity<>(HttpStatus.OK);
+//		
+//	}
 	
 	// 토큰 생성 확인용
 	public void testToken() throws IOException {

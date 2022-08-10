@@ -10,13 +10,15 @@
 		<result property="memberPhone" column="member_phone"/>
 		<result property="memberEmail" column="member_email"/>
 		<result property="memberEnrollDate" column="member_enroll_date"/>
+		<result property="roles" column="roles"/>
 	</resultMap>
+	
 	<select id="selectMember" parameterType="member" resultMap="memberMap">
-		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
-	</select>
+      SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_PWD=#{memberPwd}
+    </select>
 	
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES(#{memberId},#{memberBirth},#{memberEmail},SYSDATE,#{memberGender},#{memberName},#{memberPhone},#{memberPwd})
+		INSERT INTO MEMBER VALUES(#{memberId},#{memberBirth},#{memberEmail},SYSDATE,#{memberGender},#{memberName},#{memberPhone},#{memberPwd},NULL)
 	</insert>
 	
 	<select id="idCheck" parameterType="string" resultType="integer">
