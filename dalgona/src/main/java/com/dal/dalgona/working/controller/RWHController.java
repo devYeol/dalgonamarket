@@ -144,22 +144,12 @@ public class RWHController {
 	
 	//상품수정하기
 	@RequestMapping("/admin/adminUpdateProduct.do")
-	public String updateProduct(@RequestParam(value="productAmount") int product_Ampont,
-								@RequestParam(value="productContent") String product_Content,
-								@RequestParam(value="thumbnail") MultipartFile thumbnail,
-								@RequestParam(value="detailedImage") MultipartFile detailedImage,
-								@RequestParam(value="productPrice") int product_Price,
-								@RequestParam(value="productName") String product_Name,
-								String categoryName,
-								String[] optionName,
-								int[] optionPrice,
-								HttpServletRequest rs,Model model
-								)throws IllegalStateException, IOException {
+	public String updateProduct(long productCode)throws IllegalStateException, IOException {
 		//카테고리 가져오기
-		Category c=service.selectCategory(categoryName);
-		log.debug("{}",c); 
-		//파일 저장경로 가져옴
-		String path = rs.getServletContext().getRealPath("/resources/upload/product/");
+//		Category c=service.selectCategory(categoryName);
+//		log.debug("{}",c); 
+//		//파일 저장경로 가져옴
+//		String path = rs.getServletContext().getRealPath("/resources/upload/product/");
 		return "";
 	}
 	
