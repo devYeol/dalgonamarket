@@ -36,5 +36,7 @@ public class Cart {
 	@ManyToOne
 	@JoinColumn(name="productCode")
 	private Product product;
+	
+	private long cartAmount;
 
 }

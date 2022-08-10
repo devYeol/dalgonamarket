@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.working.model.dao.MswDao;
@@ -18,34 +19,40 @@ public class MswServiceImpl implements MswService {
 	@Autowired
 	private SqlSessionTemplate session;
 	
+	
 	@Override
-	public List<Product> selectProduct(){
-		return dao.selectProduct(session);
+	public Member login(Member m) {
+		return dao.login(session, m);
+	}
+	
+//	@Override
+//	public List<Product> selectProduct(){
+//		return dao.selectProduct(session);
+//	}
+
+	@Override
+	public List<Cart> cartList(Member m){
+		return dao.cartList(session,m);
 	}
 
+	@Override
+	public int sumMoney(Member m){
+		return dao.sumMoney(session,m);
+	}
+	
 //	@Override
-//	public List<Product> cartList(String memberId){
-//		return dao.cartList(session,memberId);
+//	public List<Product> cartList(){
+//		return dao.cartList(session);
+//	}
+	
+//	@Override
+//	public List<Product> zzimList(){
+//		return dao.zzimList(session);
 //	}
 //
+//	
 //	@Override
-//	public int sumMoney(String memberId){
-//		return dao.sumMoney(session,memberId);
+//	public List<Product> orderList(){
+//		return dao.orderList(session);
 //	}
-	
-	@Override
-	public List<Product> cartList(){
-		return dao.cartList(session);
-	}
-	
-	@Override
-	public List<Product> zzimList(){
-		return dao.zzimList(session);
-	}
-
-	
-	@Override
-	public List<Product> orderList(){
-		return dao.orderList(session);
-	}
 }
