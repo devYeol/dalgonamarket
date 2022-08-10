@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.dal.dalgona.common.model.vo.Roles;
+
 import lombok.AllArgsConstructor;
 
 @Configuration // 설정파일 어노테이션
@@ -49,7 +51,7 @@ public class SecurityConfig { // Security 설정 클래스
 				.authorizeRequests()
 					// static 관련 화위폴더 ingnore (=인가무시)
 					.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
-//					.antMatchers("/admin/**").hasAnyRole("ADMIN")
+//					.antMatchers("/admin/**").hasAnyRole(Roles.ADMIN.getKey())
 					// 임시로 모든 페이지 보안에서 제외시키기
 					.antMatchers("/**").permitAll()
 					
