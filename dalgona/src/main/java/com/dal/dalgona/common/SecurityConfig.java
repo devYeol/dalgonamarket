@@ -47,13 +47,19 @@ public class SecurityConfig { // Security 설정 클래스
 		return http.csrf().disable() // csrf 보안 제거
 				.httpBasic().disable() // 기본 제공 로그인 폼 제거
 				
+				.formLogin() // 로그인 설정
+					.loginPage("/login") // 로그인 페이지 설정
+					.successForwardUrl("/") // 로그인 성공시 이동 url
+					.and()
+				
 				// 인증 권한에 대한 설정 interceptor-url 같은 역할
 				.authorizeRequests()
-					// static 관련 화위폴더 ingnore (=인가무시)
-					.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
+					// static 관련 화위폴더 인가무시
+					.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**").permitAll() // 폴더 분리 후 login 추가
+//					.antMatchers("/**").hasRole("ADMIN")
 //					.antMatchers("/admin/**").hasAnyRole(Roles.ADMIN.getKey())
 					// 임시로 모든 페이지 보안에서 제외시키기
-					.antMatchers("/**").permitAll()
+//					.antMatchers("/**").permitAll()
 					
 //					.antMatchers("/**").hasRole("USER") // user만 access 가능
 					
@@ -62,14 +68,9 @@ public class SecurityConfig { // Security 설정 클래스
 					// exception과 같음 -> 범위가 가장 넓은 것을 제일 아래로
 					
 					.and()
-				
-				.formLogin() // 로그인 설정
-					.loginPage("/login") // 로그인 페이지 설정
-					.successForwardUrl("/") // 로그인 성공시 이동 url
-					.and()
 					
 				.logout() // 로그아웃 설정
-					.logoutUrl("/JDHLogout") // .do로 설정하면 변경
+					.logoutUrl("/JDHLogout") // 나중에 변경
 					.and()
 					
 				.authenticationProvider(ap()) // AuthenticationProvider
