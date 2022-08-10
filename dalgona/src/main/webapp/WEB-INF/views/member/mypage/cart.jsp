@@ -181,6 +181,12 @@
 		<h4>
 			<b>장바구니</b>
 		</h4>
+		<c:choose>
+			<c:when test="${map.count ==0 }">
+			장바구니가 비었습니다
+			</c:when>
+			
+			<c:otherwise>
 		<div style="margin-top: 20px">
 			<div>
 				<div style="display: flex; justify-content: space-between;">
@@ -195,7 +201,7 @@
 			</div>
 		</div>
 		<hr>
-		<c:forEach items="${cartList }" var="c">
+		<c:forEach items="${map.cartList }" var="c">
 			<br>
 			<table style="margin-left: 10; width: 100%;">
 				<tbody>
@@ -208,12 +214,12 @@
 						</a></td>
 						<td style="width: 55%"><a href="#"
 							style="color: black; text-decoration: none; font-size: 17"><b><c:out
-										value="${c.productCode}" /></b></a><br>
+										value="<%-- ${c.productCode} --%>" /></b></a><br>
 							<div style="margin-top: 5; font-size: 15px">
-								<c:out value="${c.productName}" />
+								<c:out value="<%-- ${c.productName} --%>" />
 							</div> <!-- 오예오예 오예스~ -->
 							<div style="margin-top: 5;">
-								<c:out value="${c.productPrice }원" />
+								<c:out value="<%-- ${c.productPrice } --%>원" />
 							</div> <%-- 30,000원 --%>
 							<div style="margin-top: 5; font-size: 15px">
 								<%-- <c:out value="${c.orderDate}" /> --%>
@@ -258,8 +264,10 @@
 		</div>
 		<div class="cartandprice" style="text-align: center;">
 			<button class="btn-cart">쇼핑계속하기</button>
-			<button class="btn-buy">구매하기</button>
+			<button type="submit" class="btn-buy">구매하기</button>
 		</div>
+		</c:otherwise>
+		</c:choose>
 	</div>
 	<div></div>
 </section>

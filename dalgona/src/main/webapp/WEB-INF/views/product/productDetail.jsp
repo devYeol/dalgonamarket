@@ -16,9 +16,9 @@
 			<div class="row g-5">
 				<div class="col-md border-end">
 					<div class="position-sticky" style="top: 2rem;">
-						<img
-							src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-							class="d-block w-100" alt="..." height="410" width="410px">
+					
+				
+						<img src="${pro.productThumb }" class="d-block w-100" alt="..." height="410" width="410px">
 					</div>
 				</div>
 
@@ -127,7 +127,10 @@
 
 			<!-- 상세 탭 -->
 			<ul>
-
+			<li>
+				<img src="${pro.productImage }" class="d-block w-100" alt="..." height="410" width="410px">
+			</li>
+			
 
 
 
@@ -150,10 +153,14 @@
 								type="radio" name="reviewStar" value="1" id="rate5"><label
 								for="rate5">★</label>
 						</fieldset>
+						 <div class="custom-file">
+		                    <input type="file" class="custom-file-input" name="reviewImage" id="upFile1">
+		                    <label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
+		                </div>
 						<div class="row">
 							<div class="col-10">
 								<textarea class="col-auto form-control" type="text"
-									id="reviewContents" placeholder="내용을 입력해주세요"></textarea>
+									id="reviewContent" placeholder="내용을 입력해주세요"></textarea>
 							</div>
 							<div class="col-2">
 								<button type="submit">작성완료</button>
@@ -162,32 +169,6 @@
 					</form>
 
 				</li>
-
-				<!-- <li>
-					<div class="client">
-						<div class="review_header">
-							<div>
-
-								<div>
-									<span class="nickname">김창렬</span> <span>(2022-08-03) </span>
-								
-								</div>
-								<div>별점</div>
-																
-							</div>
-						</div>
-						<div>
-							<div class="reviewcommeont">
-								<img
-									src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-									" alt="이미지" class="review_img">
-							</div>
-							<div>리뷰내용 개노맛 노맛 안머겅 개노맛 노맛 안머겅개노맛 노맛 안머겅개노맛 노맛 안머겅개노맛 노맛
-								안머겅개노맛 노맛 안머겅개노맛 노맛 안머겅개노맛 노맛 안머겅개노맛 노맛 안머겅개노맛 노맛 안머겅개노맛 노맛
-								안머겅개노맛 노맛 안머겅개노맛 노맛 안머겅개노맛 노맛 안머겅</div>
-						</div>
-					</div>
-				</li> -->
 
 
 
@@ -229,6 +210,39 @@
 
 			<!-- 문의 탭 -->
 			<ul>
+				<%-- <p>총 ${totalContents }건의 게시물이 있습니다.</p> --%>
+			        <button onclick="location.assign('${path}/qna/qnawWrite.do');">글쓰기</button>
+			        <table id="tbl-board" class="table table-striped table-hover">
+			            <tr>
+			                <th>번호</th>
+			                <th>제목</th>
+			                <th>작성자</th>
+			                <th>작성일</th>
+			            </tr>
+			            <c:if test="${not empty qna }">
+			            	<c:forEach var="q" items="${qna }">
+			            		<tr>
+			            			<td><c:out value="${q.qnaCode }"/></td>
+			            			<td>
+			            				<a href="${path }/qna/qnaView.do?no=${q.qnaCode}">
+			            					<c:out value="${q.qnaContent }"/>
+			            				</a>
+			            			</td>
+			            			<td><c:out value="${q.member }"/></td>
+			            			<td><c:out value="${q.qnaDate }"/></td>		            					            			     			
+			            		</tr>
+			            	</c:forEach>
+			            </c:if>
+			            <c:if test="${empty qna }">
+			            	<tr>
+			            		<td colspan="4">조회결과 없음</td>
+			            	</tr>
+			            </c:if>
+			        </table> 
+			       <%--  <div id="pageBar">
+			        	${pageBar }
+			        </div>	 --%>		
+			
 
 			</ul>
 			<!-- 문의 탭 -->
