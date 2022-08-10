@@ -90,9 +90,9 @@
 									<input style="width:50px; font-size: 15px; padding-right:10px;" type="number" value="<c:out value="${p.productAmount}"/>">
 								</td>
 								<td>
-									<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="admin-Pupdate(event);">수정</button>
+									<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="location.assign('${path}/selectUpdateProduct.do?pro=${p.productCode}')">수정</button>
 									<button class="adminbt" id="<c:out value="${productCode}"/>_" name="<c:out value="${productCode}"/>" 
-										style="width: 80px; background-color: #D56B5A;" onclick="location.assign('${path}/admin/adminUpdateProduct.do')">삭제</button>
+										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event)">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>

@@ -13,7 +13,10 @@ import com.dal.dalgona.common.model.vo.Product;
 public interface RwhDao  extends JpaRepository<Product, Long>{
 	
 	 Product save(Product p); 
+	
+	 Product findByProductCode(Long pro);
 	 
+//	 Product save();
 //	 List<Product> findAll();
 	
 	
