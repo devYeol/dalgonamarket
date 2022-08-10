@@ -2,7 +2,6 @@ package com.dal.dalgona.working.model.service;
 
 import java.io.IOException;
 
-import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
 
 public interface JdhService {

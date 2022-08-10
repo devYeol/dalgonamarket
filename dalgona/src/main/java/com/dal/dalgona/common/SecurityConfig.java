@@ -26,17 +26,19 @@ public class SecurityConfig { // Security 설정 클래스
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Bean
-	public void configure(WebSecurity ws) throws Exception {
-		
-		// 분리작성
-		// static 관련 화위폴더 ingnore (=인가무시)
-		ws.ignoring()
-			.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**");
-		
-	}
+	// filter로 처리할 경우 따로 WebSecurity는 사용하지 않음
+	// filter에서 한꺼번에 처리할 것
+//	@Override
+//	public void configure(WebSecurity ws) throws Exception {
+//		
+//		// 분리작성
+//		// static 관련 화위폴더 ingnore (=인가무시)
+//		ws.ignoring()
+//			.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**");
+//		
+//	}
 	
-	// filter 역할
+	// filter
 	@Bean
 	public SecurityFilterChain authenticatePath(HttpSecurity http) throws Exception { // HttpSecurity = <security:@@> 태그와 같은 역할
 		
@@ -45,12 +47,13 @@ public class SecurityConfig { // Security 설정 클래스
 				
 				.formLogin() // 로그인 설정
 					.loginPage("/login") // 로그인 페이지 설정
-//					.successForwardUrl("/successlogin") // 로그인 성공시 이동 url
-					.successForwardUrl("/")
+					.successForwardUrl("/") // 로그인 성공시 이동 url
 					.and()
 					
 				// 인증 권한에 대한 설정 interceptor-url 같은 역할
 				.authorizeRequests()
+					// static 관련 화위폴더 ingnore (=인가무시)
+					.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
 					
 					// 임시로 모든 페이지 보안에서 제외시키기
 					.antMatchers("/**").permitAll()

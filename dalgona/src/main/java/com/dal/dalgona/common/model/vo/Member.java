@@ -7,11 +7,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -54,7 +55,39 @@ public class Member implements UserDetails {
 	private String memberEmail;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date memberEnrollDate; // default값 주는 어노테이션 찾아서 적용하기 timestamp?
+	private Date memberEnrollDate;
+	
+//	@Column(nullable = true, columnDefinition = "varchar2(255) default 'USER'")
+	@Column(name="roles", nullable = true)
+	@Enumerated(EnumType.STRING) // DB에도 String type으로 저장
+	private Roles roles;
+	
+//	@PrePersist // insert 실행 전 메소드
+//	public void setRoles() {
+//		
+//		this.roles=Roles.ROLE_USER;
+//		
+////		if(roles == null) {
+////			this.roles=Roles.ROLE_USER;
+////		}
+//		
+//		System.out.println("가입 > USER 등급 부여");
+//		
+//	}
+	
+	@PostPersist // insert 실행 후 메소드
+	public void setRoles() {
+		
+		this.roles=Roles.ROLE_USER;
+		
+//		if(roles == null) {
+//			this.roles=Roles.ROLE_USER;
+//		}
+		
+		System.out.println("가입 > USER 등급 부여");
+		
+	}
+	
 	
 	// 찜
 //	@ManyToMany
