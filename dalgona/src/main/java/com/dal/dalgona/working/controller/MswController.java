@@ -91,10 +91,10 @@ public class MswController {
 		
 	}
 	
+		
 	@GetMapping("/mypage/addressadd")
 	public String addressadd() {
 		return "member/mypage/addressadd";
-		
 	}
 	
 	@GetMapping("/baesong") //배송

@@ -25,13 +25,13 @@ public class MswDaoImpl implements MswDao{
 //	public List<Product> cartList(SqlSessionTemplate session,String memberId){
 //		return session.selectList("cart.cartList",memberId);
 //	}
+	
 //	@Override
 //	public int sumMoney(SqlSessionTemplate session,String memberId){
 //		
 //		session.selectOne("cart.cartList",memberId);
 //		return session.selectOne("cart.sumMoney",memberId);
 //	}
-	
 	@Override
 	public List<Product> zzimList(SqlSessionTemplate session){
 		return session.selectList("cart.zzimList");

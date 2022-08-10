@@ -19,6 +19,6 @@ public interface MswDao {
 	
 	List<Product> zzimList(SqlSessionTemplate session );
 
-	List<Product> orderList(SqlSessionTemplate session );
 	
+	List<Product> orderList(SqlSessionTemplate session );
 }

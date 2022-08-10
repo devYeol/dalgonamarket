@@ -43,9 +43,9 @@ public class MswServiceImpl implements MswService {
 		return dao.zzimList(session);
 	}
 
+	
 	@Override
 	public List<Product> orderList(){
 		return dao.orderList(session);
 	}
-	
 }

@@ -17,7 +17,7 @@ function rndNumber() {
 }
 
 /* 결제 */
-function payment() {
+/* function payment() {
 
 	const data = {
 
@@ -46,7 +46,7 @@ function payment() {
 	}
 
 	if (!data.deleveryAddress2) {
-		alert('배달 받으실 주소를 입력해 주세요')
+		swal('배달 받으실 주소를 입력해 주세요')
 		return;
 	}
 
@@ -55,11 +55,43 @@ function payment() {
 	}
 
 	if (!data.phone) {
-		alert('전화번호를 입력해주세요');
+		swal('전화번호를 입력해주세요');
 		return;
 	}
 
 	paymentCard(data);
+
+} */
+
+/* 클라이언트 정보 */
+/* const data = {
+
+	payMethod: $("input[type='button']:checked").val(),
+	orderNum: rndNumber(),
+	name: $(".store_name1d").text(),
+	phone: $("#hiddenphone").val(),
+	request: $("select[name='request']").val(),
+	email: $("#hiddenemail").val(),
+	deleveryAddress1: $("#deleveryAddress2").val(),
+	deleveryAddress2: $("#deleveryAddress2").val(),
+	deleveryAddress3: $("#deleveryAddress3").val(),
+	totalPrice: $("#totalPrice").text()
+
+} */
+
+/* 테스트 정보 */
+const testData = {
+
+	payMethod: $("input[type='radio']:checked").val(),
+	orderNum: rndOrderNum(),
+	name: $(".store_name1").text(),
+	phone: $("#hiddenphone").val(),
+	request: $("select[name='request']").val(),
+	nickname: $("#nickname1").val(),
+	email: $("#hiddenemail").val(),
+	deleveryAddress2: $("#deleveryAddress2").val(),
+	deleveryAddress3: $("#deleveryAddress3").val(),
+	totalPrice: $("#totalPrice").text()
 
 }
 
