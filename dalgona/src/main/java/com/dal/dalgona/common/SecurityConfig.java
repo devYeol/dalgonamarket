@@ -4,12 +4,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import lombok.AllArgsConstructor;
+
 @Configuration // 설정파일 어노테이션
 @EnableWebSecurity // web 보안을 활성화 시키는 어노테이션
+@AllArgsConstructor
 public class SecurityConfig { // Security 설정 클래스
 	
 	@Bean
@@ -20,6 +24,16 @@ public class SecurityConfig { // Security 설정 클래스
 	@Bean
 	public BCryptPasswordEncoder bc() { // 암호화 bean
 		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public void configure(WebSecurity ws) throws Exception {
+		
+		// 분리작성
+		// static 관련 화위폴더 ingnore (=인가무시)
+		ws.ignoring()
+			.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**");
+		
 	}
 	
 	// filter 역할
@@ -37,9 +51,6 @@ public class SecurityConfig { // Security 설정 클래스
 					
 				// 인증 권한에 대한 설정 interceptor-url 같은 역할
 				.authorizeRequests()
-					// 시큐리티 예외처리 static, resources, jason(?) 등
-//					.antMatchers("/static/**", "/resources/**",
-//								 "/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
 					
 					// 임시로 모든 페이지 보안에서 제외시키기
 					.antMatchers("/**").permitAll()
