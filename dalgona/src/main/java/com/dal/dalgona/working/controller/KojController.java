@@ -3,6 +3,7 @@ package com.dal.dalgona.working.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dal.dalgona.common.model.vo.Product;
@@ -40,45 +42,67 @@ public class KojController {
 	}
 	
 	
-	@RequestMapping("/review/reviewWrite.do")
-	public String reviewWrite(Review r, MultipartFile upFile,Model m,HttpServletRequest rs) {
-			
-		String path=rs.getServletContext().getRealPath("/resources/upload/review/");
-		File uploadDir=new File(path);
-		
-		if(!uploadDir.exists()) uploadDir.mkdirs();
-		
-		if(!upFile.isEmpty()) {
-			//리네임드처리하기
-			String originalFilename=upFile.getOriginalFilename();
-			String ext=originalFilename.substring(originalFilename.lastIndexOf("."));
-			//리네임 명칭을 정할값 설정
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-			int rndNum=(int)(Math.random()*10000);
-			String rename=sdf.format(System.currentTimeMillis())+"_"+rndNum+ext;
-						
-			//업로드처리하기
-			try {
-				upFile.transferTo(new File(path+rename));
-			}catch(IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		String msg="";
-		String loc="";
-		try {
-			service.reviewWrite(r);
-			msg="게시글입력성공";	
-			loc="/board/boardList.do";
-		}catch(RuntimeException e) {
-			msg="게시글입력실패";	
-			loc="/board/boardWrite.do";			
-		}
-		
-		m.addAttribute("msg",msg);
+//	@RequestMapping("/review/reviewWrite.do")//memberId,productCode
+//	public String reviewWrite(
+//			@RequestParam(value="loginmember") String loginmember,
+//			@RequestParam(value="productCode") long productCode,
+//			@RequestParam(value="reviewContent") String reviewContent,
+//			@RequestParam(value="reviewImage") MultipartFile reviewImage,
+//			@RequestParam(value="reviewStar") int reviewStar,												
+//			HttpServletRequest rs,Model model
+//			) throws IllegalStateException, IOException {
+//			
+//						
+//	
+//			
+//		String path=rs.getServletContext().getRealPath("/resources/upload/review/");
+//		File uploadDir=new File(path);
+//		
+//		if(!uploadDir.exists()) uploadDir.mkdirs();
+//		
+//		if(!reviewImage.isEmpty()) {
+//			//리네임드처리하기
+//			String originalFilename=reviewImage.getOriginalFilename();
+//			String ext=originalFilename.substring(originalFilename.lastIndexOf("."));
+//			//리네임 명칭을 정할값 설정
+//			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+//			int rndNum=(int)(Math.random()*10000);
+//			String rename=sdf.format(System.currentTimeMillis())+"_"+rndNum+ext;
+//						
+//			//업로드처리하기
+//			try {
+//				reviewImage.transferTo(new File(path+rename));
+//			}catch(IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		Review r=Review.builder().memberId(loginmember).productCode(productCode)
+//				.reviewContent(reviewContent).reviewDate(new Date())
+//				.reviewImage("이미지주소").reviewStar(reviewStar).build();
+//		String msg="";
+//		String loc="";
+//		try {
+//			service.reviewWrite(r);
+//			msg="게시글입력성공";	
+//			loc="/product/productDetail/{productCode}";
+//		}catch(RuntimeException e) {
+//			msg="게시글입력실패";	
+//			loc="/product/productDetail/{productCode}";			
+//		}
+//		
+//		model.addAttribute("msg",msg);
+//	
+//		return "common/msg";
+//	}
 	
-		return "common/msg";
-	}
+	
+//	@RequestMapping("/qna/qnawWrite.do")//
+//	public String qnawWrite(){
+//	
+//	
+//	}
+	
+	
+	
 	
 }
