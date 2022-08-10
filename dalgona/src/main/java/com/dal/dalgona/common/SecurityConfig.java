@@ -49,7 +49,7 @@ public class SecurityConfig { // Security 설정 클래스
 				.authorizeRequests()
 					// static 관련 화위폴더 ingnore (=인가무시)
 					.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
-					.antMatchers("/admin/**").hasAnyRole("ADMIN")
+//					.antMatchers("/admin/**").hasAnyRole("ADMIN")
 					// 임시로 모든 페이지 보안에서 제외시키기
 					.antMatchers("/**").permitAll()
 					
