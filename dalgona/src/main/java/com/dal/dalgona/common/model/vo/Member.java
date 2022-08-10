@@ -56,8 +56,8 @@ public class Member implements UserDetails {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date memberEnrollDate;
 	
-//	@Column(nullable = true, columnDefinition = "varchar2(255) default 'USER'")
-	@Column(name="roles", nullable = true)
+	@Column(name="roles", nullable = true, columnDefinition = "varchar2(255) default 'USER'")
+//	@Column(name="roles", nullable = true)
 	@Enumerated(EnumType.STRING) // DB에도 String type으로 저장
 	private Roles roles;
 	
