@@ -171,7 +171,7 @@
 						<b>내정보</b>
 					</h5></li>
 				<li><a href="#">프로필 정보</a></li>
-				<li><a href="#">주소록</a></li>
+				<li><a href="${path }/address">주소</a>
 			</ul>
 		</div>
 	</div>

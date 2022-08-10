@@ -32,8 +32,8 @@ public class MswServiceImpl implements MswService {
 	}
 	
 	@Override
-	public long delete(long productCode) {
-		return dao.delete(session,productCode);
+	public void delete(long productCode) {
+		 dao.delete(session,productCode);
 	}
 	
 	@Override

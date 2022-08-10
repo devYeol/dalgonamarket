@@ -79,6 +79,8 @@
 .close {
 	display: inline-block;
 	font-weight: bold;
+	text-decoration :none;
+	color :black;
 }
 
 .close:after {
@@ -173,7 +175,7 @@
 						<b>내정보</b>
 					</h5></li>
 				<li><a href="#">프로필 정보</a></li>
-				<li><a href="#">주소록</a></li>
+				<li><a href="${path }/address">주소록</a></li>
 			</ul>
 		</div>
 	</div>
@@ -240,7 +242,7 @@
 							</div>
 						</td>
 						<td style="display: flex;">
-							<div class="close"></div>
+							<div><a class="close" href="${path }/member/mypage/cart?productCode=${c.productCode}"></a></div>
 						</td>
 					</tr>
 
@@ -273,6 +275,7 @@
 </section>
 
 <script>
+
 function selectAll(selectAll)  {
 	  const checkboxes 
 	       = document.getElementsByName('selectAll');
@@ -281,8 +284,6 @@ function selectAll(selectAll)  {
 	    checkbox.checked = selectAll.checked;
 	  })
 	}
-	
-	
 	
 $(document).ready(function(){
     //체크박스 전체 선택&해제
@@ -294,20 +295,13 @@ $(document).ready(function(){
         }
     });
     
+    });
      
         $('#selectDelete').click(function(){
-            if(confirm("삭제하시겠습니까?")){
-                $("input[name=selectP]:checked").each(function(){
-                    var tr_value =$(this).val();
-                    var tr=$("tr[data-tr_value='"+tr_value+"']");
-                    tr.remove();
-                });
-            }else{
-                return false;
-            }
+            location.assign("${path}/member/mypage/cart?productCode=${c.productCode}");
         });
+    
      
-    });
 
     
 </script>

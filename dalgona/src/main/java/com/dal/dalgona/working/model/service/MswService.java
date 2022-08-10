@@ -11,7 +11,7 @@ public interface MswService {
 	
 	List<Cart> cartList(Member m); 
 
-	long delete(long productCode);
+	void delete(long productCode);
 	
 	int sumMoney(Member m); //총 금액 
 

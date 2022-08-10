@@ -16,7 +16,7 @@ public interface MswDao {
 	
 	List<Cart> cartList(SqlSessionTemplate session,Member m );
 	
-	long delete(SqlSessionTemplate session,long productCode);
+	void delete(SqlSessionTemplate session,long productCode);
 	
 	int sumMoney(SqlSessionTemplate session,Member m );
 

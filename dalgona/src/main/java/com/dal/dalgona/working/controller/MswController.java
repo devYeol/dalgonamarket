@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,9 +63,9 @@ public class MswController {
 
 	}
 	
-	@RequestMapping("delete.do")
+	@RequestMapping("delete.do") //선택삭제
 	 public String delete(@RequestParam long productCode) {
-       long code= service.delete(productCode);
+       service.delete(productCode);
         return "redirect:/member/mypage/cart";
     }
 
@@ -86,14 +87,14 @@ public class MswController {
 //
 //	
 //	
-	@GetMapping("/mypage/shippingset")
+	@RequestMapping("/mypage/shippingset")
 	public String shippingset() {
 		return "member/mypage/shippingset";
 		
 	}
 //	
 //		
-	@GetMapping("/mypage/addressadd")
+	@RequestMapping("/mypage/addressadd")
 	public String addressadd() {
 		return "member/mypage/addressadd";
 	}

@@ -7,13 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
-import com.dal.dalgona.common.model.vo.Product;
 
 
 @Repository
 public class MswDaoImpl implements MswDao{
 
-	
 //	@Override
 //	public List<Product> selectProduct(SqlSessionTemplate session){
 //		return session.selectList("cart.selectProduct");
@@ -29,9 +27,8 @@ public class MswDaoImpl implements MswDao{
 		return session.selectOne("cart.sumMoney",m);
 	}
 	
-	@Override
-	public long delete(SqlSessionTemplate session,long productCode) {
-		return session.delete("cart.deletecart",productCode);
+	public void delete(SqlSessionTemplate session,long productCode) {
+		session.delete("cart.deletecart",productCode);
 	}
 
 //	@Override
