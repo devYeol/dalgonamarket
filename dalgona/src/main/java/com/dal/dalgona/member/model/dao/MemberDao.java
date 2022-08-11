@@ -34,4 +34,6 @@ public interface MemberDao {
 	Member findId(SqlSessionTemplate session, String memberEmail)throws Exception;
 	
 	int findIdCheck(SqlSessionTemplate session, String memberEmail)throws Exception;
+	
+	int findPwCheck(SqlSessionTemplate session, Member m)throws Exception;
 }

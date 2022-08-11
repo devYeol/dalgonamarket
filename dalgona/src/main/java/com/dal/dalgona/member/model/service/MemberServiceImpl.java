@@ -108,4 +108,23 @@ public class MemberServiceImpl implements MemberService {
 	public int findIdCheck(String memberEmail)throws Exception {
 		return dao.findIdCheck(session,memberEmail);
 	}
+	
+	@Override
+	public int findPwCheck(Member m)throws Exception {
+		return dao.findPwCheck(session,m);
+	}
+	
+	@Override
+	public void findPw(String memberEmail,String memberId)throws Exception {
+		
+		MimeMessage mimeMsg=mailSender.createMimeMessage(); 
+		MimeMessageHelper msg=new MimeMessageHelper(mimeMsg,"utf-8"); 
+		
+		Random random=new Random();
+		String key="";
+		int numIndex=random.nextInt(88888888)+11111111;
+		key+=numIndex;
+		
+		
+	}
 }
