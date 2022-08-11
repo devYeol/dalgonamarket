@@ -12,15 +12,20 @@ import org.springframework.stereotype.Service;
 import com.dal.dalgona.admin.model.dao.adminDao;
 import com.dal.dalgona.category.model.dao.CategoryDao;
 import com.dal.dalgona.common.model.vo.Category;
+import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.option.model.dao.OptionDao;
+import com.dal.dalgona.working.model.dao.PjeDao;
 
 @Service
 public class adminServiceImpl implements adminService{
 	
 	@Autowired
 	adminDao dao;
+	
+	@Autowired
+	PjeDao memberdao;
 	
 	/* 중언 */
 	
@@ -38,6 +43,10 @@ public class adminServiceImpl implements adminService{
 	
 	public Page<Product> selectProducts(PageRequest pagerequest) {
 		return dao.findAll(pagerequest);
+	}
+	
+	public Page<Member> selectMembers(PageRequest pagerequest) {
+		return memberdao.findAll(pagerequest);
 	}
 	
 	/* 원희 */
