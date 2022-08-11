@@ -11,11 +11,11 @@ public class JdhDaoImpl implements JdhDao {
 //	@Autowired
 //	BCryptPasswordEncoder bc; // 로그인 체크시 dao에서 암호 매칭
 
-	@Override
-	public Member save(Member m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Member save(Member m) {
+//		// TODO Auto-generated method stub
+//		return save(m);
+//	}
 
 	@Override
 	public Member findByMemberId(String memberId) {
