@@ -10,12 +10,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.admin.model.dao.adminDao;
+import com.dal.dalgona.category.model.dao.CategoryDao;
 import com.dal.dalgona.common.model.vo.Category;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
-import com.dal.dalgona.working.model.dao.CategoryDao;
-import com.dal.dalgona.working.model.dao.OptionDao;
-import com.dal.dalgona.working.model.dao.RwhDao;
+import com.dal.dalgona.option.model.dao.OptionDao;
 
 @Service
 public class adminServiceImpl implements adminService{
@@ -44,10 +43,6 @@ public class adminServiceImpl implements adminService{
 	/* 원희 */
 	@Autowired
 	private SqlSessionTemplate session;
-	 
-
-	@Autowired
-	private RwhDao productDao;
 
 	@Autowired
 	private OptionDao optionDao;
@@ -63,7 +58,7 @@ public class adminServiceImpl implements adminService{
 	// 상품등록
 	@Override
 	public Product insertProduct(Product p) {
-		Product result = productDao.save(p);
+		Product result = dao.save(p);
 		return result;
 	}
 
@@ -82,7 +77,7 @@ public class adminServiceImpl implements adminService{
 	//productCode로 불러오기
 	@Override
 	public Product selectOneProduct(Long pro) {
-		return productDao.findByProductCode(pro);
+		return dao.findByProductCode(pro);
 	}
 
 	@Override

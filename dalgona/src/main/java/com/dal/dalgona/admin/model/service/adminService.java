@@ -8,7 +8,7 @@ import com.dal.dalgona.common.model.vo.ProductOption;
 
 public interface adminService {
 
-Product insertProduct(Product p);
+	Product insertProduct(Product p);
 	
 	List<ProductOption> insertProduct(List<ProductOption> options); 
 	

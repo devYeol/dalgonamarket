@@ -22,8 +22,8 @@ public interface adminDao extends JpaRepository<Product, Long> {
 	
 	/* 원희 */
 	
-	 Product save(Product p); 
+	Product save(Product p); 
 		
-	 Product findByProductCode(Long pro);
+	Product findByProductCode(Long pro);
 	 
 }
