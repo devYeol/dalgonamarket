@@ -10,7 +10,9 @@ public interface MemberService {
 
 	List<Cart> cartList(Member m); 
 
-	void delete(long productCode);
+	void delete(int cartCode); //선택삭제
+	
+	void deleteAll(Member memberId); //전체 삭제
 	
 	int sumMoney(Member m); //총 금액 
 

@@ -52,11 +52,18 @@
 		AND c.MEMBER_Id =#{memberId}
 	</select>
 	
-	<delete id="deletecart">
+	<delete id="delete">
 		delete from cart
-		where product_code =#{productCode}
+		where cart_code =#{cartCode}
 		
 	</delete>
+
+		<!-- 전체삭제 -->
+	<!-- <delete id="deleteAll">  
+		delete from cart
+		where member_id=#{memberId}
+		
+	</delete> -->
 	
 	
 

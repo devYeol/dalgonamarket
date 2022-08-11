@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,14 +73,28 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping("/member/delete.do") //선택삭제
-	 public String delete(@RequestParam long productCode) {
-       service.delete(productCode);
+	@RequestMapping("/member/delete.do") //개별 삭제(한 개 row만 삭제
+	 public String delete(@RequestParam int cartCode) {
+       service.delete(cartCode);
         return "redirect:/member/mypage/cart";
     }
+	@RequestMapping("/member/deleteAll.do") //개별 삭제(한 개 row만 삭제
+	public String deleteAll(HttpSession session) {
+		Member memberId = (Member) session.getAttribute("loginMember");
+		if(memberId !=null) {
+		service.deleteAll(memberId);
+		}
+		return "redirect:/member/mypage/cart";
+	}
 
 	
-
+	@PostMapping("/member/payment/insert") //장바구니에서 결제페이지 이동
+	public String paymentInsert(Product product,HttpSession session,Model mo) {
+		List<Product> orderList = service.orderList();
+		mo.addAttribute("orderList",orderList);
+		return "member/mypage/productOrderList";
+	}
+	
 	@GetMapping("/member/mypage/productOrderList") //구매내역
 	public String productOrder(Model mo) {
 		List<Product> orderList = service.orderList();

@@ -26,9 +26,14 @@ public class MemberDaoImpl implements MemberDao {
 	public int sumMoney(SqlSessionTemplate session,Member m){
 		return session.selectOne("cart.sumMoney",m);
 	}
+	@Override
+	public void delete(SqlSessionTemplate session,int cartCode) {
+		session.delete("cart.delete",cartCode);
+	}
 	
-	public void delete(SqlSessionTemplate session,long productCode) {
-		session.delete("cart.deletecart",productCode);
+	@Override
+	public void deleteAll(SqlSessionTemplate session ,Member memberId) {
+		session.delete("cart.deleteAll",memberId);
 	}
 
 	@Override

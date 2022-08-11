@@ -14,7 +14,9 @@ public interface MemberDao {
 	
 	List<Cart> cartList(SqlSessionTemplate session,Member m );
 	
-	void delete(SqlSessionTemplate session,long productCode);
+	void delete(SqlSessionTemplate session,int cartCode);
+
+	void deleteAll(SqlSessionTemplate session,Member MemberId);
 	
 	int sumMoney(SqlSessionTemplate session,Member m );
 

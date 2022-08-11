@@ -51,8 +51,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void delete(long productCode) {
-		 dao.delete(session,productCode);
+	public void delete(int cartCode) { 
+		 dao.delete(session,cartCode);
+	}
+
+	public void deleteAll(Member memberId) { 
+		dao.deleteAll(session,memberId);
 	}
 	
 	@Override
