@@ -91,7 +91,7 @@
 								</td>
 								<td>
 									<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="location.assign('${path}/selectUpdateProduct.do?pro=${p.productCode}')">수정</button>
-									<button class="adminbt" id="<c:out value="${productCode}"/>_" name="<c:out value="${productCode}"/>" 
+									<button class="adminbt" id="<c:out value="${p.productCode}"/>_" name="<c:out value="${p.productCode}"/>" 
 										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event)">삭제</button>
 								</td>
 							</tr>

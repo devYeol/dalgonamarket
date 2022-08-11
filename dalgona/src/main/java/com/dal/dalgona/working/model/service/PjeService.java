@@ -1,5 +1,10 @@
 package com.dal.dalgona.working.model.service;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,11 +18,17 @@ public class PjeService {
 	@Autowired
 	private PjeDao dao;
 	
+	@Autowired
+	private EntityManager em;
+	
+	@Autowired
+	private EntityTransaction et;
+	
 	public Page<Member> selectMembers(PageRequest pagerequest) {
 		return dao.findAll(pagerequest);
 	}
 	
-//	public Page<Member> selectMembers(PageRequest pagerequest, String searchType, String keyword, String searchGen) {
-//		return dao.findby(pagerequest, searchType, keyword, searchGen);
+//	public List<Member> searchMembers(String keyword) {
+//		return dao.searchMembers(em, keyword);
 //	}
 }

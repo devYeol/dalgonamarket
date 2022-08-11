@@ -67,4 +67,14 @@ public class KCLServiceImpl implements KCLService {
 		mailSender.send(mimeMsg); 
 		return key;
 	}
+	
+	@Override
+	public String findId(String memberEmail)throws Exception {
+		return dao.findId(session,memberEmail);
+	}
+	
+	@Override
+	public int findIdCheck(String memberEmail)throws Exception {
+		return dao.findIdCheck(session,memberEmail);
+	}
 }

@@ -53,9 +53,11 @@ public class PjeController {
 			@RequestParam(defaultValue="25") int numPerpage
 			) {
 		log.debug(searchType+" "+keyword+" "+searchGen);
-		PageRequest pagerequest=PageRequest.of(cPage-1, numPerpage, Sort.by(Sort.Direction.ASC,"memberEnrollDate"));
+//		PageRequest pagerequest=PageRequest.of(cPage-1, numPerpage, Sort.by(Sort.Direction.ASC,"memberEnrollDate"));
 //		Page<Member> list=service.searchMembers(pagerequest, searchType, keyword, searchGen);
+//		List<Member> list=service.searchMembers(keyword);
 //		mv.addObject("members",list.getContent());
+//		mv.addObject("members",list);
 //		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
 		mv.setViewName("admin/adminManageMember");
 		return mv;

@@ -11,4 +11,8 @@ public interface KCLDao {
 	int insertMember(SqlSessionTemplate session, Member m);
 	
 	int idCheck(SqlSessionTemplate session, String memberId);
+	
+	String findId(SqlSessionTemplate session, String memberEmail)throws Exception;
+	
+	int findIdCheck(SqlSessionTemplate session, String memberEmail)throws Exception;
 }
