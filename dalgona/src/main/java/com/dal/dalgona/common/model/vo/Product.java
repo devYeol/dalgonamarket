@@ -4,22 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.ColumnDefault;
-import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -58,6 +50,8 @@ public class Product {
 
 	private String productImage; //상품이미지
 	
+	private String categoryName; //카테고리
+	
 	 @Temporal(TemporalType.TIMESTAMP)
 	// update시에도 되는걸로 하는지 확인할 것 @CreationTimestamp = insert, update시 둘 다 적용됨
 	private Date productDate; //상품등록일
@@ -74,11 +68,11 @@ public class Product {
 	@OneToMany(mappedBy="member")
 	private List<Qna> qna=new ArrayList();
 	
-	// 카테고리
-	@ManyToOne
-	@JoinColumn(name="categoryCode")
-	private Category category;
-	
+//	// 카테고리
+//	@ManyToOne
+//	@JoinColumn(name="categoryCode")
+//	private Category category;
+//	
 	// 주문상세내역
 	@OneToMany(mappedBy="product")
 	private List<OrderDetail> orderdetails=new ArrayList();

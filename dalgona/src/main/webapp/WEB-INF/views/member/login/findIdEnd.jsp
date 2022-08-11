@@ -16,7 +16,7 @@
 	display:flex;
 	justify-content: center;
 	height: 100vh;
-	padding-top: 50px;
+	padding-top: 100px;
 }
 
 .findIdEnd-container {

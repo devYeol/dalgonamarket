@@ -45,8 +45,7 @@
 			<div>
 				<div class="px-3 py-2">
 					<div class="headcontainer" style="display: flex; justify-content: space-between;">
-						<div
-							class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
+						<div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
 							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
 								<li><a href="" class="nav-link text-black"> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
 										<use xlink:href="#facebook" /></svg>

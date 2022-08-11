@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
@@ -19,20 +18,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@IdClass(CartId.class) // 복합키 사용시 필요함
-//@SequenceGenerator(name="seq_cart_code", sequenceName="seq_cart_code")
+//@IdClass(CartId.class) // 복합키 사용시 필요함
+@SequenceGenerator(name="seq_cart_code", sequenceName="seq_cart_code")
 public class Cart {
 	
-//	@Id
-//	@GeneratedValue(generator="seq_cart_code", strategy=GenerationType.SEQUENCE)
-//	private long cartCode;
-	
 	@Id
+	@GeneratedValue(generator="seq_cart_code", strategy=GenerationType.SEQUENCE)
+	private long cartCode;
+	
+	
 	@ManyToOne
 	@JoinColumn(name="memberId")
 	private Member member;
 	
-	@Id
+
 	@ManyToOne
 	@JoinColumn(name="productCode")
 	private Product product;
