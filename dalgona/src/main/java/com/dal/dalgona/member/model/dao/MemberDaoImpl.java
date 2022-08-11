@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.Product;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -30,15 +31,15 @@ public class MemberDaoImpl implements MemberDao {
 		session.delete("cart.deletecart",productCode);
 	}
 
-//	@Override
-//	public List<Product> zzimList(SqlSessionTemplate session){
-//		return session.selectList("cart.zzimList");
-//	}
+	@Override
+	public List<Product> zzimList(SqlSessionTemplate session){
+		return session.selectList("cart.zzimList");
+	}
 //
-//	@Override
-//	public List<Product> orderList(SqlSessionTemplate session){
-//		return session.selectList("cart.orderList");
-//	}
+	@Override
+	public List<Product> orderList(SqlSessionTemplate session){
+		return session.selectList("cart.orderList");
+	}
 	
 	
 	/* 충열 */

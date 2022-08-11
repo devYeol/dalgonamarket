@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.Product;
 
 public interface MemberService {
 
@@ -13,9 +14,9 @@ public interface MemberService {
 	
 	int sumMoney(Member m); //총 금액 
 
-//	List<Product> zzimList();
+	List<Product> zzimList();
 
-//	List<Product> orderList();
+	List<Product> orderList();
 
 	/* 충열 */
 	
