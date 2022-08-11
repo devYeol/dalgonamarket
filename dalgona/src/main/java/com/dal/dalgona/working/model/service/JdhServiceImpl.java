@@ -10,13 +10,11 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.working.model.dao.JdhDao;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -36,11 +34,11 @@ public class JdhServiceImpl implements JdhService {
 	@Autowired
 	BCryptPasswordEncoder bc;
 
-	@Override
-	public Member jdhInsertTest(Member m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Member jdhInsertTest(Member m) {
+//		// TODO Auto-generated method stub
+//		return dao.save(m);
+//	}
 
 //	@Override
 //	public Member login(Member m) {

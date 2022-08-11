@@ -16,8 +16,8 @@ public interface JdhService {
 	
 	
 	
-	// jpa 테스트
-	public Member jdhInsertTest(Member m);
+//	// jpa 테스트
+//	public Member jdhInsertTest(Member m);
 	
 //	Member login(Member m);
 //	
