@@ -22,4 +22,14 @@ public class KCLDaoImpl implements KCLDao {
 	public int idCheck(SqlSessionTemplate session, String memberId) {
 		return session.selectOne("member.idCheck", memberId);
 	}
+	
+	@Override
+	public String findId(SqlSessionTemplate session, String memberEmail) {
+		return session.selectOne("member.findId", memberEmail);
+	}
+	
+	@Override
+	public int findIdCheck(SqlSessionTemplate session, String memberEmail) {
+		return session.selectOne("member.findIdCheck", memberEmail);
+	}
 }

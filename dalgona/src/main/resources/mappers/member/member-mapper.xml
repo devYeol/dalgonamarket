@@ -24,4 +24,12 @@
 	<select id="idCheck" parameterType="string" resultType="integer">
 		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID=#{memberId}
 	</select>
+	
+	<select id="findId" parameterType="string" resultType="String">
+		SELECT * FROM MEMBER WHERE MEMBER_EMAIL=#{memeberEmail}
+	</select>
+	
+	<select id="findIdCheck" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_EMAIL=#{memberEmail}
+	</select>
 </mapper>

@@ -20,10 +20,6 @@ public class MswServiceImpl implements MswService {
 	private SqlSessionTemplate session;
 	
 	
-	@Override
-	public Member login(Member m) {
-		return dao.login(session, m);
-	}
 	
 //	@Override
 //	public List<Product> selectProduct(){
@@ -34,25 +30,16 @@ public class MswServiceImpl implements MswService {
 	public List<Cart> cartList(Member m){
 		return dao.cartList(session,m);
 	}
-
+	
+	@Override
+	public void delete(long productCode) {
+		 dao.delete(session,productCode);
+	}
+	
 	@Override
 	public int sumMoney(Member m){
 		return dao.sumMoney(session,m);
 	}
 	
-//	@Override
-//	public List<Product> cartList(){
-//		return dao.cartList(session);
-//	}
 	
-//	@Override
-//	public List<Product> zzimList(){
-//		return dao.zzimList(session);
-//	}
-//
-//	
-//	@Override
-//	public List<Product> orderList(){
-//		return dao.orderList(session);
-//	}
 }

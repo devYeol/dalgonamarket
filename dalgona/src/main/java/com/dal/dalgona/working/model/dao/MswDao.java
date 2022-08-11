@@ -10,17 +10,29 @@ import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 
 public interface MswDao {
-	Member login(SqlSessionTemplate session, Member m);
+	
+	
 //	List<Product> selectProduct(SqlSessionTemplate session );
 	
 	List<Cart> cartList(SqlSessionTemplate session,Member m );
 	
+	void delete(SqlSessionTemplate session,long productCode);
+	
 	int sumMoney(SqlSessionTemplate session,Member m );
-//	
-////	List<Product> cartList(SqlSessionTemplate session);
-//	
+
+
 //	List<Product> zzimList(SqlSessionTemplate session );
-//
-//	
+
 //	List<Product> orderList(SqlSessionTemplate session );
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

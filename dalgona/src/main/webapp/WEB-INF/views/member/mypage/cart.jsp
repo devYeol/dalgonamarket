@@ -79,6 +79,8 @@
 .close {
 	display: inline-block;
 	font-weight: bold;
+	text-decoration :none;
+	color :black;
 }
 
 .close:after {
@@ -173,7 +175,7 @@
 						<b>내정보</b>
 					</h5></li>
 				<li><a href="#">프로필 정보</a></li>
-				<li><a href="#">주소록</a></li>
+				<li><a href="${path }/address">주소록</a></li>
 			</ul>
 		</div>
 	</div>
@@ -201,25 +203,25 @@
 			</div>
 		</div>
 		<hr>
-		<c:forEach items="${map.cartList }" var="c">
+		<c:forEach var="c" items="${map.cartList}" >
 			<br>
 			<table style="margin-left: 10; width: 100%;">
 				<tbody>
 					<tr class="payment-tr" name="selectP">
 						<td style="width: 20%;"><input class="check-input"
 							type="checkbox" style="margin-top: 40;"> <a href="#"
-							style="text-decoration: none;"> <img src="${c.productThumb}"
+							style="text-decoration: none;"> <img src=""
 								width="150" height="150" border="0" style="margin-left: 10" />
 								<!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
 						</a></td>
 						<td style="width: 55%"><a href="#"
 							style="color: black; text-decoration: none; font-size: 17"><b><c:out
-										value="<%-- ${c.productCode} --%>" /></b></a><br>
+										value=""/></b></a><br>
 							<div style="margin-top: 5; font-size: 15px">
-								<c:out value="<%-- ${c.productName} --%>" />
+								<c:out value="${c.memberId}원" />
 							</div> <!-- 오예오예 오예스~ -->
 							<div style="margin-top: 5;">
-								<c:out value="<%-- ${c.productPrice } --%>원" />
+								<c:out value=" ${c.productPrice}" />
 							</div> <%-- 30,000원 --%>
 							<div style="margin-top: 5; font-size: 15px">
 								<%-- <c:out value="${c.orderDate}" /> --%>
@@ -240,7 +242,7 @@
 							</div>
 						</td>
 						<td style="display: flex;">
-							<div class="close"></div>
+							<div><a class="close" href="${path }/member/mypage/cart?productCode=${c.productCode}"></a></div>
 						</td>
 					</tr>
 
@@ -273,6 +275,7 @@
 </section>
 
 <script>
+
 function selectAll(selectAll)  {
 	  const checkboxes 
 	       = document.getElementsByName('selectAll');
@@ -281,8 +284,6 @@ function selectAll(selectAll)  {
 	    checkbox.checked = selectAll.checked;
 	  })
 	}
-	
-	
 	
 $(document).ready(function(){
     //체크박스 전체 선택&해제
@@ -294,20 +295,13 @@ $(document).ready(function(){
         }
     });
     
+    });
      
         $('#selectDelete').click(function(){
-            if(confirm("삭제하시겠습니까?")){
-                $("input[name=selectP]:checked").each(function(){
-                    var tr_value =$(this).val();
-                    var tr=$("tr[data-tr_value='"+tr_value+"']");
-                    tr.remove();
-                });
-            }else{
-                return false;
-            }
+            location.assign("${path}/member/mypage/cart?productCode=${c.productCode}");
         });
+    
      
-    });
 
     
 </script>
