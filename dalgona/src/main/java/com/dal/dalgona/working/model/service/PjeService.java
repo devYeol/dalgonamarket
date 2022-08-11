@@ -15,18 +15,18 @@ import com.dal.dalgona.working.model.dao.PjeDao;
 
 @Service
 public class PjeService {
-//	@Autowired
-//	private PjeDao dao;
-//	
+	@Autowired
+	private PjeDao dao;
+	
 //	@Autowired
 //	private EntityManager em;
 //	
 //	@Autowired
 //	private EntityTransaction et;
-//	
-//	public Page<Member> selectMembers(PageRequest pagerequest) {
-//		return dao.findAll(pagerequest);
-//	}
+	
+	public Page<Member> selectMembers(PageRequest pagerequest) {
+		return dao.findAll(pagerequest);
+	}
 	
 //	public List<Member> searchMembers(String keyword) {
 //		return dao.searchMembers(em, keyword);

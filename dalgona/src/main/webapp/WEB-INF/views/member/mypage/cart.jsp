@@ -210,19 +210,20 @@
 					<tr class="payment-tr" name="selectP">
 						<td style="width: 20%;"><input class="check-input"
 							type="checkbox" style="margin-top: 40;"> <a href="#"
-							style="text-decoration: none;"> <img src=""
+							style="text-decoration: none;"> <img src="/resources/upload/${c.productThumb}"
 								width="150" height="150" border="0" style="margin-left: 10" />
 								<!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
 						</a></td>
 						<td style="width: 55%"><a href="#"
 							style="color: black; text-decoration: none; font-size: 17"><b><c:out
-										value=""/></b></a><br>
+										value="<%-- ${c.productCode} --%>상품코드"/></b></a><br><br>
 							<div style="margin-top: 5; font-size: 15px">
-								<c:out value="${c.memberId}원" />
-							</div> <!-- 오예오예 오예스~ -->
+								<c:out value=" <%-- ${c.productName} --%>달고나" />
+							</div> <!-- 오예오예 오예스~ --><br>
 							<div style="margin-top: 5;">
-								<c:out value=" ${c.productPrice}" />
+								<c:out value="<%-- ${c.productPrice} --%>2000원" />
 							</div> <%-- 30,000원 --%>
+							<br>
 							<div style="margin-top: 5; font-size: 15px">
 								<%-- <c:out value="${c.orderDate}" /> --%>
 								도착 예정

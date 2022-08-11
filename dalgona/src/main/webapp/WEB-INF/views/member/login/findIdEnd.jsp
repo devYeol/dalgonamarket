@@ -76,8 +76,9 @@ input::placeholder {
 		<br>
 		<hr>
 		<br>
-		<div style="display: flex; justify-content: center;">
-			<div style="width: 350px;">회원님이 가입하신 아이디는 <c:out value="${memberId}"/></div>
+		<div style="display: flex; justify-content: center; width: 350px;">
+			<div>회원님이 가입하신 아이디는&nbsp;</div>
+			<div style="color: blue;"><c:out value="${member.memberId}"/>&nbsp;</div>
 			<div>입니다.</div>
 		</div>
 		<br>

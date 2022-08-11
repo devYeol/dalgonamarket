@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.member.model.dao.MemberDao;
 
 @Service
@@ -36,6 +37,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<Cart> cartList(Member m){
 		return dao.cartList(session,m);
+	}
+	@Override
+	public List<Product> zzimList(){
+		return dao.zzimList(session);
+	}
+	@Override
+	public List<Product> orderList(){
+		return dao.orderList(session);
 	}
 	
 	@Override
@@ -91,7 +100,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public String findId(String memberEmail)throws Exception {
+	public Member findId(String memberEmail)throws Exception {
 		return dao.findId(session,memberEmail);
 	}
 	

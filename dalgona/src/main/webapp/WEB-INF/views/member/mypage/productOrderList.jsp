@@ -279,7 +279,7 @@ img {
 						<div style="display: flex">
 							<h3 style="margin-bottom: 0px; margin-left: 40px;">
 								<c:out value="" />
-								주문
+								2022.7.15 주문 
 							</h3>
 						</div>
 						<div>
@@ -301,11 +301,10 @@ img {
 												style="font-size: 15"><b><c:out
 														value="${o.productName }" /></b></span><br> <span
 												style="font-size: 15"><c:out value="${o.productPrice }원" />&nbsp;&nbsp;<c:out
-													value="${o.productAmount}개" /></span>
-											<div style="margin-top: 40px">
-												<!-- <span>1500원 1개</span><br> -->
-												<span><c:out value="" />&nbsp;&nbsp;도착
-													배송완료</span><br>
+													value="${o.productAmount}개" /></span> <br>
+											<div style="float:left; margin-right:20px;">
+												<c:out value="" /> 7/18(수)
+													배송완료<br>
 											</div>
 										</div>
 									</div>
@@ -321,6 +320,7 @@ img {
 						</div>
 					</div>
 					<br>
+					<hr>
 				</c:forEach>
 			</div>
 		</div>

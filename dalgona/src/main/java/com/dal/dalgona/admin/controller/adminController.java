@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dal.dalgona.admin.model.service.adminServiceImpl;
 import com.dal.dalgona.common.PageFactroyNoBootStrap;
 import com.dal.dalgona.common.model.vo.Category;
+import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 
@@ -225,14 +226,30 @@ public class adminController {
 		Product p = service.selectOneProduct(pro);
 		Category c = service.selectOneCate(p);
 		ProductOption po = service.selectOneOption(p);
-
+		
 		log.debug("{}", c);
 		log.debug("{}", p);
 		log.debug("{}", po);
-
+		
 		model.addAttribute("p", p);
 		model.addAttribute("c", c);
 		model.addAttribute("po", po);
+		
 		return "admin/selectUpdateProduct";
+	}
+	
+	// 멤버관련
+	@RequestMapping("adminManageMember.do")
+	public ModelAndView adminManageMember(ModelAndView mv,
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam(defaultValue = "25") int numPerpage) {
+		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,
+				Sort.by(Sort.Direction.ASC, "memberEnrollDate"));
+		Page<Member> list = service.selectMembers(pagerequest);
+		mv.addObject("members", list.getContent());
+		mv.addObject("pageBar",
+				PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
+		mv.setViewName("admin/adminManageMember");
+		return mv;
 	}
 }
