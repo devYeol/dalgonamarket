@@ -209,9 +209,24 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/findPwView", method=RequestMethod.GET)
-	public String findPw() {
+	public String findPwView() throws Exception {
 		return "member/login/findPwPage";
 	}
+	
+	@RequestMapping(value="/member/findPw", method=RequestMethod.POST)
+	public String findPw(Member m, Model model) throws Exception {
+		System.out.println(m.getMemberId()+m.getMemberEmail());
+		if(service.findPwCheck(m)==0) {
+			model.addAttribute("msg","아이디와 이메일을 다시 확인해주세요.");
+			return "member/login/findPwPage";
+		}else {
+			service.findPw(m.getMemberId(),m.getMemberEmail());
+			model.addAttribute("member",m);
+			
+			return "member/login/findPwEnd";
+		}		
+	}
+	
 	@RequestMapping("/address")
 	public String address() {
 		return "member/mypage/address";

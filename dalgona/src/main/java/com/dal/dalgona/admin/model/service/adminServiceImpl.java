@@ -54,14 +54,6 @@ public class adminServiceImpl implements adminService{
 	@Autowired
 	private OptionDao optionDao;
 
-//	@Autowired
-//	private CategoryDao categoryDao;
-
-//	@Override
-//	public Category insertCategory(Category cate) {
-//		return categoryDao.save(cate);
-//	}
-
 	// 상품등록
 	@Override
 	public Product insertProduct(Product p) {
@@ -74,12 +66,6 @@ public class adminServiceImpl implements adminService{
 	public List<ProductOption> insertProduct(List<ProductOption> options) {
 		return optionDao.saveAll(options);
 	}
-
-	// category안에 있는 내용물 가져옴
-//	@Override
-//	public Category selectCategory(String categoryName) {
-//		return categoryDao.findByCategoryName(categoryName);
-//	}
 	
 	//productCode로 불러오기
 	@Override
@@ -87,13 +73,8 @@ public class adminServiceImpl implements adminService{
 		return dao.findByProductCode(pro);
 	}
 
-//	@Override
-//	public Category selectOneCate(Product p) {
-//		return categoryDao.findByProducts(p);
-//	}
-
 	@Override
-	public ProductOption selectOneOption(Product p) {
+	public List<ProductOption> selectOneOption(Product p) {
 		// TODO Auto-generated method stub
 		return optionDao.findByProduct(p);
 	}

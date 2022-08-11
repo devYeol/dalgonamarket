@@ -68,4 +68,9 @@ public class MemberDaoImpl implements MemberDao {
 	public int findIdCheck(SqlSessionTemplate session, String memberEmail) {
 		return session.selectOne("member.findIdCheck", memberEmail);
 	}
+	
+	@Override
+	public int findPwCheck(SqlSessionTemplate session, Member m) {
+		return session.selectOne("member.findPwCheck", m);
+	}
 }

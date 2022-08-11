@@ -17,7 +17,10 @@ import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.member.model.dao.MemberDao;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
@@ -95,7 +98,10 @@ public class MemberServiceImpl implements MemberService {
 		}catch (MessagingException e) { 
 			e.printStackTrace(); 
 		}
-		mailSender.send(mimeMsg); 
+		mailSender.send(mimeMsg);
+		
+		log.debug(key);
+		
 		return key;
 	}
 	
@@ -107,5 +113,24 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int findIdCheck(String memberEmail)throws Exception {
 		return dao.findIdCheck(session,memberEmail);
+	}
+	
+	@Override
+	public int findPwCheck(Member m)throws Exception {
+		return dao.findPwCheck(session,m);
+	}
+	
+	@Override
+	public void findPw(String memberEmail,String memberId)throws Exception {
+		
+		MimeMessage mimeMsg=mailSender.createMimeMessage(); 
+		MimeMessageHelper msg=new MimeMessageHelper(mimeMsg,"utf-8"); 
+		
+		Random random=new Random();
+		String key="";
+		int numIndex=random.nextInt(88888888)+11111111;
+		key+=numIndex;
+		
+		
 	}
 }

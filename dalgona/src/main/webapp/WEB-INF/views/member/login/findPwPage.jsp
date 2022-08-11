@@ -79,17 +79,17 @@ input::placeholder {
 		<div>가입시 등록하신 아이디와 이메일을 입력하시면,</div>
 		<div>이메일로 임시 비밀번호를 전송해 드립니다.</div>
 		<br>
-		<form action="">
+		<form action="${path}/member/findPw" method="post">
 			<div class="int-area">
 				<label for="searchId"><b>아이디</b></label>
 				<br>
-				<input type="text" name="searchId" placeholder="아이디를 입력해주세요" autocomplete="off" required>
+				<input type="text" name="memberId" placeholder="아이디를 입력해주세요" autocomplete="off" required>
 			</div>
 			<br>
 			<div class="int-area">
 				<label for="searchEmail"><b>이메일 주소</b></label>
 				<br>
-				<input type="email" name="searchEmail" placeholder="예) dalgona@dalgona.com" autocomplete="off" required>
+				<input type="email" name="memberEmail" placeholder="예) dalgona@dalgona.com" autocomplete="off" required>
 			</div>
 			<div class="btn-area">
 				<button type="submit"><b>이메일 발송하기</b></button>
@@ -98,4 +98,14 @@ input::placeholder {
 		</form>
 	</div>
 </section>
+<script>
+
+const msg = "${msg}";
+
+if (msg != "") {
+	alert(msg);
+}
+
+</script>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

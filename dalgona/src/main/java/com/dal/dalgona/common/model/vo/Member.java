@@ -11,7 +11,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -56,23 +56,19 @@ public class Member implements UserDetails {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date memberEnrollDate;
 	
-	@Column(name="roles", nullable = true, columnDefinition = "varchar2(255) default 'USER'")
-//	@Column(name="roles", nullable = true)
+//	@Column(name="roles", nullable = true, columnDefinition = "varchar2(255) default 'USER'")
+	@Column(name="roles")
 	@Enumerated(EnumType.STRING) // DB에도 String type으로 저장
 	private Roles roles;
 	
-//	@PrePersist // insert 실행 전 메소드
-//	public void setRoles() {
-//		
-//		this.roles=Roles.ROLE_USER;
-//		
-////		if(roles == null) {
-////			this.roles=Roles.ROLE_USER;
-////		}
-//		
-//		System.out.println("가입 > USER 등급 부여");
-//		
-//	}
+	@PrePersist // insert 실행 전 메소드
+	public void setRoles() {
+		
+		if(roles == null) {
+			this.roles=Roles.USER;
+		}
+		
+	}
 	
 //	@PostPersist // insert 실행 후 메소드
 //	public void setRoles() {
@@ -123,10 +119,11 @@ public class Member implements UserDetails {
 		// TODO Auto-generated method stub
 		
 		List<GrantedAuthority> auth=new ArrayList();
-		auth.add(new SimpleGrantedAuthority("ROLE_USER"));
+		auth.add(new SimpleGrantedAuthority(this.roles.getKey()));
 		
 		return auth;
 	}
+	
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub

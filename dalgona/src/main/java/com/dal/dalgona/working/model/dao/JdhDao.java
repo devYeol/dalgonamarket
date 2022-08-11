@@ -4,7 +4,7 @@ import com.dal.dalgona.common.model.vo.Member;
 
 public interface JdhDao {
 	
-	Member save(Member m);
+//	Member save(Member m);
 	
 	Member findByMemberId(String memberId);
 	

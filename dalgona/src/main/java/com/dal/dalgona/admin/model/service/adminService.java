@@ -19,5 +19,5 @@ public interface adminService {
 	
 //	Category selectOneCate(Product p);
 	
-	ProductOption selectOneOption(Product p);
+	List<ProductOption> selectOneOption(Product p);
 }

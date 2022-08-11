@@ -31,4 +31,8 @@ public interface MemberService {
 	Member findId(String memberEmail)throws Exception;
 	
 	int findIdCheck(String memberEmail)throws Exception;
+	
+	int findPwCheck(Member m)throws Exception;
+	
+	void findPw(String memberId,String memberEmail)throws Exception;
 }
