@@ -33,7 +33,7 @@
         -->
 		<div class="contents">
 			<div class="contentstitle">상품등록</div>
-		<form action="${path }/insertProduct.do" method="post" enctype="multipart/form-data">
+		<form action="${path }/admin/insertProduct.do" method="post" enctype="multipart/form-data">
 			<div class="enrolltablediv">
 				<table class="enrolltable">
 					<tr>
