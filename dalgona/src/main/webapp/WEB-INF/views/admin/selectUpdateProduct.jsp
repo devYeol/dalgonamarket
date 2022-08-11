@@ -22,19 +22,20 @@
 					<tr>
 						<td class="theader">카테고리</td>
 						<td style="font-size: 15px; color: #808080;">
-							<%-- <c:out value="${p.categoryCode}"/> --%>
-							<label><input type="radio" name="categoryName" value="스낵" ${Arrays.toString(c.categoryCode).contains("스낵")?"checked":"" }>스낵</label> 
-							<label><input type="radio" name="categoryName" value="사탕" ${Arrays.toString(c.categoryCode).contains("사탕")?"checked":"" }>사탕</label> 
-							<label><input type="radio" name="categoryName" value="초코" ${Arrays.toString(c.categoryCode).contains("초코")?"checked":"" }>초코</label> 
-							<label><input type="radio" name="categoryName" value="젤리" ${Arrays.toString(c.categoryCode).contains("젤리")?"checked":"" }>젤리</label> 
-							<label><input type="radio" name="categoryName" value="완구" ${Arrays.toString(c.categoryCode).contains("완구")?"checked":"" }>완구</label> 
-							<label><input type="radio" name="categoryName" value="기타" ${Arrays.toString(c.categoryCode).contains("기타")?"checked":"" }>기타</label>
+							<!-- 프린트로 뽑아서 확인하는용 -->
+							<%-- <p><c:out value="${c.categoryCode}"/></p> --%> 
+							<label><input type="radio" name="categoryName" value="스낵" ${(c.categoryName).contains("스낵")?"checked":"" }>스낵</label> 
+							<label><input type="radio" name="categoryName" value="사탕" ${(c.categoryName).contains("사탕")?"checked":"" }>사탕</label> 
+							<label><input type="radio" name="categoryName" value="초코" ${(c.categoryName).contains("초코")?"checked":"" }>초코</label> 
+							<label><input type="radio" name="categoryName" value="젤리" ${(c.categoryName).contains("젤리")?"checked":"" }>젤리</label> 
+							<label><input type="radio" name="categoryName" value="완구" ${(c.categoryName).contains("완구")?"checked":"" }>완구</label> 
+							<label><input type="radio" name="categoryName" value="기타" ${(c.categoryName).contains("기타")?"checked":"" }>기타</label>
 						</td>
 					</tr>
 					<tr>
 						<td class="theader">가격</td>
 						<td><input class="adminin" type="text" name="productPrice"
-							placeholder="내용을 입력해 주세요"><c:out value="${p.productPrice}"/></td>
+							placeholder="내용을 입력해 주세요" value="<c:out value="${p.productPrice}"/>"></td>
 					</tr>
 					<tr>
 						<td class="theader">옵션</td>
@@ -45,9 +46,9 @@
 							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
 								<div>
 									<input class="adminin" name="optionName" type="text"
-									placeholder="옵션이름을 입력해주세요">
+									value="<c:out value="${po.oprionName }"/> ">
 									<input class="adminin" name="optionPrice" type="number" min="1000"
-									placeholder="옵션가격을 입력해주세요">
+									value="${po.optionPrice }">
 								</div>
 								<div><button class="adminbt" type="button" id="remove"  style="width:50; font-size:13">삭제</button></div>
 							</div>
@@ -56,21 +57,21 @@
 					<tr>
 						<td class="theader">수량</td>
 						<td><input class="adminin" type="text" name="productAmount"
-							placeholder="내용을 입력해 주세요"><c:out value="${p.productAmount}"/></td>
+							placeholder="내용을 입력해 주세요" value="<c:out value="${p.productAmount}"/>"></td>
 					</tr>
 					<tr>
 						<td class="theader">이미지</td>
 						<td>
-							<input type="file" name="thumbnail" style="margin-bottom: 5px" >
-								<img src="${p.productThumb }" width="95" height="100" border="0" />
-							<input type="file" name="detailedImage">
-								<img src="${p.productImage }" width="95" height="100" border="0" />
+							<img src="${p.productThumb }" width="95" height="100" border="0" />
+								<input type="file" name="thumbnail" style="margin-bottom: 5px" >
+							<img src="${p.productImage }" width="95" height="100" border="0" />
+								<input type="file" name="detailedImage" >
 						</td>
 					</tr>
 					<tr>
 						<td class="theader">상품설명</td>
 						<td><input class="adminin" type="text" name="productContent"
-							placeholder="내용을 입력해 주세요"><c:out value="${p.productContent}"/></td>
+							placeholder="내용을 입력해 주세요" value="<c:out value="${p.productContent}"/>"></td>
 					</tr>
 				<%-- 	</c:forEach>
 		            </c:if> --%>

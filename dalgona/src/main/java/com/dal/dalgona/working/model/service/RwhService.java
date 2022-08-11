@@ -24,13 +24,9 @@ public interface RwhService {
 	
 	Product selectOneProduct(Long pro);
 	
-//	ProductOption selectOneOption(Long pro);
-	
 	Category selectOneCate(Product p);
 	
-	
-	
-//	List<Product> productList();
+	ProductOption selectOneOption(Product p);
 	
 	
 }

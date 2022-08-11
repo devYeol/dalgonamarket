@@ -60,14 +60,15 @@ public class RwhServiceImpl implements RwhService {
 		return productDao.findByProductCode(pro);
 	}
 
-	//@Override
-//	public ProductOption selectOneOption(Long pro) {
-//		return optionDao.findByOptionCode(pro);
-//	}
-
 	@Override
 	public Category selectOneCate(Product p) {
 		return categoryDao.findByProducts(p);
+	}
+
+	@Override
+	public ProductOption selectOneOption(Product p) {
+		// TODO Auto-generated method stub
+		return optionDao.findByProduct(p);
 	}
 	
 	

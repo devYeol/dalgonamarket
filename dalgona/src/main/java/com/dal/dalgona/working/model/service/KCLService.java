@@ -11,4 +11,8 @@ public interface KCLService {
 	int idCheck(String memberId);
 	
 	String authSendEmail(String senderEmail, String receiver);
-}
+	
+	String findId(String memberEmail)throws Exception;
+	
+	int findIdCheck(String memberEmail)throws Exception;
+ }

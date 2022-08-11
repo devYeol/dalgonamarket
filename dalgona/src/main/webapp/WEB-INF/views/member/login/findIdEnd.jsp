@@ -12,19 +12,19 @@
 	margin: 0; padding: 0; box-sizing: border-box;
 }
   
-.findId-form {
+.findIdEnd-form {
 	display:flex;
 	justify-content: center;
-	align-items: center;
 	height: 100vh;
+	padding-top: 50px;
 }
 
-.findId-container {
+.findIdEnd-container {
 	position: relative;
 	z-inex: 2;
 }
 
-.findId-container h2 {
+.findIdEnd-container h2 {
 	font-size: 32px;
 	text-align: center;
 }
@@ -70,36 +70,17 @@ input::placeholder {
 }
 </style>
 
-<section class="findId-form">
-	<div class="findId-container">
-		<h2><b>아이디 찾기</b></h2>
+<section class="findIdEnd-form">
+	<div class="findIdEnd-container">
+		<h2><b>아이디 찾기 결과</b></h2>
 		<br>
 		<hr>
 		<br>
-		<div>가입시 등록한 이메일을 입력하시면,</div>
-		<div>가입한 아이디를 이메일로 발송해 드립니다.</div>
+		<div style="display: flex; justify-content: center;">
+			<div style="width: 350px;">회원님이 가입하신 아이디는 <c:out value="${memberId}"/></div>
+			<div>입니다.</div>
+		</div>
 		<br>
-		<form action="${path}/member/findId" method="post">
-			<div class="int-area">
-				<label for="searchEmail"><b>이메일 주소</b></label>
-				<br>
-				<input type="email" name="memberEmail" placeholder="예) dalgona@dalgona.com" autocomplete="off" required>
-			</div>
-			<div class="btn-area">
-				<button type="submit"><b>이메일 발송하기</b></button>
-			</div>
-			<br>
-		</form>
 	</div>
 </section>
-
-<script>
-
-const msg = "${msg}";
-
-if (msg != "") {
-	alert(msg);
-}
-
-</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
