@@ -91,7 +91,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public String findId(String memberEmail)throws Exception {
+	public Member findId(String memberEmail)throws Exception {
 		return dao.findId(session,memberEmail);
 	}
 	

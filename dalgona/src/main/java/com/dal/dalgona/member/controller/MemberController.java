@@ -24,7 +24,6 @@ import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.member.model.service.MemberService;
 
 @Controller
-@RequestMapping("/member")
 @SessionAttributes({"loginMember"})
 public class MemberController {
 	
@@ -202,12 +201,13 @@ public class MemberController {
 			model.addAttribute("msg","없는 이메일 입니다. 이메일을 다시 확인해주세요.");
 			return "member/login/findIdPage";
 		}else {
-			model.addAttribute("member",service.findId(m.getMemberEmail()));
+			m=service.findId(m.getMemberEmail());
+			model.addAttribute("member",m);
 			return "member/login/findIdEnd";
 		}
 	}
 	
-	@RequestMapping("/findPw")
+	@RequestMapping(value="/member/findPwView", method=RequestMethod.GET)
 	public String findPw() {
 		return "member/login/findPwPage";
 	}

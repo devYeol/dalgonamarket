@@ -59,7 +59,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public String findId(SqlSessionTemplate session, String memberEmail) {
+	public Member findId(SqlSessionTemplate session, String memberEmail) {
 		return session.selectOne("member.findId", memberEmail);
 	}
 	

@@ -30,7 +30,7 @@ public interface MemberDao {
 	
 	int idCheck(SqlSessionTemplate session, String memberId);
 	
-	String findId(SqlSessionTemplate session, String memberEmail)throws Exception;
+	Member findId(SqlSessionTemplate session, String memberEmail)throws Exception;
 	
 	int findIdCheck(SqlSessionTemplate session, String memberEmail)throws Exception;
 }

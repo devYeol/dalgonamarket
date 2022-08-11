@@ -27,7 +27,7 @@ public interface MemberService {
 	
 	String authSendEmail(String senderEmail, String receiver);
 	
-	String findId(String memberEmail)throws Exception;
+	Member findId(String memberEmail)throws Exception;
 	
 	int findIdCheck(String memberEmail)throws Exception;
 }
