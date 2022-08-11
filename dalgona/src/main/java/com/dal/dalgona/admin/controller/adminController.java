@@ -183,7 +183,7 @@ public class adminController {
 		// option을 for문돌려 컬럼안에 집어넣음
 		for (int i = 0; i < optionName.length; i++) {
 			options.add(
-					ProductOption.builder().product(p).oprionName(optionName[i]).optionPrice(optionPrice[i]).build());
+					ProductOption.builder().product(p).optionName(optionName[i]).optionPrice(optionPrice[i]).build());
 		}
 
 		p.setOptionCode(options);

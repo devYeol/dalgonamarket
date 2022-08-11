@@ -46,7 +46,7 @@
 							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
 								<div>
 									<input class="adminin" name="optionName" type="text"
-									value="<c:out value="${po.oprionName }"/> ">
+									value="<c:out value="${po.optionName }"/> ">
 									<input class="adminin" name="optionPrice" type="number" min="1000"
 									value="${po.optionPrice }">
 								</div>
