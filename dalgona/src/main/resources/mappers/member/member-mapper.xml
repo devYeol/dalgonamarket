@@ -25,7 +25,7 @@
 		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID=#{memberId}
 	</select>
 	
-	<select id="findId" parameterType="string" resultType="String">
+	<select id="findId" parameterType="member" resultMap="memberMap">
 		SELECT * FROM MEMBER WHERE MEMBER_EMAIL=#{memeberEmail}
 	</select>
 	

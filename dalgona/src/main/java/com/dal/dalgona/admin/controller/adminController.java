@@ -226,14 +226,15 @@ public class adminController {
 		Product p = service.selectOneProduct(pro);
 		Category c = service.selectOneCate(p);
 		ProductOption po = service.selectOneOption(p);
-
+		
 		log.debug("{}", c);
 		log.debug("{}", p);
 		log.debug("{}", po);
-
+		
 		model.addAttribute("p", p);
 		model.addAttribute("c", c);
 		model.addAttribute("po", po);
+		
 		return "admin/selectUpdateProduct";
 	}
 	

@@ -29,7 +29,7 @@
 		SELECT * FROM PRODUCT </select> -->
 
 	<select id="cartList" resultType="Cart">
-		SELECT c.PRODUCT_CODE,c.MEMBER_ID ,PRODUCT_name, c.cart_amount,p.PRODUCT_image
+		SELECT c.PRODUCT_CODE,c.MEMBER_ID ,PRODUCT_name, c.cart_amount,p.PRODUCT_thumb
 		,product_price,(p.product_price*c.cart_amount)
 		FROM CART
 		c,PRODUCT p ,MEMBER m

@@ -21,10 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.member.model.service.MemberService;
 
 @Controller
-@RequestMapping("/member")
 @SessionAttributes({"loginMember"})
 public class MemberController {
 	
@@ -34,7 +34,7 @@ public class MemberController {
 	@Value(value = "${spring.mail.username}")
 	private String adminEmail;
 
-	@GetMapping("/mypage/mypageMain")
+	@GetMapping("/member/mypage/mypageMain")
 	public String mypageMain() {
 		return "member/mypage/mypageMain";
 	}
@@ -46,7 +46,7 @@ public class MemberController {
 //	}
 	
 	
-	@RequestMapping("/mypage/cart") // 장바구니
+	@RequestMapping("/member/mypage/cart") // 장바구니
 	public ModelAndView cart(ModelAndView mv, HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -72,7 +72,7 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping("delete.do") //선택삭제
+	@RequestMapping("/member/delete.do") //선택삭제
 	 public String delete(@RequestParam long productCode) {
        service.delete(productCode);
         return "redirect:/member/mypage/cart";
@@ -80,30 +80,30 @@ public class MemberController {
 
 	
 
-//	@GetMapping("/mypage/productOrderList") //구매내역
-//	public String productOrder(Model mo) {
-//		List<Product> orderList = service.orderList();
-//		mo.addAttribute("orderList",orderList);
-//		return "member/mypage/productOrderList";
-//	}
+	@GetMapping("/member/mypage/productOrderList") //구매내역
+	public String productOrder(Model mo) {
+		List<Product> orderList = service.orderList();
+		mo.addAttribute("orderList",orderList);
+		return "member/mypage/productOrderList";
+	}
 
-//	@GetMapping("/mypage/zzim") //찜
-//	public String zzim(Model mo) {
-//		List<Product> zzimList = service.zzimList();
-//		mo.addAttribute("zzimList",zzimList);
-//		return "member/mypage/zzim";
-//	}
+	@GetMapping("/member/mypage/zzim") //찜
+	public String zzim(Model mo) {
+		List<Product> zzimList = service.zzimList();
+		mo.addAttribute("zzimList",zzimList);
+		return "member/mypage/zzim";
+	}
 //
 //	
 //	
-	@RequestMapping("/mypage/shippingset")
+	@RequestMapping("/member/mypage/shippingset")
 	public String shippingset() {
 		return "member/mypage/shippingset";
 		
 	}
 //	
 //		
-	@RequestMapping("/mypage/addressadd")
+	@RequestMapping("/member/mypage/addressadd")
 	public String addressadd() {
 		return "member/mypage/addressadd";
 	}
@@ -202,12 +202,13 @@ public class MemberController {
 			model.addAttribute("msg","없는 이메일 입니다. 이메일을 다시 확인해주세요.");
 			return "member/login/findIdPage";
 		}else {
-			model.addAttribute("member",service.findId(m.getMemberEmail()));
+			m=service.findId(m.getMemberEmail());
+			model.addAttribute("member",m);
 			return "member/login/findIdEnd";
 		}
 	}
 	
-	@RequestMapping("/findPw")
+	@RequestMapping(value="/member/findPwView", method=RequestMethod.GET)
 	public String findPw() {
 		return "member/login/findPwPage";
 	}
