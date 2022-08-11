@@ -25,6 +25,8 @@
 				<div class="col-md d-grid gap-5" style="margin-left: 10px;">
 					<div class="row border-bottom">
 						<div class="col-8">
+						<input type="hidden" value="${loginMember }" id="memberId">
+						<c:out value="${loginMember}" />
 							<h4>
 								<c:out value="${pro.productName}" />
 							</h4>

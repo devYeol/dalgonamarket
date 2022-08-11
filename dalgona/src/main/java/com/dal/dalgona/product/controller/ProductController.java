@@ -90,9 +90,20 @@ public class ProductController {
 //	}
 	
 	
-//	@RequestMapping("/qna/qnawWrite.do")//
-//	public String qnawWrite(){
-//	
-//	
-//	}
+	@RequestMapping("/qna/qnawWrite.do")//
+	public String qnawWrite(){
+	
+		return "product/qnawWrite";
+	}
+	
+	
+	@RequestMapping("/qna/qnawWriteEnd.do")//
+	public String qnawWriteEnd(Qna q){
+		
+		
+	
+		return "product/productDetail";
+	}
+	
+	
 }
