@@ -10,11 +10,9 @@
 <section id="content">
 	<div class="contents">
 			<div class="contentstitle">상품수정</div>
-		<form action="${path }/admin/insertProduct.do" method="post" enctype="multipart/form-data">
+		<form action="${path }/admin/updatetProduct.do" method="post" enctype="multipart/form-data">
 			<div class="enrolltablediv">
 				<table class="enrolltable">
-				<%-- <c:if test="${not empty products}">
-		            	<c:forEach var="p" items="${products}"> --%>
 					<tr>
 						<td class="theader">상품명</td>
 						<td><input class="adminin" name="productName" type="text" value="<c:out value="${p.productName}"/>"></td>
@@ -24,12 +22,12 @@
 						<td style="font-size: 15px; color: #808080;">
 							<!-- 프린트로 뽑아서 확인하는용 -->
 							<%-- <p><c:out value="${c.categoryCode}"/></p> --%> 
-							<label><input type="radio" name="categoryName" value="스낵" ${(c.categoryName).contains("스낵")?"checked":"" }>스낵</label> 
-							<label><input type="radio" name="categoryName" value="사탕" ${(c.categoryName).contains("사탕")?"checked":"" }>사탕</label> 
-							<label><input type="radio" name="categoryName" value="초코" ${(c.categoryName).contains("초코")?"checked":"" }>초코</label> 
-							<label><input type="radio" name="categoryName" value="젤리" ${(c.categoryName).contains("젤리")?"checked":"" }>젤리</label> 
-							<label><input type="radio" name="categoryName" value="완구" ${(c.categoryName).contains("완구")?"checked":"" }>완구</label> 
-							<label><input type="radio" name="categoryName" value="기타" ${(c.categoryName).contains("기타")?"checked":"" }>기타</label>
+							<label><input type="radio" name="categoryName" value="스낵" ${(p.categoryName).contains("스낵")?"checked":"" }>스낵</label> 
+							<label><input type="radio" name="categoryName" value="사탕" ${(p.categoryName).contains("사탕")?"checked":"" }>사탕</label> 
+							<label><input type="radio" name="categoryName" value="초코" ${(p.categoryName).contains("초코")?"checked":"" }>초코</label> 
+							<label><input type="radio" name="categoryName" value="젤리" ${(p.categoryName).contains("젤리")?"checked":"" }>젤리</label> 
+							<label><input type="radio" name="categoryName" value="완구" ${(p.categoryName).contains("완구")?"checked":"" }>완구</label> 
+							<label><input type="radio" name="categoryName" value="기타" ${(p.categoryName).contains("기타")?"checked":"" }>기타</label>
 						</td>
 					</tr>
 					<tr>
@@ -37,6 +35,7 @@
 						<td><input class="adminin" type="text" name="productPrice"
 							placeholder="내용을 입력해 주세요" value="<c:out value="${p.productPrice}"/>"></td>
 					</tr>
+					<c:forEach var="option" items="${po }">
 					<tr>
 						<td class="theader">옵션</td>
 						<td>
@@ -46,14 +45,15 @@
 							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
 								<div>
 									<input class="adminin" name="optionName" type="text"
-									value="<c:out value="${po.optionName }"/> ">
+									value="<c:out value="${option.optionName }"/> ">
 									<input class="adminin" name="optionPrice" type="number" min="1000"
-									value="${po.optionPrice }">
+									value="${option.optionPrice }">
 								</div>
 								<div><button class="adminbt" type="button" id="remove"  style="width:50; font-size:13">삭제</button></div>
 							</div>
 						</td>
 					</tr>
+					</c:forEach>
 					<tr>
 						<td class="theader">수량</td>
 						<td><input class="adminin" type="text" name="productAmount"
@@ -80,7 +80,7 @@
 					<button class="adminbt"
 						style="background-color: #E0E0E0; color: black;">취소</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="adminbt">등록</button>
+					<button class="adminbt" type="submit">수정</button>
 				</div>
 			</div>
 		</form>

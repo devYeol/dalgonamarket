@@ -1,7 +1,10 @@
 package com.dal.dalgona.admin.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,15 +14,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.admin.model.service.adminServiceImpl;
 import com.dal.dalgona.common.PageFactroyNoBootStrap;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOption;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -107,31 +113,16 @@ public class adminController {
 
 	/* 원희 */
 
-	// category
-//	@RequestMapping("/categoryDemo")
-//	@ResponseBody
-//	public Category insertCategory() {
-//		Category cate = Category.builder().categoryName("기타").build();
-//		Category result = service.insertCategory(cate);
-//
-//		return result;
-//
-//	}
-
 	// 상품등록 페이지에서 name명 가져와서 매개변수에 집어넣음
-<<<<<<< HEAD
 	@RequestMapping("/insertProduct.do")
 	public String insertProduct(@RequestParam(value = "productAmount") int product_Ampont,
-			@RequestParam(value = "productContent") String product_Content,
-			@RequestParam(value = "thumbnail") MultipartFile thumbnail,
-			@RequestParam(value = "detailedImage") MultipartFile detailedImage,
-			@RequestParam(value = "productPrice") int product_Price,
-			@RequestParam(value = "productName") String product_Name, String categoryName, String[] optionName,
-			int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
-		// 이부분 category로 조회
-		Category c = service.selectCategory(categoryName);
-		log.debug("{}", c);
-
+								@RequestParam(value = "productContent") String product_Content,
+								@RequestParam(value = "thumbnail") MultipartFile thumbnail,
+								@RequestParam(value = "detailedImage") MultipartFile detailedImage,
+								@RequestParam(value = "productPrice") int product_Price,
+								@RequestParam(value = "productName") String product_Name,
+								@RequestParam(value = "categoryName") String categoryName, String[] optionName,
+								int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
 		// 저장경로 가져옴
 		String path = rs.getServletContext().getRealPath("/resources/upload/product/");
 		File uploadDir = new File(path);
@@ -150,7 +141,7 @@ public class adminController {
 			String exts = secondFilename.substring(secondFilename.lastIndexOf("."));
 			int random = (int) (Math.random() * 10000);
 			String rename = "admin_" + random + ext;
-			String secondRename = "admin_" + random + exts;
+			String secondRename = "admin_second_" + random + exts;
 
 			thumbnailFile = new File(path + "/" + rename);
 			thumbnail.transferTo(thumbnailFile);
@@ -166,12 +157,13 @@ public class adminController {
 		int target_num = aa.indexOf(target) - 1;
 		String thumbnailPath = aa.substring(target_num);
 		// 이미지주소 자르기 상세이미지
-		int target_num1 = aa.indexOf(target) - 1;
-		String detailedPath = aa.substring(target_num);
+		String aa2 = path + detailedImageFile.getName();
+		int target_num1 = aa2.indexOf(target) - 1;
+		String detailedPath = aa2.substring(target_num1);
 
 		Product p = Product.builder().productAmount(product_Ampont).productContent(product_Content)
 				.productPrice(product_Price).productName(product_Name).productThumb(thumbnailPath)
-				.productImage(detailedPath).productDate(new Date()).category(c).build();
+				.productImage(detailedPath).productDate(new Date()).categoryName(categoryName).build();
 
 		List<ProductOption> options = new ArrayList();
 		// option을 for문돌려 컬럼안에 집어넣음
@@ -212,25 +204,21 @@ public class adminController {
 //			return "admin/adminManageProduct";
 //		}
 
-	// 상품수정하기
-//	@RequestMapping("/selectUpdateProduct.do")
-//	public String selectUpdateProduct(Long pro, Model model) {
-//		// 카테고리 가져오기
-//		System.out.println(pro);
-//		Product p = service.selectOneProduct(pro);
-//		Category c = service.selectOneCate(p);
-//		ProductOption po = service.selectOneOption(p);
-//		
-//		log.debug("{}", c);
-//		log.debug("{}", p);
-//		log.debug("{}", po);
-//		
-//		model.addAttribute("p", p);
-//		model.addAttribute("c", c);
-//		model.addAttribute("po", po);
-//		
-//		return "admin/selectUpdateProduct";
-//	}
+	@RequestMapping("/selectUpdateProduct.do")
+	public String selectUpdateProduct(Long pro, Model model) {
+		// 카테고리 가져오기
+		System.out.println(pro);
+		Product p = service.selectOneProduct(pro);
+		List<ProductOption> po = service.selectOneOption(p);
+	
+		log.debug("{}", p);
+		log.debug("{}", po);
+		
+		model.addAttribute("p", p);
+		model.addAttribute("po", po);
+		
+		return "admin/selectUpdateProduct";
+	}
 	
 	// 멤버관련
 	@RequestMapping("adminManageMember.do")
@@ -246,4 +234,16 @@ public class adminController {
 		mv.setViewName("admin/adminManageMember");
 		return mv;
 	}
+	//상품업데이트
+//	@RequestMapping("/updateProduct.do")
+//	public String updateProduct(@RequestParam(value = "productAmount") int product_Ampont,
+//								@RequestParam(value = "productContent") String product_Content,
+//								@RequestParam(value = "thumbnail") MultipartFile thumbnail,
+//								@RequestParam(value = "detailedImage") MultipartFile detailedImage,
+//								@RequestParam(value = "productPrice") int product_Price,
+//								@RequestParam(value = "productName") String product_Name,
+//								@RequestParam(value = "categoryName") String categoryName, String[] optionName,
+//								int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
+//		return "";
+//	}
 }

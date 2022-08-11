@@ -1,5 +1,7 @@
 package com.dal.dalgona.option.model.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +11,5 @@ import com.dal.dalgona.common.model.vo.ProductOption;
 @Repository
 public interface OptionDao extends JpaRepository<ProductOption, Long> {
 
-	ProductOption findByProduct(Product p);
+	List<ProductOption> findByProduct(Product p);
 }
