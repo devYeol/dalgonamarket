@@ -144,7 +144,7 @@ input::placeholder {
 		</form>
 			<div class="caption" style="display:flex; justify-content: space-between;">
 				<div>
-					<a href="" style="border-right:1px solid gray;">&nbsp;&nbsp;&nbsp;&nbsp;<b>아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+					<a href="${path}/member/findIdView" style="border-right:1px solid gray;">&nbsp;&nbsp;&nbsp;&nbsp;<b>아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
 				</div>
 				<div>
 					<a href="" style="border-right:1px solid gray;"><b>&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</b></a>

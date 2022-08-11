@@ -101,10 +101,23 @@ public class KCLController {
 		return result;
 	}
 	
-	@RequestMapping("/findId")
-	public String findId() {
+	@RequestMapping(value="/member/findIdView", method=RequestMethod.GET)
+	public String findIdView() throws Exception {
 		return "member/login/findIdPage";
 	}
+	
+	@RequestMapping(value="/member/findId", method=RequestMethod.POST)
+	public String findId(Member m,Model model) throws Exception {
+		System.out.println(m.getMemberEmail());
+		if(service.findIdCheck(m.getMemberEmail())==0) {
+			model.addAttribute("msg","없는 이메일 입니다. 이메일을 다시 확인해주세요.");
+			return "member/login/findIdPage";
+		}else {
+			model.addAttribute("member",service.findId(m.getMemberEmail()));
+			return "member/login/findIdEnd";
+		}
+	}
+	
 	@RequestMapping("/findPw")
 	public String findPw() {
 		return "member/login/findPwPage";
