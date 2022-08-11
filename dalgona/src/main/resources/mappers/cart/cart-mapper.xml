@@ -2,11 +2,6 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cart">
 
-	<!-- <resultMap type="msw" id="mswMap"> <result property="proTitle" column="pro_title"/> 
-		<result property="proName" column="pro_name"/> <result property="proPrice" 
-		column="pro_price"/> <result property="proAmount" column="pro_amount"/> <result 
-		property="orderDate" column="order_date"/> <result property="arriveDate" 
-		column="arrive_date"/> </resultMap> -->
 	<resultMap type="product" id="productMap">
 		<result property="productCode" column="product_code" />
 		<result property="productAmount" column="product_amount" />
@@ -19,6 +14,26 @@
 		<!-- <result property="category" column="category"/> -->
 		<!-- <result property="product" column="category_code"/> -->
 	</resultMap>
+	<resultMap type="member" id="memberMap">
+		<id property="memberId" column="member_id"/>
+		<result property="memberPwd" column="member_pwd"/>
+		<result property="memberName" column="member_name"/>
+		<result property="memberBirth" column="member_birth"/>
+		<result property="memberGender" column="member_gender"/>
+		<result property="memberPhone" column="member_phone"/>
+		<result property="memberEmail" column="member_email"/>
+		<result property="memberEnrollDate" column="member_enroll_date"/>
+		<result property="roles" column="roles"/>
+	</resultMap>
+	
+	<resultMap type="cart" id="cartMap">
+		<result column="cart_code" property="cartCode"/>
+		<result column="cart_amount" property="cartAmount"/>
+		<association column="product_code" property="product" resultMap="productMap"/>
+		<association column="member_id" property="member" resultMap="memberMap"/>
+	</resultMap>
+	
+
 
 	<select id="selectProduct" parameterType="product"
 		resultMap="productMap">
@@ -28,9 +43,8 @@
 	<!-- <select id="cartList" parameterType="product" resultMap="cartMap" > 
 		SELECT * FROM PRODUCT </select> -->
 
-	<select id="cartList" resultType="Cart">
-		SELECT c.PRODUCT_CODE,c.MEMBER_ID ,PRODUCT_name, c.cart_amount,p.PRODUCT_thumb
-		,product_price,(p.product_price*c.cart_amount)
+	<select id="cartList" resultMap="cartMap">
+		SELECT *
 		FROM CART
 		c,PRODUCT p ,MEMBER m
 		WHERE 	m.MEMBER_Id = c.MEMBER_Id

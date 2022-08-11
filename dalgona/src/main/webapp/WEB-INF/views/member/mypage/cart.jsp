@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-
+<c:set var="now" value="<%=new java.util.Date()%>" />
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="" />
 </jsp:include>
@@ -202,30 +202,33 @@
 				</div>
 			</div>
 		</div>
+		
 		<hr>
-		<c:forEach var="c" items="${map.cartList}" >
+		
+		<c:forEach var="c" items="${map.cartList}" varStatus="i" >
 			<br>
 			<table style="margin-left: 10; width: 100%;">
 				<tbody>
 					<tr class="payment-tr" name="selectP">
 						<td style="width: 20%;"><input class="check-input"
 							type="checkbox" style="margin-top: 40;"> <a href="#"
-							style="text-decoration: none;"> <img src="/resources/upload/${c.productThumb}"
+							style="text-decoration: none;"> <img src="/resources/upload/"
 								width="150" height="150" border="0" style="margin-left: 10" />
 								<!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
 						</a></td>
 						<td style="width: 55%"><a href="#"
 							style="color: black; text-decoration: none; font-size: 17"><b><c:out
-										value="<%-- ${c.productCode} --%>상품코드"/></b></a><br><br>
+										value="상품코드"/></b></a><br><br>${c.product.productCode}
 							<div style="margin-top: 5; font-size: 15px">
-								<c:out value=" <%-- ${c.productName} --%>달고나" />
+								<c:out value=" ${c.product.productName} 달고나" />
 							</div> <!-- 오예오예 오예스~ --><br>
 							<div style="margin-top: 5;">
-								<c:out value="<%-- ${c.productPrice} --%>2000원" />
+								<c:out value="${c.product.productPrice} 2000원" />
 							</div> <%-- 30,000원 --%>
 							<br>
 							<div style="margin-top: 5; font-size: 15px">
-								<%-- <c:out value="${c.orderDate}" /> --%>
+							  
+							<fmt:formatDate value="${now}" type="date" pattern="MM-dd"/>
 								도착 예정
 							</div></td>
 
@@ -243,7 +246,7 @@
 							</div>
 						</td>
 						<td style="display: flex;">
-							<div><a class="close" href="${path }/member/mypage/cart?productCode=${c.productCode}"></a></div>
+							<div><a class="close" href="${path }/member/mypage/cart?productCode="></a></div><%-- ${c.productCode} --%>
 						</td>
 					</tr>
 
@@ -271,7 +274,7 @@
 		</div>
 		</c:otherwise>
 		</c:choose>
-	</div>
+	</div> 
 	<div></div>
 </section>
 
@@ -298,9 +301,9 @@ $(document).ready(function(){
     
     });
      
-        $('#selectDelete').click(function(){
+      /*   $('#selectDelete').click(function(){
             location.assign("${path}/member/mypage/cart?productCode=${c.productCode}");
-        });
+        }); */
     
      
 
