@@ -1,10 +1,7 @@
 package com.dal.dalgona.admin.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,19 +11,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.admin.model.service.adminServiceImpl;
 import com.dal.dalgona.common.PageFactroyNoBootStrap;
-import com.dal.dalgona.common.model.vo.Category;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
-import com.dal.dalgona.common.model.vo.ProductOption;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -115,17 +108,18 @@ public class adminController {
 	/* 원희 */
 
 	// category
-	@RequestMapping("/categoryDemo")
-	@ResponseBody
-	public Category insertCategory() {
-		Category cate = Category.builder().categoryName("기타").build();
-		Category result = service.insertCategory(cate);
-
-		return result;
-
-	}
+//	@RequestMapping("/categoryDemo")
+//	@ResponseBody
+//	public Category insertCategory() {
+//		Category cate = Category.builder().categoryName("기타").build();
+//		Category result = service.insertCategory(cate);
+//
+//		return result;
+//
+//	}
 
 	// 상품등록 페이지에서 name명 가져와서 매개변수에 집어넣음
+<<<<<<< HEAD
 	@RequestMapping("/insertProduct.do")
 	public String insertProduct(@RequestParam(value = "productAmount") int product_Ampont,
 			@RequestParam(value = "productContent") String product_Content,
@@ -219,24 +213,24 @@ public class adminController {
 //		}
 
 	// 상품수정하기
-	@RequestMapping("/selectUpdateProduct.do")
-	public String selectUpdateProduct(Long pro, Model model) {
-		// 카테고리 가져오기
-		System.out.println(pro);
-		Product p = service.selectOneProduct(pro);
-		Category c = service.selectOneCate(p);
-		ProductOption po = service.selectOneOption(p);
-		
-		log.debug("{}", c);
-		log.debug("{}", p);
-		log.debug("{}", po);
-		
-		model.addAttribute("p", p);
-		model.addAttribute("c", c);
-		model.addAttribute("po", po);
-		
-		return "admin/selectUpdateProduct";
-	}
+//	@RequestMapping("/selectUpdateProduct.do")
+//	public String selectUpdateProduct(Long pro, Model model) {
+//		// 카테고리 가져오기
+//		System.out.println(pro);
+//		Product p = service.selectOneProduct(pro);
+//		Category c = service.selectOneCate(p);
+//		ProductOption po = service.selectOneOption(p);
+//		
+//		log.debug("{}", c);
+//		log.debug("{}", p);
+//		log.debug("{}", po);
+//		
+//		model.addAttribute("p", p);
+//		model.addAttribute("c", c);
+//		model.addAttribute("po", po);
+//		
+//		return "admin/selectUpdateProduct";
+//	}
 	
 	// 멤버관련
 	@RequestMapping("adminManageMember.do")

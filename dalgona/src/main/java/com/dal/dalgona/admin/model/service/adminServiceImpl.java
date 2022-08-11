@@ -10,8 +10,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.admin.model.dao.adminDao;
-import com.dal.dalgona.category.model.dao.CategoryDao;
-import com.dal.dalgona.common.model.vo.Category;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
@@ -56,13 +54,13 @@ public class adminServiceImpl implements adminService{
 	@Autowired
 	private OptionDao optionDao;
 
-	@Autowired
-	private CategoryDao categoryDao;
+//	@Autowired
+//	private CategoryDao categoryDao;
 
-	@Override
-	public Category insertCategory(Category cate) {
-		return categoryDao.save(cate);
-	}
+//	@Override
+//	public Category insertCategory(Category cate) {
+//		return categoryDao.save(cate);
+//	}
 
 	// 상품등록
 	@Override
@@ -78,10 +76,10 @@ public class adminServiceImpl implements adminService{
 	}
 
 	// category안에 있는 내용물 가져옴
-	@Override
-	public Category selectCategory(String categoryName) {
-		return categoryDao.findByCategoryName(categoryName);
-	}
+//	@Override
+//	public Category selectCategory(String categoryName) {
+//		return categoryDao.findByCategoryName(categoryName);
+//	}
 	
 	//productCode로 불러오기
 	@Override
@@ -89,10 +87,10 @@ public class adminServiceImpl implements adminService{
 		return dao.findByProductCode(pro);
 	}
 
-	@Override
-	public Category selectOneCate(Product p) {
-		return categoryDao.findByProducts(p);
-	}
+//	@Override
+//	public Category selectOneCate(Product p) {
+//		return categoryDao.findByProducts(p);
+//	}
 
 	@Override
 	public ProductOption selectOneOption(Product p) {
