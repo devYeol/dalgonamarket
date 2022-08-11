@@ -14,7 +14,7 @@ import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.option.model.dao.OptionDao;
-import com.dal.dalgona.working.model.dao.PjeDao;
+import com.dal.dalgona.working.model.dao.PjeDaoJpa;
 
 @Service
 public class adminServiceImpl implements adminService{
@@ -23,7 +23,7 @@ public class adminServiceImpl implements adminService{
 	adminDao dao;
 	
 	@Autowired
-	PjeDao memberdao;
+	PjeDaoJpa memberdao;
 	
 	/* 중언 */
 	

@@ -1,19 +1,12 @@
 package com.dal.dalgona.working.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
-import javax.persistence.EntityManager;
-
-import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.mybatis.spring.SqlSessionTemplate;
 
 import com.dal.dalgona.common.model.vo.Member;
 
-@Repository
-public interface PjeDao extends JpaRepository<Member, Integer> {
-	List<Member> findAll();
-	
-//	@Query()
-//	List<Member> findByMemberName();
+public interface PjeDao {
+	List<Member> searchMembers(SqlSessionTemplate session, Map<String,Object> param);
 }

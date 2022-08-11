@@ -42,7 +42,7 @@
 			<div class="searchdiv2">
 				<div style="color: #808080; font-size: 30px; font-weight: border;">회원검색</div>
 				<div>
-					<form action="${path}/admin/adminSearchMember ">
+					<form action="${path}/admin/adminSearchMember.do">
 						<table>
 							<tr>
 								<div style="padding-left: 42px; padding-bottom: 4px; font-size: 14px;">
