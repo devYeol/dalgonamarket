@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dal.dalgona.common.model.vo.Category;
@@ -149,11 +150,15 @@ public class RWHController {
 		System.out.println(pro);
 		Product p = service.selectOneProduct(pro);
 		Category c = service.selectOneCate(p);
+		ProductOption po = service.selectOneOption(p);
 		
 		log.debug("{}",c);
 		log.debug("{}",p);
+		log.debug("{}",po);
+		
 		model.addAttribute("p",p);
 		model.addAttribute("c",c);
+		model.addAttribute("po",po);
 		return "admin/selectUpdateProduct";
 	}
 	
