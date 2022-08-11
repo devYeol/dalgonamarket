@@ -17,7 +17,8 @@ public class SecurityService implements UserDetailsService {
 	private JdhDaoImpl repo; // Member table repository
 
 	@Override
-	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException { // 유저를 찾을 수 없을 때 exception 처리
+	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
+		// UsernameNotFoundException > 유저를 찾을 수 없을 때 exception 처리
 		// TODO Auto-generated method stub
 		
 		Member m=repo.findByMemberId(memberId);

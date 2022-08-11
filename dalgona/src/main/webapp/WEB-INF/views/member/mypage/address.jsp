@@ -148,7 +148,7 @@
 		<br>
 		<div class="addr-area">
 			<div style="font-size: 18px; margin-top: 4px;">기본 배송지</div>
-			<button class="btn-area">+ 배송지 추가</button>
+			<button class="btn-area" onclick="adressAdd();">+ 배송지 추가</button>
 		</div>
 		<hr style="margin-top: 8px; margin-bottom: 0px;">
 		<div class="insert-addr">
@@ -183,4 +183,16 @@
 		<hr>
 	</div>
 </section>
+
+
+	<script>
+		const adressAdd=()=>{
+			location.assign("${path}/member/mypage/addressadd");
+		}
+	</script>
+	
+	
+
+
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

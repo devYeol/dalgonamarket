@@ -6,8 +6,6 @@ import java.util.Date;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dal.dalgona.common.CreateRndNum;
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Member;
-import com.dal.dalgona.common.model.vo.OrderDetail;
-import com.dal.dalgona.common.model.vo.ProductOrder;
+import com.dal.dalgona.working.model.service.JdhInsertService;
 import com.dal.dalgona.working.model.service.JdhService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +26,9 @@ public class JdhController {
 	
 	@Autowired
 	private JdhService service;
+	
+	@Autowired
+	private JdhInsertService jdhService;
 	
 //	@Autowired
 //	BCryptPasswordEncoder bc; // config 내부 bean으로 등록된 bcrypt 가져오기
@@ -55,7 +55,7 @@ public class JdhController {
 		
 		Member m=Member.builder()
 						.memberId("admin")
-						.memberPwd("1234!")
+						.memberPwd("1q2w3e4r%T")
 						.memberName("관리자")
 						.memberBirth("1999-01-01")
 						.memberGender("여")
@@ -64,7 +64,7 @@ public class JdhController {
 						.memberEnrollDate(new Date())
 						.build();
 		
-		Member result=service.jdhInsertTest(m);
+		Member result=jdhService.jdhInsertTest(m);
 		
 		log.debug("dd");
 		

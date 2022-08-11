@@ -17,7 +17,10 @@ import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.member.model.dao.MemberDao;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
@@ -95,7 +98,10 @@ public class MemberServiceImpl implements MemberService {
 		}catch (MessagingException e) { 
 			e.printStackTrace(); 
 		}
-		mailSender.send(mimeMsg); 
+		mailSender.send(mimeMsg);
+		
+		log.debug(key);
+		
 		return key;
 	}
 	
