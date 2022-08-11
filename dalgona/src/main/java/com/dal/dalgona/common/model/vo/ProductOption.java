@@ -29,7 +29,7 @@ public class ProductOption {
 	@GeneratedValue(generator = "seq_option_code", strategy = GenerationType.SEQUENCE)
 	private long optionCode;
 	
-	private String oprionName;
+	private String optionName;
 	
 	private int optionPrice;
 	
