@@ -6,18 +6,18 @@ import lombok.Getter;
 public enum Roles {
 	
 	// spring security에서 ROLE_ 추적
-	ADMIN("ROLE_ADMIN"),
-	USER("ROLE_USER");
+	ADMIN,
+	USER;
 	
-	private final String key;
-
-	
-	Roles(String key) {
-		this.key=key;
-	}
-	
-	public String getKey() {
-		return key;
-	}
+//	private final String key;
+//
+//	
+//	Roles(String key) {
+//		this.key=key;
+//	}
+//	
+//	public String getKey() {
+//		return key;
+//	}
 
 }

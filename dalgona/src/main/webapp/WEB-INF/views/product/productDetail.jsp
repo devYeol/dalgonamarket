@@ -226,11 +226,11 @@
 			            		<tr>
 			            			<td><c:out value="${q.qnaCode }"/></td>
 			            			<td>
-			            				<a href="${path }/qna/qnaView.do?no=${q.qnaCode}">
-			            					<c:out value="${q.qnaContent }"/>
+			            				<a href="${path }/qna/qnaView.do?qnaCode=${q.qnaCode}">
+			            					<c:out value="${q.qnaTitle }"/>
 			            				</a>
 			            			</td>
-			            			<td><c:out value="${q.member }"/></td>
+			            			<td><c:out value="${q.member.memberId }"/></td>
 			            			<td><c:out value="${q.qnaDate }"/></td>		            					            			     			
 			            		</tr>
 			            	</c:forEach>

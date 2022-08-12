@@ -27,7 +27,6 @@ public class Cart {
 	@GeneratedValue(generator="seq_cart_code", strategy=GenerationType.SEQUENCE)
 	private long cartCode;
 	
-	
 	@ManyToOne
 	@JoinColumn(name="memberId")
 	private Member member;

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -144,8 +146,7 @@ public class MemberController {
 	}
 	
 	/* 충열 */
-	
-	@RequestMapping("/member/login")
+	@RequestMapping("/loginpage")
 	public String login() {
 		return "member/login/loginPage";
 	}
@@ -153,8 +154,10 @@ public class MemberController {
 	@RequestMapping(value="/member/loginEnd", method = RequestMethod.POST)
 	public String loginId(Member m,Model model) {
 		
-		Member loginMember=service.login(m);
-
+		Member loginMember=(Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		//Member loginMember=service.login(m);
+		
 		String view="redirect:/";
 		
 		if(loginMember!=null) {
@@ -250,11 +253,6 @@ public class MemberController {
 			model.addAttribute("msg","아이디와 이메일을 다시 확인해주세요.");
 			return "member/login/findPwPage";
 		}else {
-			//System.out.println(adminEmail);
-			//System.out.println(m.getMemberEmail());
-			//System.out.println(s);
-			//model.addAttribute("emailKey",service.findPw(adminEmail,m.getMemberEmail()));
-			 
 			String newPw=service.findPw(adminEmail,m.getMemberEmail());
 			service.findPwChange(m,newPw);
 			model.addAttribute("member",m);
