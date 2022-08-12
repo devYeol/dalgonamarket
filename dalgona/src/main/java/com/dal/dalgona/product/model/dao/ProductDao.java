@@ -19,6 +19,8 @@ public interface ProductDao {
 	
 	int reviewWrite(SqlSession session,Review r);
 	
+	int qnaWrite(SqlSession session,Qna q);
+	
 	
 
 }

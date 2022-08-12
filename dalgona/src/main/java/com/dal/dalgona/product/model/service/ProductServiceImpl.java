@@ -45,6 +45,13 @@ public class ProductServiceImpl implements ProductService {
 		return dao.reviewWrite(session,r);
 	}
 
+	@Override
+	public int qnaWrite(Qna q) {
+		// TODO Auto-generated method stub
+		return dao.qnaWrite(session,q);
+	}
+	
+
 	
 	
 }

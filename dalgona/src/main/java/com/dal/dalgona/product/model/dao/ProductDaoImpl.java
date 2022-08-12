@@ -35,8 +35,16 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public int reviewWrite(SqlSession session, Review r) {
 		// TODO Auto-generated method stub
-		return session.insert("review.insertreview",r);
+		return session.insert("review.insertReview",r);
 	}
+
+	@Override
+	public int qnaWrite(SqlSession session, Qna q) {
+		// TODO Auto-generated method stub
+		return session.insert("qna.insertQna",q);
+	}
+	
+	
 
 
 	

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
@@ -105,12 +106,19 @@ public class ProductController {
 	
 	
 	@RequestMapping("/qna/qnawWriteEnd.do")//
-	public String qnawWriteEnd(Qna q, Model model,HttpSession session){
+	public String qnawWriteEnd(
+			@RequestParam(value="qnaTitle") String qnaTitle,
+			@RequestParam(value="qnaContent") String qnaContent,
+			Model model,HttpSession session){
 		Member m = (Member) session.getAttribute("loginMember");
 		Product p=service.selectProduct(2);
-		log.debug("{}",q);
+		//log.debug("{}",q);
 		log.debug("{}",m);
 		log.debug("{}",p);
+		
+		Qna q=Qna.builder().qnaDate(new Date()).member(m).product(p).qnaContent(qnaContent).qnaTitle(qnaTitle).build();
+		log.debug("{}",q);
+		int result=service.qnaWrite(q);
 		
 		
 		

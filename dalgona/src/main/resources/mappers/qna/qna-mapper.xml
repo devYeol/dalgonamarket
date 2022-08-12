@@ -29,5 +29,8 @@
 		SELECT * FROM QNA 
 	</select>
 	
-	<insert id="insertqna"></insert>
+	<insert id="insertqna" parameterType="qna">
+		INSERT INTO QNA VALUES(SEQ_QAN_CODE.NEXTVAL,#{qnaContent},SYSDATE,
+				#{member1},#{product1},#{qnaTitle})
+	</insert>
 </mapper>

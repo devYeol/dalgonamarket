@@ -17,5 +17,7 @@ public interface ProductService {
 	
 	int reviewWrite(Review r);
 	
+	int qnaWrite(Qna q);
+	
 
 }
