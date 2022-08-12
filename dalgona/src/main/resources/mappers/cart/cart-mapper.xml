@@ -32,25 +32,18 @@
 		<association column="product_code" property="product" resultMap="productMap"/>
 		<association column="member_id" property="member" resultMap="memberMap"/>
 	</resultMap>
-
-	<resultMap type="" id="cartMap">
-		<result column="cart_code" property="cartCode"/>
-		<result column="cart_amount" property="cartAmount"/>
+	
+	<resultMap type="likes" id="likeMap">
+		<result column="likes_code" property="likesCode"/>
 		<association column="product_code" property="product" resultMap="productMap"/>
 		<association column="member_id" property="member" resultMap="memberMap"/>
 	</resultMap>
 	
-	
-	
-
 
 	<select id="selectProduct" parameterType="product"
 		resultMap="productMap">
 		select * from product
 	</select>
-
-	<!-- <select id="cartList" parameterType="product" resultMap="cartMap" > 
-		SELECT * FROM PRODUCT </select> -->
 
 	<select id="cartList" resultMap="cartMap">
 		SELECT *
@@ -88,19 +81,10 @@
 	    AND c.MEMBER_Id =#{memberId}
 	</select>
 
-	<!-- <select id="zzimList" parameterType="product" resultMap="cartMap"> 
-		select * from product </select> -->
-	<select id="zzimList" resultMap="productMap">
-		select * from product
-	</select>
-
 	<select id="orderList" resultMap="productMap">
 		select *
 		from product p ,cart c
 		where 
 		
-		
 	</select>
-	<!-- <select id="orderList" parameterType="product" resultMap="cartMap"> 
-		select * from product </select> -->
 </mapper>

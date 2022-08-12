@@ -13,7 +13,9 @@ public interface MemberService {
 	
 	void cartInsert (Cart c);
 
-	void delete(int cartCode); //선택삭제
+//	void delete(int cartCode); //선택삭제
+
+	long delete(long cartCode);
 	
 	void deleteAll(Member memberId); //전체 삭제
 	

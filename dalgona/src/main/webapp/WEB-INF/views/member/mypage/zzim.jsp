@@ -198,16 +198,16 @@
 		<table style="margin-left: 10; width: 98%;">
 			<tbody>
 				<tr class="payment-tr">
-					<td style="width: 20%;"><input class="check-input"
+					<td style="width: 20%;"><input class="check-input" id="<c:out value="${z.product.productCode }"/>"
 						type="checkbox" style="margin-top: 40;"> <a href="#"
 						style="text-decoration: none;"> <img
-							src="${z.productThumb }"
+							src="${z.product.productThumb }"
 							width="150" height="150" border="1" style="margin-left: 10" />
 					</a></td>
 					<td style="width: 55%"><a href="#"
-						style="color: black; text-decoration: none; font-size: 17"><b><c:out value="${z.productCode }"/></b></a><br><br>
-						<div style="margin-top: 5; font-size: 15px"><c:out value="${z.productName }"/></div><br>
-						<div style="margin-top: 5;"><c:out value="${z.productPrice }원"/></div>
+						style="color: black; text-decoration: none; font-size: 17"></a><br><br>
+						<div style="margin-top: 5; font-size: 15px"><c:out value="${z.product.productName }"/></div><br>
+						<div style="margin-top: 5;"><c:out value="${z.product.productPrice }원"/></div>
 					<td style="padding-left: 140px;">
 						<button type="button" class="btn btn-danger"
 							style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
@@ -240,16 +240,43 @@ $(".check-input").click(function(){
 	$("#selectAll").prop("checked",false)
 })
 
+ // 선택 삭제
+    	$("#selectDelete").click(function(){
+    	if(confirm("삭제 하시겠습니까?")){
+    		
+        const cnt = $("input[name='check']:checked").length;
+        const arr = new Array();
+        $("input[name='check']:checked").each(function() {
+            arr.push($(this).attr('id'));
+        });
+        console.log(cnt);
+        console.log(arr);
+        $.ajax({
+			url:"${path}/member/delete.do",
+			data:{deleteArr:arr},
+			success:data=>{
+				if(data){
+					$("input[name='check']:checked").parents("tr").remove();
+				}
+			}
+		});
+    	}else{
+    		return false;
+    	}
+    })
+    
+    
+    
+        
+        $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
+        	if(confirm("정말로 지우시겠습니까?")){
+        	location.assign="${path}/member/delete.do?cartCode=${c.cartCode}"
+        	}else{
+        		return false
+        	}
+        		
+        })
 
-
-   /* $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
-   	if(confirm("정말로 지우시겠습니까?")){
-   	location.assign="${path}/member/delete.do?cartCode=${c.cartCode}"
-   	}else{
-   		return false
-   	}
-   		
-   }) */
 
 </script>
 

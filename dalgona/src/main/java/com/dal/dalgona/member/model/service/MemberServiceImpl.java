@@ -47,14 +47,19 @@ public class MemberServiceImpl implements MemberService {
 		return dao.zzimList(session,memberId);
 	}
 	@Override
+	public long delete(long cartCode) {
+		return dao.delete(session,cartCode);
+	}
+	
+	@Override
 	public List<Product> orderList(){
 		return dao.orderList(session);
 	}
 	
-	@Override
-	public void delete(int cartCode) { 
-		 dao.delete(session,cartCode);
-	}
+//	@Override
+//	public void delete(int cartCode) { 
+//		 dao.delete(session,cartCode);
+//	}
 
 	public void deleteAll(Member memberId) { 
 		dao.deleteAll(session,memberId);

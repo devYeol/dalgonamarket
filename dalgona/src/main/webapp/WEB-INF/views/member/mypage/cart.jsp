@@ -206,11 +206,10 @@
 
 				<hr>
 					<c:forEach var="c" items="${map.cartList}" varStatus="i">
-						<br>
 						<table style="margin-left: 10; width: 100%;">
 							<tbody>
 								<tr class="payment-tr" name="selectP">
-									<td style="width: 20%;"><input class="check-input" name="check"
+									<td style="width: 20%;"><input class="check-input" name="check" id="<c:out value="${c.cartCode}"/>"
 										type="checkbox" data-cartCode="${c.cartCode }"style="margin-top: 40;"> <a href="#"
 										style="text-decoration: none;"> <img
 											src="${c.product.productThumb }" width="150" height="150"
@@ -352,8 +351,10 @@ $(".btn-cart").click(function() { //쇼핑계속하기
 		orderF.submit();
 	}
     
- /* // 선택 삭제
+  // 선택 삭제
     	$("#selectDelete").click(function(){
+    	if(confirm("삭제 하시겠습니까?")){
+    		
         const cnt = $("input[name='check']:checked").length;
         const arr = new Array();
         $("input[name='check']:checked").each(function() {
@@ -362,7 +363,7 @@ $(".btn-cart").click(function() { //쇼핑계속하기
         console.log(cnt);
         console.log(arr);
         $.ajax({
-			url:"${path}/member/delete.do?cartCode=${c.cartCode}",
+			url:"${path}/member/delete.do",
 			data:{deleteArr:arr},
 			success:data=>{
 				if(data){
@@ -370,16 +371,12 @@ $(".btn-cart").click(function() { //쇼핑계속하기
 				}
 			}
 		});
+    	}else{
+    		return false;
+    	}
     })
-     */
     
     
-           /* $('#selectDelete').click(function(){ //전체삭제
-        	if(confirm("삭제 하시겠습니까?"))
-            location.href="${path}/member/deleteAll.do";
-        }); */
-        
-        
         $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
         	if(confirm("정말로 지우시겠습니까?")){
         	location.assign="${path}/member/delete.do?cartCode=${c.cartCode}"

@@ -17,7 +17,9 @@ public interface MemberDao {
 	
 	void updateCart(SqlSessionTemplate session ,Cart c);
 	
-	void delete(SqlSessionTemplate session,int cartCode);
+//	void delete(SqlSessionTemplate session,int cartCode);
+	
+	long delete(SqlSessionTemplate session,long cartCode);
 
 	void deleteAll(SqlSessionTemplate session,Member MemberId);
 	

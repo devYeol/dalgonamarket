@@ -34,9 +34,14 @@ public class MemberDaoImpl implements MemberDao {
 	public int sumMoney(SqlSessionTemplate session,Member m){
 		return session.selectOne("cart.sumMoney",m);
 	}
+//	@Override
+//	public void delete(SqlSessionTemplate session,int cartCode) {
+//		session.delete("cart.delete",cartCode);
+//	}
+	
 	@Override
-	public void delete(SqlSessionTemplate session,int cartCode) {
-		session.delete("cart.delete",cartCode);
+	public long delete(SqlSessionTemplate session,long cartCode) {
+		return session.delete("cart.delete",cartCode);
 	}
 	
 	@Override
@@ -51,7 +56,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public List<Likes> zzimList(SqlSessionTemplate session,Member memberId){
-		return session.selectList("cart.zzimList",memberId);
+		return session.selectList("likes.zzimList",memberId);
 	}
 //
 	@Override
