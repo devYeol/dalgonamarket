@@ -34,5 +34,8 @@ public interface MemberService {
 	
 	int findPwCheck(Member m)throws Exception;
 	
-	void findPw(String memberId,String memberEmail)throws Exception;
+	String findPw(String senderEmail, String receiver);
+	
+	void findPwChange(Member m, String newPw);
+
 }
