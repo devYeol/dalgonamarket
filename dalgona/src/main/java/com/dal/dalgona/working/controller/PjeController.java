@@ -42,12 +42,13 @@ public class PjeController {
 		mv.setViewName("admin/adminManageMember");
 		return mv;
 	}
-
+	
+	// 회원관리 검색기능
 	@RequestMapping("adminSearchMember.do")
 	public ModelAndView adminSearchMember(ModelAndView mv, 
-			@RequestParam(value = "searchType") String searchType,
-			@RequestParam(value = "keyword") String keyword, 
-			@RequestParam(value = "searchGen") String searchGen,
+			@RequestParam(value = "searchType", defaultValue = "") String searchType,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword, 
+			@RequestParam(value = "searchGen", defaultValue = "") String searchGen,
 			@RequestParam(defaultValue = "1") int cPage, 
 			@RequestParam(defaultValue = "25") int numPerpage) {
 		log.debug(searchType + " " + keyword + " " + searchGen);
@@ -58,8 +59,10 @@ public class PjeController {
 		param.put("cPage", cPage);
 		param.put("numPerpage", numPerpage);
 		List<Member> list=service.searchMembers(param);
-//		mv.addObject("members", list);
-//		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
+//		int totalData=service.searchMembersCount(param);
+//		log.debug(""+totalData);
+		mv.addObject("members", list);
+//		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(totalData, numPerpage, cPage, "adminManageProduct.do"));
 		mv.setViewName("admin/adminManageMember");
 		return mv;
 	}

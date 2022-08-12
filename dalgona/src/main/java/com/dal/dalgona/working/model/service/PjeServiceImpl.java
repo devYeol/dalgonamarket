@@ -34,4 +34,10 @@ public class PjeServiceImpl implements PjeService {
 		return dao.searchMembers(session, param);
 	}
 	
+	@Override
+	public int searchMembersCount(Map<String,Object> param) {
+		// TODO Auto-generated method stub
+		return dao.searchMembersCount(session, param);
+	}
+	
 }

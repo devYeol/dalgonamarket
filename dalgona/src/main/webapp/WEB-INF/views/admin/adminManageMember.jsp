@@ -46,8 +46,8 @@
 						<table>
 							<tr>
 								<div style="padding-left: 42px; padding-bottom: 4px; font-size: 14px;">
-									<label><input type="radio" name="searchType" value="memberName" style="width: 11px; height: 11px;">이름</label> 
-									<label><input type="radio" name="searchType" value="memberId" style="width: 11px; height: 11px; margin-left: 20px;">아이디</label>
+									<label><input type="radio" name="searchType" value="MEMBER_NAME" style="width: 11px; height: 11px;">이름</label> 
+									<label><input type="radio" name="searchType" value="MEMBER_ID" style="width: 11px; height: 11px; margin-left: 20px;">아이디</label>
 								</div>
 							</tr>
 							<tr>
