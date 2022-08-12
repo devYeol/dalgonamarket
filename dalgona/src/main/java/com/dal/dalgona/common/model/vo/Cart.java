@@ -1,5 +1,6 @@
 package com.dal.dalgona.common.model.vo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,6 @@ public class Cart {
 	@Id
 	@GeneratedValue(generator="seq_cart_code", strategy=GenerationType.SEQUENCE)
 	private long cartCode;
-	
 	
 	@ManyToOne
 	@JoinColumn(name="memberId")

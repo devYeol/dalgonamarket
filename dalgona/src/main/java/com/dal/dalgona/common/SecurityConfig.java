@@ -58,8 +58,8 @@ public class SecurityConfig { // Security 설정 클래스
 					.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
 					// localhost에서 리디렉션한 횟수가 너무 많습니다. -> /login 페이지 접근제한 풀지 않으면 뜨는 현상
 					
-//					.antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
-//					.antMatchers("/admin/adminMain.do").hasRole("USER")
+//					.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+//					.antMatchers("/admin/**").hasRole("ADMIN")
 //					.antMatchers("/admin/**").hasAnyRole(Roles.getKey())
 					
 					// 임시로 모든 페이지 보안에서 제외시키기
