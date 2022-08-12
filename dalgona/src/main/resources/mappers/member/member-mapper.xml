@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-	<resultMap type="member" id="memberMap">
-		<id property="memberId" column="member_id"/>
-		<result property="memberPwd" column="member_pwd"/>
-		<result property="memberName" column="member_name"/>
-		<result property="memberBirth" column="member_birth"/>
-		<result property="memberGender" column="member_gender"/>
-		<result property="memberPhone" column="member_phone"/>
-		<result property="memberEmail" column="member_email"/>
-		<result property="memberEnrollDate" column="member_enroll_date"/>
-		<result property="roles" column="roles"/>
-	</resultMap>
-	
-	<select id="selectMember" parameterType="member" resultMap="memberMap">
+   <resultMap type="member" id="memberMap">
+      <id property="memberId" column="member_id"/>
+      <result property="memberPwd" column="member_pwd"/>
+      <result property="memberName" column="member_name"/>
+      <result property="memberBirth" column="member_birth"/>
+      <result property="memberGender" column="member_gender"/>
+      <result property="memberPhone" column="member_phone"/>
+      <result property="memberEmail" column="member_email"/>
+      <result property="memberEnrollDate" column="member_enroll_date"/>
+      <result property="roles" column="roles" typeHandler="roles"/> <!-- roles 핸들러 -->
+   </resultMap>
+   
+   <select id="selectMember" parameterType="member" resultMap="memberMap">
       SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_PWD=#{memberPwd}
     </select>
-	
-	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES(#{memberId},#{memberBirth},#{memberEmail},SYSDATE,#{memberGender},#{memberName},#{memberPhone},#{memberPwd},#{roles.getKey()})
+   
+   <insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER VALUES(#{memberId},#{memberBirth},#{memberEmail},SYSDATE,#{memberGender},#{memberName},#{memberPhone},#{memberPwd},
+		#{roles, typeHandler=roles})
 	</insert>
-	
-	<select id="idCheck" parameterType="string" resultType="integer">
-		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID=#{memberId}
-	</select>
-	
-	<select id="findId" parameterType="member" resultMap="memberMap">
-		SELECT * FROM MEMBER WHERE MEMBER_EMAIL=#{memeberEmail}
-	</select>
-	
-	<select id="findIdCheck" parameterType="string" resultType="int">
-		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_EMAIL=#{memberEmail}
-	</select>
-	
-	<select id="findPwCheck" parameterType="member" resultType="int">
-		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_EMAIL=#{memberEmail}
-	</select>
-	
-	<update id="findPwChange">
-		UPDATE MEMBER SET MEMBER_PWD=#{memberPwd} WHERE MEMBER_ID=#{memberId} AND MEMBER_EMAIL=#{memberEmail}
-	</update>
-	
-	<select id="searchMembers" resultMap="memberMap">
-		SELECT * FROM MEMBER 
-		WHERE 1=1
-		<if test="keyword != null and keyword != ''">
-			AND ${searchType} LIKE '%'||#{keyword}||'%'
-		</if>
-	  	<if test="searchGen != null and searchGen != ''">
-	  		AND MEMBER_GENDER=#{searchGen}
-	  	</if>
-	</select>
-	
-	<select id="searchMembersCount" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER 
-		WHERE 1=1
-		<if test="keyword != null and keyword != ''">
-			AND ${searchType} LIKE '%'||#{keyword}||'%'
-		</if>
-	  	<if test="searchGen != null and searchGen != ''">
-	  		AND MEMBER_GENDER=#{searchGen}
-	  	</if>
-	</select>
+   
+   <select id="idCheck" parameterType="string" resultType="integer">
+      SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID=#{memberId}
+   </select>
+   
+   <select id="findId" parameterType="member" resultMap="memberMap">
+      SELECT * FROM MEMBER WHERE MEMBER_EMAIL=#{memeberEmail}
+   </select>
+   
+   <select id="findIdCheck" parameterType="string" resultType="int">
+      SELECT COUNT(*) FROM MEMBER WHERE MEMBER_EMAIL=#{memberEmail}
+   </select>
+   
+   <select id="findPwCheck" parameterType="member" resultType="int">
+      SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_EMAIL=#{memberEmail}
+   </select>
+   
+   <update id="findPwChange">
+      UPDATE MEMBER SET MEMBER_PWD=#{memberPwd} WHERE MEMBER_ID=#{memberId} AND MEMBER_EMAIL=#{memberEmail}
+   </update>
+   
+   <select id="searchMembers" resultMap="memberMap">
+      SELECT * FROM MEMBER 
+      WHERE 1=1
+      <if test="keyword != null and keyword != ''">
+         AND ${searchType} LIKE '%'||#{keyword}||'%'
+      </if>
+        <if test="searchGen != null and searchGen != ''">
+           AND MEMBER_GENDER=#{searchGen}
+        </if>
+   </select>
+   
+   <select id="searchMembersCount" resultType="_int">
+      SELECT COUNT(*) FROM MEMBER 
+      WHERE 1=1
+      <if test="keyword != null and keyword != ''">
+         AND ${searchType} LIKE '%'||#{keyword}||'%'
+      </if>
+        <if test="searchGen != null and searchGen != ''">
+           AND MEMBER_GENDER=#{searchGen}
+        </if>
+   </select>
 </mapper>

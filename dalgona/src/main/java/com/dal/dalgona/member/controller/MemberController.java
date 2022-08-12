@@ -250,11 +250,6 @@ public class MemberController {
 			model.addAttribute("msg","아이디와 이메일을 다시 확인해주세요.");
 			return "member/login/findPwPage";
 		}else {
-			//System.out.println(adminEmail);
-			//System.out.println(m.getMemberEmail());
-			//System.out.println(s);
-			//model.addAttribute("emailKey",service.findPw(adminEmail,m.getMemberEmail()));
-			 
 			String newPw=service.findPw(adminEmail,m.getMemberEmail());
 			service.findPwChange(m,newPw);
 			model.addAttribute("member",m);

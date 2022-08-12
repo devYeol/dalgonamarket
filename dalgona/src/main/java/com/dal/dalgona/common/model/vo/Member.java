@@ -118,8 +118,10 @@ public class Member implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		
+		// spring security에서 ROLE_ 추적 하기 때문에
+		// enum에서 KEY값 지우고 "ROLE_" +
 		List<GrantedAuthority> auth=new ArrayList();
-		auth.add(new SimpleGrantedAuthority(this.roles.getKey()));
+		auth.add(new SimpleGrantedAuthority("ROLE_"+this.roles.name()));
 		
 		return auth;
 	}
@@ -154,8 +156,6 @@ public class Member implements UserDetails {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 	
 	// 배송주소 양방향
 	//	@OneToMany(mappedBy="memberId")
