@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,6 +43,7 @@ public class Review {
 	
 	private String reviewImage;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date reviewDate;
 	
 	private String reviewReply;

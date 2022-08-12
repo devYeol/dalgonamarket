@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="qna">
+
+	<resultMap type="product" id="productMap">
+		<result property="productCode" column="product_code" />
+		<result property="productAmount" column="product_amount" />
+		<result property="productContent" column="product_content" />
+		<result property="productDate" column="product_date" />
+		<result property="productImage" column="order_image" />
+		<result property="productName" column="product_name" />
+		<result property="productPrice" column="product_price" />
+		<result property="productThumb" column="product_thumb" />
+		<!-- <result property="category" column="category"/> -->
+		<!-- <result property="product" column="category_code"/> -->
+	</resultMap>
+	<resultMap type="member" id="memberMap">
+		<id property="memberId" column="member_id"/>
+		<result property="memberPwd" column="member_pwd"/>
+		<result property="memberName" column="member_name"/>
+		<result property="memberBirth" column="member_birth"/>
+		<result property="memberGender" column="member_gender"/>
+		<result property="memberPhone" column="member_phone"/>
+		<result property="memberEmail" column="member_email"/>
+		<result property="memberEnrollDate" column="member_enroll_date"/>
+		<result property="roles" column="roles"/>
+	</resultMap>
 	<select id="qnaList"  resultType="qna" >
 		SELECT * FROM QNA 
 	</select>
+	
+	<insert id="insertqna"></insert>
 </mapper>

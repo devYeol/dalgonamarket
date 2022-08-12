@@ -36,4 +36,8 @@
 	<select id="findPwCheck" parameterType="member" resultType="int">
 		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_EMAIL=#{memberEmail}
 	</select>
+	
+	<update id="findPwChange">
+		UPDATE MEMBER SET MEMBER_PWD=#{memberPwd} WHERE MEMBER_ID=#{memberId} AND MEMBER_EMAIL=#{memberEmail}
+	</update>
 </mapper>

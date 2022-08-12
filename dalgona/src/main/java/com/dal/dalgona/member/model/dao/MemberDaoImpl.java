@@ -1,6 +1,8 @@
 package com.dal.dalgona.member.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -87,5 +89,15 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int findPwCheck(SqlSessionTemplate session, Member m) {
 		return session.selectOne("member.findPwCheck", m);
+	}
+	
+	@Override
+	public int findPwChange(SqlSessionTemplate session, Member m, String newPw) {
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("memberEmail", m.getMemberEmail());
+		map.put("memberId", m.getMemberId());
+		map.put("memberPwd", newPw);
+		return session.update("member.findPwChange", map);
 	}
 }
