@@ -7,4 +7,5 @@ import com.dal.dalgona.common.model.vo.Member;
 
 public interface PjeService {
 	List<Member> searchMembers(Map<String,Object> param);
+	int searchMembersCount(Map<String,Object> param);
 }

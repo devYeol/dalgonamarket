@@ -1,6 +1,8 @@
 package com.dal.dalgona.member.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,11 @@ public class MemberDaoImpl implements MemberDao {
 //	}
 	
 	@Override
+	public void cartInsert(SqlSessionTemplate session,Cart c) {
+		session.insert("cart.cartInsert",c);
+	}
+	
+	@Override
 	public List<Cart> cartList(SqlSessionTemplate session,Member m){
 		return session.selectList("cart.cartList",m);
 	}
@@ -26,9 +33,19 @@ public class MemberDaoImpl implements MemberDao {
 	public int sumMoney(SqlSessionTemplate session,Member m){
 		return session.selectOne("cart.sumMoney",m);
 	}
+	@Override
+	public void delete(SqlSessionTemplate session,int cartCode) {
+		session.delete("cart.delete",cartCode);
+	}
 	
-	public void delete(SqlSessionTemplate session,long productCode) {
-		session.delete("cart.deletecart",productCode);
+	@Override
+	public void deleteAll(SqlSessionTemplate session ,Member memberId) {
+		session.delete("cart.deleteAll",memberId);
+	}
+
+	@Override
+	public  void updateCart(SqlSessionTemplate session ,Cart c) {
+		session.update("cart.updateCart",c);
 	}
 
 	@Override
@@ -72,5 +89,15 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int findPwCheck(SqlSessionTemplate session, Member m) {
 		return session.selectOne("member.findPwCheck", m);
+	}
+	
+	@Override
+	public int findPwChange(SqlSessionTemplate session, Member m, String newPw) {
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("memberEmail", m.getMemberEmail());
+		map.put("memberId", m.getMemberId());
+		map.put("memberPwd", newPw);
+		return session.update("member.findPwChange", map);
 	}
 }

@@ -174,8 +174,8 @@ public class adminController {
 
 		p.setOptionCode(options);
 
-		log.debug("{}", p);
-		log.debug("{}", options);
+//		log.debug("{}", p);
+//		log.debug("{}", options);
 
 		String oriName = thumbnail.getOriginalFilename();
 
@@ -207,12 +207,12 @@ public class adminController {
 	@RequestMapping("/selectUpdateProduct.do")
 	public String selectUpdateProduct(Long pro, Model model) {
 		// 카테고리 가져오기
-		System.out.println(pro);
+//		System.out.println(pro);
 		Product p = service.selectOneProduct(pro);
 		List<ProductOption> po = service.selectOneOption(p);
 	
-		log.debug("{}", p);
-		log.debug("{}", po);
+//		log.debug("{}", p);
+//		log.debug("{}", po);
 		
 		model.addAttribute("p", p);
 		model.addAttribute("po", po);
@@ -233,16 +233,43 @@ public class adminController {
 //		return mv;
 //	}
 	
-	//상품업데이트
-//	@RequestMapping("/updateProduct.do")
-//	public String updateProduct(@RequestParam(value = "productAmount") int product_Ampont,
-//								@RequestParam(value = "productContent") String product_Content,
-//								@RequestParam(value = "thumbnail") MultipartFile thumbnail,
-//								@RequestParam(value = "detailedImage") MultipartFile detailedImage,
-//								@RequestParam(value = "productPrice") int product_Price,
-//								@RequestParam(value = "productName") String product_Name,
-//								@RequestParam(value = "categoryName") String categoryName, String[] optionName,
-//								int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
-//		return "";
-//	}
+//	상품업데이트
+	@RequestMapping("/updateProduct.do")
+	public String updateProduct(@RequestParam(value = "productCode") long Product_Code , 
+								@RequestParam(value = "productAmount") int product_Ampont,
+								@RequestParam(value = "productContent") String product_Content,
+								@RequestParam(value = "thumbnail") MultipartFile thumbnail,
+								@RequestParam(value = "detailedImage") MultipartFile detailedImage,
+								@RequestParam(value = "productPrice") int product_Price,
+								@RequestParam(value = "productName") String product_Name,
+								@RequestParam(value = "categoryName") String categoryName, long[] optionCode, String[] optionName,
+								int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
+//		System.out.println(pro);
+		Product po = Product.builder().productCode(Product_Code).productAmount(product_Ampont).productContent(product_Content)
+				.productPrice(product_Price).productName(product_Name)
+				.productDate(new Date()).categoryName(categoryName).build();
+		
+		List<ProductOption> option = new ArrayList();
+		// option을 for문돌려 컬럼안에 집어넣음
+		for (int i = 0; i < optionName.length; i++) {
+			option.add(
+					ProductOption.builder().product(po).optionCode(optionCode[i]).optionName(optionName[i]).optionPrice(optionPrice[i]).build());
+		}
+		
+		log.debug("option : ",option);
+		log.debug("{}",option);
+		po.setOptionCode(option);
+		log.debug("{}",po);
+		
+		
+		Product p = service.updateProduct(po);
+		List<ProductOption> uo = service.updateOption(p); 
+		
+//		log.debug("{}",uo);
+		log.debug("{}",p);
+
+		
+		log.debug("{}",product_Name);
+		return "admin/adminManageProduct";
+	}
 }

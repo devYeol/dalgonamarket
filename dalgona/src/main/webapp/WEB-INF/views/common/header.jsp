@@ -126,7 +126,7 @@
 								class="nav-link" style="color: gray">ADMIN</a></li>
 							<li class="nav-item"><a href="${path }/member/mypage/zzim"
 								class="nav-link" style="color: red">CUSTOMER</a></li>
-							<li class="nav-item"><a href="#" class="nav-link">SHOP</a></li>
+							<li class="nav-item"><a href="${path}/product/productList" class="nav-link">SHOP</a></li>
 							<li class="nav-item"><a href="${path }/member/mypage/mypageMain" class="nav-link">EVENT</a></li>
 						</ul>
 					</div>

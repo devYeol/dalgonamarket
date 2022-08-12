@@ -10,7 +10,8 @@
 <section id="content">
 	<div class="contents">
 			<div class="contentstitle">상품수정</div>
-		<form action="${path }/admin/updatetProduct.do" method="post" enctype="multipart/form-data">
+		<form action="${path }/admin/updateProduct.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="productCode" value="<c:out value="${p.productCode }"/>">
 			<div class="enrolltablediv">
 				<table class="enrolltable">
 					<tr>
@@ -44,6 +45,7 @@
 							</div>
 							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
 								<div>
+									<input type="hidden" name="optionCode" value="<c:out value="${option.optionCode }"/>">
 									<input class="adminin" name="optionName" type="text"
 									value="<c:out value="${option.optionName }"/> ">
 									<input class="adminin" name="optionPrice" type="number" min="1000"

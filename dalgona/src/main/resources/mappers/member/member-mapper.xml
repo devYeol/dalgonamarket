@@ -37,4 +37,30 @@
 	<select id="findPwCheck" parameterType="member" resultType="int">
 		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_EMAIL=#{memberEmail}
 	</select>
+	
+	<update id="findPwChange">
+		UPDATE MEMBER SET MEMBER_PWD=#{memberPwd} WHERE MEMBER_ID=#{memberId} AND MEMBER_EMAIL=#{memberEmail}
+	</update>
+	
+	<select id="searchMembers" resultMap="memberMap">
+		SELECT * FROM MEMBER 
+		WHERE 1=1
+		<if test="keyword != null and keyword != ''">
+			AND ${searchType} LIKE '%'||#{keyword}||'%'
+		</if>
+	  	<if test="searchGen != null and searchGen != ''">
+	  		AND MEMBER_GENDER=#{searchGen}
+	  	</if>
+	</select>
+	
+	<select id="searchMembersCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER 
+		WHERE 1=1
+		<if test="keyword != null and keyword != ''">
+			AND ${searchType} LIKE '%'||#{keyword}||'%'
+		</if>
+	  	<if test="searchGen != null and searchGen != ''">
+	  		AND MEMBER_GENDER=#{searchGen}
+	  	</if>
+	</select>
 </mapper>

@@ -18,7 +18,13 @@ public class PjeDaoImpl implements PjeDao {
 		int offSet=(int)param.get("cPage");
 		int limit=(int)param.get("numPerpage");
 		
-		return session.selectList("member.searchMembers",null,new RowBounds((offSet-1)*limit,limit));
+		return session.selectList("member.searchMembers",param,new RowBounds((offSet-1)*limit,limit));
+	}
+
+	@Override
+	public int searchMembersCount(SqlSessionTemplate session, Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.searchMembersCount",param);
 	}
 
 }

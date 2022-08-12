@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +32,7 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+
 	
 	@Value(value = "${spring.mail.username}")
 	private String adminEmail;
@@ -38,12 +41,25 @@ public class MemberController {
 	public String mypageMain() {
 		return "member/mypage/mypageMain";
 	}
-	
-//	@RequestMapping
-//	public String getCart(Model mo ) {
-//		List<Cart> getCart=service.getCart();
-//		return "member/mypage/cart";
-//	}
+
+	@GetMapping("/member/mypage/cartInsert")
+	public String cartInsert(@ModelAttribute Cart c,HttpSession session) {
+		
+		Member memberId = (Member) session.getAttribute("loginMember");
+
+		if(memberId==null) { 
+			 
+			 //로그인하지 않은 상태이면 로그인 화면으로 이동
+			 
+        return "redirect:member/login/loginPage";
+		}else {
+			
+		c.setMember(memberId);
+		service.cartInsert(c);
+		
+		return "redirect:/member/mypage/cart";
+		}
+	}
 	
 	
 	@RequestMapping("/member/mypage/cart") // 장바구니
@@ -72,14 +88,28 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping("/member/delete.do") //선택삭제
-	 public String delete(@RequestParam long productCode) {
-       service.delete(productCode);
+	@RequestMapping("/member/delete.do") //개별 삭제(한 개 row만 삭제
+	 public String delete(@RequestParam int cartCode) {
+       service.delete(cartCode);
         return "redirect:/member/mypage/cart";
     }
+	@RequestMapping("/member/deleteAll.do") //장바구니 전체 삭제
+	public String deleteAll(HttpSession session) {
+		Member memberId = (Member) session.getAttribute("loginMember");
+		if(memberId !=null) {
+		service.deleteAll(memberId);
+		}
+		return "redirect:/member/mypage/cart";
+	}
 
 	
-
+	@PostMapping("/member/payment/insert") //장바구니에서 결제페이지 이동
+	public String paymentInsert(Product product,HttpSession session,Model mo) {
+		List<Product> orderList = service.orderList();
+		mo.addAttribute("orderList",orderList);
+		return "member/mypage/productOrderList";
+	}
+	
 	@GetMapping("/member/mypage/productOrderList") //구매내역
 	public String productOrder(Model mo) {
 		List<Product> orderList = service.orderList();
@@ -220,7 +250,8 @@ public class MemberController {
 			model.addAttribute("msg","아이디와 이메일을 다시 확인해주세요.");
 			return "member/login/findPwPage";
 		}else {
-			service.findPw(m.getMemberId(),m.getMemberEmail());
+			String newPw=service.findPw(adminEmail,m.getMemberEmail());
+			service.findPwChange(m,newPw);
 			model.addAttribute("member",m);
 			
 			return "member/login/findPwEnd";

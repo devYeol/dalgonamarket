@@ -36,6 +36,7 @@ public class Cart {
 	@JoinColumn(name="productCode")
 	private Product product;
 	
+	@Column (columnDefinition = "NUMBER default 0")
 	private long cartAmount;
 
 }
