@@ -13,11 +13,13 @@ public interface ProductService {
 	
 	List<Review> reviewList();
 	
-	List<Qna> qnaList();
+	List<Qna> qnaList(long productCode);
 	
 	int reviewWrite(Review r);
 	
 	int qnaWrite(Qna q);
+	
+	Qna qnaSelectOne(long qnaCode);
 	
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
@@ -37,9 +38,13 @@ public class ProductController {
 	public String storeDetail(@PathVariable long productCode, Model model) {	
 		Product p=service.selectProduct(productCode);
 		List<Review> review=service.reviewList();
-		List<Qna> qna=service.qnaList();
+		List<Qna> qna=service.qnaList(productCode);
+		
+		log.debug("{}",qna);
 		model.addAttribute("pro",p);
 		model.addAttribute("review",review);
+		model.addAttribute("qna",qna);
+		
 		return "product/productDetail";
 	}
 	
@@ -111,21 +116,31 @@ public class ProductController {
 			@RequestParam(value="qnaContent") String qnaContent,
 			Model model,HttpSession session){
 		Member m = (Member) session.getAttribute("loginMember");
-		Product p=service.selectProduct(2);
-		//log.debug("{}",q);
-		log.debug("{}",m);
-		log.debug("{}",p);
+		Product p=service.selectProduct(2);	
+		String msg="";
+		String loc="";
+		if(m !=null) {
+			Qna q=Qna.builder().qnaDate(new Date()).member(m).product(p).qnaContent(qnaContent).qnaTitle(qnaTitle).build();			
+			int result=service.qnaWrite(q);
+			msg="등록완료";
+			loc="/product/productDetail/"+p.getProductCode();
+		}else {			
+			msg="등록실패";	
+			loc="/product/productDetail/"+p.getProductCode();		
+		}
 		
-		Qna q=Qna.builder().qnaDate(new Date()).member(m).product(p).qnaContent(qnaContent).qnaTitle(qnaTitle).build();
-		log.debug("{}",q);
-		int result=service.qnaWrite(q);
-		
-		
-		
-		
-		
-		
-		return "redirect:/product/productDetail/2";
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+			
+		return "common/msg";
+	}
+	@RequestMapping("/qna/qnaView.do")
+	public ModelAndView qnaView(long qnaCode, ModelAndView mv) {
+		Qna q=service.qnaSelectOne(qnaCode);
+		System.out.println(q);
+		mv.addObject("qna",service.qnaSelectOne(qnaCode));
+		mv.setViewName("product/qnaView");
+		return mv;
 	}
 	
 	

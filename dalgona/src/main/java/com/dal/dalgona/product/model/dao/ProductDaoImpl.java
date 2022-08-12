@@ -27,9 +27,9 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Qna> qnaList(SqlSession session) {
+	public List<Qna> qnaList(SqlSession session,long productCode) {
 		// TODO Auto-generated method stub
-		return session.selectList("qna.qnaList");
+		return session.selectList("qna.qnaList",productCode);
 	}
 
 	@Override
@@ -43,6 +43,13 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return session.insert("qna.insertQna",q);
 	}
+
+	@Override
+	public Qna qnaSelectOne(SqlSession session, long qnaCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("qna.selectQna",qnaCode);
+	}
+	
 	
 	
 

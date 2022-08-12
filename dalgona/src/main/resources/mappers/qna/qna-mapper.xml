@@ -11,8 +11,6 @@
 		<result property="productName" column="product_name" />
 		<result property="productPrice" column="product_price" />
 		<result property="productThumb" column="product_thumb" />
-		<!-- <result property="category" column="category"/> -->
-		<!-- <result property="product" column="category_code"/> -->
 	</resultMap>
 	<resultMap type="member" id="memberMap">
 		<id property="memberId" column="member_id"/>
@@ -25,12 +23,26 @@
 		<result property="memberEnrollDate" column="member_enroll_date"/>
 		<result property="roles" column="roles"/>
 	</resultMap>
-	<select id="qnaList"  resultType="qna" >
-		SELECT * FROM QNA 
+	
+	<resultMap type="qna" id="qnaMap">
+		<result column="qna_code" property="qnaCode"/>
+		<result column="qna_title" property="qnaTitle"/>
+		<result column="qna_content" property="qnaContent"/>
+		<result column="qna_date" property="qnaDate"/>
+	
+		<association column="member_id" property="member" resultMap="memberMap"/>
+		<association column="product_code" property="product" resultMap="productMap"/>
+	</resultMap>
+	<select id="qnaList" parameterType="qna" resultMap="qnaMap">
+		SELECT * FROM QNA q,MEMBER m, PRODUCT p WHERE q.PRODUCT_CODE=#{productCode} 		
 	</select>
 	
-	<insert id="insertqna" parameterType="qna">
-		INSERT INTO QNA VALUES(SEQ_QAN_CODE.NEXTVAL,#{qnaContent},SYSDATE,
-				#{member1},#{product1},#{qnaTitle})
+	<insert id="insertQna" parameterType="qna">
+		INSERT INTO QNA VALUES(SEQ_QNA_CODE.NEXTVAL,#{qnaContent},SYSDATE,
+				#{member.memberId},#{product.productCode},#{qnaTitle})
 	</insert>
+	<select id="selectQna" parameterType="_long" resultMap="qnaMap">
+		SELECT * FROM QNA WHERE QNA_CODE=#{qnaCode} 		
+	</select>
+	
 </mapper>
