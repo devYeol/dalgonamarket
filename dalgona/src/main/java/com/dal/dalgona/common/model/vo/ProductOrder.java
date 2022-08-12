@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -39,6 +41,7 @@ public class ProductOrder {
 	
 	private String orderStatus; //주문상태 (배송 대기/ 중 / 배송완료)
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderDate; //주문날짜
 	
 //	private String impUid; // 아임포트 결제번호 임시주석

@@ -15,9 +15,9 @@
 
 <div id="board-container">
         <form name="boardFrm" action="${path }/qna/qnawWriteEnd.do" 
-        method="post" enctype="multipart/form-data" >
-            <input type="text" class="form-control" placeholder="제목" name="qnaTitle" id="boardTitle" required>
-            <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="qnaWriter" value="${loginMember.memberId}" readonly required>           
+        method="post" enctype="multipart/form-data" >           	 
+            <input type="text" class="form-control" placeholder="제목" name="qnaTitle" id="qnaTitle" required>
+            <input type="text" class="form-control" placeholder="아이디 (4글자이상)"  value="${loginMember.memberId}" readonly required>           
             <textarea class="form-control" name="qnaContent" placeholder="내용" required></textarea>
             <br />
             <input type="submit" class="btn btn-outline-success" value="저장" >

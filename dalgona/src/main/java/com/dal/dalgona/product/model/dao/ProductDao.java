@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.Qna;
 import com.dal.dalgona.common.model.vo.Review;
@@ -17,5 +18,7 @@ public interface ProductDao {
 	List<Qna> qnaList(SqlSession session);
 	
 	int reviewWrite(SqlSession session,Review r);
+	
+	
 
 }
