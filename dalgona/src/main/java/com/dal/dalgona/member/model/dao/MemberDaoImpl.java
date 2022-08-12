@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 
@@ -49,8 +50,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<Product> zzimList(SqlSessionTemplate session){
-		return session.selectList("cart.zzimList");
+	public List<Likes> zzimList(SqlSessionTemplate session,Member memberId){
+		return session.selectList("cart.zzimList",memberId);
 	}
 //
 	@Override

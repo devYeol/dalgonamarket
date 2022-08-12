@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.member.model.dao.MemberDao;
@@ -42,8 +43,8 @@ public class MemberServiceImpl implements MemberService {
 		return dao.cartList(session,m);
 	}
 	@Override
-	public List<Product> zzimList(){
-		return dao.zzimList(session);
+	public List<Likes> zzimList(Member memberId){
+		return dao.zzimList(session,memberId);
 	}
 	@Override
 	public List<Product> orderList(){

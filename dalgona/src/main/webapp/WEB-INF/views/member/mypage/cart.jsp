@@ -199,7 +199,7 @@
 								<div style="margin-left: 10">전체선택</div>
 							</div>
 							<button type="button" class="btn-delete" id="selectDelete"
-								name="cartCode" style="margin-right: 10">선택삭제</button>
+								name="cartCode" onclick=""style="margin-right: 10">선택삭제</button>
 						</div>
 					</div>
 				</div>
@@ -210,7 +210,7 @@
 						<table style="margin-left: 10; width: 100%;">
 							<tbody>
 								<tr class="payment-tr" name="selectP">
-									<td style="width: 20%;"><input class="check-input" name="opnum"
+									<td style="width: 20%;"><input class="check-input" name="check"
 										type="checkbox" data-cartCode="${c.cartCode }"style="margin-top: 40;"> <a href="#"
 										style="text-decoration: none;"> <img
 											src="${c.product.productThumb }" width="150" height="150"
@@ -352,8 +352,26 @@ $(".btn-cart").click(function() { //쇼핑계속하기
 		orderF.submit();
 	}
     
-    
-    
+ /* // 선택 삭제
+    	$("#selectDelete").click(function(){
+        const cnt = $("input[name='check']:checked").length;
+        const arr = new Array();
+        $("input[name='check']:checked").each(function() {
+            arr.push($(this).attr('id'));
+        });
+        console.log(cnt);
+        console.log(arr);
+        $.ajax({
+			url:"${path}/member/delete.do?cartCode=${c.cartCode}",
+			data:{deleteArr:arr},
+			success:data=>{
+				if(data){
+					$("input[name='check']:checked").parents("tr").remove();
+				}
+			}
+		});
+    })
+     */
     
     
            /* $('#selectDelete').click(function(){ //전체삭제

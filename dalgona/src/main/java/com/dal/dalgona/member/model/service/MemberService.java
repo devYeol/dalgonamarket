@@ -3,6 +3,7 @@ package com.dal.dalgona.member.model.service;
 import java.util.List;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 
@@ -18,7 +19,7 @@ public interface MemberService {
 	
 	int sumMoney(Member m); //총 금액 
 
-	List<Product> zzimList();
+	List<Likes> zzimList(Member memberId);
 
 	List<Product> orderList();
 

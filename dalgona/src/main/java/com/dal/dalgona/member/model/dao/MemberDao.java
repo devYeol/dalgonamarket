@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 
@@ -22,7 +23,7 @@ public interface MemberDao {
 	
 	int sumMoney(SqlSessionTemplate session,Member m );
 
-	List<Product> zzimList(SqlSessionTemplate session );
+	List<Likes> zzimList(SqlSessionTemplate session ,Member memberId);
 
 	List<Product> orderList(SqlSessionTemplate session );
 	

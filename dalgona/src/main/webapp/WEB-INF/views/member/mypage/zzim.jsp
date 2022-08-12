@@ -201,7 +201,7 @@
 					<td style="width: 20%;"><input class="check-input"
 						type="checkbox" style="margin-top: 40;"> <a href="#"
 						style="text-decoration: none;"> <img
-							src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg"
+							src="${z.productThumb }"
 							width="150" height="150" border="1" style="margin-left: 10" />
 					</a></td>
 					<td style="width: 55%"><a href="#"
