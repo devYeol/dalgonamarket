@@ -13,6 +13,11 @@ import com.dal.dalgona.common.model.vo.Review;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
+	@Override
+	public List<Product> selectProducts(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("product.selectProducts");
+	}
 	
 	@Override
 	public Product selectProduct(SqlSession session,long productCode) {
@@ -27,18 +32,27 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Qna> qnaList(SqlSession session) {
+	public List<Qna> qnaList(SqlSession session,long productCode) {
 		// TODO Auto-generated method stub
-		return session.selectList("qna.qnaList");
+		return session.selectList("qna.qnaList",productCode);
 	}
 
 	@Override
 	public int reviewWrite(SqlSession session, Review r) {
 		// TODO Auto-generated method stub
-		return session.insert("review.insertreview",r);
+		return session.insert("review.insertReview",r);
 	}
 
+	@Override
+	public int qnaWrite(SqlSession session, Qna q) {
+		// TODO Auto-generated method stub
+		return session.insert("qna.insertQna",q);
+	}
 
-	
+	@Override
+	public Qna qnaSelectOne(SqlSession session, long qnaCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("qna.selectQna",qnaCode);
+	}
 	
 }

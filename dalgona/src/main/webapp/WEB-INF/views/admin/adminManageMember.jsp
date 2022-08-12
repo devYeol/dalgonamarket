@@ -42,11 +42,11 @@
 			<div class="searchdiv2">
 				<div style="color: #808080; font-size: 30px; font-weight: border;">회원검색</div>
 				<div>
-					<form action="${path}/admin/adminSearchMember.do">
+					<form method="post" action="${path}/admin/adminSearchMember.do">
 						<table>
 							<tr>
 								<div style="padding-left: 42px; padding-bottom: 4px; font-size: 14px;">
-									<label><input type="radio" name="searchType" value="MEMBER_NAME" style="width: 11px; height: 11px;">이름</label> 
+									<label><input type="radio" name="searchType" value="MEMBER_NAME" style="width: 11px; height: 11px;" checked>이름</label> 
 									<label><input type="radio" name="searchType" value="MEMBER_ID" style="width: 11px; height: 11px; margin-left: 20px;">아이디</label>
 								</div>
 							</tr>
@@ -56,7 +56,7 @@
 										<img src="${path}/resources/images/glass.png" style="width: 24px; height: 24px">
 									</div>
 									<div>
-										<input type="text" name="keyword" class="search" style="width: 300px;" placeholder="검색어를 입력하세요">
+										<input type="text" name="keyword" class="search" style="width: 300px;" placeholder="검색어를 입력하세요" value="${keyword}">
 									</div>
 									<div style="padding-left: 7px;">
 										<input type="submit" value="검색" class="adminbt" style="width: 60px; height: 32px; background-color: #707070;">
@@ -65,7 +65,7 @@
 							</tr>
 							<tr>
 								<div style="padding-left: 44px; padding-top: 4px; font-size: 12px;">
-									<label><input type="radio" name="searchGen" value="" style="width: 11px; height: 11px;">전체</label> 
+									<label><input type="radio" name="searchGen" value="" style="width: 11px; height: 11px;" checked>전체</label> 
 									<label><input type="radio" name="searchGen" value="남" style="width: 11px; height: 11px; margin-left: 10px;">남</label> 
 									<label><input type="radio" name="searchGen" value="여" style="width: 11px; height: 11px; margin-left: 10px;">여</label>
 								</div>
@@ -89,8 +89,7 @@
 					<c:if test="${not empty members}">
 						<c:forEach var="m" items="${members}">
 							<tr>
-								<td><input type="checkbox"
-									style="width: 15px; height: 15px;"></td>
+								<td><input type="checkbox" style="width: 15px; height: 15px;"></td>
 								<td><c:out value="${m.memberName}" /></td>
 								<td><c:out value="${m.memberId}" /></td>
 								<td><c:out value="${m.memberGender}" /></td>
@@ -99,7 +98,6 @@
 								<td><c:out value="${m.memberEnrollDate}" /></td>
 								<td>
 									<button class="adminbt" style="width: 80px; background-color: #6FB67F;">수정</button>
-
 								</td>
 								<td>
 									<button class="adminbt" id="" name="" style="width: 80px; background-color: #D56B5A;">삭제</button>
@@ -120,4 +118,8 @@
 		</div>
 		<!-- end of contents -->
 </body>
+<script>
+	$("input:radio[name='searchType'][value='${searchType}']").prop('checked',true);
+	$("input:radio[name='searchGen'][value='${searchGen}']").prop('checked',true);
+</script>
 </html>
