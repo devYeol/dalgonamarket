@@ -11,6 +11,6 @@
 		<typeAlias type="com.dal.dalgona.common.model.vo.Product" alias="product"/>
 		<typeAlias type="com.dal.dalgona.common.model.vo.Review" alias="review"/>
 		<typeAlias type="com.dal.dalgona.common.model.vo.Qna" alias="qna"/>
-		<typeAlias type="com.dal.dalgona.common.RolesTypeHandler" alias="roles"/>
+		<typeAlias type="com.dal.dalgona.common.RolesTypeHandler" alias="roles"/> <!-- TypeHandler -->
 	</typeAliases>
 </configuration>
