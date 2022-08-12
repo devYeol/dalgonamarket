@@ -11,13 +11,11 @@ public interface adminService {
 	
 	List<ProductOption> insertProduct(List<ProductOption> options); 
 	
-//	Category selectCategory(String categoryName);
-//	
-//	Category insertCategory(Category cate);
-	
 	Product selectOneProduct(Long pro);
 	
-//	Category selectOneCate(Product p);
-	
 	List<ProductOption> selectOneOption(Product p);
+	
+	Product updateProduct(Product po);
+	
+	List<ProductOption> updateOption(Product p);
 }
