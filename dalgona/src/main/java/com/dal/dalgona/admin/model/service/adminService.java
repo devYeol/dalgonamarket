@@ -17,5 +17,5 @@ public interface adminService {
 	
 	Product updateProduct(Product po);
 	
-	List<ProductOption> updateOption(Product p);
+	List<ProductOption> updateOption(List<ProductOption> list);
 }

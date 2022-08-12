@@ -9,11 +9,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -117,8 +119,8 @@ public class adminController {
 	@RequestMapping("/insertProduct.do")
 	public String insertProduct(@RequestParam(value = "productAmount") int product_Ampont,
 								@RequestParam(value = "productContent") String product_Content,
-								@RequestParam(value = "thumbnail") MultipartFile thumbnail,
-								@RequestParam(value = "detailedImage") MultipartFile detailedImage,
+								@RequestParam(value = "thumbnail") MultipartFile thumbnail, 
+								@RequestParam(value = "detailedImage") MultipartFile detailedImage, 
 								@RequestParam(value = "productPrice") int product_Price,
 								@RequestParam(value = "productName") String product_Name,
 								@RequestParam(value = "categoryName") String categoryName, String[] optionName,
@@ -197,21 +199,14 @@ public class adminController {
 		return "common/msg";
 	}
 
-//		@GetMapping("/admin/adminManageProduct.do")
-//		public String productList(Model model) {
-//				List<Product> result = service.productList();
-//				model.addAttribute("pro",result);
-//			return "admin/adminManageProduct";
-//		}
-
 	@RequestMapping("/selectUpdateProduct.do")
-	public String selectUpdateProduct(Long pro, Model model) {
+	public String selectUpdateProduct(long pro, Model model) {
 		// 카테고리 가져오기
 //		System.out.println(pro);
 		Product p = service.selectOneProduct(pro);
 		List<ProductOption> po = service.selectOneOption(p);
 	
-//		log.debug("{}", p);
+		log.debug("{}", p);
 //		log.debug("{}", po);
 		
 		model.addAttribute("p", p);
@@ -220,35 +215,43 @@ public class adminController {
 		return "admin/selectUpdateProduct";
 	}
 	
-	// 멤버관련
-//	@RequestMapping("adminManageMember.do")
-//	public ModelAndView adminManageMember(ModelAndView mv,
-//			@RequestParam(defaultValue = "1") int cPage,
-//			@RequestParam(defaultValue = "25") int numPerpage) {
-//		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "memberEnrollDate"));
-//		Page<Member> list = service.selectMembers(pagerequest);
-//		mv.addObject("members", list.getContent());
-//		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageMember.do"));
-//		mv.setViewName("admin/adminManageMember");
-//		return mv;
-//	}
-	
 //	상품업데이트
 	@RequestMapping("/updateProduct.do")
 	public String updateProduct(@RequestParam(value = "productCode") long Product_Code , 
 								@RequestParam(value = "productAmount") int product_Ampont,
 								@RequestParam(value = "productContent") String product_Content,
-								@RequestParam(value = "thumbnail") MultipartFile thumbnail,
-								@RequestParam(value = "detailedImage") MultipartFile detailedImage,
+								@RequestParam(value = "beforeThumbnail") String beforeThumbnail,
+								@RequestParam(value = "beforedetailedImage") String beforedetailedImage, //이전 썸네일이미지,상세이미지 
+								@RequestParam(value = "thumbnail" ,required = false ) MultipartFile thumbnail,//업데이트 될 썸네일이미지
+								@RequestParam(value = "detailedImage" ,required = false ) MultipartFile detailedImage, //업데이트 될 상세이미지
 								@RequestParam(value = "productPrice") int product_Price,
 								@RequestParam(value = "productName") String product_Name,
 								@RequestParam(value = "categoryName") String categoryName, long[] optionCode, String[] optionName,
 								int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
-//		System.out.println(pro);
+		
+		
 		Product po = Product.builder().productCode(Product_Code).productAmount(product_Ampont).productContent(product_Content)
 				.productPrice(product_Price).productName(product_Name)
 				.productDate(new Date()).categoryName(categoryName).build();
+//		.productThumb().productImage()
+		//경로에 있는 이미지 지우고
+		//String path = rs.getServletContext().getRealPath("/resources/upload/product/");
 		
+		File f = new File(beforeThumbnail); //
+		
+		File f2 = new File(beforedetailedImage);
+		
+		if(f.exists()) f.delete();
+		//db업데이트시키고
+//		if(개별수정) {
+//			
+//		}
+//		else {
+//			//둘다 들어왔을떄 db update
+//		}
+		
+		//경로에 업데이트시킨 이미지 추가
+
 		List<ProductOption> option = new ArrayList();
 		// option을 for문돌려 컬럼안에 집어넣음
 		for (int i = 0; i < optionName.length; i++) {
@@ -263,7 +266,7 @@ public class adminController {
 		
 		
 		Product p = service.updateProduct(po);
-		List<ProductOption> uo = service.updateOption(p); 
+		List<ProductOption> uo = service.updateOption(option); 
 		
 //		log.debug("{}",uo);
 		log.debug("{}",p);

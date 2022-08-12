@@ -86,8 +86,8 @@ public class adminServiceImpl implements adminService{
 	}
 
 	@Override
-	public List<ProductOption> updateOption(Product p) {
-		List<ProductOption> optionUpdate = optionDao.save(p);
+	public List<ProductOption> updateOption(List<ProductOption> list) {
+		List<ProductOption> optionUpdate = optionDao.saveAll(list);
 		return optionUpdate;
 	}
 	
