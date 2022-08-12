@@ -9,8 +9,12 @@ import com.dal.dalgona.common.model.vo.Product;
 public interface MemberService {
 
 	List<Cart> cartList(Member m); 
+	
+	void cartInsert (Cart c);
 
-	void delete(long productCode);
+	void delete(int cartCode); //선택삭제
+	
+	void deleteAll(Member memberId); //전체 삭제
 	
 	int sumMoney(Member m); //총 금액 
 
@@ -34,5 +38,8 @@ public interface MemberService {
 	
 	int findPwCheck(Member m)throws Exception;
 	
-	void findPw(String memberId,String memberEmail)throws Exception;
+	String findPw(String senderEmail, String receiver);
+	
+	void findPwChange(Member m, String newPw);
+
 }

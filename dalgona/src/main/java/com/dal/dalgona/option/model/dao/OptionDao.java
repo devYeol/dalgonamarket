@@ -12,4 +12,8 @@ import com.dal.dalgona.common.model.vo.ProductOption;
 public interface OptionDao extends JpaRepository<ProductOption, Long> {
 
 	List<ProductOption> findByProduct(Product p);
+	
+	List<ProductOption> save(Product p);
+	
+	
 }

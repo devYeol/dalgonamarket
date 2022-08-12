@@ -1,6 +1,9 @@
 package com.dal.dalgona.product.controller;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,12 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.Qna;
 import com.dal.dalgona.common.model.vo.Review;
 import com.dal.dalgona.product.model.service.ProductService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class ProductController {
 	
 	@Autowired
@@ -98,11 +105,19 @@ public class ProductController {
 	
 	
 	@RequestMapping("/qna/qnawWriteEnd.do")//
-	public String qnawWriteEnd(Qna q){
+	public String qnawWriteEnd(Qna q, Model model,HttpSession session){
+		Member m = (Member) session.getAttribute("loginMember");
+		Product p=service.selectProduct(2);
+		log.debug("{}",q);
+		log.debug("{}",m);
+		log.debug("{}",p);
 		
 		
-	
-		return "product/productDetail";
+		
+		
+		
+		
+		return "redirect:/product/productDetail/2";
 	}
 	
 	

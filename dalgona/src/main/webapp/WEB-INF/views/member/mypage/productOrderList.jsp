@@ -94,9 +94,11 @@
 	color: #fff;
 }
 
-/* #checkboxNoLabel{
-	margin-left: 100px;
-} */
+.check-input {
+	border-radius: 0.25em;
+	width: 16;
+	height: 16;
+}
 .btn-delete {
 	width: 100px;
 	height: 35px;
@@ -288,7 +290,7 @@ img {
 									style="padding-right: 215px; margin-right: 15px; height: 160;">
 									<div class="check-itembox">
 										<div class="check-item">
-											<input class="form-check-input" type="checkbox" value="">
+											<input class="check-input" type="checkbox" value="">
 										</div>
 										<div>
 											<img
@@ -330,29 +332,26 @@ img {
 </section>
 
 <script>
-	$(document).ready(function() {
-		//체크박스 전체 선택&해제
-		$('#selectAll').click(function() {
-			if ($("#selectAll").prop("checked")) {
-				$("input[type=checkbox]").prop("checked", true);
-			} else {
-				$("input[type=checkbox]").prop("checked", false);
-			}
-		});
+//체크박스 전체 선택&해제
+$('#selectAll').click(function(){
+	if($("#selectAll").prop("checked")){
+        $(".check-input").prop("checked",true); 
+    }else{
+        $(".check-input").prop("checked",false); 
+    }
+});
 
-		$('#selectDelete').click(function() {
-			if (confirm("삭제하시겠습니까?")) {
-				$("input[name=selectP]:checked").each(function() {
-					var tr_value = $(this).val();
-					var tr = $("tr[data-tr_value='" + tr_value + "']");
-					tr.remove();
-				});
-			} else {
-				return false;
-			}
-		});
+$(".check-input").click(function(){
+	$("#selectAll").prop("chcked",false);
+})
 
-	});
+$(".check-input").click(function(){
+	$("#selectAll").prop("checked",false)
+})
+
+
+
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

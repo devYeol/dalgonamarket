@@ -212,7 +212,7 @@
 						<button type="button" class="btn btn-danger"
 							style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
 					</td>
-					<div class="close" style="float: right; margin-bottom: 10px;"></div>
+					<div class="close" id="close" style="float: right; margin-bottom: 10px;"></div>
 				</tr>
 			</tbody>
 		</table>
@@ -223,30 +223,33 @@
 </section>
 
 <script>
-$(document).ready(function(){
     //체크박스 전체 선택&해제
-    $('#selectAll').click(function(){
-         if($("#selectAll").prop("checked")){
-            $("input[type=checkbox]").prop("checked",true); 
-        }else{
-            $("input[type=checkbox]").prop("checked",false); 
-        }
-    });
-    
-     
-        $('#selectDelete').click(function(){
-            if(confirm("삭제하시겠습니까?")){
-                $("input[name=selectP]:checked").each(function(){
-                    var tr_value =$(this).val();
-                    var tr=$("tr[data-tr_value='"+tr_value+"']");
-                    tr.remove();
-                });
-            }else{
-                return false;
-            }
-        });
-     
-    });
+  $('#selectAll').click(function(){
+	if($("#selectAll").prop("checked")){
+        $(".check-input").prop("checked",true); 
+    }else{
+        $(".check-input").prop("checked",false); 
+    }
+});
+
+$(".check-input").click(function(){
+	$("#selectAll").prop("chcked",false);
+})
+
+$(".check-input").click(function(){
+	$("#selectAll").prop("checked",false)
+})
+
+
+
+   /* $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
+   	if(confirm("정말로 지우시겠습니까?")){
+   	location.assign="${path}/member/delete.do?cartCode=${c.cartCode}"
+   	}else{
+   		return false
+   	}
+   		
+   }) */
 
 </script>
 

@@ -78,4 +78,20 @@ public class adminServiceImpl implements adminService{
 		// TODO Auto-generated method stub
 		return optionDao.findByProduct(p);
 	}
+	
+	@Override
+	public Product updateProduct(Product po) {
+		Product update = dao.save(po);
+		return update;
+	}
+
+	@Override
+	public List<ProductOption> updateOption(Product p) {
+		List<ProductOption> optionUpdate = optionDao.save(p);
+		return optionUpdate;
+	}
+	
+	
+
+	
 }

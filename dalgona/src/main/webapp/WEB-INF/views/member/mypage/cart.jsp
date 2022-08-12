@@ -79,8 +79,8 @@
 .close {
 	display: inline-block;
 	font-weight: bold;
-	text-decoration :none;
-	color :black;
+	text-decoration: none;
+	color: black;
 }
 
 .close:after {
@@ -179,6 +179,7 @@
 			</ul>
 		</div>
 	</div>
+	<form action="${path }/payment" id="buyPage"  >
 	<div class="cart-container">
 		<h4>
 			<b>장바구니</b>
@@ -187,123 +188,188 @@
 			<c:when test="${map.count ==0 }">
 			장바구니가 비었습니다
 			</c:when>
-			
+
 			<c:otherwise>
-		<div style="margin-top: 20px">
-			<div>
-				<div style="display: flex; justify-content: space-between;">
-					<div style="margin-top: 8px; margin-left: 10; display: flex">
-						<input class="form-check-input" type="checkbox" id="selectAll"
-							value="selectall" name="selectAll" aria-label="...">
-						<div style="margin-left: 10">전체선택</div>
-					</div>
-					<button type="button" class="btn-delete" id="selectDelete"
-						style="margin-right: 10">선택삭제</button>
-				</div>
-			</div>
-		</div>
-		
-		<hr>
-		
-		<c:forEach var="c" items="${map.cartList}" varStatus="i" >
-			<br>
-			<table style="margin-left: 10; width: 100%;">
-				<tbody>
-					<tr class="payment-tr" name="selectP">
-						<td style="width: 20%;"><input class="check-input"
-							type="checkbox" style="margin-top: 40;"> <a href="#"
-							style="text-decoration: none;"> <img src="/resources/upload/"
-								width="150" height="150" border="0" style="margin-left: 10" />
-								<!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
-						</a></td>
-						<td style="width: 55%"><a href="#"
-							style="color: black; text-decoration: none; font-size: 17"><b><c:out
-										value="상품코드"/></b></a><br><br>${c.product.productCode}
-							<div style="margin-top: 5; font-size: 15px">
-								<c:out value=" ${c.product.productName} 달고나" />
-							</div> <!-- 오예오예 오예스~ --><br>
-							<div style="margin-top: 5;">
-								<c:out value="${c.product.productPrice} 2000원" />
-							</div> <%-- 30,000원 --%>
-							<br>
-							<div style="margin-top: 5; font-size: 15px">
-							  
-							<fmt:formatDate value="${now}" type="date" pattern="MM-dd"/>
-								도착 예정
-							</div></td>
-
-						<td style="text-align: center;"><select id="browsers">
-								<option>1개</option>
-								<option>2개</option>
-								<option>3개</option>
-								<option>4개</option>
-								<option>5개</option>
-						</select>
-							<div style="margin-top: 5px">1,000원</div></td>
-						<td style="width: 100">
-							<div style="display: flex; text-alian: center;">
-								<button type="button" class="btn btn-danger">구매하기</button>
+				<div style="margin-top: 20px">
+					<div>
+						<div style="display: flex; justify-content: space-between;">
+							<div style="margin-top: 8px; margin-left: 10; display: flex">
+								<input class="form-check-input" type="checkbox" id="checkAll"
+									value="selectall" name="selectAll" aria-label="...">
+								<div style="margin-left: 10">전체선택</div>
 							</div>
-						</td>
-						<td style="display: flex;">
-							<div><a class="close" href="${path }/member/mypage/cart?productCode="></a></div><%-- ${c.productCode} --%>
-						</td>
-					</tr>
-
-				</tbody>
-			</table>
-			<br>
-			<hr>
-		</c:forEach>
-
-
-		<div class="allprice-container">
-			<div class="allrprice-content">
-				<div class="allprice-form">
-					총 상품가격 <i>29000</i> 원 <span class="all-plus"><img
-						src="/resources/images/mypage/img_plus.png" style="width: 14;">
-					</span> 총 배송비 <i>2,000</i> 원 <span class="all-plus"><img
-						src="/resources/images/mypage/img_equals.png" style="width: 14;"></span>
-					총 주문금액 <i class="final-price"><c:out value="31000원" /></i>
+							<button type="button" class="btn-delete" id="selectDelete"
+								name="cartCode" style="margin-right: 10">선택삭제</button>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="cartandprice" style="text-align: center;">
-			<button class="btn-cart">쇼핑계속하기</button>
-			<button type="submit" class="btn-buy">구매하기</button>
-		</div>
-		</c:otherwise>
+
+				<hr>
+					<c:forEach var="c" items="${map.cartList}" varStatus="i">
+						<br>
+						<table style="margin-left: 10; width: 100%;">
+							<tbody>
+								<tr class="payment-tr" name="selectP">
+									<td style="width: 20%;"><input class="check-input" name="opnum"
+										type="checkbox" data-cartCode="${c.cartCode }"style="margin-top: 40;"> <a href="#"
+										style="text-decoration: none;"> <img
+											src="${c.product.productThumb }" width="150" height="150"
+											border="0" style="margin-left: 10" /> <!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
+									</a></td>
+									<td style="width: 55%"><a href="#"
+										style="color: black; text-decoration: none; font-size: 17"><b>
+												<input type="hidden" name="productCode"
+												value="${c.product.productCode }">
+										</b></a> <%-- <c:out value="${c.product.productCode}"/></b></a><br><br> --%>
+										<div style="margin-top: 5; font-size: 15px">
+											<c:out value=" ${c.product.productName}" />
+										</div> <!-- 오예오예 오예스~ --> <br>
+										<div style="margin-top: 5;">
+											<p>
+												<fmt:formatNumber pattern="###,###,###"
+													value="${c.product.productPrice}" />
+												&nbsp;원
+											</p>
+										</div> <br>
+										<div style="margin-top: 5; font-size: 15px">
+
+											<fmt:formatDate value="${now}" type="date" pattern="MM-dd" />
+											도착 예정
+										</div></td>
+
+									<td style="text-align: center;"><select id="browsers">
+											<c:forEach var="count" begin="1"
+												end="${c.cartAmount < 5? 5: c.cartAmount }">
+												<option>${count}</option>
+												<!-- <option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option> -->
+											</c:forEach>
+									</select>
+										<div style="margin-top: 5px">
+											<p>
+												<fmt:formatNumber pattern="###,###,###"
+													value="${c.product.productPrice}" />
+												&nbsp;원
+											</p>
+										</div></td>
+									<td style="width: 100">
+										<div style="display: flex; text-alian: center;">
+											<button type="button" class="btn btn-danger">구매하기</button>
+										</div>
+									</td>
+									<td style="display: flex;">
+										<%-- 							<div><a class="close" href="${path }/member/delete.do?cartCode=${c.cartCode}"></a></div> --%>
+										<div>
+											<a class="close" id="close"
+												href="${path }/member/delete.do?cartCode=${c.cartCode}"></a>
+										</div>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<br>
+						<hr>
+					</c:forEach>
+
+
+					<div class="allprice-container">
+						<div class="allrprice-content">
+							<div class="allprice-form">
+								<b>총 상품 가격</b> :<i><fmt:formatNumber pattern="###,###,###"
+										value="${map.sumMoney}" /></i><span class="all-plus"><img
+									src="/resources/images/mypage/img_plus.png" style="width: 14;">
+								</span> 배송비 <i>${map.fee}</i> 원 <span class="all-plus"> <img
+									src="/resources/images/mypage/img_equals.png"
+									style="width: 14;"></span> 총 주문금액 <i class="final-price"><fmt:formatNumber
+										pattern="###,###,###" value="${map.allSum}" /></i>
+							</div>
+						</div>
+					</div>
+					<div class="cartandprice" style="text-align: center;">
+						<button class="btn-cart">쇼핑계속하기</button>
+						<button type="submit" class="btn-buy">구매하기</button>
+					</div>
+			</c:otherwise>
 		</c:choose>
-	</div> 
+	</div>
+				</form>
 	<div></div>
 </section>
 
 <script>
 
-function selectAll(selectAll)  {
-	  const checkboxes 
-	       = document.getElementsByName('selectAll');
-	  
-	  checkboxes.forEach((checkbox) => {
-	    checkbox.checked = selectAll.checked;
-	  })
-	}
-	
-$(document).ready(function(){
+
+$(".btn-cart").click(function() { //쇼핑계속하기
+	location.assign("${path}/product/productList");
+});
+
+
     //체크박스 전체 선택&해제
-    $('#selectAll').click(function(){
-         if($("#selectAll").prop("checked")){
-            $("input[type=checkbox]").prop("checked",true); 
+    $('#checkAll').click(function(){
+    	if($("#checkAll").prop("checked")){
+            $(".check-input").prop("checked",true); 
         }else{
-            $("input[type=checkbox]").prop("checked",false); 
+            $(".check-input").prop("checked",false); 
         }
     });
     
-    });
-     
-      /*   $('#selectDelete').click(function(){
-            location.assign("${path}/member/mypage/cart?productCode=${c.productCode}");
+    $(".check-input").click(function(){
+    	$("#checkAll").prop("chcked",false);
+    })
+    
+    $(".check-input").click(function(){
+    	$("#checkAll").prop("checked",false)
+    })
+    
+    
+    function goOrder(){
+    	var chk=$('input[name="opnum"]');
+    	var cnt =0;
+		$.each(chk,function(i,ch){
+			if($(ch).is(":checked")){
+				cnt++;
+				$('#oqty'+(i+1)).prop('disabled',false);//비활성화
+			}else{
+				//체크 안된 상품의 주문 수량 비활성화 
+				$('#oqty'+(i+1)).prop('disabled',true);//비활성화
+			}
+		});
+
+		if(cnt==0){
+			alert('주문할 상품을 체크하세요');
+			$('input[name="oqty"]').prop('disabled',false);//비활성화
+			return;	
+		}
+		orderF.submit();
+	}
+    
+    
+    
+    
+    
+           /* $('#selectDelete').click(function(){ //전체삭제
+        	if(confirm("삭제 하시겠습니까?"))
+            location.href="${path}/member/deleteAll.do";
         }); */
+        
+        
+        $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
+        	if(confirm("정말로 지우시겠습니까?")){
+        	location.assign="${path}/member/delete.do?cartCode=${c.cartCode}"
+        	}else{
+        		return false
+        	}
+        		
+        })
     
      
 

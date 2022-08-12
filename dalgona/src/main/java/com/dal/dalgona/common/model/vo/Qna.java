@@ -11,6 +11,8 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,8 +44,12 @@ public class Qna {
 	private Product product;
 	
 	@Column(length=1000)
+	private String qnaTitle;
+	
+	@Column(length=1000)
 	private String qnaContent;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date qnaDate;
 
 

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,6 +36,7 @@ public class QnaRe {
 	@Column(length=1000)
 	private String qnaReContent;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date qnaReDate;
 	
 	// 문의답변
