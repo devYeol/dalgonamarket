@@ -18,7 +18,8 @@
     </select>
 	
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES(#{memberId},#{memberBirth},#{memberEmail},SYSDATE,#{memberGender},#{memberName},#{memberPhone},#{memberPwd},#{roles.getKey()})
+		INSERT INTO MEMBER VALUES(#{memberId},#{memberBirth},#{memberEmail},SYSDATE,#{memberGender},#{memberName},#{memberPhone},#{memberPwd},
+		#{roles, typeHandler=roles})
 	</insert>
 	
 	<select id="idCheck" parameterType="string" resultType="integer">

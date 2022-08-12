@@ -17,8 +17,10 @@ public class RolesTypeHandler implements TypeHandler<Roles> {
 	public void setParameter(PreparedStatement ps, int i, Roles roles, JdbcType jdbcType) throws SQLException {
 		// TODO Auto-generated method stub
 		
-		if(roles.getKey() == null) {
+		if(roles!= null) {
 			ps.setString(i, roles.getKey());
+		}else {
+			ps.setString(i, "ROLE_USER"); // getKey() = NULL이 들어 올 수 없지만 분기처리를 위해 작성할 것
 		}
 		
 	}

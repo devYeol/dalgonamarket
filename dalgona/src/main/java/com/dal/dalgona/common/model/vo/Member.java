@@ -155,8 +155,6 @@ public class Member implements UserDetails {
 		return null;
 	}
 	
-	
-	
 	// 배송주소 양방향
 	//	@OneToMany(mappedBy="memberId")
 	//	private List<DeliveryLocation> memberdelivery=new ArrayList();
