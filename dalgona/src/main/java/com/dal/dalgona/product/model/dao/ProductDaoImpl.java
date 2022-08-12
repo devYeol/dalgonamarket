@@ -13,6 +13,11 @@ import com.dal.dalgona.common.model.vo.Review;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
+	@Override
+	public List<Product> selectProducts(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("product.selectProducts");
+	}
 	
 	@Override
 	public Product selectProduct(SqlSession session,long productCode) {
@@ -37,6 +42,8 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return session.insert("review.insertreview",r);
 	}
+
+	
 
 
 	

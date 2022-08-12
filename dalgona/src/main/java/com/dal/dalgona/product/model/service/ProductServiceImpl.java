@@ -20,7 +20,13 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private SqlSessionTemplate session;
-
+	
+	@Override
+	public List<Product> selectProducts() {
+		// TODO Auto-generated method stub
+		return dao.selectProducts(session);
+	}
+	
 	@Override
 	public Product selectProduct(long productCode) {
 		// TODO Auto-generated method stub
@@ -44,6 +50,7 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return dao.reviewWrite(session,r);
 	}
+	
 
 	
 	

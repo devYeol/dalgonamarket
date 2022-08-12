@@ -10,7 +10,8 @@ import com.dal.dalgona.common.model.vo.Qna;
 import com.dal.dalgona.common.model.vo.Review;
 
 public interface ProductDao {
-
+	List<Product> selectProducts(SqlSession session);
+	
 	Product selectProduct(SqlSession session, long productCode);
 	
 	List<Review> reviewList(SqlSession session);

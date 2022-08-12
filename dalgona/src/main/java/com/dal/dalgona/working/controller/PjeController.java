@@ -46,7 +46,7 @@ public class PjeController {
 	// 회원관리 검색기능
 	@RequestMapping("adminSearchMember.do")
 	public ModelAndView adminSearchMember(ModelAndView mv, 
-			@RequestParam(value = "searchType", defaultValue = "") String searchType,
+			@RequestParam(value = "searchType") String searchType,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword, 
 			@RequestParam(value = "searchGen", defaultValue = "") String searchGen,
 			@RequestParam(defaultValue = "1") int cPage, 
@@ -59,10 +59,13 @@ public class PjeController {
 		param.put("cPage", cPage);
 		param.put("numPerpage", numPerpage);
 		List<Member> list=service.searchMembers(param);
-//		int totalData=service.searchMembersCount(param);
-//		log.debug(""+totalData);
+		int totalData=service.searchMembersCount(param);
+		log.debug(""+totalData);
 		mv.addObject("members", list);
-//		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(totalData, numPerpage, cPage, "adminManageProduct.do"));
+		mv.addObject("searchType", searchType);
+		mv.addObject("keyword", keyword);
+		mv.addObject("searchGen", searchGen);
+		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(totalData, numPerpage, cPage, "adminManageProduct.do"));
 		mv.setViewName("admin/adminManageMember");
 		return mv;
 	}

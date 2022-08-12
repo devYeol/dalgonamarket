@@ -100,13 +100,13 @@ public class adminController {
 
 	// 페이지테스트
 	@RequestMapping("adminManageProduct.do")
-	public ModelAndView adminManageProduct(ModelAndView mv, @RequestParam(defaultValue = "1") int cPage,
+	public ModelAndView adminManageProduct(ModelAndView mv, 
+			@RequestParam(defaultValue = "1") int cPage,
 			@RequestParam(defaultValue = "5") int numPerpage) {
 		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage, Sort.by(Sort.Direction.DESC, "productCode"));
 		Page<Product> list = service.selectProducts(pagerequest);
 		mv.addObject("products", list.getContent());
-		mv.addObject("pageBar",
-				PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
+		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageProduct.do"));
 		mv.setViewName("admin/adminManageProduct");
 		return mv;
 	}
