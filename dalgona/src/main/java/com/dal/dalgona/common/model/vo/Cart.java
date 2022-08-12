@@ -1,5 +1,6 @@
 package com.dal.dalgona.common.model.vo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,6 +37,7 @@ public class Cart {
 	@JoinColumn(name="productCode")
 	private Product product;
 	
+	@Column (columnDefinition = "NUMBER default 0")
 	private long cartAmount;
 
 }

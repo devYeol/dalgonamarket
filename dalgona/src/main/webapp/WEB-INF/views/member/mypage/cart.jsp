@@ -179,7 +179,7 @@
 			</ul>
 		</div>
 	</div>
-	<form action="${path }/payment" id="buyPage" method="post" >
+	<form action="${path }/payment" id="buyPage"  >
 	<div class="cart-container">
 		<h4>
 			<b>장바구니</b>
@@ -210,7 +210,7 @@
 						<table style="margin-left: 10; width: 100%;">
 							<tbody>
 								<tr class="payment-tr" name="selectP">
-									<td style="width: 20%;"><input class="check-input"
+									<td style="width: 20%;"><input class="check-input" name="opnum"
 										type="checkbox" data-cartCode="${c.cartCode }"style="margin-top: 40;"> <a href="#"
 										style="text-decoration: none;"> <img
 											src="${c.product.productThumb }" width="150" height="150"
@@ -329,6 +329,30 @@ $(".btn-cart").click(function() { //쇼핑계속하기
     $(".check-input").click(function(){
     	$("#checkAll").prop("checked",false)
     })
+    
+    
+    function goOrder(){
+    	var chk=$('input[name="opnum"]');
+    	var cnt =0;
+		$.each(chk,function(i,ch){
+			if($(ch).is(":checked")){
+				cnt++;
+				$('#oqty'+(i+1)).prop('disabled',false);//비활성화
+			}else{
+				//체크 안된 상품의 주문 수량 비활성화 
+				$('#oqty'+(i+1)).prop('disabled',true);//비활성화
+			}
+		});
+
+		if(cnt==0){
+			alert('주문할 상품을 체크하세요');
+			$('input[name="oqty"]').prop('disabled',false);//비활성화
+			return;	
+		}
+		orderF.submit();
+	}
+    
+    
     
     
     

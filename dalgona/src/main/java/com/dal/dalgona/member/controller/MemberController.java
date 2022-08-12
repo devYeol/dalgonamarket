@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,7 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+
 	
 	@Value(value = "${spring.mail.username}")
 	private String adminEmail;
@@ -39,12 +41,25 @@ public class MemberController {
 	public String mypageMain() {
 		return "member/mypage/mypageMain";
 	}
-	
-//	@RequestMapping
-//	public String getCart(Model mo ) {
-//		List<Cart> getCart=service.getCart();
-//		return "member/mypage/cart";
-//	}
+
+	@GetMapping("/member/mypage/cartInsert")
+	public String cartInsert(@ModelAttribute Cart c,HttpSession session) {
+		
+		Member memberId = (Member) session.getAttribute("loginMember");
+
+		if(memberId==null) { 
+			 
+			 //로그인하지 않은 상태이면 로그인 화면으로 이동
+			 
+        return "redirect:member/login/loginPage";
+		}else {
+			
+		c.setMember(memberId);
+		service.cartInsert(c);
+		
+		return "redirect:/member/mypage/cart";
+		}
+	}
 	
 	
 	@RequestMapping("/member/mypage/cart") // 장바구니
@@ -78,7 +93,7 @@ public class MemberController {
        service.delete(cartCode);
         return "redirect:/member/mypage/cart";
     }
-	@RequestMapping("/member/deleteAll.do") //개별 삭제(한 개 row만 삭제
+	@RequestMapping("/member/deleteAll.do") //장바구니 전체 삭제
 	public String deleteAll(HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		if(memberId !=null) {

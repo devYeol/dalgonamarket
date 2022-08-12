@@ -18,6 +18,11 @@ public class MemberDaoImpl implements MemberDao {
 //	}
 	
 	@Override
+	public void cartInsert(SqlSessionTemplate session,Cart c) {
+		session.insert("cart.cartInsert",c);
+	}
+	
+	@Override
 	public List<Cart> cartList(SqlSessionTemplate session,Member m){
 		return session.selectList("cart.cartList",m);
 	}
@@ -34,6 +39,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void deleteAll(SqlSessionTemplate session ,Member memberId) {
 		session.delete("cart.deleteAll",memberId);
+	}
+
+	@Override
+	public  void updateCart(SqlSessionTemplate session ,Cart c) {
+		session.update("cart.updateCart",c);
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public class Likes {
 	@GeneratedValue(generator="seq_likes_code", strategy=GenerationType.SEQUENCE)
 	private long likesCode;
 	
-	
+	@ManyToOne
 	@JoinColumn(name="memberId")
 	private Member member;
 	

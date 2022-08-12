@@ -32,10 +32,10 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-//	@Override
-//	public List<Product> selectProduct(){
-//		return dao.selectProduct(session);
-//	}
+	@Override
+	public void cartInsert(Cart c){
+		dao.cartInsert(session,c);
+	}
 
 	@Override
 	public List<Cart> cartList(Member m){

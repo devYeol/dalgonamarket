@@ -9,6 +9,8 @@ import com.dal.dalgona.common.model.vo.Product;
 public interface MemberService {
 
 	List<Cart> cartList(Member m); 
+	
+	void cartInsert (Cart c);
 
 	void delete(int cartCode); //선택삭제
 	
