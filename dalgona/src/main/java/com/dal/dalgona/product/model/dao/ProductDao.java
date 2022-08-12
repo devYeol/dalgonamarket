@@ -15,9 +15,13 @@ public interface ProductDao {
 	
 	List<Review> reviewList(SqlSession session);
 	
-	List<Qna> qnaList(SqlSession session);
+	List<Qna> qnaList(SqlSession session,long productCode);
 	
 	int reviewWrite(SqlSession session,Review r);
+	
+	int qnaWrite(SqlSession session,Qna q);
+	
+	Qna qnaSelectOne(SqlSession session,long qnaCode);
 	
 	
 
