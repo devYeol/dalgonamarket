@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.dal.dalgona.working.model.dao.JdhDao;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -28,8 +27,8 @@ public class JdhServiceImpl implements JdhService {
 //	@Autowired
 //	private SqlSessionTemplate session;
 
-	@Autowired
-	private JdhDao dao;
+//	@Autowired
+//	private JdhDao dao;
 
 	@Autowired
 	BCryptPasswordEncoder bc;

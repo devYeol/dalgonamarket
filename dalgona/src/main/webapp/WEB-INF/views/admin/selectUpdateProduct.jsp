@@ -64,6 +64,8 @@
 					<tr>
 						<td class="theader">이미지</td>
 						<td>
+							<input type="hidden" name="beforeThumbnail" value="${p.productThumb}">
+							<input type="hidden" name="beforedetailedImage" value="${p.productImage }">
 							<img src="${p.productThumb }" width="95" height="100" border="0" />
 								<input type="file" name="thumbnail" style="margin-bottom: 5px" >
 							<img src="${p.productImage }" width="95" height="100" border="0" />

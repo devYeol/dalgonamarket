@@ -59,11 +59,11 @@
 				<img src="https://kream-phinf.pstatic.net/MjAyMjA0MDVfMjg3/MDAxNjQ5MTQxNDQ2MzE5.KmWw8NmaqtTEZQUwNB-qnk94UoRvQjTBz6HE-wcsUPwg.uKnTAOmBZVasnEheK77-WjBLVGkrxaev02tgaOLhqz0g.JPEG/a_e84bc8e4c55041b29479627fc78a2469.jpg" class="d-block w-100" alt="..." height="150" width="400 px">
 			</div>
 			<div class="carousel-item">
-				<img src="/resources/images/msw/snackcollection.png" class="d-block w-100" alt="..." height="150">
+				<img src="https://kream-phinf.pstatic.net/MjAyMjA0MDVfMjg3/MDAxNjQ5MTQxNDQ2MzE5.KmWw8NmaqtTEZQUwNB-qnk94UoRvQjTBz6HE-wcsUPwg.uKnTAOmBZVasnEheK77-WjBLVGkrxaev02tgaOLhqz0g.JPEG/a_e84bc8e4c55041b29479627fc78a2469.jpg" class="d-block w-100" alt="..." height="150">
 			</div>
 			<div class="carousel-item">
 				<img
-					src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" class="d-block w-100" alt="..." height="150">
+					src="https://kream-phinf.pstatic.net/MjAyMjA0MDVfMjg3/MDAxNjQ5MTQxNDQ2MzE5.KmWw8NmaqtTEZQUwNB-qnk94UoRvQjTBz6HE-wcsUPwg.uKnTAOmBZVasnEheK77-WjBLVGkrxaev02tgaOLhqz0g.JPEG/a_e84bc8e4c55041b29479627fc78a2469.jpg" class="d-block w-100" alt="..." height="150">
 			</div>
 		</div>
 		
@@ -84,23 +84,31 @@
 	
 	<div class="shopHeader">
 		<div style="font-size: 24px;">
-			<span>검색 결과:00 건</span>
+			<span>검색 결과: 00 건</span>
 		</div>
 		<div style="diplay:flex;">
-			<div style="">
-				<select style="text-align: center; font-size: 15px;">
-					<option value="">최신순</option>
-					<option value="">인기순</option>
-					<option value="">가격순</option>
-					<option value="">별점순</option>
-					<option value="">리뷰순</option>
-				</select>
-			</div>
-			<div>
-				<button style="border: none; background-color: white;">오름차순</button>
-				<br>
-				<button style="border: none; background-color: white;">내림차순</button>
-			</div>
+			<table>
+				<tr>
+					<td>
+						<div style="">
+							<select style="text-align: center; font-size: 15px;">
+								<option value="">최신순</option>
+								<option value="">인기순</option>
+								<option value="">가격순</option>
+								<option value="">별점순</option>
+								<option value="">리뷰순</option>
+							</select>
+						</div>
+					</td>
+					<td>
+						<div style="font-size: 12px;">
+							<button style="border: none; background-color: white;">오름차순</button>
+							<br>
+							<button style="border: none; background-color: white;">내림차순</button>
+						</div>
+					</td>
+				</tr>
+			</table>
 		</div>
 		
 	</div>
@@ -112,36 +120,45 @@
 		<div class="carousel-inner">
 			<div class="item">
 				<div class="row">
-					<div class="col-3" type="button" onclick="ppp();">
-						<!-- 상품 1개 -->
-						<div class="">
-							<div style="position: relative;">
-								<img
-									src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-									alt="Image" style="max-width: 100%;" />
+					<c:if test="${not empty products}">
+						<c:forEach var="p" items="${products}">
+							<!-- 상품 1개 -->
+							<div class="col-3" type="button" onclick="location.assign('${path}/product/productDetail/${p.productCode}')">
+								<div class="">
+									<div style="position: relative;">
+										<img src="${p.productImage}" alt="Image" style="max-width: 100%;" />
+									</div>
+									<!-- <div class="zzim">
+										<img class="fullheart" src="/resources/images/msw/fullheart.png">
+										<img class="beanheart" src="/resources/images/msw/beanheart.png">
+									</div> -->
+								</div>
+								<div>
+									<div class="leftbox" style="font-size:20px;">
+										<span>${p.productName}</span>
+									</div>
+									<div class="rightbox">
+										<span>★4.8/5</span>
+									</div>
+									<hr style="margin: 4px 0px 4px 0px">
+									<div>
+										<div class="leftbox">
+											<span class="">${p.productContent}</span>
+										</div>
+										<div class="rightbox">
+											<h4>${p.productPrice}원</h4>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="zzim">
-								<img class="fullheart" src="/resources/images/msw/fullheart.png">
-								<img class="beanheart" src="/resources/images/msw/beanheart.png">
-							</div>
+							<!-- 상품 1개 끝 -->
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty products}">
+						<div style="padding-left: 42%;">
+							조회된 상품이 없습니다ㅠㅠ
 						</div>
-						<div class="leftbox">
-							<span> 해바라기 씨</span>
-						</div>
-						<div class="rightbox">
-							<span>★4.8/5</span>
-						</div>
-						<hr class="line">
-						<div>
-							<div class="leftbox">
-								<span class="">&nbsp;컨텐츠</span>
-							</div>
-							<div class="rightbox">
-								<h4>1400원</h4>
-							</div>
-						</div>
-					</div>
-					<!-- 상품 1개 끝 -->
+					</c:if>
 				</div>
 			</div>
 		</div>

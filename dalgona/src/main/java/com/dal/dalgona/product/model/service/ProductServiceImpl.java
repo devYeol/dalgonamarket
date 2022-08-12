@@ -20,7 +20,13 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private SqlSessionTemplate session;
-
+	
+	@Override
+	public List<Product> selectProducts() {
+		// TODO Auto-generated method stub
+		return dao.selectProducts(session);
+	}
+	
 	@Override
 	public Product selectProduct(long productCode) {
 		// TODO Auto-generated method stub
@@ -34,9 +40,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Qna> qnaList() {
+	public List<Qna> qnaList(long productCode) {
 		// TODO Auto-generated method stub
-		return dao.qnaList(session);
+		return dao.qnaList(session,productCode);
 	}
 
 	@Override
@@ -44,6 +50,21 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return dao.reviewWrite(session,r);
 	}
+	
+
+	@Override
+	public int qnaWrite(Qna q) {
+		// TODO Auto-generated method stub
+		return dao.qnaWrite(session,q);
+	}
+
+	@Override
+	public Qna qnaSelectOne(long qnaCode) {
+		// TODO Auto-generated method stub
+		return dao.qnaSelectOne(session,qnaCode);
+	}
+	
+	
 
 	
 	

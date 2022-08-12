@@ -121,7 +121,7 @@ input::placeholder {
 	<div class="login-container">
 		<h2><b>DALGONA MARKET</b></h2>
 		<h5><b>추억속으로의 여행</b></h5>
-		<form action="${path}/member/loginEnd" method="post">
+		<form action="${path }/logincheck" method="post">
 			<div class="int-area">
 				<label for="id"><b>아이디</b></label>
 				<br>

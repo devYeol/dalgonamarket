@@ -48,22 +48,25 @@ public class SecurityConfig { // Security 설정 클래스
 				.httpBasic().disable() // 기본 제공 로그인 폼 제거
 				
 				.formLogin() // 로그인 설정
-					.loginPage("/login") // 로그인 페이지 설정
-					.successForwardUrl("/") // 로그인 성공시 이동 url
+					.loginPage("/loginpage") // 로그인 페이지 설정
+					.successForwardUrl("/member/loginEnd") // 로그인 성공시 이동 url
+					.loginProcessingUrl("/logincheck")
+					.usernameParameter("memberId")
+					.passwordParameter("memberPwd")
 					.and()
 				
 				// 인증 권한에 대한 설정 interceptor-url 같은 역할
 				.authorizeRequests()
 					// static 관련 화위폴더 인가무시
-					.antMatchers("/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
+					.antMatchers("/loginpage","/logincheck","/resources/**").permitAll()
 					// localhost에서 리디렉션한 횟수가 너무 많습니다. -> /login 페이지 접근제한 풀지 않으면 뜨는 현상
 					
 //					.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-//					.antMatchers("/admin/**").hasRole("ADMIN")
+//					.antMatchers("/admin/**").hasRole("USER")
 //					.antMatchers("/admin/**").hasAnyRole(Roles.getKey())
 					
 					// 임시로 모든 페이지 보안에서 제외시키기
-					.antMatchers("/**").permitAll()
+					.antMatchers("/**").authenticated()
 					
 //					.antMatchers("/**").hasRole("USER") // user만 access 가능
 					
@@ -74,10 +77,11 @@ public class SecurityConfig { // Security 설정 클래스
 					.and()
 					
 				.logout() // 로그아웃 설정
-					.logoutUrl("/member/logout")
+					.logoutUrl("/Jdhlogout")
 					.and()
 					
 				.authenticationProvider(ap()) // AuthenticationProvider
+				
 				.build();
 		
 	}
