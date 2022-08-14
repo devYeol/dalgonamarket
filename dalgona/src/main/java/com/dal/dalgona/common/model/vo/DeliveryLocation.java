@@ -1,5 +1,6 @@
 package com.dal.dalgona.common.model.vo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,6 +38,7 @@ public class DeliveryLocation {
 	
 	private String addrPhone;
 	
+	@Column (columnDefinition = "varchar2(255) default '0'")
 	private String addrBase;
 	
 	// 배송지

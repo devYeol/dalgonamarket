@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +40,7 @@ public class ProductOrder {
 	@GeneratedValue(generator = "seq_order_code", strategy = GenerationType.SEQUENCE)
 	private long orderCode; //주문코드
 	
+	@Column (columnDefinition = "varchar2(255) default '주문대기'")
 	private String orderStatus; //주문상태 (배송 대기/ 중 / 배송완료)
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -51,9 +53,9 @@ public class ProductOrder {
 	private DeliveryLocation selectLocation; //선택 배송지
 
 	// 주문
-	@ManyToOne
-	@JoinColumn(name="memberId")
-	private Member member;
+//	@ManyToOne
+//	@JoinColumn(name="memberId")
+//	private Member member;
 	
 	// 주문상세내역
 	@OneToMany(mappedBy="productOrder")

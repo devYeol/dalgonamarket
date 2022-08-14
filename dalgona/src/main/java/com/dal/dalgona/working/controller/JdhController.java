@@ -72,22 +72,22 @@ public class JdhController {
 		
 	}
 	
-	@GetMapping("/payment")
-	public String payment(HttpSession session, Model model) {
-						// 스프링 시큐리티로 접속했을 때 가져올 수 있음
-//						@AuthenticationPrincipal KCLServiceImpl user) {
-		
-		Cart cart=(Cart)session.getAttribute("cart");
-		
-		model.addAttribute("cart", cart);
-		
-		String rndNum=CreateRndNum.rndNum();
-		
-		model.addAttribute("rndNum", rndNum);
-		
-		return "order/payment/payment";
-		
-	}
+//	@GetMapping("/payment")
+//	public String payment(HttpSession session, Model model) {
+//						// 스프링 시큐리티로 접속했을 때 가져올 수 있음
+////						@AuthenticationPrincipal KCLServiceImpl user) {
+//		
+//		Cart cart=(Cart)session.getAttribute("cart");
+//		
+//		model.addAttribute("cart", cart);
+//		
+//		String rndNum=CreateRndNum.rndNum();
+//		
+//		model.addAttribute("rndNum", rndNum);
+//		
+//		return "order/payment/payment";
+//		
+//	}
 	
 	// 결제 성공
 //	@RequestMapping("/order/payment/paymentComplete")

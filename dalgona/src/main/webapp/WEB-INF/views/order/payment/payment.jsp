@@ -48,7 +48,7 @@
 				<tbody>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">이름</label></th>
-						<td>$ name <!-- <input class="form-control" id="" placeholder="홍길동" readonly> -->
+						<td>${memberName }<c:out value="${memberName }" /> <!-- <input class="form-control" id="" placeholder="홍길동" readonly> -->
 						</td>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">이메일</label></th>
