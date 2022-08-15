@@ -46,7 +46,12 @@ public class ProductOrder {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderDate; //주문날짜
 	
-//	private String impUid; // 아임포트 결제번호 임시주석
+	@Column(nullable = true)
+	private long totalPrice;
+	
+//	private String payMethod; // 'card'로 고정
+	
+	private String impUid=""; // 아임포트 결제번호 임시주석
 	
 	@OneToOne
 	@JoinColumn(name="addressCode")
