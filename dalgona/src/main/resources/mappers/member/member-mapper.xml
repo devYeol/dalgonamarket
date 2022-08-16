@@ -14,8 +14,8 @@
    </resultMap>
    
    <select id="selectMember" parameterType="member" resultMap="memberMap">
-      <!-- SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_PWD=#{memberPwd} -->
-      SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
+      SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_PWD=#{memberPwd}
+      <!-- SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} -->
     </select>
    
    <insert id="insertMember" parameterType="member">
