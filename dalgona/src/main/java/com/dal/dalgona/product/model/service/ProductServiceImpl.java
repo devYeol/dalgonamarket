@@ -6,8 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.common.model.vo.Qna;
 import com.dal.dalgona.common.model.vo.Review;
 import com.dal.dalgona.product.model.dao.ProductDao;
@@ -16,7 +16,7 @@ import com.dal.dalgona.product.model.dao.ProductDao;
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
-	private ProductDao dao;
+	private ProductDao dao;	
 	
 	@Autowired
 	private SqlSessionTemplate session;
@@ -27,6 +27,14 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectProducts(session);
 	}
 	
+	
+	@Override
+	public List<ProductOption> optionList(long productCode) {
+		// TODO Auto-generated method stub
+		return dao.optionList(session,productCode);
+	}
+
+
 	@Override
 	public Product selectProduct(long productCode) {
 		// TODO Auto-generated method stub
@@ -34,9 +42,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Review> reviewList() {
+	public List<Review> reviewList(long productCode) {
 		// TODO Auto-generated method stub
-		return dao.reviewList(session);
+		return dao.reviewList(session,productCode);
 	}
 
 	@Override
@@ -48,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int reviewWrite(Review r) {
 		// TODO Auto-generated method stub
-		return dao.reviewWrite(session,r);
+	 	return dao.reviewWrite(session,r);
 	}
 	
 
@@ -63,6 +71,14 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return dao.qnaSelectOne(session,qnaCode);
 	}
+
+
+	@Override
+	public Review starAvg(long qnaCode) {
+		// TODO Auto-generated method stub
+		return dao.starAvg(session,qnaCode);
+	}
+	
 	
 	
 

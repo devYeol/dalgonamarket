@@ -28,8 +28,7 @@
 		<result column="qna_code" property="qnaCode"/>
 		<result column="qna_title" property="qnaTitle"/>
 		<result column="qna_content" property="qnaContent"/>
-		<result column="qna_date" property="qnaDate"/>
-	
+		<result column="qna_date" property="qnaDate"/>	
 		<association column="member_id" property="member" resultMap="memberMap"/>
 		<association column="product_code" property="product" resultMap="productMap"/>
 	</resultMap>
