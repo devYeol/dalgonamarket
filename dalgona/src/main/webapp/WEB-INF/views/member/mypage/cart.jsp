@@ -169,24 +169,20 @@ text-decoration:none;
 				<strong>마이페이지</strong>
 			</h4>
 			<ul>
-				<li><h5></h5></li>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
 				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
-				<li><a href="${path }/member/mypage/cart"></a>
-					<h5>
-						<b>장바구니</b>
-					</h5></li>
+				<li><a href="${path }/member/mypage/cart">장바구니</a>
 				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
 				<br>
-				<li><h5>
-						<b>내정보</b>
-					</h5></li>
-				<li><a href="#">프로필 정보</a></li>
-				<li><a href="${path }/address">주소록</a></li>
+				<br>
+				<li><h5><b>내정보</b></h5></li>
+				<li><a href="${path }/member/mypage/changePage">프로필 정보</a></li>
+				<li><a href="${path }/member/mypage/pwUpdate">비밀번호 변경</a></li>
+				<li><a href="${path }/member/mypage/address">주소록</a></li>
 			</ul>
 		</div>
 	</div>
-	<form action="${path }/payment" id="paymentMove" method="get">
+	<form action="${path }/payment" name="paymentMove" id="paymentMove" method="post">
 		<div class="cart-container">
 			<h4>
 				<b>장바구니</b>
@@ -196,7 +192,7 @@ text-decoration:none;
 			장바구니가 비었습니다
 				<br>
 					<br>
-					<button type="button" class="btn btn-danger" id="productListMove">상품
+					<button type="button" class="btn btn-danger" name="productListMove">상품
 						페이지로 이동</button>
 				</c:when>
 
@@ -228,9 +224,9 @@ text-decoration:none;
 										<input type="hidden" id="member.memberId"
 										name="member.memberId" value="${c.member.memberId}">
 										<input type="hidden" id="cartAmount" name="cartAmount"
-										value="${c.cartAmount}"> <input class="check-input"
-										name="check" id="${c.cartCode}" type="checkbox"
-										style="margin-top: 40;"> <a href="#"
+										value="${c.cartAmount}"> 
+										<input class="check-input" name="check" id="${c.cartCode}" type="checkbox"
+										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
 										style="text-decoration: none;"> <img
 											src="${c.product.productThumb }" width="150" height="150"
 											border="0" style="margin-left: 10" /> <!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
@@ -267,7 +263,7 @@ text-decoration:none;
 										</div></td>
 									<td style="width: 100">
 										<div style="display: flex; text-alian: center;">
-											<button type="submit" class="btn btn-danger">구매하기</button>
+											<button type="button" name="paymentMove" class="btn btn-danger">구매하기</button>
 										</div>
 									</td>
 									<td style="display: flex;">
@@ -299,8 +295,8 @@ text-decoration:none;
 						</div>
 					</div>
 					<div class="cartandprice" style="text-align: center;">
-						<button type="reset" class="btn-cart">쇼핑계속하기</button>
-						<button type="button" id="buyy" class="btn-buy">구매하기</button>
+						<button type="reset" name="productListMove" class="btn-cart">쇼핑계속하기</button>
+						<button type="button"name="paymentMove" class="btn-buy">구매하기</button>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -311,14 +307,23 @@ text-decoration:none;
 
 <script>
 
-$("#productListMove").click(function(){
+function getCheckboxValues(){
+	/* 선택된 목록 가져오기 */
+	const query ='input [name="check"]:checked';
+	const selecteEls= document.queryselectAll(query);
+	
+	/* 선택된 목록에서 value 찾기 */
+	let result = '';
+	selecteEls.forEach((el)=>{
+		result +=el.value+' ';
+	});
+	document.getElementById('result') =result;
+}
+
+
+$("button[name= productListMove]").click(function(){
 	  location.assign("${path}/product/productList");
 })
-
-
-$(".btn-cart").click(function() { //쇼핑계속하기
-	location.assign("${path}/product/productList");
-});
 
 
     //체크박스 전체 선택&해제
@@ -338,27 +343,6 @@ $(".btn-cart").click(function() { //쇼핑계속하기
     	$("#checkAll").prop("checked",false)
     })
     
-    
- /*    function goOrder(){
-    	var chk=$('input[name="opnum"]');
-    	var cnt =0;
-		$.each(chk,function(i,ch){
-			if($(ch).is(":checked")){
-				cnt++;
-				$('#oqty'+(i+1)).prop('disabled',false);//비활성화
-			}else{
-				//체크 안된 상품의 주문 수량 비활성화 
-				$('#oqty'+(i+1)).prop('disabled',true);//비활성화
-			}
-		});
-
-		if(cnt==0){
-			alert('주문할 상품을 체크하세요');
-			$('input[name="oqty"]').prop('disabled',false);//비활성화
-			return;	
-		}
-		orderF.submit();
-	} */
     
   // 선택 삭제
     	$("#selectDelete").click(function(){
@@ -393,7 +377,7 @@ $(".btn-cart").click(function() { //쇼핑계속하기
         		
         })
     
-		$("#buyy").click(function(){
+		$("button[name=paymentMove]").click(function(){
         var qwe =$("input[name='check']:checked");
 			if(qwe.length >= 1){
 				

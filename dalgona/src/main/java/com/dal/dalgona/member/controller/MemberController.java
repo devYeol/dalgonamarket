@@ -48,8 +48,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/mypage/cartInsert")
-	public String cartInsert(@ModelAttribute Cart c, HttpSession session) {
+	public String cartInsert(@ModelAttribute Cart c,HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
+		
 		if (memberId == null) {
 			// 로그인하지 않은 상태이면 로그인 화면으로 이동
 			return "redirect:member/login/loginPage";
@@ -60,7 +61,7 @@ public class MemberController {
 		}
 	}
 
-	@RequestMapping(value="/member/mypage/cart",method = RequestMethod.GET) // 장바구니
+	@RequestMapping(value="/member/mypage/cart") // 장바구니
 	public ModelAndView cart(ModelAndView mv, HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -113,7 +114,7 @@ public class MemberController {
 //		return "redirect:/member/mypage/cart";
 //	}
 
-	@GetMapping("/member/mypage/productOrderList") // 구매내역
+	@RequestMapping("/member/mypage/productOrderList") // 구매내역
 	public String orderDetail(Model mo,HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		System.out.println("id :"+ memberId);
@@ -127,7 +128,7 @@ public class MemberController {
 	}
 	
 	//구매내역 - 선택삭제
-	@GetMapping("/member/orderListDelete.do") 
+	@RequestMapping("/member/orderListDelete.do") 
 	@ResponseBody
 	public boolean orderListDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String[] deleteArr = request.getParameterValues("deleteArr[]");
@@ -140,12 +141,13 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/mypage/zzim") // 찜
-	public String zzim(Model mo, HttpSession session) {
+	public ModelAndView zzim(ModelAndView mv, HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		List<Likes> zzimList = service.zzimList(memberId);
 		System.out.println(zzimList + "1");
-		mo.addAttribute("zzimList", zzimList);
-		return "member/mypage/zzim";
+		mv.addObject("zzimList", zzimList);
+		mv.setViewName("member/mypage/zzim");
+		return mv;
 	}
 
 //	 찜 - 선택삭제기능
@@ -182,32 +184,10 @@ public class MemberController {
 	}
 
 //	
-	@GetMapping("/baesong") // 배송
+	@RequestMapping("/baesong") // 배송
 	public String baesong() {
 		return "/member/baesong";
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/* 충열 */
 	   @RequestMapping("/loginpage")
