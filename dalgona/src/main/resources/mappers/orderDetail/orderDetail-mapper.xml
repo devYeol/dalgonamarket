@@ -18,7 +18,7 @@
       <result property="memberPhone" column="member_phone"/>
       <result property="memberEmail" column="member_email"/>
       <result property="memberEnrollDate" column="member_enroll_date"/>
-      <result property="roles" column="roles" typeHandler="roles"/> <!-- roles 핸들러 -->
+      <!-- <result property="roles" column="roles" typeHandler="roles"/> roles 핸들러 -->
    </resultMap>
 	
 	<resultMap type="product" id="productMap">

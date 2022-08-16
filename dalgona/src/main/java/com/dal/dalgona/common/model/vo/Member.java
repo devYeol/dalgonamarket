@@ -35,7 +35,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class Member implements UserDetails {
+public class Member {
 	
 	@Id
 	private String memberId;
@@ -57,18 +57,18 @@ public class Member implements UserDetails {
 	private Date memberEnrollDate;
 	
 //	@Column(name="roles", nullable = true, columnDefinition = "varchar2(255) default 'USER'")
-	@Column(name="roles")
-	@Enumerated(EnumType.STRING) // DB에도 String type으로 저장
-	private Roles roles;
+//	@Column(name="roles")
+//	@Enumerated(EnumType.STRING) // DB에도 String type으로 저장
+//	private Roles roles;
 	
-	@PrePersist // insert 실행 전 메소드
-	public void setRoles() {
-		
-		if(roles == null) {
-			this.roles=Roles.USER;
-		}
-		
-	}
+//	@PrePersist // insert 실행 전 메소드
+//	public void setRoles() {
+//		
+//		if(roles == null) {
+//			this.roles=Roles.USER;
+//		}
+//		
+//	}
 	
 //	@PostPersist // insert 실행 후 메소드
 //	public void setRoles() {
@@ -113,49 +113,49 @@ public class Member implements UserDetails {
 	private List<Cart> cart=new ArrayList();
 	
 	
-	// security
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		
-		// spring security에서 ROLE_ 추적 하기 때문에
-		// enum에서 KEY값 지우고 "ROLE_" +
-		List<GrantedAuthority> auth=new ArrayList();
-		auth.add(new SimpleGrantedAuthority("ROLE_"+this.roles.name()));
-		
-		return auth;
-	}
-	
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return this.memberId;
-	}
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	// security
+//	@Override
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		// TODO Auto-generated method stub
+//		
+//		// spring security에서 ROLE_ 추적 하기 때문에
+//		// enum에서 KEY값 지우고 "ROLE_" +
+//		List<GrantedAuthority> auth=new ArrayList();
+//		auth.add(new SimpleGrantedAuthority("ROLE_"+this.roles.name()));
+//		
+//		return auth;
+//	}
+//	
+//	@Override
+//	public String getUsername() {
+//		// TODO Auto-generated method stub
+//		return this.memberId;
+//	}
+//	@Override
+//	public boolean isAccountNonExpired() {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
+//	@Override
+//	public boolean isAccountNonLocked() {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
+//	@Override
+//	public boolean isCredentialsNonExpired() {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
+//	@Override
+//	public boolean isEnabled() {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
+//	@Override
+//	public String getPassword() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 	// 배송주소 양방향
 	//	@OneToMany(mappedBy="memberId")

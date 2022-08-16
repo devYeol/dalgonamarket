@@ -128,12 +128,6 @@
 				<li><a href="${path }/member/mypage/cart">장바구니</a>
 				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
 				<br>
-				<li><a href="#">내 정보</a></li>
-				<li><a href="#">프로필 정보</a></li>
-				<li><a href="${path }/address"></a>
-					<h5>
-						<b>주소록</b>
-					</h5></li>
 				<br>
 				<li><h5><b>내정보</b></h5></li>
 				<li><a href="${path }/member/mypage/changePage">프로필 정보</a></li>

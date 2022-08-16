@@ -30,8 +30,8 @@ public class JdhServiceImpl implements JdhService {
 //	@Autowired
 //	private JdhDao dao;
 
-	@Autowired
-	BCryptPasswordEncoder bc;
+//	@Autowired
+//	BCryptPasswordEncoder bc;
 
 //	@Override
 //	public Member jdhInsertTest(Member m) {
