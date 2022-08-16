@@ -53,25 +53,27 @@
 						<td><input class="adminin" type="text" name="productPrice"
 							placeholder="내용을 입력해 주세요"></td>
 					</tr>
-					<tr>
-						<td class="theader">옵션</td>
-						<td id="optionTD">
-							<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
-								<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
-							</div>
-							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
-								<div>
-									<input class="adminin" name="optionName" type="text"
-									placeholder="옵션이름을 입력해주세요">
-									<input class="adminin" name="optionPrice" type="number" min="100"
-									placeholder="옵션가격을 입력해주세요">
+					<div>
+						<tr>
+							<td class="theader">옵션</td>
+							<td id="optionTD">
+								<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
+									<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
 								</div>
-								<div>
-									<button class="adminbt" name="optionbtnn"  type="button" id="remove"  style="width:50; font-size:13">삭제</button>
+								<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
+									<div>
+										<input class="adminin" name="optionName" type="text"
+										placeholder="옵션이름을 입력해주세요">
+										<input class="adminin" name="optionPrice" type="number" min="100"
+										placeholder="옵션가격을 입력해주세요">
+									</div>
+									<div>
+										<button class="adminbt" name="optionbtnn"  type="button" id="remove"  style="width:50; font-size:13">삭제</button>
+									</div>
 								</div>
-							</div>
-						</td>
-					</tr>
+							</td>
+						</tr>
+					</div>
 					<tr>
 						<td class="theader">수량</td>
 						<td><input class="adminin" type="text" name="productAmount"
@@ -91,7 +93,7 @@
 					</tr>
 				</table>
 				<div style="position: relative; top: 10px; left: 25%;">
-					<button class="adminbt"
+					<button class="adminbt" onclick='return adminpageGo(this.form);'
 						style="background-color: #E0E0E0; color: black;">취소</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button class="adminbt">등록</button>
@@ -102,27 +104,23 @@
 		<!-- end of contents -->
 	</div>
 	<script>
-  let num = 0
-      
+	//추가
+  	let num = 0;
       $(function() {
+         num++
          $("#addOptionBtn").on("click", function(e) {
-               num++
-            
             const optionTemplate=$(e.target).parent().next().clone();
               $(e.target).parent().next().after(optionTemplate).prop('id', 'optionInputID'+num ).find("input").val("");
-           
          });
         
       });
-      
+      //삭제
       $(document).ready(function () {
-       
           $(document).on("click", "button[name='optionbtnn']", function () {
-             
             const a =  $(this).parents().parents().attr('id');
             console.log(':::' ,$('input:nth-child(2)').length)
             console.log(':::' ,$('input:nth-child(2)')[0])
-             if($('input:nth-child(2)').length == 1){
+             if($('input:nth-child(2)').length == 2){
         		return alert("최소 옵션은 1개입니다!");
            }else{
            console.log(':::' , $(this).parents().parents().attr('id'))
@@ -132,17 +130,12 @@
           });
       });
       
-      /*
-      $(function(e) {
-         $("document").on("click",  "button[name='optionbtnn']", function() {
-                console.log(':::' , $(this).parents().parents().attr('id'))
-              const a =  $(this).parents().parents().attr('id');
-              console.log(':::' +'"#'+a+'"')
-            $("#"+a).detach()
-        $("#"+a).remove()
-            
-         });
-      });*/
+      //취소
+      function adminpageGo(frmGo){
+    	  frmGo.action = ${path}"/admin/adminMain.do";
+    	  frmGo.submit();
+    	  return true;
+      }
 
 	</script>
 </body>
