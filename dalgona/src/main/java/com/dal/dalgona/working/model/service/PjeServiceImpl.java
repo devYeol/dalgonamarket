@@ -10,8 +10,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.working.model.dao.PjeDao;
 import com.dal.dalgona.working.model.dao.PjeDaoJpa;
+import com.dal.dalgona.working.model.dao.ProductOrderJpa;
 
 @Service
 public class PjeServiceImpl implements PjeService {
@@ -20,6 +22,9 @@ public class PjeServiceImpl implements PjeService {
 	
 	@Autowired
 	private PjeDao dao;
+	
+	@Autowired
+	private ProductOrderJpa orderDao;
 	
 	@Autowired
 	private SqlSessionTemplate session;
@@ -39,5 +44,27 @@ public class PjeServiceImpl implements PjeService {
 		// TODO Auto-generated method stub
 		return dao.searchMembersCount(session, param);
 	}
+
+	public Page<ProductOrder> searchOrders(PageRequest pagerequest) {
+		// TODO Auto-generated method stub
+		return orderDao.findAll(pagerequest);
+	}
+	
+	public ProductOrder adminOrderPermit(Long orderCode) {
+		ProductOrder poUp=orderDao.findByOrderCode(orderCode);
+		if (poUp.getOrderStatus().equals("배송대기")) {
+			poUp.setOrderStatus("배송중");
+		}
+		return orderDao.save(poUp);
+	}
+	
+	public ProductOrder adminOrderCancel(Long orderCode) {
+		ProductOrder poUp=orderDao.findByOrderCode(orderCode);
+		if (poUp.getOrderStatus().equals("배송대기")) {
+			poUp.setOrderStatus("주문취소");
+		}
+		return orderDao.save(poUp);
+	}
+	
 	
 }
