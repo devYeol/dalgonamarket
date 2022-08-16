@@ -2,10 +2,12 @@ package com.dal.dalgona.product.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale.Category;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOption;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.common.model.vo.Qna;
 import com.dal.dalgona.common.model.vo.Review;
 import com.dal.dalgona.product.model.service.ProductService;
@@ -46,75 +52,85 @@ public class ProductController {
 	@RequestMapping("/product/productDetail/{productCode}")	
 	public String storeDetail(@PathVariable long productCode, Model model) {	
 		Product p=service.selectProduct(productCode);
-		List<Review> review=service.reviewList();
+		List<ProductOption> op=service.optionList(productCode);
+		List<Review> review=service.reviewList(productCode);
 		List<Qna> qna=service.qnaList(productCode);
 		
-		log.debug("{}",qna);
+		Review star=service.starAvg(productCode);
+		log.debug("{}",star);
+		
+//		log.debug("{}",op);
+//		log.debug("{}",review);
+		
+		
+		
 		model.addAttribute("pro",p);
+		model.addAttribute("op",op);
 		model.addAttribute("review",review);
 		model.addAttribute("qna",qna);
+		model.addAttribute("star",star);
+		
 		
 		return "product/productDetail";
 	}
 	
 	
-//	@RequestMapping("/review/reviewWrite.do")//memberId,productCode
-//	public String reviewWrite(
-//			@RequestParam(value="loginmember") String loginmember,
-//			@RequestParam(value="productCode") long productCode,
-//			@RequestParam(value="reviewContent") String reviewContent,
-//			@RequestParam(value="reviewImage") MultipartFile reviewImage,
-//			@RequestParam(value="reviewStar") int reviewStar,												
-//			HttpServletRequest rs,Model model
-//			) throws IllegalStateException, IOException {
-//			
-//						
-//	
-//			
-//		String path=rs.getServletContext().getRealPath("/resources/upload/review/");
-//		File uploadDir=new File(path);
-//		
-//		if(!uploadDir.exists()) uploadDir.mkdirs();
-//		
-//		if(!reviewImage.isEmpty()) {
-//			//리네임드처리하기
-//			String originalFilename=reviewImage.getOriginalFilename();
-//			String ext=originalFilename.substring(originalFilename.lastIndexOf("."));
-//			//리네임 명칭을 정할값 설정
-//			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-//			int rndNum=(int)(Math.random()*10000);
-//			String rename=sdf.format(System.currentTimeMillis())+"_"+rndNum+ext;
-//						
-//			//업로드처리하기
-//			try {
-//				reviewImage.transferTo(new File(path+rename));
-//			}catch(IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		Review r=Review.builder().memberId(loginmember).productCode(productCode)
-//				.reviewContent(reviewContent).reviewDate(new Date())
-//				.reviewImage("이미지주소").reviewStar(reviewStar).build();
-//		String msg="";
-//		String loc="";
-//		try {
-//			service.reviewWrite(r);
-//			msg="게시글입력성공";	
-//			loc="/product/productDetail/{productCode}";
-//		}catch(RuntimeException e) {
-//			msg="게시글입력실패";	
-//			loc="/product/productDetail/{productCode}";			
-//		}
-//		
-//		model.addAttribute("msg",msg);
-//	
-//		return "common/msg";
-//	}
 	
 	
-	@RequestMapping("/qna/qnawWrite.do")//
-	public String qnawWrite(){
+	@RequestMapping("/review/reviewWrite.do")
+	public String review( 
+			@RequestParam(value="productCode") long productCode,
+			@RequestParam(value="reviewContent") String reviewContent,
+			@RequestParam(value="reviewStar") int reviewStar,
+			@RequestParam(value = "reviewImage", required = false) MultipartFile reviewImage,	
+			HttpServletRequest rs, HttpSession session)  throws IllegalStateException, IOException {
+		Member m = (Member) session.getAttribute("loginMember");
+		String memberId = m.getMemberId();
+		log.debug("{}",reviewImage);
+		
+		
+		String reviewImagePath="";
+		if(reviewImage!=null) {
+			String path = rs.getServletContext().getRealPath("/resources/upload/product/review/");
+			File uploadDir = new File(path);
+			if (!uploadDir.exists())
+				uploadDir.mkdirs();
+			File reviewImageFile = new File(path);
 	
+			if (!(reviewImage.isEmpty())) {
+	
+				String originalFilename = reviewImage.getOriginalFilename();
+				String ext = originalFilename.substring(originalFilename.lastIndexOf("."));		
+				int random = (int) (Math.random() * 10000);
+				String rename = "review_" + random + ext;
+				
+				reviewImageFile = new File(path + "/" + rename);
+				reviewImage.transferTo(reviewImageFile);
+			}
+			
+			String aa = path + reviewImageFile.getName();
+	
+			// 이미지주소자르기 썸네일
+			String target = "resources";
+			int target_num = aa.indexOf(target) - 1;
+			reviewImagePath = aa.substring(target_num);
+		}
+			
+		
+		Review review=Review.builder().memberId(memberId).productCode(productCode)
+				.reviewContent(reviewContent).reviewImage(reviewImagePath).reviewDate(new Date()).reviewStar(reviewStar).review(null).build();
+		
+//		log.debug("{}",review);
+
+//	    service.reviewWrite(review);
+	 
+	    return "redirect:/product/productDetail/"+productCode;
+	}
+		
+	
+	@RequestMapping("/qna/qnawWrite.do/{productCode}")//
+	public String qnawWrite(@PathVariable long productCode, Model model){
+		model.addAttribute("productCode",productCode);
 		return "product/qnawWrite";
 	}
 	
@@ -123,9 +139,11 @@ public class ProductController {
 	public String qnawWriteEnd(
 			@RequestParam(value="qnaTitle") String qnaTitle,
 			@RequestParam(value="qnaContent") String qnaContent,
+			@RequestParam(value="productCode") long productCode,
 			Model model,HttpSession session){
 		Member m = (Member) session.getAttribute("loginMember");
-		Product p=service.selectProduct(2);	
+		
+		Product p=service.selectProduct(productCode);	
 		String msg="";
 		String loc="";
 		if(m !=null) {
@@ -152,65 +170,44 @@ public class ProductController {
 		return mv;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//검색
-	@RequestMapping("/product/search.do")
-	public String search(@RequestParam(value="keyword") String keyword, Model m) {
+	@RequestMapping("/product/payment.do")
+	public String payment(Product p, ProductOrder po,DeliveryLocation dl 
+			, HttpSession session, Model model
+			,@RequestParam(value="selAmount", required = false ) int[] selAmount
+			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
+			,@RequestParam(value="productName", required = false ) String productName
+			) 
+	{
+		Member m = (Member) session.getAttribute("loginMember");
+		log.debug("{}",p);
+//		log.debug("{}",po);
+//		log.debug("{}",dl);
+		log.debug("{}",productName);
+		log.debug("{}",selAmount);
+		log.debug("{}",selectedOpt);
 		
-		System.out.println("keyword : " + keyword);
-		List<Product> p = service.searchList(keyword);
-		
-		m.addAttribute("products", p);
-		System.out.println("keyword : " + p);
-		
-		return "product/productList";
+//		dl=service.selectaddrBase(m);//여기서 기본배송지 선택해서
+//		po=ProductOrder.builder().orderDate(new Date()).orderStatus("디폴").selectLocation(dl).build();
+//		Product p;
+//		int selsu=1;
+//		String op="바보";
+//		OrderDetail od=OrderDetail.builder().productOrder(po).orderOption(op).orderAmount(selsu).product(p).build();		
+//		log.debug("{}",op);
+		return "order/payment/payment";
 	}
 	
+	//검색
+		@RequestMapping("/product/search.do")
+		public String search(@RequestParam(value="keyword") String keyword, Model m) {
+			
+			System.out.println("keyword : " + keyword);
+			List<Product> p = service.searchList(keyword);
+			
+			m.addAttribute("products", p);
+			System.out.println("keyword : " + p);
+			
+			return "product/productList";
+		}
 	
 	
 	
@@ -221,6 +218,52 @@ public class ProductController {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	
 }
