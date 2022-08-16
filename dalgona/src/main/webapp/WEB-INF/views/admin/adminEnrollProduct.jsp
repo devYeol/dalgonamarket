@@ -59,7 +59,7 @@
 							<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
 								<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
 							</div>
-							<div style="display:flex;justify-content:left;align-items:center;margin:2%" class="optionInput">
+							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
 								<div>
 									<input class="adminin" name="optionName" type="text"
 									placeholder="옵션이름을 입력해주세요">
