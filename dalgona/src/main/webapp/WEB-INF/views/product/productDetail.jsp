@@ -9,8 +9,7 @@
 </jsp:include>
 <section>
 	<main class="container" style="width: 70%;">
-		<form action="${path }/product/payment.do" method="post"
-			onsubmit='return info_chk()'>
+		<form action="${path }/product/payment.do" method="post" onsubmit='return info_chk()'>
 			<div class="row mb-2 d-grid gap-4">
 				<div class="row g-5">
 					<div class="col-md border-end">
@@ -50,8 +49,8 @@
 
 							<c:if test="${not empty op }">
 								<div class="form-horizontal" style="text-align: left;">
-									<label>옵션 : </label> <select class="form-control opt_select"
-										name="selectedOpt">
+									<label>옵션 : </label> 
+									<select class="form-control opt_select" name="selectedOpt">
 										<c:forEach var="o" items="${op}">
 											<option value="${o.optionPrice }">${o.optionName }
 												${o.optionPrice }원</option>
@@ -82,9 +81,8 @@
 								<div class="selected_option" style="text-align: right;"></div>
 								<div style="text-align: center;">
 
-									<input type='button' value='장바구니'
-										onclick='return info_chk2(this.form);'> <input
-										type='submit' value='결제하기'>
+									<input type='button' value='장바구니' onclick='return info_chk2(this.form);'> 
+									<input type='submit' value='결제하기'>
 
 									<!-- <button class="btn btn-default btn-cart"  onclick='return info_chk2(this.form);'>장바구니</button>
 									<button class="btn btn-default btn-order" type="submit">주문하기</button> -->
@@ -122,14 +120,17 @@
 			<li>
 				<form class="mb-3" name="myform" id="myform" enctype="multipart/form-data" method="post"action="${path }/review/reviewWrite.do">
 					<fieldset>
-						<span class="text-bold">별점을 선택해주세요</span> <input type="radio"
-							name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
-						<input type="radio" name="reviewStar" value="4" id="rate2"><label
-							for="rate2">★</label> <input type="radio" name="reviewStar"
-							value="3" id="rate3"><label for="rate3">★</label> <input
-							type="radio" name="reviewStar" value="2" id="rate4"><label
-							for="rate4">★</label> <input type="radio" name="reviewStar"
-							value="1" id="rate5"><label for="rate5">★</label>
+						<span class="text-bold">별점을 선택해주세요</span> 
+						<input type="radio" name="reviewStar" value="5" id="rate1" checked>
+						<label for="rate1">★</label>
+						<input type="radio" name="reviewStar" value="4" id="rate2">
+						<label for="rate2">★</label> 
+						<input type="radio" name="reviewStar"value="3" id="rate3"> 
+						<label for="rate3">★</label> 
+						<input type="radio" name="reviewStar" value="2" id="rate4">
+						<label for="rate4">★</label> 
+						<input type="radio" name="reviewStar" value="1" id="rate5">
+						<label for="rate5">★</label>
 					</fieldset>
 					<div class="custom-file">
 						<input type="file" class="custom-file-input" name="reviewImage"

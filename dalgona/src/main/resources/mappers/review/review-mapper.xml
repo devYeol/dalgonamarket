@@ -5,8 +5,7 @@
 	<resultMap type="review" id="reviewMap">
 		<result column="review_code" property="reviewCode"/>
 		<result column="product_code" property="productCode"/>
-		<result column="member_id" property="memberId"/>
-		<result column="review_ttitle" property="reviewTtitle"/>	
+		<result column="member_id" property="memberId"/>	
 		<result column="review_content" property="reviewContent"/>	
 		<result column="review_image" property="reviewImage"/>	
 		<result column="review_date" property="reviewDate"/>	
@@ -22,7 +21,7 @@
 	<insert id="insertReview" parameterType="review">
 		INSERT INTO REVIEW VALUES(SEQ_REVIEW_CODE.NEXTVAL,#{memberId},#{productCode}
 				,#{reviewContent},SYSDATE,#{reviewImage},#{reviewLevel},#{reviewReply},
-				#{reviewStar},#{reviewTtitle},null)
+				#{reviewStar},null)
 	</insert>
 	
 	<select id="starAvg"  parameterType="review" resultMap="reviewMap" >

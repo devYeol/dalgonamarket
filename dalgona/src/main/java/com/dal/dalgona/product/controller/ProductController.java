@@ -56,11 +56,11 @@ public class ProductController {
 		List<Review> review=service.reviewList(productCode);
 		List<Qna> qna=service.qnaList(productCode);
 		
-//		Review star=service.starAvg(productCode);
+		
 //		log.debug("{}",star);
 		
 //		log.debug("{}",op);
-//		log.debug("{}",review);
+		log.debug("{}",review);
 		
 		
 		
@@ -83,7 +83,7 @@ public class ProductController {
 			@RequestParam(value="reviewContent") String reviewContent,
 			@RequestParam(value="reviewStar", required = false) int reviewStar,
 			@RequestParam(value = "reviewImage", required = false) MultipartFile reviewImage,	
-			HttpServletRequest rs, HttpSession session)  throws IllegalStateException, IOException {
+			HttpServletRequest rs, HttpSession session, Model model)  throws IllegalStateException, IOException {
 		Member m = (Member) session.getAttribute("loginMember");
 		String memberId = m.getMemberId();
 		
@@ -105,25 +105,36 @@ public class ProductController {
 				
 				reviewImageFile = new File(path + "/" + rename);
 				reviewImage.transferTo(reviewImageFile);
+				String pathReview = path + reviewImageFile.getName();
+				
+				String target = "resources";
+				int target_num = pathReview.indexOf(target) - 1;
+				reviewImagePath = pathReview.substring(target_num);
 			}
-			
-			String aa = path + reviewImageFile.getName();
-	
-			// 이미지주소자르기 썸네일
-			String target = "resources";
-			int target_num = aa.indexOf(target) - 1;
-			reviewImagePath = aa.substring(target_num);
-			log.debug("리뷰이미지{}",reviewImagePath);
-			
-		
-		Review review=Review.builder().memberId(memberId).productCode(productCode)
-				.reviewContent(reviewContent).reviewImage(reviewImagePath).reviewDate(new Date()).reviewStar(reviewStar).review(null).build();
-		
-		log.debug("{}",review);
 
-	    service.reviewWrite(review);
+			log.debug("리뷰이미지{}",reviewImagePath);
+			    
+	    String msg="";
+		String loc="";
+	    if(m !=null) {
+	    	Review review=Review.builder().memberId(memberId).productCode(productCode)
+					.reviewContent(reviewContent).reviewImage(reviewImagePath)
+					.reviewDate(new Date()).reviewStar(reviewStar).review(null).build();
+	    	
+	    	service.reviewWrite(review);
+					
+			msg="등록완료";
+			loc="/product/productDetail/"+productCode;
+		}else {			
+			msg="로그인이 필요합니다";	
+			loc="/member/login/loginPage";		
+		}
+	    
+	    model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
 	 
-	    return "redirect:/product/productDetail/"+productCode;
+//	    return "redirect:/product/productDetail/"+productCode;
+	    return "common/msg";
 	}
 		
 	
