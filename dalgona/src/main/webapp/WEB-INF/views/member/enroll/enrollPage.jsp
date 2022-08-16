@@ -111,16 +111,16 @@ input::placeholder {
 					<label for="id"><b>아이디*</b></label>
 					<span id="id-duplication"></span>
 				</div>
-				<input type="text" id="userId" name="memberId" placeholder="아이디" autocomplete="off" required>
+				<input type="text" id="userId" name="memberId" pattern="^[a-zA-Z0-9]+$" placeholder="아이디" autocomplete="off" required>
 			</div>
-				<span class="successIdChk" style="font-size: 14px; color: #999;">아이디는 4자 이상으로 입력해주세요.</span>
+				<span class="successIdChk" style="font-size: 14px; color: #999;">5자 이상 20자 이내의 영문 숫자만 입력.</span>
 			<br>
 			<div class="int-area">
 				<label for="pw"><b>비밀번호*</b></label>
 				<br>
 				<input type="password" id="userPwd" name="memberPwd" placeholder="비밀번호" autocomplete="off" required>
+				<span style="font-size: 14px; color:#999;">8자리 이상 영문,숫자,특수문자 중 2가지 이상 입력.</span>
 			</div>
-			<br>
 			<div class="int-area">
 				<div style="display: flex; justify-content: space-between;">
 					<label for="pw"><b>비밀번호 확인*</b></label>
@@ -175,7 +175,7 @@ input::placeholder {
 			<div class="int-area">
 				<label for="phone"><b>연락처*</b></label>
 				<br>
-				<input type="tel" name="memberPhone" placeholder="-없이 입력" autocomplete="off" required>
+				<input type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="11" name="memberPhone" placeholder="-없이 입력" autocomplete="off" required>
 			</div>
 			<br>
 			<div class="btn-area" id="btn-enrollEnd">
@@ -222,21 +222,22 @@ $('#mail-send-Btn').click(function() {
 //아이디 중복확인
 $("#userId").blur(function(){
 	const userId = $("#userId").val();
-	if(userId == "" || userId.length < 4){
-		$(".successIdChk").text("아이디는 4자 이상으로 입력해주세요.");
+	if(userId == "" || userId.length < 5){
+		$(".successIdChk").text("아이디는 5자 이상으로 입력해주세요.");
 			$(".successIdChk").css("color", "red");
 	}else{
-		$(".successIdChk").css("color", "#999");
+		$(".successIdChk").text("5자 이상 20자 이내의 영문 숫자만 입력.");
+			$(".successIdChk").css("color", "#999");	
 		$.ajax({
 			url : '${path}/idCheck?memberId='+ userId,
 			type : 'post',
 			success : function(data) {
 				console.log(data);
 				if (data == 0) {
-					$("#id-duplication").text("사용가능한 아이디입니다.");
+					$("#id-duplication").text("중복되지 않은 아이디입니다.");
 					$("#id-duplication").css("color", "green");
 				}else {
-					$("#id-duplication").text("사용중인 아이디입니다.");
+					$("#id-duplication").text("중복된 아이디입니다.");
 					$("#id-duplication").css("color", "red");
 				}
 			}, error : function() {
@@ -245,6 +246,7 @@ $("#userId").blur(function(){
 		});
 	}
 });
+
 //비밀번호 확인
 $(()=>{
 	$("#userPwdCk").keyup(e=>{
@@ -261,29 +263,32 @@ $(()=>{
 	    }
 	   });
    })
-//비밀번호 유효성 확인
+//아이디 비밀번호 유효성 확인
 const chkPw=()=>{
+	 const id = $("#userId").val();
 	 const pw = $("#userPwd").val();
 	 const pwck	= $("#userPwdCk").val();
 	 const num = pw.search(/[0-9]/g);
 	 const eng = pw.search(/[a-z]/ig);
 	 const spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-	 
-	if(pw.length < 8){
+	if(pw.length < 8) {
 		alert("비밀번호는 8자리 이상으로 입력해주세요.");
 		$("#userPwd").focus();
 		return false;
-	}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+	}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ) {
 		alert("비밀번호는 영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
 		$("#userPwd").focus();
 		return false;
-	}else if(pw != pwck){
+	}else if(pw != pwck) {
 		alert("비밀번호가 일치하지 않습니다.")
 		$("#userPwd").focus();
 		return false;
-	}else {
-		console.log("통과");	 
+	}else if((id.length < 5) || (id.length > 20)) {
+	    alert("아이디를 5자리 이상 20자리 이내로 입력해주세요.");
+	    $("#userId").focus();
+	    return false;
 	}
+	return true;
 }
    
 //이메일 미인증 유효성검사

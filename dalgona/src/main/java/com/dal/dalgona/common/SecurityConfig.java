@@ -58,7 +58,7 @@ public class SecurityConfig { // Security 설정 클래스
 				// 인증 권한에 대한 설정 interceptor-url 같은 역할
 				.authorizeRequests()
 					// static 관련 화위폴더 인가무시
-					.antMatchers("/loginpage","/logincheck","/resources/**").permitAll()
+					.antMatchers("/loginpage", "/logincheck", "/resources/**").permitAll()
 					// localhost에서 리디렉션한 횟수가 너무 많습니다. -> /login 페이지 접근제한 풀지 않으면 뜨는 현상
 					
 //					.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")

@@ -1,6 +1,9 @@
 package com.dal.dalgona.common.model.vo;
 
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,5 +41,9 @@ public class Cart {
 	
 	@Column (columnDefinition = "number default 0")
 	private long cartAmount;
+	
+	@Column
+    @ElementCollection(targetClass=Cart.class)
+	private List<Cart> carts;
 
 }

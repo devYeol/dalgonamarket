@@ -1,9 +1,12 @@
 
 package com.dal.dalgona.working.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,10 +15,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.common.PageFactroyNoBootStrap;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.working.model.service.PjeServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
@@ -45,11 +50,11 @@ public class PjeController {
 	
 	// 회원관리 검색기능
 	@RequestMapping("adminSearchMember.do")
-	public ModelAndView adminSearchMember(ModelAndView mv, 
+	public ModelAndView adminSearchMember(ModelAndView mv,
 			@RequestParam(value = "searchType") String searchType,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword, 
 			@RequestParam(value = "searchGen", defaultValue = "") String searchGen,
-			@RequestParam(defaultValue = "1") int cPage, 
+			@RequestParam(defaultValue = "1") int cPage,
 			@RequestParam(defaultValue = "25") int numPerpage) {
 		log.debug(searchType + " " + keyword + " " + searchGen);
 		Map<String,Object> param=new HashMap();
@@ -60,7 +65,6 @@ public class PjeController {
 		param.put("numPerpage", numPerpage);
 		List<Member> list=service.searchMembers(param);
 		int totalData=service.searchMembersCount(param);
-		log.debug(""+totalData);
 		mv.addObject("members", list);
 		mv.addObject("searchType", searchType);
 		mv.addObject("keyword", keyword);
@@ -68,6 +72,34 @@ public class PjeController {
 		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(totalData, numPerpage, cPage, "adminManageProduct.do"));
 		mv.setViewName("admin/adminManageMember");
 		return mv;
+	}
+	
+	// 주문내역 불러오기
+	@RequestMapping("adminManageOrder.do")
+	public ModelAndView adminManageOrder(ModelAndView mv,
+			@RequestParam(defaultValue = "1") int cPage, 
+			@RequestParam(defaultValue = "25") int numPerpage) {
+		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "orderDate"));
+		Page<ProductOrder> list=service.searchOrders(pagerequest);
+		log.debug("{}",list);
+		mv.addObject("productOrders",list.getContent());
+		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageOrder.do"));
+		mv.setViewName("admin/adminManageOrder");
+		return mv;
+	}
+	
+	@RequestMapping("adminOrderPermit.do")
+	@ResponseBody
+	public String adminOrderPermit(long orderCode, HttpServletResponse response) throws IOException {
+		ProductOrder result = service.adminOrderPermit(orderCode);
+		return result.getOrderStatus();
+	}
+	
+	@RequestMapping("adminOrderCancel.do")
+	@ResponseBody
+	public String adminOrderCancel(long orderCode, HttpServletResponse response) throws IOException {
+		ProductOrder result = service.adminOrderCancel(orderCode);
+		return result.getOrderStatus();
 	}
 
 }
