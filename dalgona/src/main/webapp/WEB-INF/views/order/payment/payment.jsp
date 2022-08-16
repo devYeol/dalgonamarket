@@ -48,6 +48,7 @@
 		</div>
 
 		<div>
+		<input type="hidden" value="${loginMember }" id="memberId">
 			<h2>구매자 정보 (*)회원정보</h2>
 			<hr class="my-4">
 			<table class="payment-table">
@@ -76,7 +77,7 @@
 				</div>
 
 				<div class="deli-btn" style="float: right;">
-					<button type="submit" class="btn btn-primary">배송지변경</button>
+					<button type="submit" class="btn btn-primary" id="delivery-change-btn" onclick="popAddress()">배송지변경</button>
 				</div>
 			</div>
 
@@ -86,17 +87,17 @@
 				<tbody>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">이름</label></th>
-						<td name="addrReceiver">$ name</td>
+						<td name="addrReceiver"><c:out value="${deliveryLocation.addrReceiver }" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">배송주소</label></th>
-						<td name="addrPostNum">$ address</td>
-						<td name="addrRoadName">$ address</td>
-						<td name="addrDetail">$ address</td>
+						<td name="addrPostNum"><c:out value="${deliveryLocation.adrPostNum }" /></td>
+						<td name="addrRoadName"><c:out value="${deliveryLocation.addrRoadName }" /></td>
+						<td name="addrDetail"><c:out value="${deliveryLocation.addrDetail }" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">전화번호</label></th>
-						<td name="addrPhone">$ phone</td>
+						<td name="addrPhone"><c:out value="${deliveryLocation.addrPhone }" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -112,7 +113,8 @@
 
 		<hr class="my-4">
 
-		<c:forEach var="c" items="${map.cartList}" varStatus="i">
+		<%-- <c:forEach var="c" items="${map.cartList}" varStatus="i"> --%>
+		<c:forEach var="c" items="${cart}" varStatus="i">
 			<table class="payment-table" id="payment-deli-table">
 
 				<thead>
@@ -133,8 +135,8 @@
 								border="0" />
 						</a></td>
 						<td><a href="#"><c:out value=" ${c.product.productName }" /></a>
-							<br> 수량 N 개</td>
-						<td>배송비 N 원</td>
+							<br> ${c.cartAmount }</td>
+						<td>배송비 2500 원</td>
 					</tr>
 
 				</tbody>
@@ -361,6 +363,12 @@
 		});
 
 	}
+	
+	/* 배송지 변경 팝업 */
+	function popAddress() {
+        window.open("/changeAddress.do", "배송지 변경", "width=1000, height=600, top=100, left=270");
+    }
+
 </script>
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

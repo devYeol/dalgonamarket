@@ -49,9 +49,9 @@ public class ProductOrder {
 	@Column(nullable = true)
 	private long totalPrice;
 	
-//	private String payMethod; // 'card'로 고정
+//	private String payMethod; // 불필요 'card'로 고정
 	
-	private String impUid=""; // 아임포트 결제번호 임시주석
+	private String impUid=""; // 아임포트 결제번호 추가
 	
 	@OneToOne
 	@JoinColumn(name="addressCode")

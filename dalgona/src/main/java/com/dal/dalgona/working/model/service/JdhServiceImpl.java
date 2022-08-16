@@ -50,11 +50,11 @@ public class JdhServiceImpl implements JdhService {
 //		return dao.insertMember(session,m);
 //	}
 
-	@Value("${imp_key}")
-	private String impKey;
-
-	@Value("${imp_secret}")
-	private String impSecret;
+//	@Value("${imp_key}")
+//	private String impKey;
+//
+//	@Value("${imp_secret}")
+//	private String impSecret;
 	
 	@ToString
 	@Getter
@@ -83,8 +83,8 @@ public class JdhServiceImpl implements JdhService {
 
 		JsonObject json = new JsonObject(); // 디펜던시 추가
 
-		json.addProperty("imp_key", impKey);
-		json.addProperty("imp_secret", impSecret);
+//		json.addProperty("imp_key", impKey);
+//		json.addProperty("imp_secret", impSecret);
 
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 
