@@ -23,7 +23,7 @@
       <result property="memberPhone" column="member_phone"/>
       <result property="memberEmail" column="member_email"/>
       <result property="memberEnrollDate" column="member_enroll_date"/>
-      <result property="roles" column="roles" typeHandler="roles"/> <!-- roles 핸들러 -->
+      <!-- <result property="roles" column="roles" typeHandler="roles"/> roles 핸들러 -->
    </resultMap>
 	
 	<resultMap type="cart" id="cartMap">
@@ -34,7 +34,7 @@
 	</resultMap>
 	
 	<insert id="cartInsert">
-		insert into cart (cart_code,cart_amount,member_id,product_code)
+		insert into cart (cart_code,cart_amount,member_Id,product_code)
 		values(seq_cart_code.nextval,#{cartAmount},#{memberId},#{productCode})
 	</insert>
 

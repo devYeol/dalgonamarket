@@ -56,8 +56,8 @@ public class ProductOrder {
 	private String orderDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd"));
 //	private Date orderDate; //주문날짜
 	
-//	@Column(nullable = true)
-//	private long totalPrice;
+	@Column(nullable = true)
+	private long totalPrice;
 	
 //	private String payMethod; // 불필요 'card'로 고정
 	

@@ -362,4 +362,9 @@ public class adminController {
 		log.debug("{}",product_Name);
 		return "admin/adminManageProduct";
 	}
+	
+	/*
+	 * @RequestMapping("adminPageGo.do") public String adminPageGo() { return
+	 * "admin/adminMain"; }
+	 */
 }

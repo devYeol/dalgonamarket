@@ -180,20 +180,16 @@
 				<strong>마이페이지</strong>
 			</h4>
 			<ul>
-				<li><h5></h5></li>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
 				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
-				<li><a href="${path }/member/mypage/cart">장바구니</a></li>
-				<li><a href="${path }/member/mypage/zzim"></a>
-				<h5>
-						<b>찜 목록</b>
-					</h5></li>
+				<li><a href="${path }/member/mypage/cart">장바구니</a>
+				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
 				<br>
-				<li><h5>
-						<b>내정보</b>
-					</h5></li>
-				<li><a href="#">프로필 정보</a></li>
-				<li><a href="${path }/address">주소</a>
+				<br>
+				<li><h5><b>내정보</b></h5></li>
+				<li><a href="${path }/member/mypage/changePage">프로필 정보</a></li>
+				<li><a href="${path }/member/mypage/pwUpdate">비밀번호 변경</a></li>
+				<li><a href="${path }/member/mypage/address">주소록</a></li>
 			</ul>
 		</div>
 	</div>
@@ -207,8 +203,7 @@
 				<span>찜 한 상품이 없습니다</span>
 				<br>
 				<br>
-				<button type="button" class="btn btn-danger" id="productListMove">상품
-					페이지로 이동</button>
+				<button type="button" class="btn btn-danger" name="productListMove">찜 하러가기</button>
 			</c:when>
 			<c:otherwise>
 				<div style="margin-top: 20px">
@@ -231,9 +226,11 @@
 						<table style="margin-left: 10; width: 98%;">
 							<tbody>
 								<tr class="payment-tr">
-									<td style="width: 20%;"><input class="check-input"
-										name="checkbox" id="${z.likesCode }" type="checkbox"
-										style="margin-top: 40;"> <a href="#"
+									<td style="width: 20%;">
+									<input type="hidden" name="zzimCode" value="${z.likesCode }">
+									<input class="check-input"
+										name="check" id="${z.product.productCode }" type="checkbox"
+										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
 										style="text-decoration: none;"> <img
 											src="${z.product.productThumb }" width="150" height="150"
 											border="1" style="margin-left: 10" />
@@ -250,7 +247,7 @@
 											<c:out value="${z.product.productPrice }원" />
 										</div></td>
 									<td style="padding-left: 140px;">
-										<button type="submit" class="btn btn-danger"
+										<button type="button" name="cartMove" class="btn btn-danger"
 											style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
 									</td>
 									<a href="${path }/member/zzimDelete.do?likesCode=${z.likesCode}"
@@ -261,6 +258,10 @@
 						<br>
 						<hr>
 					</c:forEach>
+					<div class="cartandprice" style="text-align: center;">
+						<button type="reset" name="productListMove" class="btn-cart">찜 하러가기</button>
+						<button class="btn-buy" name="cartMove">장바구니에 담기</button>
+					</div>
 				</form>
 			</c:otherwise>
 		</c:choose>
@@ -268,6 +269,25 @@
 </section>
 
 <script>
+
+function getCheckboxValues(){
+	/* 선택된 목록 가져오기 */
+	const query ='input [name="check"]:checked';
+	const selecteEls= document.queryselectAll(query);
+	
+	/* 선택된 목록에서 value 찾기 */
+	let result = '';
+	selecteEls.forEach((el)=>{
+		result +=el.value+' ';
+	});
+	document.getElementById('result') =result;
+}
+
+$("button[name= productListMove]").click(function(){
+	  location.assign("${path}/product/productList");
+})
+
+
     //체크박스 전체 선택&해제
   $('#selectAll').click(function(){
 	if($("#selectAll").prop("checked")){
@@ -289,9 +309,9 @@ $(".check-input").click(function(){
     	$("#selectDelete").click(function(){
     	if(confirm("삭제 하시겠습니까?")){
     		
-        const cnt = $("input[name='checkbox']:checked").length;
+        const cnt = $("input[name='check']:checked").length;
         const arr = new Array();
-        $("input[name='checkbox']:checked").each(function() {
+        $("input[name='check']:checked").each(function() {
             arr.push($(this).attr('id'));
         });
         console.log(cnt);
@@ -301,7 +321,7 @@ $(".check-input").click(function(){
 			data:{deleteArr:arr},
 			success:data=>{
 				if(data){
-					$("input[name='checkbox']:checked").parents("tr").remove();
+					$("input[name='check']:checked").parents("tr").remove();
 				}
 			}
 		});
@@ -317,6 +337,21 @@ $(".check-input").click(function(){
         	}
         		
         })
+        
+        $("button[name=cartMove]").click(function(){
+        var qwe =$("input[name='check']:checked");
+			if(qwe.length >= 1){
+				
+				console.log(qwe);
+ 				$('#cartMove').submit();
+			}else{
+				alert('상품을 선택하세요');
+				return false
+			}
+		})    
+        
+        
+        
 
   $("#productListMove").click(function(){
 	  location.assign("${path}/product/productList");
