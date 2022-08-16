@@ -124,13 +124,12 @@
 			<h4>
 				<strong>마이페이지</strong>
 			</h4>
-
-
-
 			<ul>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
 				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
-				<li><a href="${path }/member/mypage/cart"></a> <li><a href="${path }/member/mypage/zzim">찜 목록</a></li><br>
+				<li><a href="${path }/member/mypage/cart">장바구니</a>
+				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
+				<br>
 				<li><a href="#">내 정보</a></li>
 				<li><a href="#">프로필 정보</a></li>
 				<li><a href="${path }/address"></a>
@@ -185,13 +184,17 @@
 </section>
 
 
-	<script>
-		const adressAdd=()=>{
-			location.assign("${path}/member/mypage/addressadd");
-		}
-	</script>
-	
-	
+<script>
+	/* const adressAdd=()=>{
+		location.assign("${path}/member/mypage/addressadd");
+	} */
+	 const adressAdd=()=>{
+		 const url="${path}/member/mypage/addressadd";
+		 window.open(url,"배송지 추가","width=500,height=500");
+	 }
+</script>
+
+
 
 
 

@@ -13,9 +13,12 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.member.model.dao.MemberDao;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,35 +42,55 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Cart> cartList(Member m){
-		return dao.cartList(session,m);
+	public List<Cart> cartList(Member memberId){
+		return dao.cartList(session,memberId);
 	}
 	@Override
 	public List<Likes> zzimList(Member memberId){
 		return dao.zzimList(session,memberId);
 	}
-	@Override
-	public long delete(long cartCode) {
-		return dao.delete(session,cartCode);
-	}
-	
-	@Override
-	public List<Product> orderList(){
-		return dao.orderList(session);
-	}
-	
-//	@Override
-//	public void delete(int cartCode) { 
-//		 dao.delete(session,cartCode);
-//	}
 
-	public void deleteAll(Member memberId) { 
-		dao.deleteAll(session,memberId);
+	@Override
+	public void delete(long cartCode) {
+		 dao.delete(session,cartCode);
 	}
 	
 	@Override
-	public int sumMoney(Member m){
-		return dao.sumMoney(session,m);
+	public long selectDelete(long cartCode) {
+		return dao.selectDelete(session,cartCode);
+	}
+	
+	@Override
+	public long zzimSelectDelete(long likesCode) {
+		return dao.zzimSelectDelete(session,likesCode);
+	}
+	@Override
+	public void zzimDelete(long likesCode) {
+		 dao.zzimDelete(session,likesCode);
+	}
+	
+	@Override
+	public List<OrderDetail> orderList(Member memberId){
+		return  dao.orderList(session,memberId);
+	}
+	
+	@Override
+	public List<DeliveryLocation>selectDL(Member memberId){
+		return dao.selectDL(session,memberId);
+	}
+	
+	@Override
+	public long orderListDelete(long orderCode) {
+		return dao.orderListDelete(session,orderCode);
+	}
+
+//	public void deleteAll(Member memberId) { 
+//		dao.deleteAll(session,memberId);
+//	}
+	
+	@Override
+	public int sumMoney(Member memberId){
+		return dao.sumMoney(session,memberId);
 	}
 
 	

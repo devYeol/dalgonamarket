@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +25,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
-import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.member.model.service.MemberService;
 
 @Controller
@@ -46,30 +46,23 @@ public class MemberController {
 		return "member/mypage/mypageMain";
 	}
 
-	@GetMapping("/member/mypage/cartInsert")
+	@RequestMapping("/member/mypage/cartInsert")
 	public String cartInsert(@ModelAttribute Cart c, HttpSession session) {
-
 		Member memberId = (Member) session.getAttribute("loginMember");
-
 		if (memberId == null) {
-
 			// 로그인하지 않은 상태이면 로그인 화면으로 이동
-
 			return "redirect:member/login/loginPage";
 		} else {
-
 			c.setMember(memberId);
 			service.cartInsert(c);
-
 			return "redirect:/member/mypage/cart";
 		}
 	}
 
-	@RequestMapping("/member/mypage/cart") // 장바구니
+	@RequestMapping(value="/member/mypage/cart",method = RequestMethod.GET) // 장바구니
 	public ModelAndView cart(ModelAndView mv, HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println(memberId);
 		if (memberId != null) {
 			List<Cart> cartList = service.cartList(memberId); // 장바구니 정보
 			System.out.println("cart :" + cartList);
@@ -91,61 +84,89 @@ public class MemberController {
 
 	}
 
-//	@RequestMapping("/member/delete.do") //개별 삭제(한 개 row만 삭제
-//	 public String delete(@RequestParam int cartCode) {
-//       service.delete(cartCode);
-//        return "redirect:/member/mypage/cart";
-//    }
+	@RequestMapping("/member/delete.do") //개별 삭제(한 개 row만 삭제
+	 public String delete(@RequestParam long cartCode) {
+      service.delete(cartCode);
+       return "redirect:/member/mypage/cart";
+   }
 
-	// 장바구니 - 선택삭제기능
-	@RequestMapping("/member/delete.do")
+//	 장바구니 - 선택삭제기능
+	@RequestMapping("/member/selectDelete.do") 
 	@ResponseBody
-	public boolean delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public boolean selectdelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String[] deleteArr = request.getParameterValues("deleteArr[]");
 		boolean result = false;
 		for (int i = 0; i < deleteArr.length; i++) {
-			service.delete(Long.parseLong(deleteArr[i]));
+			service.selectDelete(Long.parseLong(deleteArr[i]));
 		}
 		result = true;
 		return result;
 	}
 
-	@RequestMapping("/member/deleteAll.do") // 장바구니 전체 삭제
-	public String deleteAll(HttpSession session) {
-		Member memberId = (Member) session.getAttribute("loginMember");
-		if (memberId != null) {
-			service.deleteAll(memberId);
-		}
-		return "redirect:/member/mypage/cart";
-	}
-
-//	@PostMapping("/member/payment/insert") //장바구니에서 결제페이지 이동
-//	public String paymentInsert(Product product,HttpSession session,Model mo) {
-//		List<Product> orderList = service.orderList();
-//		mo.addAttribute("orderList",orderList);
-//		return "member/mypage/productOrderList";
+//	@RequestMapping("/member/deleteAll.do") // 장바구니 전체 삭제
+//	public String deleteAll(HttpSession session) {
+//		Member memberId = (Member) session.getAttribute("loginMember");
+//		if (memberId != null) {
+//			service.deleteAll(memberId);
+//		}
+//		return "redirect:/member/mypage/cart";
 //	}
 
 	@GetMapping("/member/mypage/productOrderList") // 구매내역
-	public String productOrder(Model mo, HttpSession session) {
+	public String orderDetail(Model mo,HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
-		List<Product> orderList = service.orderList();
-		mo.addAttribute("orderList", orderList);
+		System.out.println("id :"+ memberId);
+		List<OrderDetail> orderDetailList = service.orderList(memberId);
+		System.out.println("orderDetailList :"+orderDetailList);
+		mo.addAttribute("orderDetailList", orderDetailList);
+		System.out.println("orderDetailList :"+orderDetailList);
+		
 		return "member/mypage/productOrderList";
+		
+	}
+	
+	//구매내역 - 선택삭제
+	@GetMapping("/member/orderListDelete.do") 
+	@ResponseBody
+	public boolean orderListDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String[] deleteArr = request.getParameterValues("deleteArr[]");
+		boolean result = false;
+		for (int i = 0; i < deleteArr.length; i++) {
+			service.orderListDelete(Long.parseLong(deleteArr[i]));
+		}
+		result = true;
+		return result;
 	}
 
-	@GetMapping("/member/mypage/zzim") // 찜
+	@RequestMapping("/member/mypage/zzim") // 찜
 	public String zzim(Model mo, HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		List<Likes> zzimList = service.zzimList(memberId);
 		System.out.println(zzimList + "1");
 		mo.addAttribute("zzimList", zzimList);
-		System.out.println(zzimList + "2");
 		return "member/mypage/zzim";
 	}
 
-//
-//	
+//	 찜 - 선택삭제기능
+	@RequestMapping("/member/zzimSelectDelete.do") 
+	@ResponseBody
+	public boolean zzimSelectDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String[] deleteArr = request.getParameterValues("deleteArr[]");
+		boolean result = false;
+		for (int i = 0; i < deleteArr.length; i++) {
+			service.zzimSelectDelete(Long.parseLong(deleteArr[i]));
+		}
+		result = true;
+		return result;
+	}
+	
+	@RequestMapping("/member/zzimDelete.do") //개별 삭제(한 개 row만 삭제
+	public String zzimDelete(@RequestParam long likesCode) {
+		service.zzimDelete(likesCode);
+		return "redirect:/member/mypage/zzim";
+	}
+	
+	
 //	
 	@RequestMapping("/member/mypage/shippingset")
 	public String shippingset() {
@@ -153,7 +174,6 @@ public class MemberController {
 
 	}
 
-//	
 //		
 	@RequestMapping("/member/mypage/addressadd")
 	public String addressadd() {
@@ -283,9 +303,13 @@ public class MemberController {
 	   }
 	   
 	   @RequestMapping("/address")
-	   public String address() {
-	      return "member/mypage/address";
-	   }
+	   public String address(HttpSession session,Model mo) {
+		   Member memberId=(Member)session.getAttribute("loginMember");
+		   List<DeliveryLocation> selectDL =service.selectDL(memberId);
+			   mo.addAttribute("selectDL",selectDL);
+			   return "member/mypage/address";
+		   }
+	   
 	   @RequestMapping("/infochange")
 	   public String infochange() {
 	      return "member/mypage/infochange";

@@ -8,6 +8,13 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 <style>
+
+.proName{
+font-size:20px;
+text-decoration:none;
+ color:black;
+}
+
 .orderlist-form {
 	margin-left: 100px;
 	margin-right: 100px;
@@ -232,6 +239,13 @@ img {
 		<h4>
 			<b>구매내역</b>
 		</h4>
+		<c:choose>
+			<c:when test="${empty orderDetailList }">
+			<span>구매하신 상품이 없습니다</span>
+			<br><br>
+			<button type="button" class="btn btn-danger"  id="productListMove">상품 페이지로 이동</button>
+			</c:when>
+			<c:otherwise>
 		<div>
 			<div class="pay">
 				<div>
@@ -272,66 +286,77 @@ img {
 							value="" aria-label="...">
 						<div class="all-check">전체선택</div>
 					</div>
-					<button type="button" class="btn-delete">선택삭제</button>
+					<button type="button" id="selectDelete"class="btn-delete">선택삭제</button>
 				</div>
+				<c:forEach var="o" items="${orderDetailList }">
 				<hr style="margin-top: 8px; margin-bottom: 8px;">
-				<c:forEach var="o" items="${orderList }">
 				<br>
-					<div>
-						<div style="display: flex">
+					<table style="justify-content:between-space; width:100%;">
+						<tbody>
+						<tr  >
+						<td style="display: flex">
 							<h3 style="margin-bottom: 0px; margin-left: 40px;">
-								<c:out value="" />
-								2022.7.15 주문 
+								주문날짜: ${o.productOrder.orderDate}
 							</h3>
-						</div>
-						<div>
-							<div id="order-data" style="display: flex;">
+						</td>
+							<td id="order-data" style="display: flex; ">
 								<div
 									style="padding-right: 215px; margin-right: 15px; height: 160;">
 									<div class="check-itembox">
 										<div class="check-item">
-											<input class="check-input" type="checkbox" value="">
+											<input class="check-input" type="checkbox" name="check" id="${o.productOrder.orderCode}">
 										</div>
 										<div>
 											<img
-												src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
+												src="${o.product.productThumb }"
 												class="d-block w-100">
+												<!-- src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" -->
 										</div>
 										<div style="margin-top: 20px; margin-left: 30px">
-											<span style="font-size: 20px"><b><c:out
-														value="" /></b></span><br> <span
-												style="font-size: 15"><b><c:out
-														value="${o.productName }" /></b></span><br> <span
-												style="font-size: 15"><c:out value="${o.productPrice }원" />&nbsp;&nbsp;<c:out
-													value="${o.productAmount}개" /></span> <br>
+											<a href="${path}/product/productList" class="proName"><b>
+												<c:out	value="${o.product.categoryName }"/></b></a><br>
+											<span style="font-size: 15"><b> <br>
+												<c:out	value="${o.product.productName }" /></b></span><br>
+											<span style="font-size: 15"><br>
+												<c:out value="${o.product.productPrice }원" />&nbsp;&nbsp; <br><br>
+												<c:out value="${o.product.productAmount}개" /></span> <br><br>
 											<div style="float:left; margin-right:20px;">
-												<c:out value="" /> 7/18(수)
+												<c:out value="" /> 8/14(화)
 													배송완료<br>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="check-btnbox" style="display: flex;">
+								<div class="check-btnbox" style="display: flex; float:right;">
 									<div class="check-btn">
-										<button type="button" class="btn">교환,반품신청</button>
-										<button type="button" class="btn">장바구니 담기</button>
+										<button type="submit" class="btn">교환,반품신청</button>
+										<button type="submit" class="btn">장바구니 담기</button>
 										<button type="button" class="btn">리뷰작성</button>
 									</div>
 								</div>
-							</div>
-						</div>
-					</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
 					<br>
-					<hr>
 				</c:forEach>
 			</div>
 		</div>
 		<hr>
+		</c:otherwise>
+		</c:choose>
 	</div>
 
 </section>
 
 <script>
+
+
+$("#productListMove").click(function(){
+	  location.assign("${path}/product/productList");
+})
+
+
 //체크박스 전체 선택&해제
 $('#selectAll').click(function(){
 	if($("#selectAll").prop("checked")){
@@ -350,7 +375,31 @@ $(".check-input").click(function(){
 })
 
 
-
+// 선택 삭제
+    	$("#selectDelete").click(function(){
+    	if(confirm("삭제 하시겠습니까?")){
+        const cnt = $("input[name='check']:checked").length;
+        const arr = new Array();
+        $("input[name='check']:checked").each(function() {
+            arr.push($(this).attr('id'));
+        });
+        console.log(cnt);
+        console.log(arr);
+        $.ajax({
+			url:"${path}/member/orderListDelete.do",
+			data:{deleteArr:arr},
+			success:data=>{
+				if(data){
+					$("input[name='check']:checked").parents("tr").remove();
+				}
+			}
+		});
+    	}else{
+    		return false;
+    	}
+    })
+    
+    
 
 </script>
 

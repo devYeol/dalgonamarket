@@ -11,20 +11,20 @@
 		<result property="productName" column="product_name" />
 		<result property="productPrice" column="product_price" />
 		<result property="productThumb" column="product_thumb" />
-		<!-- <result property="category" column="category"/> -->
+		<result property="categoryName" column="category_name"/>
 		<!-- <result property="product" column="category_code"/> -->
 	</resultMap>
-	<resultMap type="member" id="memberMap">
-		<id property="memberId" column="member_id"/>
-		<result property="memberPwd" column="member_pwd"/>
-		<result property="memberName" column="member_name"/>
-		<result property="memberBirth" column="member_birth"/>
-		<result property="memberGender" column="member_gender"/>
-		<result property="memberPhone" column="member_phone"/>
-		<result property="memberEmail" column="member_email"/>
-		<result property="memberEnrollDate" column="member_enroll_date"/>
-		<result property="roles" column="roles"/>
-	</resultMap>
+	 <resultMap type="member" id="memberMap">
+      <id property="memberId" column="member_id"/>
+      <result property="memberPwd" column="member_pwd"/>
+      <result property="memberName" column="member_name"/>
+      <result property="memberBirth" column="member_birth"/>
+      <result property="memberGender" column="member_gender"/>
+      <result property="memberPhone" column="member_phone"/>
+      <result property="memberEmail" column="member_email"/>
+      <result property="memberEnrollDate" column="member_enroll_date"/>
+      <result property="roles" column="roles" typeHandler="roles"/> <!-- roles 핸들러 -->
+   </resultMap>
 	
 	<resultMap type="cart" id="cartMap">
 		<result column="cart_code" property="cartCode"/>
@@ -33,17 +33,10 @@
 		<association column="member_id" property="member" resultMap="memberMap"/>
 	</resultMap>
 	
-	<resultMap type="likes" id="likeMap">
-		<result column="likes_code" property="likesCode"/>
-		<association column="product_code" property="product" resultMap="productMap"/>
-		<association column="member_id" property="member" resultMap="memberMap"/>
-	</resultMap>
-	
-
-	<select id="selectProduct" parameterType="product"
-		resultMap="productMap">
-		select * from product
-	</select>
+	<insert id="cartInsert">
+		insert into cart (cart_code,cart_amount,member_id,product_code)
+		values(seq_cart_code.nextval,#{cartAmount},#{memberId},#{productCode})
+	</insert>
 
 	<select id="cartList" resultMap="cartMap">
 		SELECT *
@@ -57,6 +50,11 @@
 	<delete id="delete">
 		delete from cart
 		where cart_code =#{cartCode}
+	</delete>
+	
+	<delete id="selectDelete">
+		delete from cart
+		where cart_code =#{cartCode}
 		
 	</delete>
 
@@ -67,13 +65,6 @@
 		
 	</delete> -->
 	
-	<insert id="cartInsert">
-		insert into cart (cart_code,cart_amount,member_id,product_code)
-			values(seq_cart_code.nextval,#{cartAmount},#{memberId}.#{productCode})
-	</insert>
-	
-	
-
 	<select id="sumMoney" resultType="_int">
 		SELECT NVL(SUM(product_price*cart_amount),0)
 		FROM CART c ,PRODUCT p
@@ -81,10 +72,4 @@
 	    AND c.MEMBER_Id =#{memberId}
 	</select>
 
-	<select id="orderList" resultMap="productMap">
-		select *
-		from product p ,cart c
-		where 
-		
-	</select>
 </mapper>

@@ -5,29 +5,40 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 
 public interface MemberDao {
 
-    void cartInsert(SqlSessionTemplate session,Cart c );
+    void cartInsert(SqlSessionTemplate session,Cart c ); //장바구니에 추가
 	
-	List<Cart> cartList(SqlSessionTemplate session,Member m );
+	List<Cart> cartList(SqlSessionTemplate session,Member memberId );
 	
 	void updateCart(SqlSessionTemplate session ,Cart c);
+		
+	void delete(SqlSessionTemplate session,long cartCode); //장바구니 한 개 로우 삭제
 	
-//	void delete(SqlSessionTemplate session,int cartCode);
-	
-	long delete(SqlSessionTemplate session,long cartCode);
+	long selectDelete(SqlSessionTemplate session,long cartCode); //장바구니 삭제
 
-	void deleteAll(SqlSessionTemplate session,Member MemberId);
+//	void deleteAll(SqlSessionTemplate session,Member MemberId);
 	
-	int sumMoney(SqlSessionTemplate session,Member m );
+	int sumMoney(SqlSessionTemplate session,Member memberId );
 
 	List<Likes> zzimList(SqlSessionTemplate session ,Member memberId);
 
-	List<Product> orderList(SqlSessionTemplate session );
+	long zzimSelectDelete(SqlSessionTemplate session,long zzimCode); //찜 선택삭제
+
+	void zzimDelete(SqlSessionTemplate session,long zzimCode); //장바구니 삭제
+
+	List<OrderDetail> orderList(SqlSessionTemplate session,Member memberId);
+	
+	long orderListDelete(SqlSessionTemplate session,long orderCode); //구매내역 선택삭제
+
+	List<DeliveryLocation>selectDL(SqlSessionTemplate session,Member memberId);
 	
 	/* 충열 */
 	
