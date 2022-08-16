@@ -9,15 +9,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOrder;
+import com.dal.dalgona.product.model.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +31,9 @@ public class PaymentController {
 	
 	@Autowired
 	private PaymentService paymentService;
+	
+	@Autowired
+	private ProductService productService;
 	
 //	@RequestMapping("/payment")
 //	public String paymentTest(HttpSession session) {
@@ -42,7 +48,7 @@ public class PaymentController {
 		return "order/payment/changeAddress";
 	}
 	
-	@GetMapping("/payment")
+	@RequestMapping("/payment")
 	public String order(HttpSession session, Model model) {
 		
 		Member memberId = (Member) session.getAttribute("loginMember");
@@ -51,6 +57,39 @@ public class PaymentController {
 		Cart cartList = (Cart) session.getAttribute("cartList");
 
 		return "order/payment/payment";
+		
+	}
+	
+	@RequestMapping("/product/payment.do")
+	public String paymentProduct(Product p, ProductOrder po, DeliveryLocation dl 
+			, HttpSession session, Model model
+			,@RequestParam(value="selAmount", required = false ) int selAmount
+			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
+			,@RequestParam(value="productName", required = false ) String productName
+			) {
+		
+		Member memberId = (Member) session.getAttribute("loginMember");
+		
+//		
+//		log.debug("{}",p);
+//		log.debug("{}",po);
+//		log.debug("{}",dl);
+		log.debug("{}",productName);
+		log.debug("{}",selAmount);
+		log.debug("{}",selectedOpt);
+		
+		model.addAttribute("product", p);
+		model.addAttribute("productOption", selectedOpt);
+		model.addAttribute("selAmount", selAmount);
+		
+//		dl=service.selectaddrBase(m);//여기서 기본배송지 선택해서
+//		po=ProductOrder.builder().orderDate(new Date()).orderStatus("디폴").selectLocation(dl).build();
+//		Product p;
+//		int selsu=1;
+//		String op="바보";
+//		OrderDetail od=OrderDetail.builder().productOrder(po).orderOption(op).orderAmount(selsu).product(p).build();		
+//		log.debug("{}",op);
+		return "order/payment/paymentProduct";
 		
 	}
 	

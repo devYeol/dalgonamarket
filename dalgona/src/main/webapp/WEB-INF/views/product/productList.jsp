@@ -126,7 +126,7 @@
 							<div class="col-3" type="button" onclick="location.assign('${path}/product/productDetail/${p.productCode}')">
 								<div class="">
 									<div style="position: relative;">
-										<img src="${p.productImage}" alt="Image" style="max-width: 100%;" />
+										<img src="${p.productImage}" alt="Image" height="305" width="305" />
 									</div>
 									<!-- <div class="zzim">
 										<img class="fullheart" src="/resources/images/msw/fullheart.png">

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="productOrder">
+
+<resultMap type="productOrder" id="productOrderMap">
+		<id property="orderCode" column="order_code"/>
+		<result property="orderStatus" column="order_status"/>
+		<result property="orderDate" column="order_date"/>
+		<result property="selectLocation" column="select_Location"/>
+		<association property="deliveryLocation" column="delivery_Location" resultMap="deliveryLocationMap"/>
+	</resultMap>
+	<select id="selectProductOrder" resultType="productOrder">
+		select *  from product_order,delivery_Location
+	
+	</select>
+</mapper>
