@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.common.model.vo.Qna;
 import com.dal.dalgona.common.model.vo.Review;
 
@@ -12,7 +13,9 @@ public interface ProductService {
 	
 	Product selectProduct(long productCode);
 	
-	List<Review> reviewList();
+	List<ProductOption> optionList(long productCode);
+	
+	List<Review> reviewList(long productCode);
 	
 	List<Qna> qnaList(long productCode);
 	
@@ -22,5 +25,15 @@ public interface ProductService {
 	
 	Qna qnaSelectOne(long qnaCode);
 	
+	Review starAvg(long qnaCode);
+	
 
+	
+	
+	
+	
+	//검색
+	List<Product> searchList(String keyword);
+	
+	
 }
