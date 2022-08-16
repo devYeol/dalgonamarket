@@ -1,7 +1,10 @@
 package com.dal.dalgona.product.controller;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale.Category;
 
 import javax.servlet.http.HttpSession;
 
@@ -148,6 +151,76 @@ public class ProductController {
 		mv.setViewName("product/qnaView");
 		return mv;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//검색
+	@RequestMapping("/product/search.do")
+	public String search(@RequestParam(value="keyword") String keyword, Model m) {
+		
+		System.out.println("keyword : " + keyword);
+		List<Product> p = service.searchList(keyword);
+		
+		m.addAttribute("products", p);
+		System.out.println("keyword : " + p);
+		
+		return "product/productList";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

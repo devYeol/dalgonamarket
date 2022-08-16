@@ -25,5 +25,16 @@ public interface ProductDao {
 	Qna qnaSelectOne(SqlSession session,long qnaCode);
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//검색
+	List<Product> searchList(SqlSession session, String keyword);
 
 }

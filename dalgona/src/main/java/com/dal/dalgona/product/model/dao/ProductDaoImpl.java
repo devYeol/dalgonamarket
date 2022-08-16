@@ -55,4 +55,26 @@ public class ProductDaoImpl implements ProductDao {
 		return session.selectOne("qna.selectQna",qnaCode);
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//상품검색
+	public List<Product> searchList(SqlSession session, String keyword){
+		System.out.println("searchList ::" + keyword);
+		return session.selectList("product.searchProduct",keyword);
+	}
+	
 }

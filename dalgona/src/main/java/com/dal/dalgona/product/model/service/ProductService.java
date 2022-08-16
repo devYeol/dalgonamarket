@@ -23,4 +23,12 @@ public interface ProductService {
 	Qna qnaSelectOne(long qnaCode);
 	
 
+	
+	
+	
+	
+	//검색
+	List<Product> searchList(String keyword);
+	
+	
 }
