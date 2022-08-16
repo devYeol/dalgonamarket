@@ -11,11 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,8 +28,11 @@ import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
+import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.member.model.service.MemberService;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 @SessionAttributes({ "loginMember" })
 public class MemberController {
@@ -47,16 +48,40 @@ public class MemberController {
 		return "member/mypage/mypageMain";
 	}
 
+//	@RequestMapping("/member/mypage/cartInsert")
+//	public ModelAndView cartInsert(HttpSession session ,String memberId 
+//			,long productCode,ModelAndView mw) {
+//		Member m=service.login(Member.builder().memberId(memberId).build());
+////		Product p=service.selectProduct(Product.builder().productCode(productCode).build());
+//		log.debug("{}",memberId);
+//		log.debug("{}",m);
+////		log.debug("{}",p);
+//		
+//		if (memberId == null) {
+//			// 로그인하지 않은 상태이면 로그인 화면으로 이동
+//			mw.setViewName("redirect:member/login/loginPage");
+//		} else {
+//			service.cartInsert(memberId,productCode);
+//			mw.setViewName("redirect:/member/mypage/cart");
+//		}
+//	}
+	
 	@RequestMapping("/member/mypage/cartInsert")
-	public String cartInsert(@ModelAttribute Cart c,HttpSession session) {
-		Member memberId = (Member) session.getAttribute("loginMember");
+	public String cartInsert( 
+			@RequestParam(value="product1") Product productCode,
+			@RequestParam(value="member1") Member memberId,
+			Cart c,HttpSession session) {
+		Member id = (Member) session.getAttribute("loginMember");
+		log.debug("{}",productCode);
+		log.debug("{}",memberId);
 		
 		if (memberId == null) {
 			// 로그인하지 않은 상태이면 로그인 화면으로 이동
 			return "redirect:member/login/loginPage";
 		} else {
-			c.setMember(memberId);
+			c.setMember(id);
 			service.cartInsert(c);
+			System.out.println(c+"2");
 			return "redirect:/member/mypage/cart";
 		}
 	}
@@ -144,7 +169,7 @@ public class MemberController {
 	public ModelAndView zzim(ModelAndView mv, HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		List<Likes> zzimList = service.zzimList(memberId);
-		System.out.println(zzimList + "1");
+		System.out.println("찜 :"+zzimList);
 		mv.addObject("zzimList", zzimList);
 		mv.setViewName("member/mypage/zzim");
 		return mv;

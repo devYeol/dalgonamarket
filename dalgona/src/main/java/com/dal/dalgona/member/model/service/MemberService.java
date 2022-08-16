@@ -14,6 +14,10 @@ public interface MemberService {
 
 	void cartInsert (Cart c);
 	
+//	void cartInsert (String memberId,Product p);
+	
+	Product selectProduct(String memberId,long productCode);
+	
 	List<Cart> cartList(Member memberId); 
 
 	void delete(long cartCode); //장바구니 선택삭제

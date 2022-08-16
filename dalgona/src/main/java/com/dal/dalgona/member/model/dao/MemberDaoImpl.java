@@ -23,10 +23,18 @@ public class MemberDaoImpl implements MemberDao {
 //		return session.selectList("cart.selectProduct");
 //	}
 	
+//	@Override
+//	public void cartInsert(SqlSessionTemplate session,String memberId,long productCode ) {
+//		session.insert("cart.cartInsert",memberId,productCode);
+//	}
 	@Override
 	public void cartInsert(SqlSessionTemplate session,Cart c) {
 		session.insert("cart.cartInsert",c);
 	}
+//	@Override
+//	public Product selectProduct(SqlSessionTemplate session,long productCode) {
+//		return session.selectOne("product.selectProduct",productCode);
+//	}
 	
 	@Override
 	public List<Cart> cartList(SqlSessionTemplate session,Member memberId){
