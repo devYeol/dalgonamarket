@@ -44,12 +44,13 @@
 							</div>
 							<div class="form-group" style="text-align: left;">
 								<label>배송비 : </label><span>&nbsp;2500원</span>
+								
 							</div>
 
 
 							<c:if test="${not empty op }">
 								<div class="form-horizontal" style="text-align: left;">
-									<label>옵션 : </label> 
+									<label>옵션 </label> 
 									<select class="form-control opt_select" name="selectedOpt">
 										<c:forEach var="o" items="${op}">
 											<option value="${o.optionPrice }">${o.optionName }
@@ -435,6 +436,20 @@
 	</script>
 
 	<style>
+
+/* 찜하기 */
+.fas.fa-heart {
+	color: red;
+}
+
+.score_box .fas {
+	color: gold;
+}
+
+.comment .fas {
+	color: gold;
+}
+/* 찜하기 */
 
 /* -------------- 메인 -------------- */
 ul {

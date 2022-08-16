@@ -2,6 +2,8 @@ package com.dal.dalgona.admin.model.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,13 +27,16 @@ public class adminServiceImpl implements adminService{
 	@Autowired
 	PjeDaoJpa memberdao;
 	
-	/* 중언 */
+	@Autowired
+	private OptionDao optionDao;
 	
 	public List<Product> selectProducts() {
 		return dao.findAll(Sort.by(Sort.Direction.DESC,"productCode"));
 	}
 	
+	@Transactional
 	public Long deleteByProductCode(long productCode) {
+		Long result=optionDao.deleteByProduct(selectOneProduct(productCode));
 		return dao.deleteByProductCode(productCode);
 	}
 	
@@ -47,13 +52,6 @@ public class adminServiceImpl implements adminService{
 		return memberdao.findAll(pagerequest);
 	}
 	
-	/* 원희 */
-	@Autowired
-	private SqlSessionTemplate session;
-
-	@Autowired
-	private OptionDao optionDao;
-
 	// 상품등록
 	@Override
 	public Product insertProduct(Product p) {

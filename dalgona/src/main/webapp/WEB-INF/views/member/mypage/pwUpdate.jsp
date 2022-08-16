@@ -213,7 +213,6 @@ const chkPw=()=>{
 	else {
 		console.log("통과");	 
 	}
-	return false;
 }
 </script>
 	

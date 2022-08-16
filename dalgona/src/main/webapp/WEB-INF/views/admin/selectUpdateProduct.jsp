@@ -82,12 +82,21 @@
 					</tr>
 				</table>
 				<div style="position: relative; top: 10px; left: 25%;">
-					<button class="adminbt"
+					<button class="adminbt" onclick='return adminManage(this.form);'
 						style="background-color: #E0E0E0; color: black;">취소</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="adminbt" type="submit">수정</button>
+					<button class="adminbt" type="submit" >수정</button>
 				</div>
 			</div>
 		</form>
 		</div>
 	</div>
+	
+	<script>
+		 //취소
+	      function adminManage(frmGo){
+	    	  frmGo.action = ${path}"/admin/adminManageProduct.do";
+	    	  frmGo.submit();
+	    	  return true;
+	      }
+	</script>

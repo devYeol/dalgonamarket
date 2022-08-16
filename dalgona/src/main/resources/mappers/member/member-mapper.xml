@@ -63,7 +63,7 @@
    	  UPDATE MEMBER SET MEMBER_PWD=#{memberPwd} WHERE MEMBER_ID=#{memberId}
    </update>
    
-   <select id="searchMembers">
+   <select id="searchMembers" resultMap="memberMap">
       SELECT * FROM MEMBER 
       WHERE 1=1
       <if test="keyword != null and keyword != ''">
