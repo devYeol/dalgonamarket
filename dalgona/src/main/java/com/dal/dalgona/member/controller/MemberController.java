@@ -66,25 +66,25 @@ public class MemberController {
 //		}
 //	}
 	
-	@RequestMapping("/member/mypage/cartInsert")
-	public String cartInsert( 
-			@RequestParam(value="product1") Product productCode,
-			@RequestParam(value="member1") Member memberId,
-			Cart c,HttpSession session) {
-		Member id = (Member) session.getAttribute("loginMember");
-		log.debug("{}",productCode);
-		log.debug("{}",memberId);
-		
-		if (memberId == null) {
-			// 로그인하지 않은 상태이면 로그인 화면으로 이동
-			return "redirect:member/login/loginPage";
-		} else {
-			c.setMember(id);
-			service.cartInsert(c);
-			System.out.println(c+"2");
-			return "redirect:/member/mypage/cart";
-		}
-	}
+//	@RequestMapping("/member/mypage/cartInsert")
+//	public String cartInsert( 
+//			@RequestParam(value="product1") Product productCode,
+//			@RequestParam(value="member1") Member memberId,
+//			Cart c,HttpSession session) {
+//		Member id = (Member) session.getAttribute("loginMember");
+//		log.debug("{}",productCode);
+//		log.debug("{}",memberId);
+//		
+//		if (memberId == null) {
+//			// 로그인하지 않은 상태이면 로그인 화면으로 이동
+//			return "redirect:member/login/loginPage";
+//		} else {
+//			c.setMember(id);
+//			service.cartInsert(c);
+//			System.out.println(c+"2");
+//			return "redirect:/member/mypage/cart";
+//		}
+//	}
 
 	@RequestMapping(value="/member/mypage/cart") // 장바구니
 	public ModelAndView cart(ModelAndView mv, HttpSession session) {
