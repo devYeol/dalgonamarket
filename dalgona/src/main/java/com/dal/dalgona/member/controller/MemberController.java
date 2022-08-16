@@ -186,28 +186,6 @@ public class MemberController {
 	public String baesong() {
 		return "/member/baesong";
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/* 충열 */
 	   @RequestMapping("/loginpage")
@@ -218,9 +196,9 @@ public class MemberController {
 	   @RequestMapping(value="/member/loginEnd", method = RequestMethod.POST)
 	   public String loginId(Member m,Model model) {
 	      
-	      Member loginMember=(Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	      //Member loginMember=(Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	      
-	      //Member loginMember=service.login(m);
+	      Member loginMember=service.login(m);
 	      
 	      String view="redirect:/";
 	      
