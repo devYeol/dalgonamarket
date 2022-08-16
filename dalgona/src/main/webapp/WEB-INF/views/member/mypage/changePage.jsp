@@ -103,14 +103,15 @@
 				<div class="sidebar">
 					<h4><strong>마이페이지</strong></h4>
 					<ul>
-						<li><h5><b>쇼핑정보</b></h5></li>
-						<li><a href="#">구매내역</a></li> 
-						<li><a href="#">장바구니</a></li> 
-						<li><a href="#">찜 목록</a></li>
+						<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
+						<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
+						<li><a href="${path }/member/mypage/cart">장바구니</a></li>
+						<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
 						<br>
 						<li><h5><b>내정보</b></h5></li>
-						<li><a href="#">프로필 정보</a></li>
-						<li><a href="#">주소록</a></li>
+						<li><a href="${path }/member/mypage/changePage">프로필 정보</a></li>
+						<li><a href="${path }/member/mypage/pwUpdate">비밀번호 변경</a></li>
+						<li><a href="${path }/member/mypage/address">주소록</a></li>
 					</ul>
 				</div>
 			</div>
@@ -122,23 +123,21 @@
 						<div style="font-size: 16px; margin-top: 4px;">위해 비밀번호를 다시 한번 확인 합니다.</div>
 					</div>
 					<br>
-					<form action="">
+					<form action="${path }/member/mypage/pwChck" method="post">
 					<div>
 <!-- 					<hr style="margin-top: 8px; margin-bottom: 0px;"> -->
 						<div class="int-area">
-							<label for="id"><b>아이디</b></label>
 							<br>
-							<input type="text"  disabled name="id" autocomplete="off" value=" kchmd4th">
+							<input type="hidden" name="memberId" autocomplete="off" value="<c:out value="${member.memberId }"/>">
 						</div>
 						<div class="int-area">
 							<label for="pw"><b>비밀번호</b></label>
 							<br>
-							<input type="password" name="pw" autocomplete="off" required>
+							<input type="password" name="memberPwd" autocomplete="off" required>
 						</div>					
 					</div>
 						<!-- <hr style="border: solid 1px; margin-top: 20px;"> -->
 						<div class="btn-area">
-							<button type="submit"><b>취소</b></button>
 							<button type="submit"><b>확인</b></button>
 						</div>
 					</form>

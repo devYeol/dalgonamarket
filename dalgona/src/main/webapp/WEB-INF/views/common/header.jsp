@@ -23,6 +23,14 @@
 		padding: 1rem 1rem;
 		margin-top: 20;
 	}
+	.search-btn{
+		margin-left: 5px; 
+		border-radius: 10px; 
+		font-size: 18px; 
+		border: 1px solid white; 
+		background-color: white; 
+		color: #41464bd1
+	}
 	.search-form{
 		background-color: #E2E2E2;
 		width: 100%;
@@ -64,21 +72,22 @@
 								<img src="/resources/images/header/search.svg" style="width: 24; height: 22; background-color: white; margin: 0;" >
 							</button>
 							<!-- Modal -->
-							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-fullscreen">
-									<div class="modal-content">
+							<form action="${path }/product/search.do" method="post">
+							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
+								<div id="close" class="modal-dialog modal-xl " style="max-width: 100%;height:30%; transform: translate(0,-30px);">
+									<div class="modal-content" style="height:100%">
 										<div class="search-modal">
 											<div class="input-searchModa">
-											  <input type="text" class="search-form" placeholder="상품명을 입력하세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
-											  <div>
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="margin-left:15px;">close</button>
-											</div>
-											</div>									
+											  <input name="keyword" type="text" class="search-form" placeholder="상품명을 입력하세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
+											</div>		
+											<div>
+												<button  type="submit" class="search-btn">검색</button>
+											</div>							
 										</div>
-										
 									</div>
 								</div>
 							</div>
+							</form>
 							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
 								<li>
 									<a id="search-open" href="${path }/member/mypage/cart" class="nav-link text-black"> 
@@ -149,4 +158,11 @@
     <path
 			d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
   </symbol>
+  
+  <script>
+  	/* $('html').on("click",function(e){
+  		if(!$(e.target).hasClass(".modal-content"))
+  			$(".modal-content").css({visibility:"heide",opacity:0});
+  	}); */
+  </script>
 </svg>

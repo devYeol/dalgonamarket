@@ -60,9 +60,29 @@ public class MemberDaoImpl implements MemberDao {
 	}
 //
 	@Override
-	public List<Product> orderList(SqlSessionTemplate session){
+	public List<Product> orderList(SqlSessionTemplate session) {
 		return session.selectList("cart.orderList");
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	/* 충열 */
@@ -105,5 +125,37 @@ public class MemberDaoImpl implements MemberDao {
 		map.put("memberId", m.getMemberId());
 		map.put("memberPwd", newPw);
 		return session.update("member.findPwChange", map);
+	}
+	
+	@Override
+	public int infoUpdate(SqlSessionTemplate session, Member m) {
+		
+		return session.update("member.infoUpdate", m);
+	}
+	
+	@Override
+	public void deleteMember(SqlSessionTemplate session, String memberId) {
+		
+		session.delete("member.deleteMember", memberId);
+	}
+	
+	@Override
+	public Member pwck(SqlSessionTemplate session, Member m) {
+		return session.selectOne("member.passwordCheck", m);
+	}
+	
+	@Override
+	public int pwUpdateCheck(SqlSessionTemplate session, Member m) {
+		return session.selectOne("member.pwUpdateCheck", m);
+	}
+	
+	@Override
+	public int pwUpdateEnd(SqlSessionTemplate session, String memberId, String memberPwd1) {
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("memberPwd", memberPwd1);
+		
+		return session.update("member.pwUpdateEnd", map);
 	}
 }
