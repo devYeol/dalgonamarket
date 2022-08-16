@@ -441,6 +441,7 @@ html {
 	height: 50px;
 	text-align: center;
 	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
 }
 
 .listtable td{

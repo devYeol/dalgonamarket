@@ -135,7 +135,15 @@
 	</div>
 	<!-- 추천상품 끝 -->
 </section>
+<script>
 
+	const msg = "${msg}";
+	
+	if (msg != "") {
+		alert(msg);
+	}
+
+</script>
 <!-- 푸터 -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 

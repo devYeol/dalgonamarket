@@ -1,6 +1,5 @@
 package com.dal.dalgona.common.model.vo;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +16,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -24,6 +25,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 
@@ -34,6 +36,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 @SequenceGenerator(name="seq_order_code", sequenceName = "seq_order_code")
+@ToString(exclude = "member")
+@DynamicUpdate
 public class ProductOrder {
 	
 	@Id
@@ -64,6 +68,6 @@ public class ProductOrder {
 	
 	// 주문상세내역
 	@OneToMany(mappedBy="productOrder")
-	private List<OrderDetail> orderdetails=new ArrayList(); //주문 상세
+	private List<OrderDetail> orderdetails; //주문 상세
 
 }

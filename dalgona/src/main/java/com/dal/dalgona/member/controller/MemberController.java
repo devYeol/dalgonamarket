@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.Likes;
@@ -166,6 +166,28 @@ public class MemberController {
 		return "/member/baesong";
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* 충열 */
 	   @RequestMapping("/loginpage")
 	   public String login() {
@@ -282,16 +304,105 @@ public class MemberController {
 	      }      
 	   }
 	   
-	   @RequestMapping("/address")
+	   @RequestMapping("/member/mypage/changePage")
+	   public String changePage(HttpSession session,Model model) {
+		   
+		   Member memberId = (Member) session.getAttribute("loginMember");
+		   model.addAttribute("member",memberId);
+		   
+	      return "member/mypage/changePage";
+	   }
+	   
+	   @RequestMapping("/member/mypage/pwChck")
+	   public String pwdCheck(Member m,Model model) {
+		   
+		   System.out.println(m);
+		   
+		   Member pwck=service.pwck(m);
+		   String view="member/mypage/infoUpdate";
+		      
+		   if(pwck!=null) {
+		      model.addAttribute("member",pwck);
+		   }else {
+		      model.addAttribute("msg","일치하지 않는 비밀번호입니다.");
+		      model.addAttribute("loc","/member/mypage/changePage");
+		      view="common/msg";
+		   }
+		   return view;
+	   }
+		/*
+		 * @RequestMapping("/member/mypage/infochange") public String
+		 * infochange(HttpSession session,Model model) {
+		 * 
+		 * Member memberId = (Member) session.getAttribute("loginMember");
+		 * model.addAttribute("member",memberId); System.out.println(memberId);
+		 * 
+		 * return "member/mypage/infochange"; }
+		 */
+	   
+	   @RequestMapping("/member/mypage/infoUpdate")
+	   public String infoUpdate(RedirectAttributes rttr, HttpSession session, SessionStatus status, Member m, Model model) throws Exception {
+		   
+		   service.infoUpdate(m);
+		   
+		   session.setAttribute("member",m);
+		   session.invalidate();
+		   rttr.addFlashAttribute("msg","회원정보가 수정되었습니다. 다시 로그인해주세요.");
+		   
+		   if(!status.isComplete()) {
+		         status.setComplete();
+		      }
+		   
+		   return "redirect:/";
+	   }
+	   
+	   @RequestMapping("/member/mypage/withdraw")
+	   public String deleteMember(SessionStatus status, HttpSession session, RedirectAttributes rttr, String memberId) {
+		   
+		   service.deleteMember(memberId);
+		   session.invalidate();
+		   rttr.addFlashAttribute("msg","정상적으로 탈퇴되었습니다.");
+		   
+		   if(!status.isComplete()) {
+		         status.setComplete();
+		      }
+		   
+		   return "redirect:/";
+	   }
+	   
+	   @RequestMapping("/member/mypage/pwUpdate")
+	   public String pwUpdateView(HttpSession session, Model model) {
+		   
+		   Member memberId = (Member) session.getAttribute("loginMember");
+		   model.addAttribute("member",memberId);
+		   
+		   return "member/mypage/pwUpdate";
+	   }
+	   
+	   @RequestMapping("/member/mypage/pwUpdateCheck")
+	   @ResponseBody
+	   public int pwUpdateCheck(Member m) {
+		   //System.out.println(m);
+		   return service.pwUpdateCheck(m);
+	   }
+	   
+	   @RequestMapping("/member/mypage/pwUpdateEnd")
+	   public String pwUpdateEnd(String memberId, String memberPwd1, RedirectAttributes rttr, HttpSession session, SessionStatus status) {
+		   
+		   service.pwUpdateEnd(memberId, memberPwd1);
+		   session.invalidate();
+		   rttr.addFlashAttribute("msg","비밀번호 수정이 완료되었습니다. 다시 로그인해주세요.");
+		   
+		   if(!status.isComplete()) {
+		         status.setComplete();
+		      }
+		   
+		   return "redirect:/";
+	   }
+	  
+	   
+	   @RequestMapping("/member/mypage/address")
 	   public String address() {
 	      return "member/mypage/address";
-	   }
-	   @RequestMapping("/infochange")
-	   public String infochange() {
-	      return "member/mypage/infochange";
-	   }
-	   @RequestMapping("/changePage")
-	   public String changePage() {
-	      return "member/mypage/changePage";
 	   }
 }

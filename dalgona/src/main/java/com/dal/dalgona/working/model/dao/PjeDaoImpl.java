@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 
 @Repository
 public class PjeDaoImpl implements PjeDao {
@@ -26,5 +27,4 @@ public class PjeDaoImpl implements PjeDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.searchMembersCount",param);
 	}
-
 }

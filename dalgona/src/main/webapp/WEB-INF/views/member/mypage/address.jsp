@@ -121,23 +121,17 @@
 <section class="addr-form">
 	<div>
 		<div class="sidebar">
-			<h4>
-				<strong>마이페이지</strong>
-			</h4>
-
-
-
+			<h4><strong>마이페이지</strong></h4>
 			<ul>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
 				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
-				<li><a href="${path }/member/mypage/cart"></a> <li><a href="${path }/member/mypage/zzim">찜 목록</a></li><br>
-				<li><a href="#">내 정보</a></li>
-				<li><a href="#">프로필 정보</a></li>
-				<li><a href="${path }/address"></a>
-					<h5>
-						<b>주소록</b>
-					</h5></li>
-
+				<li><a href="${path }/member/mypage/cart">장바구니</a></li>
+				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
+				<br>
+				<li><h5><b>내정보</b></h5></li>
+				<li><a href="${path }/member/mypage/changePage">프로필 정보</a></li>
+				<li><a href="${path }/member/mypage/pwUpdate">비밀번호 변경</a></li>
+				<li><a href="${path }/member/mypage/address">주소록</a></li>
 			</ul>
 		</div>
 	</div>

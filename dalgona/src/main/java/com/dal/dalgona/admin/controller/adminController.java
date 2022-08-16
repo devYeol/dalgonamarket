@@ -95,10 +95,10 @@ public class adminController {
 	}
 
 	// 주문관리 페이지 이동
-	@RequestMapping("adminManageOrder.do")
-	public String adminManageOrder() {
-		return "admin/adminManageOrder";
-	}
+//	@RequestMapping("adminManageOrder.do")
+//	public String adminManageOrder() {
+//		return "admin/adminManageOrder";
+//	}
 
 	// 페이지테스트
 	@RequestMapping("adminManageProduct.do")
@@ -152,12 +152,12 @@ public class adminController {
 
 		}
 
-		String aa = path + thumbnailFile.getName();
+		String fileName = path + thumbnailFile.getName();
 
 		// 이미지주소자르기 썸네일
 		String target = "resources";
-		int target_num = aa.indexOf(target) - 1;
-		String thumbnailPath = aa.substring(target_num);
+		int target_num = fileName.indexOf(target) - 1;
+		String thumbnailPath = fileName.substring(target_num);
 		// 이미지주소 자르기 상세이미지
 		String aa2 = path + detailedImageFile.getName();
 		int target_num1 = aa2.indexOf(target) - 1;
@@ -228,20 +228,107 @@ public class adminController {
 								@RequestParam(value = "productName") String product_Name,
 								@RequestParam(value = "categoryName") String categoryName, long[] optionCode, String[] optionName,
 								int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
+		//upload폴더에서 삭제(썸네일)
+		System.out.println(product_Content);
+		Boolean fileCheck = true;
+		String path = rs.getServletContext().getRealPath(beforeThumbnail);
+	    File f = new File(path);
+	    String path2 = rs.getServletContext().getRealPath(beforedetailedImage);
+	    File f2 = new File(path2);
+		log.debug("{}",f);
+		log.debug("{}",f2);
+		
+		if(f != null) {
+	        if(f.exists()) {
+	            if(f.delete()) {
+	            	System.out.println("파일삭제 성공!");
+	            
+	            }else {
+			    	System.out.println("파일삭제 실패!");
+			    	fileCheck = false;
+		        }
+		    }
+		}
+		
+		if(f2 != null) {
+	        if(f2.exists()) {
+	            if(f2.delete()) {
+	            	System.out.println("파일삭제 성공!");
+	            }else {
+			    	System.out.println("파일삭제 실패!");
+			    	fileCheck = false;
+		        }
+		    }
+		}
+		log.debug("{}",f);
+		log.debug("{}",f2);
+		
+		//파일 업데이트
+		String updatePath = rs.getServletContext().getRealPath("/resources/upload/product/");
+		System.out.println("updatePath : " + updatePath);
+		File uploadDir = new File(updatePath);
+		System.out.println("uploadDir : " + uploadDir);
+		
+		File thumbnailFile = new File(updatePath);
+		System.out.println("thumbnailFile : " + thumbnailFile);
+		
+		File detailedImageFile = new File(updatePath);
+		System.out.println("detailedImageFile : " + detailedImageFile);
+		
+		System.out.println("beforeThumbnail : " + beforeThumbnail);
+		System.out.println("beforedetailedImage : " + beforedetailedImage);
+//		if ( (beforeThumbnail == null  || beforedetailedImage == null)) {
+		System.out.println("fileCheck : " + fileCheck);
+		if (fileCheck == true) {
+			System.out.println("**********************************" );
+			String originalFilename = thumbnail.getOriginalFilename();
+			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			String secondFilename = detailedImage.getOriginalFilename();
+			String exts = secondFilename.substring(secondFilename.lastIndexOf("."));
+			System.out.println("originalFilename : " + originalFilename);
+			System.out.println("secondFilename : " + secondFilename);
+			int random = (int) (Math.random() * 10000);
+			String rename = "admin_" + random + ext;
+			String secondRename = "admin_second_" + random + exts;
+			log.debug("{}", rename);
+			log.debug("{}", secondRename);
+			System.out.println("updatePath : " + updatePath);
+			
+			thumbnailFile = new File(updatePath + "/" + rename);
+			thumbnail.transferTo(thumbnailFile);
+			detailedImageFile = new File(updatePath + "/" + secondRename);
+			detailedImage.transferTo(detailedImageFile);
+			
+			System.out.println("thumbnailFile : " + thumbnailFile);
+			System.out.println("detailedImageFile : " + detailedImageFile);
+			
+			System.out.println("thumbnail : " + thumbnail);
+			System.out.println("detailedImage : " + detailedImage);
+		}else {
+			System.out.println("이미지파일 안바뀜");
+		}
+		String updatefileName = updatePath + thumbnailFile.getName();
+		System.out.println("thumbnailFile : " + thumbnailFile);
+
+		// 이미지주소자르기 썸네일
+		String target = "resources";
+		int target_num = updatefileName.indexOf(target) - 1;
+		String thumbnailPath = updatefileName.substring(target_num);
+	
+		// 이미지주소 자르기 상세이미지
+		String updatedetailFile = updatePath +  detailedImageFile.getName();
+		int target_num1 = updatefileName.indexOf(target) - 1;
+		System.out.println("-------------------------------------------------------------- ");
+		System.out.println("updatedetailFile : " + updatedetailFile);
+		String detailedPath = updatedetailFile.substring(target_num1);
+		System.out.println("detailedPath : " + detailedPath);
+		
 		
 		
 		Product po = Product.builder().productCode(Product_Code).productAmount(product_Ampont).productContent(product_Content)
-				.productPrice(product_Price).productName(product_Name)
-				.productDate(new Date()).categoryName(categoryName).build();
-//		.productThumb().productImage()
-		//경로에 있는 이미지 지우고
-		//String path = rs.getServletContext().getRealPath("/resources/upload/product/");
-		
-		File f = new File(beforeThumbnail); //
-		
-		File f2 = new File(beforedetailedImage);
-		
-		if(f.exists()) f.delete();
+				.productPrice(product_Price).productName(product_Name).productThumb(thumbnailPath)
+				.productImage(detailedPath).productDate(new Date()).categoryName(categoryName).build();
+		//경로에 있는 이미지 지우고(분기처리)
 		//db업데이트시키고
 //		if(개별수정) {
 //			
