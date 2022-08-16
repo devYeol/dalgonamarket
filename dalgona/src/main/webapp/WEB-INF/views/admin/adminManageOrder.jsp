@@ -70,8 +70,8 @@
 	color: #fff;
 }
 
-.manage-table {
-	height: 600px;
+.ordertable {
+	/* height: 600px; */
 	width: 1040px;
 	text-align: center;
 }
@@ -101,7 +101,6 @@
             - 더미 텍스트(Lorem ipsum)을 활용하여 내용 강제로 늘려 테스트
         -->
 		<div class="contents">
-
 
 			<div class="contentstitle">주문관리</div>
 
@@ -137,142 +136,60 @@
 
 			<br> <br>
 
-			<div class="manage-table-div">
-				<table class="manage-table">
-					<tr style="background-color: lightgrey;">
-						<th>
+			<div class="listdiv">
+				<table class="listtable">
+					<tr style="background-color: lightgrey; height: 50px;">
+						<th style="width: 5%;">
 							<div>
-								<input class="" type="checkbox" value="" id=""> <label>전체선택</label>
+								<label style="font-size: 12px;">전체선택</label><br><input class="" type="checkbox" value="" id=""> 
 							</div>
 						</th>
 						<th>주문번호</th>
-						<th>상품명</th>
+						<th>주문내용</th>
 						<th>주문수량</th>
 						<th>상품가격</th>
 						<th>배송비</th>
 						<th>합계</th>
 						<th>입금일시</th>
 						<th>주문상태</th>
+						<th style="width: 5%;" colspan="2">주문<br>승인 / 취소<th>
 					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>2500</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>구매확정</td>
-					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>무료배송</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>결제완료</td>
-					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>무료배송</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>환불요청</td>
-					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>무료배송</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>환불요청</td>
-					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>무료배송</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>환불요청</td>
-					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>무료배송</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>환불요청</td>
-					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>무료배송</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>환불요청</td>
-					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>무료배송</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>환불요청</td>
-					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>무료배송</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>환불요청</td>
-					</tr>
-					<tr>
-						<td><input class="" type="checkbox" value="" id=""></td>
-						<td>2312123123</td>
-						<td>쫀드기</td>
-						<td>10</td>
-						<td>1000</td>
-						<td>무료배송</td>
-						<td>12500</td>
-						<td>SYSDATE</td>
-						<td>환불요청</td>
-					</tr>
+					<c:if test="${not empty productOrders}">
+						<c:forEach var="po" items="${productOrders}">
+						<tr>
+							<td><input class="" type="checkbox" value="" id=""></td>
+							<td>${po.orderCode}</td>
+							<td>?</td>
+							<td>10</td>
+							<td>0</td>
+							<td>2,500</td>
+							<td>0</td>
+							<td>${po.orderDate}</td>
+							<td>${po.orderStatus}</td>
+							<td style="padding: 5px 5px 5px 0px;">
+								<button class="adminbt" style="width: 80px; background-color: #6FB67F;"
+								name="${po.orderCode}" onclick="adminOrderPermit(event)">승인</button>
+							</td>
+							<td style="padding: 5px 0px 5px 0px;">
+								<button class="adminbt" style="width: 80px; background-color: #D56B5A;"
+								name="${po.orderCode}" onclick="adminOrderCancel(event)">취소</button>
+							</td>
+						</tr>
+					</c:forEach>
+					</c:if>
+					<c:if test="${empty productOrders}">
+						<tr>
+							<td colspan="10">조회결과 없음</td>
+						</tr>
+					</c:if>
 				</table>
 
 				<br>
-
-				<h2 style="text-align: center;">페이지바 - 1페이지 10개, &lt; 1 2 3 4 5
-					&gt;</h2>
-
+				
+				<div class="pagebar">
+					${pageBar}
+				</div>
 			</div>
-
 			<div style="padding-bottom: 8px;">
 				<div style="padding-top: 10px;">
 					<h2>2022. 07. 07 결제</h2>
@@ -312,52 +229,37 @@
 							<button class="adminbt"
 								style="width: 80px; background-color: #6FB67F; margin-bottom: 20px;">리뷰확인</button>
 							<button class="adminbt"
-								style="width: 80px; background-color: #D56B5A;">삭제</button>
+								style="width: 80px; background-color: #D56B5A;" >삭제</button>
 						</td>
 					</tr>
 				</tbody>
-
 			</table>
-
-			<br>
-			<br>
-			<br>
-
-			<!-- <table class="manage-detail" id="">
-				
-				<thead>
-					<tr>
-						<th>
-							배송중
-							7/25 도착예정
-						</th>
-					</tr>
-				</thead>
-			
-				<tbody>
-					<tr class="manage-detail-tr">
-						<td class="">
-							<a href="#" style="text-decoration: none;">
-								<img src="https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/09/15c135f1-1ac3-43dd-89c3-b91a1be39bb2.png" width="85" height="90" border="0" />
-							</a>
-						</td>
-						<td>
-							<a href="#">상품타이틀</a><br>
-							수량 N 개
-						</td>
-						<td>
-							배송비 N 원
-						</td>
-					</tr>
-				</tbody>
-			</table> -->
-
-
-
 		</div>
-
 	</div>
 	<!-- end of contents -->
+	<script>
+		const adminOrderPermit=(e)=>{
+			$.ajax({
+				url:"${path}/admin/adminOrderPermit.do",
+				data:{orderCode:$(e.target).attr("name")},
+				success:data=>{
+					console.log(data);
+					$(e.target).parent().prev().text(data);
+				}
+			});
+		}
+		
+		const adminOrderCancel=(e)=>{
+			$.ajax({
+				url:"${path}/admin/adminOrderCancel.do",
+				data:{orderCode:$(e.target).attr("name")},
+				success:data=>{
+					console.log(data);
+					$(e.target).parent().prev().prev().text(data);
+				}
+			});
+		}
+	</script>
 
 </body>
 </html>

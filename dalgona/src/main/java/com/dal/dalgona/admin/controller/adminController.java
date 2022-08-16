@@ -95,10 +95,10 @@ public class adminController {
 	}
 
 	// 주문관리 페이지 이동
-	@RequestMapping("adminManageOrder.do")
-	public String adminManageOrder() {
-		return "admin/adminManageOrder";
-	}
+//	@RequestMapping("adminManageOrder.do")
+//	public String adminManageOrder() {
+//		return "admin/adminManageOrder";
+//	}
 
 	// 페이지테스트
 	@RequestMapping("adminManageProduct.do")

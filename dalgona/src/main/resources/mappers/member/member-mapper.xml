@@ -49,9 +49,9 @@
       <if test="keyword != null and keyword != ''">
          AND ${searchType} LIKE '%'||#{keyword}||'%'
       </if>
-        <if test="searchGen != null and searchGen != ''">
-           AND MEMBER_GENDER=#{searchGen}
-        </if>
+      <if test="searchGen != null and searchGen != ''">
+         AND MEMBER_GENDER=#{searchGen}
+      </if>
    </select>
    
    <select id="searchMembersCount" resultType="_int">
@@ -60,8 +60,8 @@
       <if test="keyword != null and keyword != ''">
          AND ${searchType} LIKE '%'||#{keyword}||'%'
       </if>
-        <if test="searchGen != null and searchGen != ''">
-           AND MEMBER_GENDER=#{searchGen}
-        </if>
+      <if test="searchGen != null and searchGen != ''">
+         AND MEMBER_GENDER=#{searchGen}
+      </if>
    </select>
 </mapper>

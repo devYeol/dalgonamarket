@@ -76,15 +76,15 @@
 			</div>
 			<div class="listdiv">
 				<table class="listtable">
-					<tr>
-						<th style="width: 5%;">체크</th>
+					<tr style="">
+						<th style="width: 5%; background-color: light-gray;">체크</th>
 						<th style="width: 14%;">이름</th>
 						<th style="width: 14%;">아이디</th>
 						<th style="width: 11%;">성별</th>
 						<th style="width: 17%">이메일</th>
 						<th style="width: 17%;">연락처</th>
 						<th style="width: 17%;">가입일</th>
-						<th colspan="2" style="width: 5%;">등록/삭제</th>
+						<th style="width: 5%;">회원삭제</th>
 					</tr>
 					<c:if test="${not empty members}">
 						<c:forEach var="m" items="${members}">
@@ -96,10 +96,7 @@
 								<td><c:out value="${m.memberEmail}" /></td>
 								<td><c:out value="${m.memberPhone}" /></td>
 								<td><c:out value="${m.memberEnrollDate}" /></td>
-								<td>
-									<button class="adminbt" style="width: 80px; background-color: #6FB67F;">수정</button>
-								</td>
-								<td>
+								<td style="padding: 3px;">
 									<button class="adminbt" id="" name="" style="width: 80px; background-color: #D56B5A;">삭제</button>
 								</td>
 							</tr>

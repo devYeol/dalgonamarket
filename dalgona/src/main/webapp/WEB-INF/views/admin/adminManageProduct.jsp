@@ -110,6 +110,7 @@
 		</div>
 	</div>
 	<script>
+		// 개별 삭제
 		const adminDeleteProduct=(e)=>{
 			$.ajax({
 				url:"${path}/admin/adminDeleteProduct.do",
