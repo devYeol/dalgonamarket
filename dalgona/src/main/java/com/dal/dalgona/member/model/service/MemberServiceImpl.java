@@ -94,6 +94,28 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* 충열 */
 	
 	@Override
@@ -139,17 +161,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public Member findId(String memberEmail)throws Exception {
+	public Member findId(String memberEmail) throws Exception {
 		return dao.findId(session,memberEmail);
 	}
 	
 	@Override
-	public int findIdCheck(String memberEmail)throws Exception {
+	public int findIdCheck(String memberEmail) throws Exception {
 		return dao.findIdCheck(session,memberEmail);
 	}
 	
 	@Override
-	public int findPwCheck(Member m)throws Exception {
+	public int findPwCheck(Member m) throws Exception {
 		return dao.findPwCheck(session,m);
 	}
 	
@@ -189,4 +211,35 @@ public class MemberServiceImpl implements MemberService {
 		
 		dao.findPwChange(session,m,newPw);
 	}
+	
+	@Override
+	public int infoUpdate(Member m) throws Exception {
+		
+		return dao.infoUpdate(session, m);
+	}
+	
+	@Override
+	public void deleteMember(String memberId) {
+		
+		dao.deleteMember(session,memberId);
+	}
+	
+	@Override
+	public Member pwck(Member m) {
+		
+		return dao.pwck(session, m);
+	}
+	
+	@Override
+	public int pwUpdateCheck(Member m) {
+		
+		return dao.pwUpdateCheck(session, m);
+	}
+	
+	@Override
+	public int pwUpdateEnd(String memberId, String memberPwd1) {
+		
+		return dao.pwUpdateEnd(session,memberId,memberPwd1);
+	}
+
 }

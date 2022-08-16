@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 
@@ -54,6 +55,7 @@ public class Review {
 	
 	// 자기자신을 참조 시 컬럼은 어떻게 추가해야하는지?
 	// Review 자신이 자신 참조
+	@ToString.Exclude
 	@OneToOne
 	@JoinColumn(name="reviewRef")
 	private Review review;

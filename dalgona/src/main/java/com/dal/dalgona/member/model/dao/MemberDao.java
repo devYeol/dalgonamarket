@@ -40,6 +40,17 @@ public interface MemberDao {
 
 	List<DeliveryLocation>selectDL(SqlSessionTemplate session,Member memberId);
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* 충열 */
 	
 	Member login(SqlSessionTemplate session, Member m);
@@ -48,11 +59,21 @@ public interface MemberDao {
 	
 	int idCheck(SqlSessionTemplate session, String memberId);
 	
-	Member findId(SqlSessionTemplate session, String memberEmail)throws Exception;
+	Member findId(SqlSessionTemplate session, String memberEmail) throws Exception;
 	
-	int findIdCheck(SqlSessionTemplate session, String memberEmail)throws Exception;
+	int findIdCheck(SqlSessionTemplate session, String memberEmail) throws Exception;
 	
-	int findPwCheck(SqlSessionTemplate session, Member m)throws Exception;
+	int findPwCheck(SqlSessionTemplate session, Member m) throws Exception;
 	
 	int findPwChange(SqlSessionTemplate session, Member m, String newPw);
+	
+	int infoUpdate(SqlSessionTemplate session, Member m) throws Exception;
+	
+	void deleteMember(SqlSessionTemplate session, String memberId);
+	
+	Member pwck(SqlSessionTemplate session, Member m);
+	
+	int pwUpdateCheck(SqlSessionTemplate session, Member m);
+	
+	int pwUpdateEnd(SqlSessionTemplate session, String memberId, String memberPwd1);
 }

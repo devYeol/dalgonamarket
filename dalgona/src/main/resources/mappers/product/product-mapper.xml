@@ -19,4 +19,28 @@
 	<select id="selectProducts" resultMap="productMap" >
 		SELECT * FROM PRODUCT
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select  id="searchProduct" resultMap="productMap">
+			select * from product where PRODUCT_NAME like '%'||#{keyword}||'%' or CATEGORY_NAME like '%'||#{keyword}||'%'
+	</select>
+	
+	
 </mapper>

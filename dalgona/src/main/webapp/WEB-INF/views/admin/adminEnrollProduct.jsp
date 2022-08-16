@@ -26,11 +26,7 @@
 		<jsp:include page="/WEB-INF/views/admin/adminSidebarForm.jsp">
 			<jsp:param name="title" value=""/>
 		</jsp:include>
-		<!-- end of sidebar -->
-		<!-- 
-            컨텐츠 영역 : 
-            - 더미 텍스트(Lorem ipsum)을 활용하여 내용 강제로 늘려 테스트
-        -->
+	
 		<div class="contents">
 			<div class="contentstitle">상품등록</div>
 		<form action="${path }/admin/insertProduct.do" method="post" enctype="multipart/form-data">
@@ -59,18 +55,20 @@
 					</tr>
 					<tr>
 						<td class="theader">옵션</td>
-						<td>
+						<td id="optionTD">
 							<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
 								<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
 							</div>
-							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
+							<div style="display:flex;justify-content:left;align-items:center;margin:2%" class="optionInput">
 								<div>
 									<input class="adminin" name="optionName" type="text"
 									placeholder="옵션이름을 입력해주세요">
-									<input class="adminin" name="optionPrice" type="number" min="1000"
+									<input class="adminin" name="optionPrice" type="number" min="100"
 									placeholder="옵션가격을 입력해주세요">
 								</div>
-								<div><button class="adminbt" type="button" id="remove"  style="width:50; font-size:13">삭제</button></div>
+								<div>
+									<button class="adminbt" name="optionbtnn"  type="button" id="remove"  style="width:50; font-size:13">삭제</button>
+								</div>
 							</div>
 						</td>
 					</tr>
@@ -104,17 +102,48 @@
 		<!-- end of contents -->
 	</div>
 	<script>
-	 $("#addOptionBtn").click(e=>{
-	        const optionTemplate=$(e.target).parent().next().clone();
-	        $(e.target).parent().next().after(optionTemplate);
-	    });
-			
-		    function deleteOption(){
-			   if(confirm("옵션이 삭제됩니다!")==true){
-					$("input")
-			     }   
-			 }; 
-			
+  let num = 0
+      
+      $(function() {
+         $("#addOptionBtn").on("click", function(e) {
+               num++
+            
+            const optionTemplate=$(e.target).parent().next().clone();
+              $(e.target).parent().next().after(optionTemplate).prop('id', 'optionInputID'+num ).find("input").val("");
+           
+         });
+        
+      });
+      
+      $(document).ready(function () {
+       
+          $(document).on("click", "button[name='optionbtnn']", function () {
+             
+            const a =  $(this).parents().parents().attr('id');
+            console.log(':::' ,$('input:nth-child(2)').length)
+            console.log(':::' ,$('input:nth-child(2)')[0])
+             if($('input:nth-child(2)').length == 1){
+        		return alert("최소 옵션은 1개입니다!");
+           }else{
+           console.log(':::' , $(this).parents().parents().attr('id'))
+              console.log(':::' +'"#'+a+'"')
+            $("#"+a).detach()
+           }
+          });
+      });
+      
+      /*
+      $(function(e) {
+         $("document").on("click",  "button[name='optionbtnn']", function() {
+                console.log(':::' , $(this).parents().parents().attr('id'))
+              const a =  $(this).parents().parents().attr('id');
+              console.log(':::' +'"#'+a+'"')
+            $("#"+a).detach()
+        $("#"+a).remove()
+            
+         });
+      });*/
+
 	</script>
 </body>
 </html>

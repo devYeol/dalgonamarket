@@ -36,6 +36,17 @@ public interface MemberService {
 
 	List<DeliveryLocation>selectDL(Member memberId);
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* 충열 */
 	
 	Member login(Member m);
@@ -46,14 +57,23 @@ public interface MemberService {
 	
 	String authSendEmail(String senderEmail, String receiver);
 	
-	Member findId(String memberEmail)throws Exception;
+	Member findId(String memberEmail) throws Exception;
 	
-	int findIdCheck(String memberEmail)throws Exception;
+	int findIdCheck(String memberEmail) throws Exception;
 	
-	int findPwCheck(Member m)throws Exception;
+	int findPwCheck(Member m) throws Exception;
 	
 	String findPw(String senderEmail, String receiver);
 	
 	void findPwChange(Member m, String newPw);
+	
+	int infoUpdate(Member m) throws Exception;
 
+	void deleteMember(String memberId);
+	
+	Member pwck(Member m);
+	
+	int pwUpdateCheck(Member m);
+	
+	int pwUpdateEnd(String memberId, String memberPwd1);
 }

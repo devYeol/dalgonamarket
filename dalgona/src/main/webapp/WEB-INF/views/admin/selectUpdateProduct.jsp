@@ -3,11 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" href="${path}/resources/css/admin.css" />
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-   <jsp:param name="title" value=""/>
-</jsp:include>
-<section id="content">
+	<div class="container">
+		<jsp:include page="/WEB-INF/views/admin/adminSidebarForm.jsp">
+				<jsp:param name="title" value=""/>
+		</jsp:include>
+		
 	<div class="contents">
 			<div class="contentstitle">상품수정</div>
 		<form action="${path }/admin/updateProduct.do" method="post" enctype="multipart/form-data">
@@ -36,26 +38,27 @@
 						<td><input class="adminin" type="text" name="productPrice"
 							placeholder="내용을 입력해 주세요" value="<c:out value="${p.productPrice}"/>"></td>
 					</tr>
-					<c:forEach var="option" items="${po }">
 					<tr>
 						<td class="theader">옵션</td>
 						<td>
 							<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
 								<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
 							</div>
+							<c:forEach var="option" items="${po }">
 							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
 								<div>
-									<input type="hidden" name="optionCode" value="<c:out value="${option.optionCode }"/>">
-									<input class="adminin" name="optionName" type="text"
-									value="<c:out value="${option.optionName }"/> ">
-									<input class="adminin" name="optionPrice" type="number" min="1000"
-									value="${option.optionPrice }">
+										<input type="hidden" name="optionCode" value="<c:out value="${option.optionCode }"/>">
+										<input class="adminin" name="optionName" type="text"value="<c:out value="${option.optionName }"/> ">
+										<input class="adminin" name="optionPrice" type="number" min="1000"value="${option.optionPrice }">
 								</div>
-								<div><button class="adminbt" type="button" id="remove"  style="width:50; font-size:13">삭제</button></div>
+								<div>
+									<button class="adminbt" type="button" id="remove"  style="width:50; font-size:13">삭제</button>
+								</div>
 							</div>
+							</c:forEach>
 						</td>
 					</tr>
-					</c:forEach>
+					
 					<tr>
 						<td class="theader">수량</td>
 						<td><input class="adminin" type="text" name="productAmount"
@@ -63,7 +66,7 @@
 					</tr>
 					<tr>
 						<td class="theader">이미지</td>
-						<td>
+						<td style="width: 50%;">
 							<input type="hidden" name="beforeThumbnail" value="${p.productThumb}">
 							<input type="hidden" name="beforedetailedImage" value="${p.productImage }">
 							<img src="${p.productThumb }" width="95" height="100" border="0" />
@@ -77,8 +80,6 @@
 						<td><input class="adminin" type="text" name="productContent"
 							placeholder="내용을 입력해 주세요" value="<c:out value="${p.productContent}"/>"></td>
 					</tr>
-				<%-- 	</c:forEach>
-		            </c:if> --%>
 				</table>
 				<div style="position: relative; top: 10px; left: 25%;">
 					<button class="adminbt"
@@ -89,7 +90,4 @@
 			</div>
 		</form>
 		</div>
-		<!-- end of contents -->
 	</div>
-</section>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
