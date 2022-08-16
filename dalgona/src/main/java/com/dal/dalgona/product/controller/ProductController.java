@@ -56,8 +56,8 @@ public class ProductController {
 		List<Review> review=service.reviewList(productCode);
 		List<Qna> qna=service.qnaList(productCode);
 		
-		Review star=service.starAvg(productCode);
-		log.debug("{}",star);
+//		Review star=service.starAvg(productCode);
+//		log.debug("{}",star);
 		
 //		log.debug("{}",op);
 //		log.debug("{}",review);
@@ -68,7 +68,7 @@ public class ProductController {
 		model.addAttribute("op",op);
 		model.addAttribute("review",review);
 		model.addAttribute("qna",qna);
-		model.addAttribute("star",star);
+//		model.addAttribute("star",star);
 		
 		
 		return "product/productDetail";
@@ -81,16 +81,15 @@ public class ProductController {
 	public String review( 
 			@RequestParam(value="productCode") long productCode,
 			@RequestParam(value="reviewContent") String reviewContent,
-			@RequestParam(value="reviewStar") int reviewStar,
+			@RequestParam(value="reviewStar", required = false) int reviewStar,
 			@RequestParam(value = "reviewImage", required = false) MultipartFile reviewImage,	
 			HttpServletRequest rs, HttpSession session)  throws IllegalStateException, IOException {
 		Member m = (Member) session.getAttribute("loginMember");
 		String memberId = m.getMemberId();
-		log.debug("{}",reviewImage);
 		
 		
-		String reviewImagePath="";
-		if(reviewImage!=null) {
+		
+		String reviewImagePath="";		
 			String path = rs.getServletContext().getRealPath("/resources/upload/product/review/");
 			File uploadDir = new File(path);
 			if (!uploadDir.exists())
@@ -114,15 +113,15 @@ public class ProductController {
 			String target = "resources";
 			int target_num = aa.indexOf(target) - 1;
 			reviewImagePath = aa.substring(target_num);
-		}
+			log.debug("리뷰이미지{}",reviewImagePath);
 			
 		
 		Review review=Review.builder().memberId(memberId).productCode(productCode)
 				.reviewContent(reviewContent).reviewImage(reviewImagePath).reviewDate(new Date()).reviewStar(reviewStar).review(null).build();
 		
-//		log.debug("{}",review);
+		log.debug("{}",review);
 
-//	    service.reviewWrite(review);
+	    service.reviewWrite(review);
 	 
 	    return "redirect:/product/productDetail/"+productCode;
 	}

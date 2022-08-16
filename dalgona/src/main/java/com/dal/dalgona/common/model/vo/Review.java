@@ -36,9 +36,7 @@ public class Review {
 	private long productCode;
 	
 	private String memberId;
-	
-	private String reviewTtitle;
-	
+		
 	@Column(length=1000)
 	private String reviewContent;
 	
