@@ -63,6 +63,7 @@ public class PaymentController {
 	    Cart cartList = (Cart) session.getAttribute("cartList");
 	 
 	    return new ResponseEntity<>(HttpStatus.OK);
+	    
 	}
 	
 	// 결제 성공
