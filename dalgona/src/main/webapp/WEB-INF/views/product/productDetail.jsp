@@ -120,9 +120,7 @@
 		<!-- 리뷰 탭 -->
 		<ul class="comment">
 			<li>
-				<form class="mb-3" name="myform" id="myform"
-					enctype="multipart/form-data" method="post"
-					action="${path }/review/reviewWrite.do">
+				<form class="mb-3" name="myform" id="myform" enctype="multipart/form-data" method="post"action="${path }/review/reviewWrite.do">
 					<fieldset>
 						<span class="text-bold">별점을 선택해주세요</span> <input type="radio"
 							name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
@@ -376,11 +374,7 @@
 		}
 		//장바구니
 		function info_chk2(frm) {
-			frm.action = $
-			{
-				path
-			}
-			"/member/mypage/cart";
+			frm.action = ${path}"/member/mypage/cart";
 			frm.submit();
 			return true;
 		}
