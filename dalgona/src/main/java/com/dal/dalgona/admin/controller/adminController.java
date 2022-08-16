@@ -39,8 +39,6 @@ public class adminController {
 	@Autowired
 	adminServiceImpl service;
 
-	/* 중언 */
-
 	// 관리자 메인 이동
 	@RequestMapping("adminMain.do")
 	public String adminMain() {
@@ -73,7 +71,7 @@ public class adminController {
 	}
 
 	// 상품관리 - 삭제기능
-	@RequestMapping("adminDeleteProduct.do")
+	@RequestMapping("/adminDeleteProduct.do")
 	@ResponseBody
 	public boolean deleteProduct(long productCode, HttpServletResponse response) throws IOException {
 		Long result = service.deleteByProductCode(productCode);
@@ -87,7 +85,6 @@ public class adminController {
 		String[] deleteArr = request.getParameterValues("deleteArr[]");
 		boolean result = false;
 		for (int i = 0; i < deleteArr.length; i++) {
-//				log.debug(deleteArr[i]);
 			service.deleteByProductCode(Long.parseLong(deleteArr[i]));
 		}
 		result = true;
@@ -112,8 +109,6 @@ public class adminController {
 		mv.setViewName("admin/adminManageProduct");
 		return mv;
 	}
-
-	/* 원희 */
 
 	// 상품등록 페이지에서 name명 가져와서 매개변수에 집어넣음
 	@RequestMapping("/insertProduct.do")
@@ -216,6 +211,7 @@ public class adminController {
 	}
 	
 //	상품업데이트
+	@SuppressWarnings("unused")
 	@RequestMapping("/updateProduct.do")
 	public String updateProduct(@RequestParam(value = "productCode") long Product_Code , 
 								@RequestParam(value = "productAmount") int product_Ampont,
@@ -239,6 +235,9 @@ public class adminController {
 		log.debug("{}",f2);
 		
 		if(f != null) {
+			//
+			//db를 거치고나서 만약 db가 수정이 완료되면 밑에 폴더삭제
+			//
 	        if(f.exists()) {
 	            if(f.delete()) {
 	            	System.out.println("파일삭제 성공!");
@@ -323,24 +322,12 @@ public class adminController {
 		String detailedPath = updatedetailFile.substring(target_num1);
 		System.out.println("detailedPath : " + detailedPath);
 		
-		
-		
 		Product po = Product.builder().productCode(Product_Code).productAmount(product_Ampont).productContent(product_Content)
 				.productPrice(product_Price).productName(product_Name).productThumb(thumbnailPath)
 				.productImage(detailedPath).productDate(new Date()).categoryName(categoryName).build();
-		//경로에 있는 이미지 지우고(분기처리)
-		//db업데이트시키고
-//		if(개별수정) {
-//			
-//		}
-//		else {
-//			//둘다 들어왔을떄 db update
-//		}
 		
-		//경로에 업데이트시킨 이미지 추가
-
-		List<ProductOption> option = new ArrayList();
-		// option을 for문돌려 컬럼안에 집어넣음
+		List<ProductOption> option = new ArrayList(); 
+//		 option을 for문돌려 컬럼안에 집어넣음
 		for (int i = 0; i < optionName.length; i++) {
 			option.add(
 					ProductOption.builder().product(po).optionCode(optionCode[i]).optionName(optionName[i]).optionPrice(optionPrice[i]).build());
@@ -348,9 +335,9 @@ public class adminController {
 		
 		log.debug("option : ",option);
 		log.debug("{}",option);
-		po.setOptionCode(option);
-		log.debug("{}",po);
-		
+//		po.setOptionCode(option);
+//		log.debug("{}",po);
+			
 		
 		Product p = service.updateProduct(po);
 		List<ProductOption> uo = service.updateOption(option); 
@@ -358,13 +345,8 @@ public class adminController {
 //		log.debug("{}",uo);
 		log.debug("{}",p);
 
-		
 		log.debug("{}",product_Name);
 		return "admin/adminManageProduct";
 	}
 	
-	/*
-	 * @RequestMapping("adminPageGo.do") public String adminPageGo() { return
-	 * "admin/adminMain"; }
-	 */
 }
