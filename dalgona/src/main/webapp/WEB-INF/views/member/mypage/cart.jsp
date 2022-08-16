@@ -3,11 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:set var="now" value="<%=new java.util.Date()%>" />
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="" />
 </jsp:include>
+<jsp:useBean id="today" class="java.util.Date" />
 <style>
+
+.proName{
+font-size:20px;
+text-decoration:none;
+ color:black;
+}
+
 .cart-form {
 	margin-left: 100px;
 	margin-right: 100px;
@@ -179,93 +186,91 @@
 			</ul>
 		</div>
 	</div>
-	<form action="${path }/payment" id="buyPage"  >
-	<div class="cart-container">
-		<h4>
-			<b>장바구니</b>
-		</h4>
-		<c:choose>
-			<c:when test="${map.count ==0 }">
+	<form action="${path }/payment" id="paymentMove" method="get">
+		<div class="cart-container">
+			<h4>
+				<b>장바구니</b>
+			</h4>
+			<c:choose>
+				<c:when test="${map.count ==0 }">
 			장바구니가 비었습니다
-			</c:when>
+				<br>
+					<br>
+					<button type="button" class="btn btn-danger" id="productListMove">상품
+						페이지로 이동</button>
+				</c:when>
 
-			<c:otherwise>
-				<div style="margin-top: 20px">
-					<div>
-						<div style="display: flex; justify-content: space-between;">
-							<div style="margin-top: 8px; margin-left: 10; display: flex">
-								<input class="form-check-input" type="checkbox" id="checkAll"
-									value="selectall" name="selectAll" aria-label="...">
-								<div style="margin-left: 10">전체선택</div>
+				<c:otherwise>
+					<div style="margin-top: 20px">
+						<div>
+							<div style="display: flex; justify-content: space-between;">
+								<div style="margin-top: 8px; margin-left: 10; display: flex">
+									<input class="form-check-input" type="checkbox" id="checkAll"
+										value="selectall" name="selectAll" aria-label="...">
+									<div style="margin-left: 10">전체선택</div>
+								</div>
+								<button type="button" class="btn-delete" id="selectDelete"
+									name="" onclick="" style="margin-right: 10">선택삭제</button>
 							</div>
-							<button type="button" class="btn-delete" id="selectDelete"
-								name="cartCode" onclick=""style="margin-right: 10">선택삭제</button>
 						</div>
 					</div>
-				</div>
 
-				<hr>
+					<hr>
 					<c:forEach var="c" items="${map.cartList}" varStatus="i">
+
 						<table style="margin-left: 10; width: 100%;">
 							<tbody>
 								<tr class="payment-tr" name="selectP">
-									<td style="width: 20%;"><input class="check-input" name="check" id="<c:out value="${c.cartCode}"/>"
-										type="checkbox" data-cartCode="${c.cartCode }"style="margin-top: 40;"> <a href="#"
+									<td style="width: 20%;"><input type="hidden" id="cartCode"
+										name="cartCode" value="${c.cartCode}"> <input
+										type="hidden" id="product.productCode"
+										name="product.productCode" value="${c.product.productCode}">
+										<input type="hidden" id="member.memberId"
+										name="member.memberId" value="${c.member.memberId}">
+										<input type="hidden" id="cartAmount" name="cartAmount"
+										value="${c.cartAmount}"> <input class="check-input"
+										name="check" id="${c.cartCode}" type="checkbox"
+										style="margin-top: 40;"> <a href="#"
 										style="text-decoration: none;"> <img
 											src="${c.product.productThumb }" width="150" height="150"
 											border="0" style="margin-left: 10" /> <!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
 									</a></td>
 									<td style="width: 55%"><a href="#"
 										style="color: black; text-decoration: none; font-size: 17"><b>
-												<input type="hidden" name="productCode"
-												value="${c.product.productCode }">
-										</b></a> <%-- <c:out value="${c.product.productCode}"/></b></a><br><br> --%>
+												<input type="hidden" name="" value="${c.cartCode}">
+										</b></a>
+										<div style="margin-top: 5; font-size: 15px">
+											<c:out value=" ${c.product.categoryName}" />
+										</div> <!-- 오예오예 오예스~ --> <br>
 										<div style="margin-top: 5; font-size: 15px">
 											<c:out value=" ${c.product.productName}" />
 										</div> <!-- 오예오예 오예스~ --> <br>
-										<div style="margin-top: 5;">
+										<div style="margin-top: 5;">	
 											<p>
 												<fmt:formatNumber pattern="###,###,###"
 													value="${c.product.productPrice}" />
 												&nbsp;원
 											</p>
 										</div> <br>
-										<div style="margin-top: 5; font-size: 15px">
+										<div style="margin-top: 5; font-size: 15px">도착 예정</div></td>
 
-											<fmt:formatDate value="${now}" type="date" pattern="MM-dd" />
-											도착 예정
-										</div></td>
+									<td style="text-align: center;"><c:out
+											value="${c.cartAmount} 개" />
 
-									<td style="text-align: center;"><select id="browsers">
-											<c:forEach var="count" begin="1"
-												end="${c.cartAmount < 5? 5: c.cartAmount }">
-												<option>${count}</option>
-												<!-- <option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option> -->
-											</c:forEach>
-									</select>
 										<div style="margin-top: 5px">
 											<p>
+
 												<fmt:formatNumber pattern="###,###,###"
-													value="${c.product.productPrice}" />
+													value="${c.product.productPrice*c.cartAmount}" />
 												&nbsp;원
 											</p>
 										</div></td>
 									<td style="width: 100">
 										<div style="display: flex; text-alian: center;">
-											<button type="button" class="btn btn-danger">구매하기</button>
+											<button type="submit" class="btn btn-danger">구매하기</button>
 										</div>
 									</td>
 									<td style="display: flex;">
-										<%-- 							<div><a class="close" href="${path }/member/delete.do?cartCode=${c.cartCode}"></a></div> --%>
 										<div>
 											<a class="close" id="close"
 												href="${path }/member/delete.do?cartCode=${c.cartCode}"></a>
@@ -283,7 +288,7 @@
 					<div class="allprice-container">
 						<div class="allrprice-content">
 							<div class="allprice-form">
-								<b>총 상품 가격</b> :<i><fmt:formatNumber pattern="###,###,###"
+								<b>총 상품 가격</b> :<i> <fmt:formatNumber pattern="###,###,###"
 										value="${map.sumMoney}" /></i><span class="all-plus"><img
 									src="/resources/images/mypage/img_plus.png" style="width: 14;">
 								</span> 배송비 <i>${map.fee}</i> 원 <span class="all-plus"> <img
@@ -294,17 +299,21 @@
 						</div>
 					</div>
 					<div class="cartandprice" style="text-align: center;">
-						<button class="btn-cart">쇼핑계속하기</button>
-						<button type="submit" class="btn-buy">구매하기</button>
+						<button type="reset" class="btn-cart">쇼핑계속하기</button>
+						<button type="button" id="buyy" class="btn-buy">구매하기</button>
 					</div>
-			</c:otherwise>
-		</c:choose>
-	</div>
-				</form>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</form>
 	<div></div>
 </section>
 
 <script>
+
+$("#productListMove").click(function(){
+	  location.assign("${path}/product/productList");
+})
 
 
 $(".btn-cart").click(function() { //쇼핑계속하기
@@ -330,7 +339,7 @@ $(".btn-cart").click(function() { //쇼핑계속하기
     })
     
     
-    function goOrder(){
+ /*    function goOrder(){
     	var chk=$('input[name="opnum"]');
     	var cnt =0;
 		$.each(chk,function(i,ch){
@@ -349,12 +358,11 @@ $(".btn-cart").click(function() { //쇼핑계속하기
 			return;	
 		}
 		orderF.submit();
-	}
+	} */
     
   // 선택 삭제
     	$("#selectDelete").click(function(){
     	if(confirm("삭제 하시겠습니까?")){
-    		
         const cnt = $("input[name='check']:checked").length;
         const arr = new Array();
         $("input[name='check']:checked").each(function() {
@@ -363,7 +371,7 @@ $(".btn-cart").click(function() { //쇼핑계속하기
         console.log(cnt);
         console.log(arr);
         $.ajax({
-			url:"${path}/member/delete.do",
+			url:"${path}/member/selectDelete.do",
 			data:{deleteArr:arr},
 			success:data=>{
 				if(data){
@@ -378,17 +386,29 @@ $(".btn-cart").click(function() { //쇼핑계속하기
     
     
         $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
-        	if(confirm("정말로 지우시겠습니까?")){
-        	location.assign="${path}/member/delete.do?cartCode=${c.cartCode}"
+        	if(confirm("삭제 하시겠습니까?")){
         	}else{
         		return false
         	}
         		
         })
     
-     
-
-    
+		$("#buyy").click(function(){
+        var qwe =$("input[name='check']:checked");
+			if(qwe.length >= 1){
+				
+				console.log(qwe);
+ 				$('#paymentMove').submit();
+			}else{
+				alert('상품을 선택하세요');
+			}
+		})    
+		
+	$("input[name='check']:checked").prop("checked",true);
+	$("input[name='check']:checked").prop("checked",false);
+		
+		
+		
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

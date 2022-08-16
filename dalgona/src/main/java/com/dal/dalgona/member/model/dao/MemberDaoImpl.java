@@ -8,9 +8,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -26,28 +29,36 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public List<Cart> cartList(SqlSessionTemplate session,Member m){
-		return session.selectList("cart.cartList",m);
+	public List<Cart> cartList(SqlSessionTemplate session,Member memberId){
+		return session.selectList("cart.cartList",memberId);
 	}
 	
 	@Override
-	public int sumMoney(SqlSessionTemplate session,Member m){
-		return session.selectOne("cart.sumMoney",m);
+	public int sumMoney(SqlSessionTemplate session,Member memberId){
+		return session.selectOne("cart.sumMoney",memberId);
 	}
+	@Override
+	public void delete(SqlSessionTemplate session,long cartCode) {
+		session.delete("cart.delete",cartCode);
+	}
+	
+	@Override
+	public long selectDelete(SqlSessionTemplate session,long cartCode) {
+		return session.delete("cart.selectDelete",cartCode);
+	}
+	@Override
+	public long zzimSelectDelete(SqlSessionTemplate session,long zzimCode) {
+		return session.delete("likes.zzimSelectDelete",zzimCode);
+	}
+	@Override
+	public void zzimDelete(SqlSessionTemplate session,long zzimCode) {
+		 session.delete("likes.zzimDelete",zzimCode);
+	}
+	
 //	@Override
-//	public void delete(SqlSessionTemplate session,int cartCode) {
-//		session.delete("cart.delete",cartCode);
+//	public void deleteAll(SqlSessionTemplate session ,Member memberId) {
+//		session.delete("cart.deleteAll",memberId);
 //	}
-	
-	@Override
-	public long delete(SqlSessionTemplate session,long cartCode) {
-		return session.delete("cart.delete",cartCode);
-	}
-	
-	@Override
-	public void deleteAll(SqlSessionTemplate session ,Member memberId) {
-		session.delete("cart.deleteAll",memberId);
-	}
 
 	@Override
 	public  void updateCart(SqlSessionTemplate session ,Cart c) {
@@ -60,30 +71,23 @@ public class MemberDaoImpl implements MemberDao {
 	}
 //
 	@Override
+	public List<OrderDetail> orderList(SqlSessionTemplate session,Member memberId){
+		return session.selectList("orderDetail.orderList",memberId);
+	}
+
+	@Override
+	public long orderListDelete(SqlSessionTemplate session,long orderCode) {
+		return session.delete("orderDetail.orderListDelete",orderCode);
+	}
+	
+	@Override
+	public List<DeliveryLocation>selectDL(SqlSessionTemplate session,Member memberId){
+		return session.selectList("deliveryLocation.selectDL",memberId);
+		
+	}
 	public List<Product> orderList(SqlSessionTemplate session) {
 		return session.selectList("cart.orderList");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/* 충열 */
 	

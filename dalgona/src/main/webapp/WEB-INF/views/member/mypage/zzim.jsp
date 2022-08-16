@@ -8,6 +8,26 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 <style>
+.proName {
+	font-size: 20px;
+	text-decoration: none;
+	color: black;
+}
+
+.close {
+	display: inline-block;
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+	float: right;
+	 margin-bottom: 10px;
+}
+
+.close:after {
+	content: "\00d7";
+	font-size: 15pt;
+}
+
 .cart-form {
 	margin-left: 100px;
 	margin-right: 100px;
@@ -160,12 +180,14 @@
 				<strong>마이페이지</strong>
 			</h4>
 			<ul>
-				<li><h5>
-					</h5></li>
+				<li><h5></h5></li>
 				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
 				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
 				<li><a href="${path }/member/mypage/cart">장바구니</a></li>
-				<li><a href="${path }/member/mypage/zzim"></a><h5><b>찜 목록</b></h5></li>
+				<li><a href="${path }/member/mypage/zzim"></a>
+				<h5>
+						<b>찜 목록</b>
+					</h5></li>
 				<br>
 				<li><h5>
 						<b>내정보</b>
@@ -175,50 +197,73 @@
 			</ul>
 		</div>
 	</div>
+
 	<div class="cart-container">
 		<h4>
-			<b>찜목록</b>
+			<b>찜 목록</b>
 		</h4>
-		<div style="margin-top: 20px">
-			<div>
-				<div style="display: flex; justify-content: space-between;">
-					<div style="margin-top: 8px; margin-left: 10; display: flex">
-						<input class="form-check-input" type="checkbox"
-							id="selectAll" value="" aria-label="...">
-						<div style="margin-left: 10">전체선택</div>
+		<c:choose>
+			<c:when test="${empty zzimList }">
+				<span>찜 한 상품이 없습니다</span>
+				<br>
+				<br>
+				<button type="button" class="btn btn-danger" id="productListMove">상품
+					페이지로 이동</button>
+			</c:when>
+			<c:otherwise>
+				<div style="margin-top: 20px">
+					<div>
+						<div style="display: flex; justify-content: space-between;">
+							<div style="margin-top: 8px; margin-left: 10; display: flex">
+								<input class="form-check-input" type="checkbox" id="selectAll"
+									value="" aria-label="...">
+								<div style="margin-left: 10">전체선택</div>
+							</div>
+							<button type="button" class="btn btn-danger" id="selectDelete"
+								style="font-size: 14px; height: 4 0px; margin-right: 1%;">선택삭제</button>
+						</div>
 					</div>
-					<button type="button" class="btn btn-danger"
-							style="font-size: 14px; height: 4 0px; margin-right:1%;">선택삭제</button>
 				</div>
-			</div>
-		</div>
-		<hr>
-			<c:forEach var="z" items="${zzimList }">
-			<br>
-		<table style="margin-left: 10; width: 98%;">
-			<tbody>
-				<tr class="payment-tr">
-					<td style="width: 20%;"><input class="check-input" id="<c:out value="${z.product.productCode }"/>"
-						type="checkbox" style="margin-top: 40;"> <a href="#"
-						style="text-decoration: none;"> <img
-							src="${z.product.productThumb }"
-							width="150" height="150" border="1" style="margin-left: 10" />
-					</a></td>
-					<td style="width: 55%"><a href="#"
-						style="color: black; text-decoration: none; font-size: 17"></a><br><br>
-						<div style="margin-top: 5; font-size: 15px"><c:out value="${z.product.productName }"/></div><br>
-						<div style="margin-top: 5;"><c:out value="${z.product.productPrice }원"/></div>
-					<td style="padding-left: 140px;">
-						<button type="button" class="btn btn-danger"
-							style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
-					</td>
-					<div class="close" id="close" style="float: right; margin-bottom: 10px;"></div>
-				</tr>
-			</tbody>
-		</table>
-		<br>	
-		<hr>	
-	</c:forEach>
+				<hr>
+				<form action="${path }/member/mypage/cartInsert" id="cartMove">
+					<c:forEach var="z" items="${zzimList }">
+						<br>
+						<table style="margin-left: 10; width: 98%;">
+							<tbody>
+								<tr class="payment-tr">
+									<td style="width: 20%;"><input class="check-input"
+										name="checkbox" id="${z.likesCode }" type="checkbox"
+										style="margin-top: 40;"> <a href="#"
+										style="text-decoration: none;"> <img
+											src="${z.product.productThumb }" width="150" height="150"
+											border="1" style="margin-left: 10" />
+									</a></td>
+									<td style="width: 55%"><a
+										href="${path}/product/productList" class="proName"><c:out
+												value="${z.product.categoryName }" /></a><br>
+									<br>
+										<div style="margin-top: 5; font-size: 15px">
+											<c:out value="${z.product.productName }" />
+										</div>
+										<br>
+										<div style="margin-top: 5;">
+											<c:out value="${z.product.productPrice }원" />
+										</div></td>
+									<td style="padding-left: 140px;">
+										<button type="submit" class="btn btn-danger"
+											style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
+									</td>
+									<a href="${path }/member/zzimDelete.do?likesCode=${z.likesCode}"
+										class="close" id="close"></a>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<hr>
+					</c:forEach>
+				</form>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </section>
 
@@ -244,19 +289,19 @@ $(".check-input").click(function(){
     	$("#selectDelete").click(function(){
     	if(confirm("삭제 하시겠습니까?")){
     		
-        const cnt = $("input[name='check']:checked").length;
+        const cnt = $("input[name='checkbox']:checked").length;
         const arr = new Array();
-        $("input[name='check']:checked").each(function() {
+        $("input[name='checkbox']:checked").each(function() {
             arr.push($(this).attr('id'));
         });
         console.log(cnt);
         console.log(arr);
         $.ajax({
-			url:"${path}/member/delete.do",
+			url:"${path}/member/zzimSelectDelete.do",
 			data:{deleteArr:arr},
 			success:data=>{
 				if(data){
-					$("input[name='check']:checked").parents("tr").remove();
+					$("input[name='checkbox']:checked").parents("tr").remove();
 				}
 			}
 		});
@@ -265,18 +310,17 @@ $(".check-input").click(function(){
     	}
     })
     
-    
-    
-        
         $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
-        	if(confirm("정말로 지우시겠습니까?")){
-        	location.assign="${path}/member/delete.do?cartCode=${c.cartCode}"
+        	if(confirm("삭제 하시겠습니까?")){
         	}else{
         		return false
         	}
         		
         })
 
+  $("#productListMove").click(function(){
+	  location.assign("${path}/product/productList");
+  })
 
 </script>
 

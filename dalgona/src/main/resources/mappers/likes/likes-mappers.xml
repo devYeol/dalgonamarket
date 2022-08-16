@@ -11,9 +11,10 @@
 		<result property="productName" column="product_name" />
 		<result property="productPrice" column="product_price" />
 		<result property="productThumb" column="product_thumb" />
-		<result property="category" column="category"/>
-		<result property="product" column="category_code"/>
+		<result property="categoryName" column="category_name"/>
+		<!-- <result property="product" column="category_code"/> -->
 	</resultMap>
+	
 	<resultMap type="member" id="memberMap">
 		<id property="memberId" column="member_id"/>
 		<result property="memberPwd" column="member_pwd"/>
@@ -40,7 +41,15 @@
 		l.member_id =#{memberId} 
 	</select>
 	
+	<delete id="zzimSelectDelete">
+		delete from likes
+		where likes_code=#{likesCode}
+	</delete>
 	
+	<delete id="zzimDelete">
+		delete from likes
+		where likes_code=#{likesCode}
+	</delete>
 	
 	
 </mapper>

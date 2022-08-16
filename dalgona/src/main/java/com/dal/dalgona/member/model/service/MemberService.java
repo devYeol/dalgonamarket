@@ -3,27 +3,38 @@ package com.dal.dalgona.member.model.service;
 import java.util.List;
 
 import com.dal.dalgona.common.model.vo.Cart;
+import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 
 public interface MemberService {
 
-	List<Cart> cartList(Member m); 
-	
 	void cartInsert (Cart c);
-
-//	void delete(int cartCode); //선택삭제
-
-	long delete(long cartCode);
 	
-	void deleteAll(Member memberId); //전체 삭제
+	List<Cart> cartList(Member memberId); 
+
+	void delete(long cartCode); //장바구니 선택삭제
+
+	long selectDelete(long cartCode);
 	
-	int sumMoney(Member m); //총 금액 
+//	void deleteAll(Member memberId); //전체 삭제
+	
+	int sumMoney(Member memberId); //총 금액 
 
 	List<Likes> zzimList(Member memberId);
 
-	List<Product> orderList();
+	long zzimSelectDelete(long likesCode); //찜 선택삭제
+	
+	void zzimDelete(long likesCode);
+
+	List<OrderDetail> orderList(Member memberId);
+	
+	long orderListDelete(long orderCode); //구매내역 선택삭제
+
+	List<DeliveryLocation>selectDL(Member memberId);
 
 	
 	

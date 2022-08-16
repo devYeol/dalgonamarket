@@ -1,5 +1,8 @@
 package com.dal.dalgona.common.model.vo;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,12 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.springframework.data.annotation.CreatedDate;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -43,12 +45,16 @@ public class ProductOrder {
 	@Id
 	@GeneratedValue(generator = "seq_order_code", strategy = GenerationType.SEQUENCE)
 	private long orderCode; //주문코드
+
+	private String selectLocation; //선택된 배송지
 	
 	@Column (columnDefinition = "varchar2(255) default '주문대기'")
 	private String orderStatus; //주문상태 (배송 대기/ 중 / 배송완료)
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date orderDate; //주문날짜
+//	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
+	private String orderDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd"));
+//	private Date orderDate; //주문날짜
 	
 	@Column(nullable = true)
 	private long totalPrice;
@@ -59,7 +65,7 @@ public class ProductOrder {
 	
 	@OneToOne
 	@JoinColumn(name="addressCode")
-	private DeliveryLocation selectLocation; //선택 배송지
+	private DeliveryLocation deliveryLocation; //배송지
 
 	// 주문
 //	@ManyToOne
