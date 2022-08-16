@@ -117,7 +117,6 @@
 			</div>
 			<div class="pwUpdate-container">
 				<h4><b>비밀번호 변경</b></h4>
-					
 					<div class="pwUpdate-area">
 						<div style="font-size: 16px; margin-top: 4px;">변경하실 비밀번호를 입력해 주세요.</div>
 					</div>
@@ -149,7 +148,6 @@
 							<input type="password" name="memberPwd2" id="memberPwd2" autocomplete="off" required>
 						</div>							
 					</div>
-						
 						<div class="btn-area">
 							<button type="submit"><b>확인</b></button>
 						</div>
@@ -157,6 +155,8 @@
 			</div>
 	</section>
 <script>
+
+let checkPwdResult=false;
 
 $("#memberPwd").blur(function() {
 	const memberId = $("#memberId").val();
@@ -173,6 +173,7 @@ $("#memberPwd").blur(function() {
 			}else{
 				$("#nowPw").text("일치하는 비밀번호입니다.");
 				$("#nowPw").css("color", "green");
+				checkPwdResult=true;
 			}
 		}
 	})
@@ -193,7 +194,6 @@ const chkPw=()=>{
 	 const num = pw.search(/[0-9]/g);
 	 const eng = pw.search(/[a-z]/ig);
 	 const spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-	 
 	if(pw.length < 8){
 		alert("비밀번호는 8자리 이상으로 입력해주세요.");
 		$("#memberPwd1").focus();
@@ -206,7 +206,11 @@ const chkPw=()=>{
 		alert("비밀번호가 일치하지 않습니다.")
 		$("#memberPwd1").focus();
 		return false;
-	}else {
+	}else if(!checkPwdResult){
+		alert("비밀번호가 일치하지 않습니다!");
+		return false;
+	}
+	else {
 		console.log("통과");	 
 	}
 }

@@ -62,7 +62,7 @@
 						<b>전체선택</b>
 					</div>
 					&nbsp;
-					<div style="padding-left: 75%;">
+					<div style="padding-left: 78%;">
 						<button class="adminbt" style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteSelect();">선택삭제</button>
 						<button class="adminbt" style="width: 80px; background-color: #8295F7;"
 						onclick="location.assign('${path}/admin/adminEnrollProduct.do')">상품등록</button>
