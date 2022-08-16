@@ -180,22 +180,22 @@ public class ProductController {
 		return mv;
 	}
 	
-	@RequestMapping("/product/payment.do")
-	public String payment(Product p, ProductOrder po,DeliveryLocation dl 
-			, HttpSession session, Model model
-			,@RequestParam(value="selAmount", required = false ) int[] selAmount
-			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
-			,@RequestParam(value="productName", required = false ) String productName
-			) 
-	{
-		Member m = (Member) session.getAttribute("loginMember");
-		log.debug("{}",p);
+//	@RequestMapping("/product/payment.do")
+//	public String payment(Product p, ProductOrder po,DeliveryLocation dl 
+//			, HttpSession session, Model model
+//			,@RequestParam(value="selAmount", required = false ) int[] selAmount
+//			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
+//			,@RequestParam(value="productName", required = false ) String productName
+//			) 
+//	{
+//		Member m = (Member) session.getAttribute("loginMember");
+//		log.debug("{}",p);
 //		log.debug("{}",po);
 //		log.debug("{}",dl);
-		log.debug("{}",productName);
-		log.debug("{}",selAmount);
-		log.debug("{}",selectedOpt);
-		
+//		log.debug("{}",productName);
+//		log.debug("{}",selAmount);
+//		log.debug("{}",selectedOpt);
+//		
 //		dl=service.selectaddrBase(m);//여기서 기본배송지 선택해서
 //		po=ProductOrder.builder().orderDate(new Date()).orderStatus("디폴").selectLocation(dl).build();
 //		Product p;
@@ -203,8 +203,8 @@ public class ProductController {
 //		String op="바보";
 //		OrderDetail od=OrderDetail.builder().productOrder(po).orderOption(op).orderAmount(selsu).product(p).build();		
 //		log.debug("{}",op);
-		return "order/payment/payment";
-	}
+//		return "order/payment/payment";
+//	}
 	
 	//검색
 		@RequestMapping("/product/search.do")
