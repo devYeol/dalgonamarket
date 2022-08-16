@@ -42,7 +42,7 @@ public class PaymentController {
 		return "order/payment/changeAddress";
 	}
 	
-	@GetMapping("/payment")
+	@RequestMapping("/payment")
 	public String order(HttpSession session, Model model) {
 		
 		Member memberId = (Member) session.getAttribute("loginMember");
@@ -53,6 +53,15 @@ public class PaymentController {
 		return "order/payment/payment";
 		
 	}
+	
+	@RequestMapping("/paymentProduct.do")
+	public String paymentProduct(HttpSession session, Model model) {
+		
+		Member memberId = (Member) session.getAttribute("loginMember");
+		
+		return "order/payment/paymentProduct";
+	}
+	
 	
 	@ResponseBody
 	@PostMapping("/order/paymentCart")
