@@ -228,7 +228,7 @@ public class MemberController {
 	         model.addAttribute("loginMember",loginMember);
 	      }else {
 	         model.addAttribute("msg","로그인 실패");
-	         model.addAttribute("loc","/member/login");
+	         model.addAttribute("loc","/loginpage");
 	         view="common/msg";
 	      }
 	      return view;
