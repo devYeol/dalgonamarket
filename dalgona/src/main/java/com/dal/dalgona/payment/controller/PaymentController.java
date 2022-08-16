@@ -1,6 +1,7 @@
 package com.dal.dalgona.payment.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.product.model.service.ProductService;
@@ -31,9 +33,6 @@ public class PaymentController {
 	
 	@Autowired
 	private PaymentService paymentService;
-	
-	@Autowired
-	private ProductService productService;
 	
 //	@RequestMapping("/payment")
 //	public String paymentTest(HttpSession session) {
@@ -82,13 +81,18 @@ public class PaymentController {
 		model.addAttribute("productOption", selectedOpt);
 		model.addAttribute("selAmount", selAmount);
 		
-//		dl=service.selectaddrBase(m);//여기서 기본배송지 선택해서
+//		dl=service.selectaddrBase(m); //여기서 기본배송지 선택해서
 //		po=ProductOrder.builder().orderDate(new Date()).orderStatus("디폴").selectLocation(dl).build();
+		po=ProductOrder.builder().orderStatus("주문대기").build();
 //		Product p;
-//		int selsu=1;
-//		String op="바보";
-//		OrderDetail od=OrderDetail.builder().productOrder(po).orderOption(op).orderAmount(selsu).product(p).build();		
-//		log.debug("{}",op);
+		int selsu=selAmount;
+		String op="";
+		
+		OrderDetail od=OrderDetail.builder().productOrder(po).orderOption(op).orderAmount(selsu).product(p).build();
+		
+		log.debug("{}",op);
+		log.debug("{}",od);
+		
 		return "order/payment/paymentProduct";
 		
 	}
