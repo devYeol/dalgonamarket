@@ -26,14 +26,12 @@ public interface ProductService {
 	Qna qnaSelectOne(long qnaCode);
 	
 	Review starAvg(long qnaCode);
-	
-
-	
-	
-	
-	
+	//찜	
+	void likes(long productCode,String likes,String memberId);	
 	//검색
 	List<Product> searchList(String keyword);
+	
+//	Product proDe(long productCode,String memberId);
 	
 	
 }

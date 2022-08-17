@@ -21,7 +21,6 @@
 		<result property="memberPhone" column="member_phone"/>
 		<result property="memberEmail" column="member_email"/>
 		<result property="memberEnrollDate" column="member_enroll_date"/>
-		<result property="roles" column="roles"/>
 	</resultMap>
 	
 	<resultMap type="qna" id="qnaMap">
@@ -37,8 +36,8 @@
 	</select>
 	
 	<insert id="insertQna" parameterType="qna">
-		INSERT INTO QNA VALUES(SEQ_QNA_CODE.NEXTVAL,#{qnaContent},SYSDATE,
-				#{member.memberId},#{product.productCode},#{qnaTitle})
+		INSERT INTO QNA VALUES(SEQ_QNA_CODE.NEXTVAL,#{qnaContent},SYSDATE
+		,#{qnaTitle},#{member.memberId},#{product.productCode})
 	</insert>
 	<select id="selectQna" parameterType="_long" resultMap="qnaMap">
 		SELECT * FROM QNA WHERE QNA_CODE=#{qnaCode} 		

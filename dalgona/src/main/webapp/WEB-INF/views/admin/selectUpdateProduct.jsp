@@ -85,7 +85,7 @@
 					<button class="adminbt" onclick='return adminManage(this.form);'
 						style="background-color: #E0E0E0; color: black;">취소</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="adminbt" type="submit" >수정</button>
+					<button class="adminbt" type="submit"  onclick='return adminUpdate(this.form);'>수정</button>
 				</div>
 			</div>
 		</form>
@@ -97,6 +97,12 @@
 	      function adminManage(frmGo){
 	    	  frmGo.action = ${path}"/admin/adminManageProduct.do";
 	    	  frmGo.submit();
+	    	  return true;
+	      }
+	    //취소
+	      function adminUpdate(returnfrmGo){
+	    	  returnfrmGo.action = ${path}"/admin/adminManageProduct.do";
+	    	  returnfrmGo.submit();
 	    	  return true;
 	      }
 	</script>

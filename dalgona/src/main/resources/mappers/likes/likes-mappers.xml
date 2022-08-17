@@ -24,7 +24,6 @@
 		<result property="memberPhone" column="member_phone"/>
 		<result property="memberEmail" column="member_email"/>
 		<result property="memberEnrollDate" column="member_enroll_date"/>
-		<result property="roles" column="roles"/>
 	</resultMap>
 	
 	<resultMap type="likes" id="likesMap">
@@ -40,6 +39,10 @@
 		p.product_code=l.product_code and
 		l.member_id =#{memberId} 
 	</select>
+	<select id="selectLikes" parameterType="_long" resultMap="likesMap">
+		select *from likes
+		where likes_code=#{likesCode}
+	</select>
 	
 	<delete id="zzimSelectDelete">
 		delete from likes
@@ -49,6 +52,14 @@
 	<delete id="zzimDelete">
 		delete from likes
 		where likes_code=#{likesCode}
+	</delete>
+	
+	<insert id="addLikes">
+    	INSERT INTO LIKES  VALUES (SEQ_LIKES_CODE.NEXTVAL, #{member}, #{product})
+	</insert>
+	 
+	<delete id="deleteLikes">
+	    DELETE FROM LIKES  WHERE MEMBER_ID = #{member} AND PRODUCT_CODE = #{product}			
 	</delete>
 	
 	

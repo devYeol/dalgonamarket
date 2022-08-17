@@ -87,17 +87,17 @@
 				<tbody>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">이름</label></th>
-						<td name="addrReceiver"><c:out value="${deliveryLocation.addrReceiver }" /></td>
+						<td id="addrReceiver"><c:out value="${deliveryLocation.addrReceiver }" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">배송주소</label></th>
-						<td name="addrPostNum"><c:out value="${deliveryLocation.adrPostNum }" /></td>
-						<td name="addrRoadName"><c:out value="${deliveryLocation.addrRoadName }" /></td>
-						<td name="addrDetail"><c:out value="${deliveryLocation.addrDetail }" /></td>
+						<td id="addrPostNum"><c:out value="${deliveryLocation.adrPostNum }" /></td>
+						<td id="addrRoadName"><c:out value="${deliveryLocation.addrRoadName }" /></td>
+						<td id="addrDetail"><c:out value="${deliveryLocation.addrDetail }" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">전화번호</label></th>
-						<td name="addrPhone"><c:out value="${deliveryLocation.addrPhone }" /></td>
+						<td id="addrPhone"><c:out value="${deliveryLocation.addrPhone }" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -133,13 +133,14 @@
 						<td class="">
 								<img src="${product.productThumb }" width="85" height="90"
 								border="0" />
-						</a></td>
-						<td><c:out value=" ${product.productName }" /></a>
-							<br></td>
+						</td>
+						<td>
+							<c:out value=" ${product.productName }" /><br>
+						</td>
 						<td>${selAmount } 개
 						</td>
-						<td>상품금액(옵션포함)
-							<br> ${(product.productPrice+productOption)*selAmount } 원
+						<td>상품금액(옵션포함)<br>
+							<c:out value="${(product.productPrice+productOption)*selAmount }" /> 원
 						</td>
 					</tr>
 
@@ -161,15 +162,22 @@
 				<tbody>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">상품금액(옵션포함)</label></th>
-						<td class="pro-price">${(product.productPrice+productOption)*selAmount } 원</td>
+						<td class="pro-price">
+							<c:out value="${(product.productPrice+productOption)*selAmount }" /> 원
+						</td>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">배송비</label></th>
-						<td class="pro-price">2500 원</td>
+						<td class="pro-price">
+							2500 원
+						</td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">총 결제금액</label></th>
-						<td class="pro-price"><strong
-							style="font-size: 25px; color: #C87854;" id="totalPrice">${(product.productPrice+productOption)*selAmount+2500 } 원</strong></td>
+						<td class="pro-price" id="totalPrice">
+							<strong style="font-size: 25px; color: #C87854;">
+								<c:out value="${(product.productPrice+productOption)*selAmount+2500 }" /> 원
+							</strong>
+						</td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for=""></label></th>
@@ -186,9 +194,8 @@
 		<div class="row gap-2" id="payment-btn">
 			<button onclick="location.href='/'" type="button"
 				class="btn col btn-secondary btn-lg">취소하기</button>
-			<!-- <button onclick="payment()" type="button" class="btn col btn-primary btn-lg">결제하기</button> -->
-			<button onclick="testPayment()" type="button"
-				class="btn col btn-primary btn-lg">결제하기</button>
+			<button onclick="payment()" type="button" class="btn col btn-primary btn-lg">결제하기</button>
+			<!-- <button onclick="testPayment()" type="button" class="btn col btn-primary btn-lg">테스트 결제하기</button> -->
 		</div>
 
 		<!-- 				<div class="d-grid gap-2 col-4 mx-auto">
@@ -204,179 +211,85 @@
 </section>
 
 <script>
-	/* 랜덤 번호 생성 */
-	function rndNumber() {
 
-		const date = new Date();
-		const year = date.getFullYear();
-		const month = String(date.getMonth() + 1).padStart(2, "0");
-		const day = String(date.getDate()).padStart(2, "0");
+   /* 랜덤 번호 생성 */
+   function rndNumber() {
 
-		let orderNum = year + month + day;
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
 
-		for (let i = 0; i < 10; i++) {
-			orderNum += Math.floor(Math.random() * 8);
-		}
+      let orderNum = year + month + day;
 
-		return orderNum;
+      for (let i = 0; i < 10; i++) {
+         orderNum += Math.floor(Math.random() * 8);
+      }
 
-	}
+      return orderNum;
 
-	/* 결제 */
-	function payment() {
+   }
+   
+   /* test */
+   function payment() {
 
-		const data = {
+      var IMP = window.IMP;
+      IMP.init("imp87022146");
 
-			payMethod : $("input[type='button']:checked").val(),
-			orderNum : rndNumber(),
-			marketName : '달고나마켓',
-			name : $("#addrReceiver").val(),
-			phone : $("#addrPhone").val(),
-			/* deleveryAddress1 : $("#addrPostNum").val(),
-			deleveryAddress2 : $("#addrRoadName").val(),
-			deleveryAddress3 : $("#addrDetail").val(), */
-			deleveryAddress1 : '11111',
-			deleveryAddress2 : '강남구 봉은사로71길 50',
-			deleveryAddress3 : '101호',
-			totalPrice : $("#totalPrice").val()
+      // 결제창 호출
+      IMP.request_pay({ // param
 
-		}
+         pg : "html5_inicis",
+         pay_method : 'card', // 결제형태 - 생략가능
+         merchant_uid : '주문번호_' + rndNumber(),
+         name : '${product.productName }', // 상품명
+         amount : ${(product.productPrice+productOption)*selAmount+2500 }, // 총 상품가격
+         /* buyer_name : ${deliveryLocation.addrReceiver }, // 배송받는 사람 이름
+         buyer_tel : ${deliveryLocation.addrPhone }, // 배송받는 사람 연락처
+         buyer_addr : ${deliveryLocation.addrRoadName } + " " +${deliveryLocation.addrDetail }, // 배송받는 사람 도로명 + 상세주소
+         buyer_postcode : ${deliveryLocation.adrPostNum }, // 배송받는 사람 우편번호 */
+         buyer_name : '오곡율무',
+         buyer_tel : '010-1234-5678',
+         buyer_addr : '서울특별시 강남구 삼성동',
+         buyer_postcode : '123-456',
+         m_redirect_url : '/'
 
-		if (!data.deleveryAddress2 || !deleveryAddress2) { // 배송지 미선택시 리턴
-			swal('배달 받으실 주소를 입력해 주세요')
-			return;
-		}
+      },
 
-		if ($(".product-detail").length < 1) { // 상품정보 없을시 리턴
-			swal('선택한 상품이 없습니다.')
-			return;
-		}
+      function(rsp) { // callback
 
-		if (!data.phone) { // 받는사람 연락처 없을시 리턴
-			swal('전화번호를 입력해주세요.');
-			return;
-		}
+         console.log(rsp);
 
-		paymentCard(data);
+         if (rsp.success) {
+        	 
+            var msg = '결제가 완료되었습니다.';
+            
+            msg += '고유ID : ' + rsp.imp_uid;
+            msg += '상점 거래ID : ' + rsp.merchant_uid;
+            msg += '결제 금액 : ' + rsp.paid_amount;
+            msg += '카드 승인번호 : ' + rsp.apply_num;
+            
+         } else {
+        	 
+            var msg = '결제에 실패하였습니다.';
+            
+            msg += '에러내용 : ' + rsp.error_msg;
+            
+         }
+         
+         alert(msg);
+         
+      });
 
-	}
-
-	/* 온라인결제 */
-	function paymentCard(data) {
-
-		// 모바일로 결제시 이동페이지
-		// const pathName = location.pathname;
-		// const href = location.href;
-		// const m_redirect = href.replaceAll(pathName, "");
-
-		var IMP = window.IMP;
-		IMP.init("imp87022146");
-
-		// 결제창 호출
-		IMP.request_pay({ // param
-
-			pg : "html5_inicis",
-			pay_method : data.payMethod, // 결제형태 - 생략가능
-			merchant_uid : data.orderNum, // 주문번호
-			marketName : data.marketName, // 상호명
-			buyer_name : data.name, // 구매자 이름
-			buyer_tel : data.phone, // 구매자 연락처
-			buyer_postcode : data.deleveryAddress1, // 우편번호
-			buyer_addr : data.deleveryAddress2 + " " + data.deleveryAddress3, // 구매자 주소 + 상세
-			m_redirect_url : "/" // 결제 완료 후 url
-
-		},
-
-		function(rsp) { // callback
-			if (rsp.success) {
-				// 결제 성공 시 로직,
-				data.impUid = rsp.imp_uid;
-				data.merchant_uid = rsp.merchant_uid;
-				paymentComplete(data);
-
-			} else {
-				// 결제 실패 시 로직,
-			}
-		});
-
-	}
-
-	/* 결제완료 */
-	function paymentComplete(data) {
-
-		$.ajax({
-			url : "/views/order/payment/paymentComplete",
-			method : "POST",
-			data : data,
-		})
-
-		.done(function(result) {
-			messageSend();
-			swal({
-				text : result,
-				closeOnClickOutside : false
-			}).then(function() {
-				location.replace("/payment");
-			})
-
-		}) // done
-		.fail(function() {
-			swal("Error!");
-			location.replace("/");
-		});
-
-	}
-	
-	/* test */
-	function testPayment() {
-
-		var IMP = window.IMP;
-		IMP.init("imp87022146");
-
-		// 결제창 호출
-		IMP.request_pay({ // param
-
-			pg : "html5_inicis",
-			pay_method : 'card', // 결제형태 - 생략가능
-			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : '주문명:결제테스트', // 상호명
-			amount : 100, // 총 상품가격
-			buyer_email : 'iamport@siot.do',
-			buyer_name : '구매자이름',
-			buyer_tel : '010-1234-5678',
-			buyer_addr : '서울특별시 강남구 삼성동',
-			buyer_postcode : '123-456',
-			m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-
-		},
-
-		function(rsp) { // callback
-
-			console.log(rsp);
-
-			if (rsp.success) {
-				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
-			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-			}
-			
-			swal(msg);
-			
-		});
-
-	}
-	
-	/* 배송지 변경 팝업 */
-	function popAddress() {
+   }
+   
+   /* 배송지 변경 팝업 */
+   function popAddress() {
         window.open("/changeAddress.do", "배송지 변경", "width=1000, height=600, top=100, left=270");
     }
 
 </script>
+
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 

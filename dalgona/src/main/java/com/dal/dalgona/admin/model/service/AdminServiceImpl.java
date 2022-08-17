@@ -4,25 +4,26 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.dal.dalgona.admin.model.dao.adminDao;
+import com.dal.dalgona.admin.model.dao.AdminDao;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.option.model.dao.OptionDao;
+import com.dal.dalgona.product.model.dao.ProductDao;
+import com.dal.dalgona.qna.model.dao.QnaDao;
 import com.dal.dalgona.working.model.dao.PjeDaoJpa;
 
 @Service
-public class adminServiceImpl implements adminService{
+public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
-	adminDao dao;
+	AdminDao dao;
 	
 	@Autowired
 	PjeDaoJpa memberdao;
@@ -30,13 +31,20 @@ public class adminServiceImpl implements adminService{
 	@Autowired
 	private OptionDao optionDao;
 	
+	@Autowired
+	private ProductDao productDao;
+	
+	@Autowired
+	private QnaDao qnaDao;
+	
 	public List<Product> selectProducts() {
 		return dao.findAll(Sort.by(Sort.Direction.DESC,"productCode"));
 	}
 	
 	@Transactional
 	public Long deleteByProductCode(long productCode) {
-		Long result=optionDao.deleteByProduct(selectOneProduct(productCode));
+		Long result = optionDao.deleteByProduct(selectOneProduct(productCode));
+		result = qnaDao.deleteByProduct(selectOneProduct(productCode));
 		return dao.deleteByProductCode(productCode);
 	}
 	

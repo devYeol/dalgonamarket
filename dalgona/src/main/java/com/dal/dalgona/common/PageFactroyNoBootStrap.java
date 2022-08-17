@@ -10,7 +10,7 @@ public class PageFactroyNoBootStrap {
 		int pageEnd=pageNo+pageBarSize-1;
 		
 		if(pageNo==1) {
-			pageBar+="<a href='#'>이전</a>";
+			pageBar+="<a href='#'>이전 </a>";
 		} else {
 			pageBar+="<a href='javascript:fn_paging("+(pageNo-1)+")'>이전</a>";
 		}
@@ -25,7 +25,7 @@ public class PageFactroyNoBootStrap {
 		}
 		
 		if(pageNo>totalPage) {
-			pageBar+="<a href='#'>다음</a>";
+			pageBar+="<a href='#'> 다음</a>";
 		} else {
 			pageBar+="<a href='javascript:fn_paging("+pageNo+")'>다음</a>";
 		}

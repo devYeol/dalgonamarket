@@ -1,11 +1,14 @@
 package com.dal.dalgona.product.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.common.model.vo.Qna;
@@ -79,34 +82,34 @@ public class ProductServiceImpl implements ProductService {
 		return dao.starAvg(session,qnaCode);
 	}
 	
-	
-	
 
+	@Override
+	public void likes(long productCode, String likes, String memberId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member", memberId);
+	    map.put("product", productCode);
+	    if(likes.equals("on")) {
+	        dao.addLikes(session,map);
+	    } else {
+	        dao.deleteLikes(session,map);
+	    }
+		
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+//	@Override
+//	public Product proDe(long productCode, String memberId) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+
 	//검색
 	@Override public List<Product> searchList(String keyword) {
 	  
 		return dao.searchList(session,keyword);
 	}
-	 
+
+
 	
 }

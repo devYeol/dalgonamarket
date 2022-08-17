@@ -1,11 +1,11 @@
 package com.dal.dalgona.product.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.common.model.vo.Qna;
@@ -68,29 +68,31 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("review.starAvg",qnaCode);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//상품검색
 	public List<Product> searchList(SqlSession session, String keyword){
 		System.out.println("searchList ::" + keyword);
 		return session.selectList("product.searchProduct",keyword);
 	}
+
+	@Override
+	public Long deleteByProduct(Product p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public void addLikes(SqlSession session,Map<String, Object> map) {
+		session.insert("likes.addLikes", map);
+		
+	}
+
+	@Override
+	public void deleteLikes(SqlSession session,Map<String, Object> map) {
+		session.insert("likes.deleteLikes", map);
+		
+	}
+	
+	
 	
 }
