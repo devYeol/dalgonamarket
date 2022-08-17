@@ -33,9 +33,13 @@
 	</resultMap>
 	
 	<insert id="cartInsert">
-		insert into cart 
-		values(seq_cart_code.nextval,#{memberId},#{productCode},#{cartAmount})
+		insert into Cart
+		values(seq_cart_code.nextval,#{member.memberId},#{product.productCode},#{cartAmount})
 	</insert>
+	
+	<select id="selectCart" parameterType="product" resultMap="cartMap">
+		select *from cart where PRODUCT_CODE=#{productCode}
+	</select>
 
 	<select id="cartList" resultMap="cartMap">
 		SELECT *

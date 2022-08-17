@@ -229,8 +229,7 @@
 								<tr class="payment-tr">
 									<td style="width: 20%;">
 									<input type="hidden" name="likesCode" value="${z.likesCode }">
-									<%-- <input type="hidden" name="memberId" value="${z.Member.memberId}"> --%>
-									<input type="hidden" name="productCode" value="${z.product.productCode}">
+									<input type="hidden" name="product" value="${z.product.productCode}">
 									<input type="hidden" name="productName" value="${z.product.productName}">
 									<input type="hidden" name="productThumb" value="${z.product.productThumb}">
 									<input type="hidden" name="categoryName" value="${z.product.categoryName}">
@@ -254,7 +253,7 @@
 											<c:out value="${z.product.productPrice }원" />
 										</div></td>
 									<td style="padding-left: 140px;">
-										<button type="submit" name="cartMoves" class="btn btn-danger"
+										<button type="submit" name="cartMove" class="btn btn-danger"
 											style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
 									</td>
 									<a href="${path }/member/zzimDelete.do?likesCode=${z.likesCode}"
@@ -267,7 +266,7 @@
 					</c:forEach>
 					<div class="cartandprice" style="text-align: center;">
 						<button type="reset" name="productListMove" class="btn-cart">찜 하러가기</button>
-						<button class="btn-buy" name="cartMove">장바구니에 담기</button>
+						<button class="btn-buy" name="cartMoves">장바구니에 담기</button>
 					</div>
 				</form>
 			</c:otherwise>
@@ -357,9 +356,7 @@ $(".check-input").click(function(){
 			}
 		})    
         
-		 $("button[name=cartMoves]").click(function(e){
-        
-		 })
+	
   $("#productListMove").click(function(){
 	  location.assign("${path}/product/productList");
   })

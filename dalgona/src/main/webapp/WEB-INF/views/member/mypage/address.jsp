@@ -141,41 +141,31 @@
 			<b>주소록</b>
 		</h4>
 		<br>
+		<c:choose>
+			<c:when test="${empty selectDl }">
+			<span>저장된 배송지가 없습니다 </span>
+			</c:when>
+			<c:otherwise>
 		<div class="addr-area">
-			<div style="font-size: 18px; margin-top: 4px;">기본 배송지</div>
+			<div style="font-size: 18px; margin-top: 4px;">배송지</div>
 			<button class="btn-area" onclick="adressAdd();">+ 배송지 추가</button>
 		</div>
+		<c:forEach var="dl" items="${selectDl}">
 		<hr style="margin-top: 8px; margin-bottom: 0px;">
 		<div class="insert-addr">
 			<div style="margin-bottom: 40px; margin-top: 30px;">
-				<div style="font-size: 17px;">콴오준</div>
-				<div style="font-size: 15px;">010-1234-5678</div>
-				<div style="font-size: 15px;">(08492) 인천 계양구 가산로 874 (계산동,
-					구디아파트) 103동 803호</div>
+				<div style="font-size: 17px;">${dl.addrReceiver }</div>
+				<div style="font-size: 15px;">${dl.addrPhone }</div>
+				<div style="font-size: 15px;">${dl.adrPostNum }, ${dl.addrBase}, ${dl.addrDetail}, ${dl.addrRoadName}</div>
 			</div>
 			<div class="btn-container">
 				<button class="btn-addr">수정</button>
 				<button class="btn-addr">삭제</button>
 			</div>
 		</div>
-		<div class="addr-area">
-			<div style="font-size: 18px; margin-top: 4px;">추가 배송지</div>
-		</div>
-		<hr style="margin-top: 8px; margin-bottom: 0px;">
-		<div class="insert-addr">
-			<div style="margin-bottom: 40px; margin-top: 30px;">
-				<div style="font-size: 17px;">영원희</div>
-				<div style="font-size: 15px;">010-7777-5678</div>
-				<div style="font-size: 15px;">(08772) 서울시 강남구 224 (구디동, 구디아파트)
-					204동 504호</div>
-			</div>
-			<div class="btn-container">
-				<button class="btn-basicaddr">기본 배송지</button>
-				<button class="btn-addr">수정</button>
-				<button class="btn-addr">삭제</button>
-			</div>
-		</div>
-		<hr>
+		</c:forEach>
+		</c:otherwise>
+		</c:choose>
 	</div>
 </section>
 

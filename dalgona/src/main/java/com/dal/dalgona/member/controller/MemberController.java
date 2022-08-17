@@ -51,10 +51,8 @@ public class MemberController {
 
 	@RequestMapping(value="/member/mypage/cartInsert")
 	public String cartInsert(Model mo,HttpSession session,
-//			@RequestParam(value="likesCode")long likes, 
-			@RequestParam(value="productCode")long productCode 
-		)
-			/*@RequestParam(value=""))*/throws Exception {
+			@RequestParam(value="product")Product productCode) 
+			throws Exception {
 		Member m= (Member) session.getAttribute("loginMember");
 		Product p=service.selectProduct(productCode);
 //		Likes l=service.selectLikes(likesCode);
@@ -77,8 +75,8 @@ public class MemberController {
 			msg="장바구니에 등록 되었습니다";
 			loc="redirect:/member/mypage/cart/"+p.getProductCode();
 		}else {
-			msg="등록 실패";
-			loc="/loginpage";
+			msg="로그인 후 이용해주세요";
+			loc="/member/login/loginPage";
 		}
 		
 		log.debug("{2}",m);
@@ -114,6 +112,68 @@ public class MemberController {
 		}
 
 	}
+	
+//	@RequestMapping(value="/member/mypage/cartInsert")
+//	public String cartInsert(Model mo,HttpSession session,
+//			@RequestParam(value="product")Product productCode) 
+//			throws Exception {
+//		Member m= (Member) session.getAttribute("loginMember");
+//		Product p=service.selectProduct(productCode);
+////		Likes l=service.selectLikes(likesCode);
+//		System.out.println(m);
+//		System.out.println(p);
+//		String msg="" ,loc="";
+//		log.debug("{1}",m);
+//		log.debug("{1}",p);
+//		Gson gson=new Gson();
+//	
+//		if(m!=null) {
+//			
+//			String Mjson =gson.toJson(m); 
+//			String Pjson =gson.toJson(p); 
+////			String Ljson =gson.toJson(l);
+//			Cart c =Cart.builder().member(m).product(p).build();
+//			String Cjson =gson.toJson(c); 
+//			int result=service.cartInsert(c);
+//			System.out.println(c);
+//			msg="장바구니에 등록 되었습니다";
+//			loc="redirect:/member/mypage/cart/"+p.getProductCode();
+//		}else {
+//			msg="로그인 후 이용해주세요";
+//			loc="/member/login/loginPage";
+//		}
+//		
+//		log.debug("{2}",m);
+//		log.debug("{2}",p);
+//		mo.addAttribute("msg",msg);
+//		mo.addAttribute("loc",loc);
+//		return "common/msg";
+//	}
+	  
+	
+	@RequestMapping(value="/payment/Move.do") //장바구니 -> 구매내역
+	public String paymentInsert(Model mo,HttpSession session,
+			@RequestParam(value="product")Product productCode) 
+			throws Exception {
+		Member m= (Member) session.getAttribute("loginMember");
+		Product p=service.selectProduct(productCode);
+		Cart c = service.selectCart(productCode);
+		DeliveryLocation selectsDL=service.selectDelivery(m);
+		System.out.println(m);
+		System.out.println(p);
+		System.out.println(selectsDL);
+		log.debug("{1}",m);
+		log.debug("{1}",p);
+//		Gson gson=new Gson();
+//			String Mjson =gson.toJson(m); 
+//			String Pjson =gson.toJson(p); 
+		mo.addAttribute("pro",p);
+		mo.addAttribute("DL",selectsDL);
+		mo.addAttribute("cart",c);
+		
+		return "product/paymentCart.do";
+	}
+	
 
 	@RequestMapping("/member/delete.do") //개별 삭제(한 개 row만 삭제
 	 public String delete(@RequestParam long cartCode) {
@@ -176,6 +236,7 @@ public class MemberController {
 		System.out.println("찜 :"+zzimList);
 		mo.addAttribute("zzimList", zzimList);
 		return "member/mypage/zzim";
+		
 	}
 
 //	 찜 - 선택삭제기능
@@ -196,6 +257,18 @@ public class MemberController {
 		service.zzimDelete(likesCode);
 		return "redirect:/member/mypage/zzim";
 	}
+	
+	 @RequestMapping("/member/mypage/address")
+	   public ModelAndView address(HttpSession session,ModelAndView mv) {
+		   Member memberId=(Member)session.getAttribute("loginMember");
+		   List<DeliveryLocation> selectDl =service.selectDL(memberId);
+		   System.out.println(selectDl);
+		   mv.addObject("selectDl",selectDl);
+		   mv.setViewName("member/mypage/address");
+		   return mv;
+	   }
+	
+	
 	
 	
 //	
@@ -332,14 +405,7 @@ public class MemberController {
 	         return "member/login/findPwEnd";
 	      }      
 	   }
-	   
-	   @RequestMapping("/address")
-	   public String address(HttpSession session,Model mo) {
-		   Member memberId=(Member)session.getAttribute("loginMember");
-		   List<DeliveryLocation> selectDL =service.selectDL(memberId);
-			   mo.addAttribute("selectDL",selectDL);
-			   return "member/mypage/address";
-		   }
+	 
 	   
 	   @RequestMapping("/infochange")
 	   public String infochange() {

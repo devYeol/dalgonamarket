@@ -182,7 +182,7 @@ text-decoration:none;
 			</ul>
 		</div>
 	</div>
-	<form action="${path }/payment" name="paymentMove" id="paymentMove" method="post">
+	<form action="${path }/payment/paymentMove.do" name="paymentMoves" id="paymentMove">
 		<div class="cart-container">
 			<h4>
 				<b>장바구니</b>
@@ -263,7 +263,7 @@ text-decoration:none;
 										</div></td>
 									<td style="width: 100">
 										<div style="display: flex; text-alian: center;">
-											<button type="button" name="paymentMove" class="btn btn-danger">구매하기</button>
+											<button type="submit" id="paymentMoves" class="btn btn-danger">구매하기</button>
 										</div>
 									</td>
 									<td style="display: flex;">
@@ -296,7 +296,7 @@ text-decoration:none;
 					</div>
 					<div class="cartandprice" style="text-align: center;">
 						<button type="reset" name="productListMove" class="btn-cart">쇼핑계속하기</button>
-						<button type="button"name="paymentMove" class="btn-buy">구매하기</button>
+						<button type="submit"name="paymentMove" class="btn-buy">구매하기</button>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -377,16 +377,25 @@ $("button[name= productListMove]").click(function(){
         		
         })
     
-		$("button[name=paymentMove]").click(function(){
-        var qwe =$("input[name='check']:checked");
-			if(qwe.length >= 1){
-				
-				console.log(qwe);
- 				$('#paymentMove').submit();
+		$("#paymentMoves").click(function(){
+			if(confirm('상품을 구매하시겠습니까?')){
 			}else{
-				alert('상품을 선택하세요');
+				return false
 			}
-		})    
+		})
+		/* var test = confirm("상품을 구매 하시겠습니까?");
+		$("button[name=paymentMove]").click(function(){
+        var tdCheck =$("input[name='check']:checked");
+			if(tdCheck.length >= 1){
+				$('#paymentMove').submit() ;
+			}else(!tdCheck.length >= 1){
+					alert('상품을 선택하세요');
+			}
+				
+				
+		})     */
+		
+		
 		
 	$("input[name='check']:checked").prop("checked",true);
 	$("input[name='check']:checked").prop("checked",false);

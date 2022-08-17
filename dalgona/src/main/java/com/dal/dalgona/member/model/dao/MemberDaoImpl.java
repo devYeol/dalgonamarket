@@ -24,7 +24,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public Product selectProduct(SqlSession session,long productCode) {
+	public Product selectProduct(SqlSession session,Product productCode) {
 		// TODO Auto-generated method stub
 		return session.selectOne("product.selectProduct",productCode);
 	}
@@ -38,6 +38,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public List<Cart> cartList(SqlSessionTemplate session,Member memberId){
 		return session.selectList("cart.cartList",memberId);
+	}
+
+	@Override
+	public Cart selectCart(SqlSessionTemplate session,Product productCode) {
+		return session.selectOne("cart.selectCart",productCode);
 	}
 	
 	@Override
@@ -54,13 +59,17 @@ public class MemberDaoImpl implements MemberDao {
 		return session.delete("cart.selectDelete",cartCode);
 	}
 	@Override
-	public long zzimSelectDelete(SqlSessionTemplate session,long zzimCode) {
-		return session.delete("likes.zzimSelectDelete",zzimCode);
+	public long zzimSelectDelete(SqlSessionTemplate session,long likesCode) {
+		return session.delete("likes.zzimSelectDelete",likesCode);
 	}
 	@Override
-	public void zzimDelete(SqlSessionTemplate session,long zzimCode) {
-		 session.delete("likes.zzimDelete",zzimCode);
+	public long zzimDelete(SqlSessionTemplate session,long likesCode) {
+		return session.delete("likes.zzimDelete",likesCode);
 	}
+//	@Override
+//	public void zzimDelete(SqlSessionTemplate session,long zzimCode) {
+//		session.delete("likes.zzimDelete",zzimCode);
+//	}
 	
 //	@Override
 //	public void deleteAll(SqlSessionTemplate session ,Member memberId) {
@@ -92,6 +101,13 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectList("deliveryLocation.selectDL",memberId);
 		
 	}
+
+	@Override
+	public DeliveryLocation selectDelivery(SqlSessionTemplate session,Member memberId) {
+		return session.selectOne("deliveryLocation.selectDelivery",memberId);
+	}
+	
+	
 	public List<Product> orderList(SqlSessionTemplate session) {
 		return session.selectList("cart.orderList");
 	}

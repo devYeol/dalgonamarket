@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public Product selectProduct(long productCode) {
+	public Product selectProduct(Product productCode) {
 		// TODO Auto-generated method stub
 		return dao.selectProduct(session,productCode);
 	}
@@ -54,6 +54,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<Cart> cartList(Member memberId){
 		return dao.cartList(session,memberId);
+	}
+	@Override
+	public Cart selectCart(Product productCode){
+		return dao.selectCart(session,productCode);
+
 	}
 	@Override
 	public List<Likes> zzimList(Member memberId){
@@ -74,9 +79,13 @@ public class MemberServiceImpl implements MemberService {
 	public long zzimSelectDelete(long likesCode) {
 		return dao.zzimSelectDelete(session,likesCode);
 	}
+//	@Override
+//	public void zzimDelete(long likesCode) {
+//		 dao.zzimDelete(session,likesCode);
+//	}
 	@Override
-	public void zzimDelete(long likesCode) {
-		 dao.zzimDelete(session,likesCode);
+	public long zzimDelete(long likesCode) {
+		 return dao.zzimDelete(session,likesCode);
 	}
 	
 	@Override
@@ -87,6 +96,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<DeliveryLocation>selectDL(Member memberId){
 		return dao.selectDL(session,memberId);
+	}
+	
+	@Override
+	public DeliveryLocation selectDelivery(Member memberId) {
+		return dao.selectDelivery(session,memberId);
 	}
 	
 	@Override
