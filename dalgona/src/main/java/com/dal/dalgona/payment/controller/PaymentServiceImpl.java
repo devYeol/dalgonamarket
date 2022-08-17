@@ -66,10 +66,10 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		System.out.println("productOrder = " + productOrder);
 		
-		long total = cartList.getCartAmount();
+//		long total = cartList.getCartAmount();
 		
 		productOrder.setOrderCode(cartList.getCartCode()); // getProduct()
-		productOrder.setTotalPrice(total);
+//		productOrder.setTotalPrice(total);
 		
 		List<Cart> carts = cartList.getCarts();
 		

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -39,8 +40,12 @@ public class Cart {
 	@JoinColumn(name="productCode")
 	private Product product;
 	
-	@Column (columnDefinition = "number default 0")
-	private long cartAmount;
+//	@Column (columnDefinition = "number default 0")
+//	private long cartAmount;
+	
+	@OneToOne
+	@JoinColumn(name="likesCode")
+	private Likes likes;
 	
 	@Column
     @ElementCollection(targetClass=Cart.class)

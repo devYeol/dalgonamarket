@@ -40,6 +40,10 @@
 		p.product_code=l.product_code and
 		l.member_id =#{memberId} 
 	</select>
+	<select id="selectLikes" parameterType="_long" resultMap="likesMap">
+		select *from likes
+		where likes_code=#{likesCode}
+	</select>
 	
 	<delete id="zzimSelectDelete">
 		delete from likes

@@ -30,6 +30,7 @@ import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.member.model.service.MemberService;
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -48,43 +49,46 @@ public class MemberController {
 		return "member/mypage/mypageMain";
 	}
 
-//	@RequestMapping("/member/mypage/cartInsert")
-//	public ModelAndView cartInsert(HttpSession session ,String memberId 
-//			,long productCode,ModelAndView mw) {
-//		Member m=service.login(Member.builder().memberId(memberId).build());
-////		Product p=service.selectProduct(Product.builder().productCode(productCode).build());
-//		log.debug("{}",memberId);
-//		log.debug("{}",m);
-////		log.debug("{}",p);
-//		
-//		if (memberId == null) {
-//			// 로그인하지 않은 상태이면 로그인 화면으로 이동
-//			mw.setViewName("redirect:member/login/loginPage");
-//		} else {
-//			service.cartInsert(memberId,productCode);
-//			mw.setViewName("redirect:/member/mypage/cart");
-//		}
-//	}
+	@RequestMapping(value="/member/mypage/cartInsert")
+	public String cartInsert(Model mo,HttpSession session,
+//			@RequestParam(value="likesCode")long likes, 
+			@RequestParam(value="productCode")long productCode 
+		)
+			/*@RequestParam(value=""))*/throws Exception {
+		Member m= (Member) session.getAttribute("loginMember");
+		Product p=service.selectProduct(productCode);
+//		Likes l=service.selectLikes(likesCode);
+		System.out.println(m);
+		System.out.println(p);
+		String msg="" ,loc="";
+		log.debug("{1}",m);
+		log.debug("{1}",p);
+		Gson gson=new Gson();
 	
-//	@RequestMapping("/member/mypage/cartInsert")
-//	public String cartInsert( 
-//			@RequestParam(value="product1") Product productCode,
-//			@RequestParam(value="member1") Member memberId,
-//			Cart c,HttpSession session) {
-//		Member id = (Member) session.getAttribute("loginMember");
-//		log.debug("{}",productCode);
-//		log.debug("{}",memberId);
-//		
-//		if (memberId == null) {
-//			// 로그인하지 않은 상태이면 로그인 화면으로 이동
-//			return "redirect:member/login/loginPage";
-//		} else {
-//			c.setMember(id);
-//			service.cartInsert(c);
-//			System.out.println(c+"2");
-//			return "redirect:/member/mypage/cart";
-//		}
-//	}
+		if(m!=null) {
+			
+			String Mjson =gson.toJson(m); 
+			String Pjson =gson.toJson(p); 
+//			String Ljson =gson.toJson(l);
+			Cart c =Cart.builder().member(m).product(p).build();
+			String Cjson =gson.toJson(c); 
+			int result=service.cartInsert(c);
+			System.out.println(c);
+			msg="장바구니에 등록 되었습니다";
+			loc="redirect:/member/mypage/cart/"+p.getProductCode();
+		}else {
+			msg="등록 실패";
+			loc="/loginpage";
+		}
+		
+		log.debug("{2}",m);
+		log.debug("{2}",p);
+		mo.addAttribute("msg",msg);
+		mo.addAttribute("loc",loc);
+		return "common/msg";
+	}
+		
+	
 
 	@RequestMapping(value="/member/mypage/cart") // 장바구니
 	public ModelAndView cart(ModelAndView mv, HttpSession session) {
@@ -166,13 +170,12 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/mypage/zzim") // 찜
-	public ModelAndView zzim(ModelAndView mv, HttpSession session) {
+	public String zzim(Model mo, HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		List<Likes> zzimList = service.zzimList(memberId);
 		System.out.println("찜 :"+zzimList);
-		mv.addObject("zzimList", zzimList);
-		mv.setViewName("member/mypage/zzim");
-		return mv;
+		mo.addAttribute("zzimList", zzimList);
+		return "member/mypage/zzim";
 	}
 
 //	 찜 - 선택삭제기능

@@ -18,7 +18,6 @@ import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
-import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.member.model.dao.MemberDao;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,15 +35,22 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-//	@Override
-//	public void cartInsert(String memberId,Product p){
-//		dao.cartInsert(session,memberId,p);
-//	}
 	@Override
-	public void cartInsert(Cart c){
-		dao.cartInsert(session,c);
+	public int cartInsert(Cart c){
+		return dao.cartInsert(session,c);
+	}
+	
+	@Override
+	public Product selectProduct(long productCode) {
+		// TODO Auto-generated method stub
+		return dao.selectProduct(session,productCode);
 	}
 
+	@Override
+	public Likes selectLikes(long likesCode) {
+		// TODO Auto-generated method stub
+		return dao.selectLikes(session,likesCode);
+	}
 	@Override
 	public List<Cart> cartList(Member memberId){
 		return dao.cartList(session,memberId);
@@ -223,10 +229,6 @@ public class MemberServiceImpl implements MemberService {
 		return dao.pwUpdateEnd(session,memberId,memberPwd1);
 	}
 
-	@Override
-	public Product selectProduct(String memberId, long productCode) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }
