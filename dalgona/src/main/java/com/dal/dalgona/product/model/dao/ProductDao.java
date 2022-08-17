@@ -29,21 +29,15 @@ public interface ProductDao {
 	
 	Review starAvg(SqlSession session,long qnaCode);
 	
+	Long deleteByProduct(Product p);
+	
+	//검색
+	List<Product> searchList(SqlSession session, String keyword);
+	
 	void addLikes(SqlSession session,Map<String, Object> map);
 	
 	void deleteLikes(SqlSession session,Map<String, Object> map);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//검색
-	List<Product> searchList(SqlSession session, String keyword);
+
 
 }

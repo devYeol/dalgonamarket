@@ -61,7 +61,7 @@ public class ProductOrder {
 	
 //	private String payMethod; // 불필요 'card'로 고정
 	
-	private String impUid=""; // 아임포트 결제번호 추가
+	private String impUid; // 아임포트 결제번호 추가
 	
 	@OneToOne
 	@JoinColumn(name="addressCode")

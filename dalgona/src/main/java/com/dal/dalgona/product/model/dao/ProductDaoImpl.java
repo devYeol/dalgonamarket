@@ -68,7 +68,18 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("review.starAvg",qnaCode);
 	}
-	
+
+	//상품검색
+	public List<Product> searchList(SqlSession session, String keyword){
+		System.out.println("searchList ::" + keyword);
+		return session.selectList("product.searchProduct",keyword);
+	}
+
+	@Override
+	public Long deleteByProduct(Product p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	@Override
 	public void addLikes(SqlSession session,Map<String, Object> map) {
@@ -81,11 +92,7 @@ public class ProductDaoImpl implements ProductDao {
 		session.insert("likes.deleteLikes", map);
 		
 	}
-
-	//상품검색
-	public List<Product> searchList(SqlSession session, String keyword){
-		System.out.println("searchList ::" + keyword);
-		return session.selectList("product.searchProduct",keyword);
-	}
+	
+	
 	
 }

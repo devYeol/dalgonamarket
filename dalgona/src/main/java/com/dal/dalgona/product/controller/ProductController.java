@@ -54,8 +54,8 @@ public class ProductController {
       List<ProductOption> op=service.optionList(productCode);
       List<Review> review=service.reviewList(productCode);
       List<Qna> qna=service.qnaList(productCode);
-      Member m = (Member) session.getAttribute("loginMember");
-      String memberId=m.getMemberId();
+//      Member m = (Member) session.getAttribute("loginMember");
+//      String memberId=m.getMemberId();
 //      log.debug("{}",star);
       
 //      log.debug("{}",op);

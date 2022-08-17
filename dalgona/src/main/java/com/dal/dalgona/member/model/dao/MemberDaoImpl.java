@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,28 +14,26 @@ import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
-import com.dal.dalgona.common.model.vo.ProductOrder;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
-//	@Override
-//	public List<Product> selectProduct(SqlSessionTemplate session){
-//		return session.selectList("cart.selectProduct");
-//	}
-	
-//	@Override
-//	public void cartInsert(SqlSessionTemplate session,String memberId,long productCode ) {
-//		session.insert("cart.cartInsert",memberId,productCode);
-//	}
 	@Override
-	public void cartInsert(SqlSessionTemplate session,Cart c) {
-		session.insert("cart.cartInsert",c);
+	public int cartInsert(SqlSessionTemplate session,Cart c){
+		return session.insert("cart.cartInsert",c);
 	}
-//	@Override
-//	public Product selectProduct(SqlSessionTemplate session,long productCode) {
-//		return session.selectOne("product.selectProduct",productCode);
-//	}
+	
+	@Override
+	public Product selectProduct(SqlSession session,long productCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("product.selectProduct",productCode);
+	}
+	
+	@Override
+	public Likes selectLikes(SqlSession session, long likesCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("likes.selectLikes",likesCode);
+	}
 	
 	@Override
 	public List<Cart> cartList(SqlSessionTemplate session,Member memberId){
@@ -171,3 +170,4 @@ public class MemberDaoImpl implements MemberDao {
 		return session.update("member.pwUpdateEnd", map);
 	}
 }
+ 
