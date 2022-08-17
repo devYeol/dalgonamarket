@@ -18,11 +18,6 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
-
-<style>
-
-</style>
-
 </head>
 <body>
 	<!-- 메인 영역 -->
@@ -41,7 +36,7 @@
 			<div class="contentstitle">주문관리</div>
 
 			<div class="manageorderdiv" style="">
-				<div class="pay">
+				<div class="manageorderdata">
 					<div>
 						<a href="#">1<br>전체 구매 내역
 						</a>
@@ -70,8 +65,6 @@
 				</div>
 			</div>
 
-			<br> <br>
-
 			<div class="listdiv">
 				<table class="listtable">
 					<tr style="background-color: lightgrey; height: 50px;">
@@ -93,7 +86,7 @@
 						<tr>
 							<td><input class="" type="checkbox" value="" id=""></td>
 							<td>${po.orderCode}</td>
-							<td>?</td>
+							<td><button class="btn-somedate" onclick="location.assign('${path}/admin/adminManageOrder.do?orderCode=${po.orderCode}')">상세보기</button></td>
 							<td>2,500</td>
 							<td>${po.totalPrice}</td>
 							<td>${po.orderDate}</td>
@@ -115,7 +108,7 @@
 						</tr>
 					</c:if>
 				</table>
-
+				
 				<br>
 				
 				<div class="pagebar">
@@ -123,51 +116,57 @@
 				</div>
 			</div>
 			
-			<div class="orderdetailsdiv">
-				<div class="orderdetailshead">
-					<div style="padding-bottom: 8px;">
-						<div style="padding-top: 10px;">
-							<h2>날짜결제</h2>
-						</div>
-						<div style="display: flex;">
-							<h2 style="color: green;">구매확정</h2>
-							<h3 style="padding-top: 5px;">&nbsp;(7/25 도착예정)</h3>
+			<c:if test="${not empty orderDetails}">
+				<div class="orderdetailsdiv">
+					<div class="orderdetailshead">
+						<h1>${order.orderDate} 결제완료</h1>
+						<label style="paddin-top: 20px; font-size: 25px; font-weight:bolder;">주문번호 : ${order.orderCode}</label>
+						<div style="display:flex; margin:0px; align-items:center;">
+							<h2 style="color: green;">${order.orderStatus}</h2>
+							<h3 style="">(${order.orderDate} 도착예정)</h3>
 						</div>
 					</div>
+					<div class="orderdetailstable">
+						<table class="" style="background-color: FAFAFA; border-radius: 10px;">
+							<!-- <thead>
+								<tr>
+									<th colspan="4" style="padding-top: 20px;">
+										<b style="font-size: 25px; color: green;">구매확정</b> (7/25 도착예정)
+									</th>
+								</tr>
+							</thead> -->
+							<tbody>
+								<c:forEach var="od" items="${orderDetails}">
+									<tr>
+										<!-- <td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td> -->
+										<td style="width: 150px; padding-left: 50px; padding-right: 50px;"><b>${od.product.productCode}</b></td>
+										<td><img
+											src="${od.product.productThumb}" width="180" height="200" border="0" style="border-radius: 10px;" />
+										</td>
+										<td style="width: 59%; text-align: left; padding-left: 60px;">
+											<label style="font-size: 22px; font-weight: bolder">${od.product.productName}</label><br> 
+											<label style="font-size: 18px;">옵션(선택안함)</label><br> 
+											<label style="font-size: 18px;"> ${od.product.productPrice} 원 / ${od.orderAmount}개</label><br><br>
+											<b>합계 : ${od.product.productPrice * od.orderAmount} 원</b>
+										</td>
+										<td style="padding-right: 40px;">
+											<button class="adminbt" style="width: 80px; background-color: #6FB67F; margin-bottom: 20px;"
+											onClick="location.assign('${path}/product/productDetail/${od.product.productCode}')">리뷰확인</button>
+											<button class="adminbt" style="width: 80px; background-color: #D56B5A;" >삭제</button>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
 				</div>
-				<div class="orderdetailstable">
-					<table class="" style="width: 1030px; height: 300px; background-color: FAFAFA; border-radius: 10px;">
-						<!-- <thead>
-							<tr>
-								<th style="padding-top: 20px;">
-									<b style="font-size: 25px; color: green;">구매확정</b> <br>
-									(7/25 도착예정)
-								</th>
-							</tr>
-						</thead> -->
-						<tbody>
-							<tr>
-								<!-- 					<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;"></td> -->
-								<td style="width: 150px; padding-left: 50px; padding-right: 50px;"> 20142504</td>
-								<td><img
-									src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" width="180" height="200" border="0" style="border-radius: 10px;" />
-								</td>
-								<td style="width: 59%; text-align: left; padding-left: 60px;">달고나@@@@@@@,
-									10개입<br> 옵션 (선택안함)<br> 배송비 무료<br> 10,000원 / 1개<br>
-								<br> <b>합계 : 10,000원</b>
-								</td>
-								<td style="padding-right: 40px;">
-									<button class="adminbt" style="width: 80px; background-color: #6FB67F; margin-bottom: 20px;">리뷰확인</button>
-									<button class="adminbt" style="width: 80px; background-color: #D56B5A;" >삭제</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
+			</c:if>
+			<!-- end of orderdetailsdiv -->
 		</div>
+		<!-- end of contents -->
 	</div>
-	<!-- end of contents -->
+	<!-- end of container -->
+	
 	<script>
 		const adminOrderPermit=(e)=>{
 			$.ajax({

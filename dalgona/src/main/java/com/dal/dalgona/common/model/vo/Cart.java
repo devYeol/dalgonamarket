@@ -40,12 +40,8 @@ public class Cart {
 	@JoinColumn(name="productCode")
 	private Product product;
 	
-//	@Column (columnDefinition = "number default 0")
-//	private long cartAmount;
-	
-	@OneToOne
-	@JoinColumn(name="likesCode")
-	private Likes likes;
+	@Column (columnDefinition = "number default 1")
+	private long cartAmount;
 	
 	@Column
     @ElementCollection(targetClass=Cart.class)

@@ -66,11 +66,21 @@ public class PjeServiceImpl implements PjeService {
 		}
 		return orderDao.save(poUp);
 	}
+	
+	public ProductOrder selectProductOrder(Long orderCode) {
+		return orderDao.findByOrderCode(orderCode);
+	}
 
 	@Override
-	public List<OrderDetail> selectOrderDetail() {
+	public List<OrderDetail> selectOrderDetails() {
 		// TODO Auto-generated method stub
-		return dao.selectOrderDetail(session);
+		return dao.selectOrderDetails(session);
+	}
+
+	@Override
+	public List<OrderDetail> selectOrderDetailsCode(long orderCode) {
+		// TODO Auto-generated method stub
+		return dao.selectOrderDetailsCode(session, orderCode);
 	}
 	
 	

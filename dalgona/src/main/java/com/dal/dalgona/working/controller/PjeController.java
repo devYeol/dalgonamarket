@@ -79,13 +79,21 @@ public class PjeController {
 	@RequestMapping("adminManageOrder.do")
 	public ModelAndView adminManageOrder(ModelAndView mv,
 			@RequestParam(defaultValue = "1") int cPage, 
-			@RequestParam(defaultValue = "25") int numPerpage) {
-//		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "orderDate"));
-//		Page<ProductOrder> list=service.searchOrders(pagerequest);
-//		List<OrderDetail> list=service.selectOrderDetail();
-//		log.debug("{}",list);
-//		mv.addObject("productOrders",list.getContent());
-//		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageOrder.do"));
+			@RequestParam(defaultValue = "25") int numPerpage,
+			@RequestParam(value = "orderCode", defaultValue = "0") long orderCode
+			) {
+		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "orderDate"));
+		Page<ProductOrder> list=service.searchOrders(pagerequest);
+		if (orderCode != 0) {
+			ProductOrder order=service.selectProductOrder(orderCode);
+			List<OrderDetail> orderDetails=service.selectOrderDetailsCode(orderCode);
+			mv.addObject("order",order);
+			mv.addObject("orderDetails",orderDetails);
+//			log.debug("{}",order);
+		}
+		// log.debug("{}",list);
+		mv.addObject("productOrders",list.getContent());
+		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageOrder.do"));
 		mv.setViewName("admin/adminManageOrder");
 		return mv;
 	}

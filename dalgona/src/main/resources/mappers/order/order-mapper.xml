@@ -31,5 +31,21 @@
 			    #{orderOption }
 		    )
 	</insert> -->
+	
+	<resultMap type="DeliveryLocation" id="deliveryLocationMap">
+		<id property="addressCode" column="address_code"/>
+		<result property="addrDetail" column="addr_detail"/>
+		<result property="adrPostNum" column="adr_postNum"/>
+		<result property="addrRoadName" column="addr_roadName"/>
+		<result property="addrReceiver" column="addr_receiver"/>
+		<result property="addrPhone" column="addr_phone"/>
+		<result property="addrBase" column="addr_base"/>
+	</resultMap>
+	
+	<select id="selectDl">
+		SELECT * FROM
+			DELEVERY_LOCATION
+			WHERE ADDR_BASE='0'
+	</select>
 
 </mapper>

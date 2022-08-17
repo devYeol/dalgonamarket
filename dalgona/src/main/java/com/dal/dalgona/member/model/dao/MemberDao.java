@@ -17,11 +17,13 @@ public interface MemberDao {
 
 	int cartInsert(SqlSessionTemplate session,Cart c);
 	
-	Product selectProduct(SqlSession session, long productCode);
+	Product selectProduct(SqlSession session, Product productCode);
 
 	Likes selectLikes(SqlSession session, long likesCode);
 	
 	List<Cart> cartList(SqlSessionTemplate session,Member memberId );
+
+	Cart selectCart(SqlSessionTemplate session,Product productCode);
 	
 	void updateCart(SqlSessionTemplate session ,Cart c);
 		
@@ -35,11 +37,15 @@ public interface MemberDao {
 
 	List<Likes> zzimList(SqlSessionTemplate session ,Member memberId);
 
-	long zzimSelectDelete(SqlSessionTemplate session,long zzimCode); //찜 선택삭제
+	long zzimSelectDelete(SqlSessionTemplate session,long likesCode); //찜 선택삭제
 
-	void zzimDelete(SqlSessionTemplate session,long zzimCode); //장바구니 삭제
+//	void zzimDelete(SqlSessionTemplate session,long zzimCode); //장바구니 삭제
+
+	long zzimDelete(SqlSessionTemplate session,long likesCode); //장바구니 삭제
 
 	List<OrderDetail> orderList(SqlSessionTemplate session,Member memberId);
+	
+	DeliveryLocation selectDelivery(SqlSessionTemplate session,Member memberId);
 	
 	long orderListDelete(SqlSessionTemplate session,long orderCode); //구매내역 선택삭제
 

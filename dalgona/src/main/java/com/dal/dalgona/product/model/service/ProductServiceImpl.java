@@ -77,7 +77,7 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public Review starAvg(long qnaCode) {
+	public double starAvg(long qnaCode) {
 		// TODO Auto-generated method stub
 		return dao.starAvg(session,qnaCode);
 	}
@@ -96,13 +96,6 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 	
-	
-//	@Override
-//	public Product proDe(long productCode, String memberId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 
 	//검색
 	@Override public List<Product> searchList(String keyword) {
@@ -111,5 +104,23 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 
+	@Override
+	public int selLikes(long productCode, String memberId) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member", memberId);
+	    map.put("product", productCode);
+		return dao.selLikes(session,map);
+	}
+
+
+	@Override
+	public int likesCount(long productCode) {
+		// TODO Auto-generated method stub
+		return dao.likesCount(session,productCode);
+	}
+
+	
+	
+	
 	
 }

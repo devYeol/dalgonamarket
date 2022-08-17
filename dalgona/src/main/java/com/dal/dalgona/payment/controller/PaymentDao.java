@@ -1,11 +1,8 @@
 package com.dal.dalgona.payment.controller;
 
-import org.apache.ibatis.session.SqlSession;
-
 import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
-import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOrder;
 
 public interface PaymentDao {

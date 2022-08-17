@@ -9,5 +9,6 @@ import com.dal.dalgona.common.model.vo.OrderDetail;
 public interface PjeService {
 	List<Member> searchMembers(Map<String,Object> param);
 	int searchMembersCount(Map<String,Object> param);
-	List<OrderDetail> selectOrderDetail();
+	List<OrderDetail> selectOrderDetails();
+	List<OrderDetail> selectOrderDetailsCode(long orderCode);
 }

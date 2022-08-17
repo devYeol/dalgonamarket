@@ -14,11 +14,13 @@ public interface MemberService {
 
 	int cartInsert(Cart c);
 
-	Product selectProduct(long productCode);
+	Product selectProduct(Product productCode);
 
 	Likes selectLikes(long likesCode);
 	
 	List<Cart> cartList(Member memberId); 
+	
+	Cart selectCart(Product productCode);
 
 	void delete(long cartCode); //장바구니 선택삭제
 
@@ -32,7 +34,9 @@ public interface MemberService {
 
 	long zzimSelectDelete(long likesCode); //찜 선택삭제
 	
-	void zzimDelete(long likesCode);
+//	void zzimDelete(long likesCode);
+
+	long zzimDelete(long likesCode);
 
 	List<OrderDetail> orderList(Member memberId);
 	
@@ -40,6 +44,7 @@ public interface MemberService {
 
 	List<DeliveryLocation>selectDL(Member memberId);
 
+	DeliveryLocation selectDelivery(Member memberId);
 	
 	
 	

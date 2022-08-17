@@ -30,8 +30,14 @@ public class PjeDaoImpl implements PjeDao {
 	}
 
 	@Override
-	public List<OrderDetail> selectOrderDetail(SqlSessionTemplate session) {
+	public List<OrderDetail> selectOrderDetails(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
 		return session.selectList("orderDetail.orderLists");
+	}
+
+	@Override
+	public List<OrderDetail> selectOrderDetailsCode(SqlSessionTemplate session, long orderCode) {
+		// TODO Auto-generated method stub
+		return session.selectList("orderDetail.orderListsCode", orderCode);
 	}
 }
