@@ -24,8 +24,8 @@
 				#{reviewStar},null)
 	</insert>
 	
-	<select id="starAvg"  parameterType="review" resultMap="reviewMap" >
-		SELECT AVG(REVIEW_STAR) AS AVG_STAR FROM REVIEW WHERE PRODUCT_CODE=#{productCode}
+	<select id="starAvg" resultType="double" >
+		SELECT AVG(REVIEW_STAR) FROM REVIEW WHERE PRODUCT_CODE=#{productCode}
 	</select>
 	
 
