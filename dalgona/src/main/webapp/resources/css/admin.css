@@ -461,3 +461,71 @@ html {
 	display: flex;
 	justify-content: center;
 }
+
+/* 주문관리 페이지 */
+
+.manageorderdiv { /* 임시 */
+	width: 1000px;
+}
+
+.pay {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	margin-top: 40px;
+	font-size: 22px;
+}
+
+.pay div {
+	margin-left: 35px;
+	margin-right: 35px;
+}
+
+.pay a {
+	color: black;
+	text-decoration: none;
+}
+
+.somedate-search {
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin-top: 40px;
+	height: 40px;
+}
+
+.someDate {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.btn-somedate {
+	width: 60px;
+	height: 30px;
+	font-size: 16px;
+	background-color: white;
+	border: 1px solid #999;
+	border-radius: 10px;
+}
+
+.btn-somedate:hover {
+	background-color: black;
+	color: #fff;
+}
+
+.ordertable {
+	/* height: 600px; */
+	width: 1040px;
+	text-align: center;
+}
+
+.manage-detail {
+	background-color: beige;
+	border-radius: 20px;
+	text-align: center;
+	width: 800px;
+	border-collapse: separate;
+	border-spacing: 0 10px;
+	margin: 0 auto;
+}

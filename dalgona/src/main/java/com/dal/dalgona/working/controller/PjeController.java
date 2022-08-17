@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.dalgona.common.PageFactroyNoBootStrap;
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.working.model.service.PjeServiceImpl;
 
@@ -79,11 +80,12 @@ public class PjeController {
 	public ModelAndView adminManageOrder(ModelAndView mv,
 			@RequestParam(defaultValue = "1") int cPage, 
 			@RequestParam(defaultValue = "25") int numPerpage) {
-		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "orderDate"));
-		Page<ProductOrder> list=service.searchOrders(pagerequest);
-		log.debug("{}",list);
-		mv.addObject("productOrders",list.getContent());
-		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageOrder.do"));
+//		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "orderDate"));
+//		Page<ProductOrder> list=service.searchOrders(pagerequest);
+//		List<OrderDetail> list=service.selectOrderDetail();
+//		log.debug("{}",list);
+//		mv.addObject("productOrders",list.getContent());
+//		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageOrder.do"));
 		mv.setViewName("admin/adminManageOrder");
 		return mv;
 	}

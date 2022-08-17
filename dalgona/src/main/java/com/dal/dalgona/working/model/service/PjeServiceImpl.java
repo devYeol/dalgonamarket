@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.common.model.vo.Member;
+import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.working.model.dao.PjeDao;
 import com.dal.dalgona.working.model.dao.PjeDaoJpa;
@@ -64,6 +65,12 @@ public class PjeServiceImpl implements PjeService {
 			poUp.setOrderStatus("주문취소");
 		}
 		return orderDao.save(poUp);
+	}
+
+	@Override
+	public List<OrderDetail> selectOrderDetail() {
+		// TODO Auto-generated method stub
+		return dao.selectOrderDetail(session);
 	}
 	
 	
