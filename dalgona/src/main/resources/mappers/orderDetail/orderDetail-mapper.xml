@@ -58,10 +58,18 @@
 	<select id="orderLists" resultMap="orderListMap">
 		select *
 		from ORDER_DETAIL o ,product p ,product_order po, MEMBER m ,delivery_location d
-		WHERE o.PRODUCT_CODE =p.PRODUCT_CODE 
-		AND o.ORDER_CODE =po.ORDER_CODE
-		AND m.MEMBER_ID =d.MEMBER_ID 
-		AND d.MEMBER_ID=#{memberId}
+		WHERE o.PRODUCT_CODE = p.PRODUCT_CODE 
+		AND o.ORDER_CODE = po.ORDER_CODE
+		AND m.MEMBER_ID = d.MEMBER_ID
+	</select>
+	
+	<select id="orderListsCode" resultMap="orderListMap">
+		select *
+		from ORDER_DETAIL o ,product p ,product_order po, MEMBER m ,delivery_location d
+		WHERE o.PRODUCT_CODE = p.PRODUCT_CODE 
+		AND o.ORDER_CODE = po.ORDER_CODE
+		AND m.MEMBER_ID = d.MEMBER_ID
+		AND o.ORDER_CODE = #{orderCode}
 	</select>
 	
 </mapper>
