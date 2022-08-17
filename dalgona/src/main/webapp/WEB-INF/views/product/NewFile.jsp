@@ -4,8 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="" />
 </jsp:include>
@@ -34,20 +32,8 @@
 								</h3>
 							</div>
 							<div class="col-2">★</div>
-							<div class="col-3 inf">
-								<c:choose>
-								    <c:when test="<%-- ${info.isLikes == 1 } --%>${pro.productCode == 1}">
-								        <span><i class="fas fa-heart" ></i> 찜 </span>
-								    </c:when>
-								    
-								    <c:otherwise>
-								        <span><i class="far fa-heart" ></i> 찜 </span>
-								    </c:otherwise>
-								</c:choose>  	
-    
-								<span class="likes_count" data-count=<%-- ${info.likesCount } --%> ><%-- ${info.likesCount } --%></span>
-															
-								<!-- <span><i id="likes"class="fas fa-heart"></i> 찜 </span> -->
+							<div class="col-2">
+								<span><i class="fas fa-heart"></i> 찜 </span>
 							</div>
 						</div>
 							
@@ -81,7 +67,7 @@
 							<hr>
 
 							<input type="hidden" value="${pro.productCode }"
-								name="productCode" id="productCode"> <input type="hidden"
+								name="productCode"> <input type="hidden"
 								value="${pro.productName }" name="productName"> <input
 								type="hidden" value="${pro.productPrice }" name="productPrice">
 							<input type="hidden" value="${pro.productContent }"
@@ -312,43 +298,6 @@
 
 	<script>
 		$(document).ready(function() {
-			
-			$(".inf i").click(function(){
-				let likes ="";
-				
-				if($(this).hasClass("far")) {
-					$(this).removeClass("far").addClass("fas");
-					likes = "on";
-				} else {
-					$(this).removeClass("fas").addClass("far");
-					likes = "off";
-				}
-				
-				const data = {
-					productCode : $("#productCode").val(),
-					likes : likes
-				}
-				$.ajax({
-					url: "/product/likes",
-					type: "POST",
-					data: data
-				})
-				.done(function(result){
-					if(result == 0) {
-					} else {
-						
-						let likesCount = $(".likes_count").data("count");
-						
-						if(likes == "on") {
-							$(".likes_count").text(likesCount+1);
-							$(".likes_count").data("count", likesCount+1 );
-						} else {
-							$(".likes_count").text(likesCount-1);
-							$(".likes_count").data("count", likesCount-1 );
-						}
-					}
-				})
-			}) // 찜
 
 			$("main ul.info").hide();
 			// 탭 눌렀을때 색변경 콘텐츠 변경
@@ -428,7 +377,7 @@
 			frm.submit();
 			return true;
 		}
-
+/* 
 		$(document)
 				.ready(
 						function() {
@@ -480,9 +429,44 @@
 												$(".selected_option").html(str);
 											});
 
-						});
+						}); */
 						
-						
+						$(".inf i").click(function(){
+							let likes ="";
+							
+							if($(this).hasClass("far")) {
+								$(this).removeClass("far").addClass("fas");
+								likes = "on";
+							} else {
+								$(this).removeClass("fas").addClass("far");
+								likes = "off";
+							}
+							
+							const data = {
+								id : $("#store_id").val(),
+								likes : likes
+							}
+							$.ajax({
+								url: "/store/likes",
+								type: "POST",
+								data: data
+							})
+							.done(function(result){
+								if(result == 0) {
+								} else {
+									
+									let likesCount = $(".likes_count").data("count");
+									
+									if(likes == "on") {
+										$(".likes_count").text(likesCount+1);
+										$(".likes_count").data("count", likesCount+1 );
+									} else {
+										$(".likes_count").text(likesCount-1);
+										$(".likes_count").data("count", likesCount-1 );
+									}
+								}
+							})
+						}) // 찜
 						
 					
 						

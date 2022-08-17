@@ -2,10 +2,12 @@ package com.dal.dalgona.product.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,19 +49,20 @@ public class ProductController {
    }
    
    @RequestMapping("/product/productDetail/{productCode}")   
-   public String storeDetail(@PathVariable long productCode, Model model) {   
+   public String storeDetail(@PathVariable long productCode, Model model, HttpSession session) {   
       Product p=service.selectProduct(productCode);
       List<ProductOption> op=service.optionList(productCode);
       List<Review> review=service.reviewList(productCode);
       List<Qna> qna=service.qnaList(productCode);
-      
-      
+      Member m = (Member) session.getAttribute("loginMember");
+      String memberId=m.getMemberId();
 //      log.debug("{}",star);
       
 //      log.debug("{}",op);
-      log.debug("{}",review);
+//      log.debug("{}",review);
       
-      
+//      Product proDe = service.proDe(productCode, memberId);
+//      model.addAttribute("proDe", proDe);
       
       model.addAttribute("pro",p);
       model.addAttribute("op",op);
@@ -176,44 +180,41 @@ public class ProductController {
       return mv;
    }
    
-//   @RequestMapping("/product/payment.do")
-//   public String payment(Product p, ProductOrder po,DeliveryLocation dl 
-//         , HttpSession session, Model model
-//         ,@RequestParam(value="selAmount", required = false ) int[] selAmount
-//         ,@RequestParam(value="selectedOpt", required = false) String selectedOpt
-//         ,@RequestParam(value="productName", required = false ) String productName
-//         ) 
-//   {
-//      Member m = (Member) session.getAttribute("loginMember");
-//      log.debug("{}",p);
-//      log.debug("{}",po);
-//      log.debug("{}",dl);
-//      log.debug("{}",productName);
-//      log.debug("{}",selAmount);
-//      log.debug("{}",selectedOpt);
-//      
-//      dl=service.selectaddrBase(m);//여기서 기본배송지 선택해서
-//      po=ProductOrder.builder().orderDate(new Date()).orderStatus("디폴").selectLocation(dl).build();
-//      Product p;
-//      int selsu=1;
-//      String op="바보";
-//      OrderDetail od=OrderDetail.builder().productOrder(po).orderOption(op).orderAmount(selsu).product(p).build();      
-//      log.debug("{}",op);
-//      return "order/payment/payment";
-//   }
+   @RequestMapping("/product/search.do")
+   public String search(@RequestParam(value="keyword") String keyword, Model m) {
+      
+      System.out.println("keyword : " + keyword);
+      List<Product> p = service.searchList(keyword);
+      
+      m.addAttribute("products", p);
+      System.out.println("keyword : " + p);
+      
+      return "product/productList";
+   }
    
-   //검색
-      @RequestMapping("/product/search.do")
-      public String search(@RequestParam(value="keyword") String keyword, Model m) {
-         
-         System.out.println("keyword : " + keyword);
-         List<Product> p = service.searchList(keyword);
-         
-         m.addAttribute("products", p);
-         System.out.println("keyword : " + p);
-         
-         return "product/productList";
-      }
+   @RequestMapping("/product/likes")
+   @ResponseBody
+   public String likes(long productCode, String likes, HttpServletRequest request, HttpServletResponse response,HttpSession session) throws UnsupportedEncodingException {	   
+	    Member m = (Member) session.getAttribute("loginMember");
+	    String memberId="";
+	    Product p=service.selectProduct(productCode);
+	    
+//	    log.debug("{}",m);
+	    
+	    if (m == null) {
+	     
+	        
+	    } else {
+	        System.out.println("찜하기 회원");
+	        memberId = m.getMemberId();
+	        service.likes(productCode, likes, memberId);
+	    }
+	   
+	   return memberId;
+   }
+   
+ 
+      
    
    
    

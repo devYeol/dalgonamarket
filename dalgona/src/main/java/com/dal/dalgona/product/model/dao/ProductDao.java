@@ -1,10 +1,10 @@
 package com.dal.dalgona.product.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.common.model.vo.Qna;
@@ -28,6 +28,10 @@ public interface ProductDao {
 	Qna qnaSelectOne(SqlSession session,long qnaCode);
 	
 	Review starAvg(SqlSession session,long qnaCode);
+	
+	void addLikes(SqlSession session,Map<String, Object> map);
+	
+	void deleteLikes(SqlSession session,Map<String, Object> map);
 	
 	
 	
