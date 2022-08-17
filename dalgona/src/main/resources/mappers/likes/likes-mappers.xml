@@ -62,5 +62,14 @@
 	    DELETE FROM LIKES  WHERE MEMBER_ID = #{member} AND PRODUCT_CODE = #{product}			
 	</delete>
 	
+	<select id="selLikes"  resultType="int">
+		SELECT COUNT(*) FROM LIKES WHERE MEMBER_ID = #{member} AND PRODUCT_CODE = #{product}
+	</select>
+	
+	<select id="likesCount"  resultType="int">
+		SELECT COUNT(*) FROM LIKES WHERE PRODUCT_CODE = #{product}
+	</select>
+	
+	
 	
 </mapper>

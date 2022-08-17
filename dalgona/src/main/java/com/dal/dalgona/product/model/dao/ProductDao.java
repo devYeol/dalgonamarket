@@ -27,7 +27,7 @@ public interface ProductDao {
 	
 	Qna qnaSelectOne(SqlSession session,long qnaCode);
 	
-	Review starAvg(SqlSession session,long qnaCode);
+	double starAvg(SqlSession session,long qnaCode);
 	
 	Long deleteByProduct(Product p);
 	
@@ -38,6 +38,8 @@ public interface ProductDao {
 	
 	void deleteLikes(SqlSession session,Map<String, Object> map);
 	
-
+	int selLikes(SqlSession session,Map<String, Object> map) throws Exception;
+	
+	int likesCount(SqlSession session,long productCode);
 
 }

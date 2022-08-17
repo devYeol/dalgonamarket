@@ -46,26 +46,18 @@
 	color: black;
 	border-radius: 10px;
 	}
+	
 </style>
 <body style="background-color: white; font-family: 'NeoDunggeunmo';">
 	<div id="container" style="font-size: 30px;">
 		<header>
 			<div>
 				<div class="px-3 py-2">
-					<div class="headcontainer" style="display: flex; justify-content: space-between;">
+					<div class="headcontainer" style="display: flex; justify-content: space-between; height: 64px;">
 						<div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
-							<ul class="nav col-6 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-								<li>
-									<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-										<span style="font-size: 40px;">DALGONA MARKET</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div class="headcontainer" style="padding-left: 60px; padding-right: 60px;">
-							<ul class="nav nav-pills">
-								<li class="nav-item"><a href="${path}/admin/adminMain.do" class="nav-link" style="color: gray">ADMIN</a></li>
-							</ul>
+							<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+								<span style="font-size: 40px; padding-left: 16px;">DALGONA MARKET</span>
+							</a>
 						</div>
 						<div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -90,40 +82,42 @@
 							</div>
 							</form>
 							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
+								<c:if test="${loginMember.memberId == 'admin' }">
 								<li>
-									<a id="search-open" href="${path }/product/productList" class="nav-link text-black"> 
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
-										  <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-										  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-										</svg>
+									<a id="search-open" href="${path}/admin/adminMain.do" class="nav-link text-black"> 
+										<span style="font-size: 18px; color:blue;">Admin</span>
+									</a>
+								</li>
+								</c:if>
+								<li>
+									<a id="search-open" href="${path}/product/productList" class="nav-link text-black"> 
+										<span style="font-size: 18px;">Shop</span>
+									</a>
+								</li>
+								<li>
+									<a id="search-open" href="${path }/member/mypage/zzim" class="nav-link text-black"> 
+										<span style="font-size: 18px;">Likes</span>
 									</a>
 								</li>
 								<li>
 									<a id="search-open" href="${path }/member/mypage/cart" class="nav-link text-black"> 
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-											<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-										</svg>
+										<span style="font-size: 18px;">Cart</span>
 									</a>
 								</li>
 								<c:if test="${loginMember == null}">
 								<li>
 									<a href="${path }/loginpage" class="nav-link text-black">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
- 											<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-										</svg>
+										<span style="font-size: 18px;">Login</span>
 									</a>
 								</li>
 								</c:if>
 								<c:if test="${loginMember != null }">
 									<li>
-										<a href="${path}/member/mypage/mypageMain" class="nav-link text-black">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-		  										<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-		  										
-											</svg>
+										<a href="${path }/member/mypage/productOrderList" class="nav-link text-black">
+											<span style="font-size: 18px;">Mypage</span>
 										</a>
 									</li>
-										<button class="btn" onclick="location.replace('${path }/member/logout')">로그아웃</button>
+										<button class="btn" style="font-size: 18px; color:red;" onclick="location.replace('${path }/member/logout')">Logout</button>
 								</c:if>
 							</ul>
 							
@@ -131,22 +125,30 @@
 					</div>
 				</div>
 			</div>
-			<%-- <div>
-				<div class="headcontainer border-top" style="padding-left: 60px; padding-right: 60px;">
+			<div class="headcontainer" style="padding-left: 60px; padding-right: 60px;">
+				
+				<%-- <div class="headcontainer border-top" style="padding-left: 60px; padding-right: 60px;">
 					<div class="d-flex flex-wrap justify-content-center py-3 mb-1">
-						
+						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+							<span style="font-size: 40px;">DALGONA MARKET</span>
+						</a>
 						<ul class="nav nav-pills">
 							<li class="nav-item"><a href="${path}/admin/adminMain.do"
 								class="nav-link" style="color: gray">ADMIN</a></li>
+							<li class="nav-item"><a href="${path }/member/mypage/zzim"
+								class="nav-link" style="color: red">CUSTOMER</a></li>
+							<li class="nav-item"><a href="${path}/product/productList" class="nav-link">SHOP</a></li>
+							<li class="nav-item"><a href="${path }/member/mypage/mypageMain" class="nav-link">EVENT</a></li>
 						</ul>
 					</div>
-				</div>
-			</div> --%>
+				</div> --%>
+				
+			</div>
 		</header>
 	</div>
 
 
-	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+	<!-- <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="facebook" viewBox="0 0 16 16">
     <path
 			d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
@@ -158,7 +160,7 @@
   <symbol id="twitter" viewBox="0 0 16 16">
     <path
 			d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
-  </symbol>
+  </symbol> -->
   
   <script>
   	/* $('html').on("click",function(e){
@@ -166,4 +168,3 @@
   			$(".modal-content").css({visibility:"heide",opacity:0});
   	}); */
   </script>
-</svg>

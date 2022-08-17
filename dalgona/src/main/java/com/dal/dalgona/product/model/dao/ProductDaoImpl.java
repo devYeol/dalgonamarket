@@ -64,7 +64,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Review starAvg(SqlSession session, long qnaCode) {
+	public double starAvg(SqlSession session, long qnaCode) {
 		// TODO Auto-generated method stub
 		return session.selectOne("review.starAvg",qnaCode);
 	}
@@ -92,6 +92,22 @@ public class ProductDaoImpl implements ProductDao {
 		session.insert("likes.deleteLikes", map);
 		
 	}
+
+	@Override
+	public int selLikes(SqlSession session, Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectOne("likes.selLikes", map);
+	}
+
+	@Override
+	public int likesCount(SqlSession session, long productCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("likes.likesCount", productCode);
+	}
+	
+	
+	
+	
 	
 	
 	

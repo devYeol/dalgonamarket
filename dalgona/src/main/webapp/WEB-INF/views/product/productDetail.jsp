@@ -33,10 +33,13 @@
 									<span>${pro.productName}</span>
 								</h3>
 							</div>
-							<div class="col-2">★</div>
+							<div class="col-2">★
+							<c:if test="${not empty star }">
+							 ${star}
+							 </c:if></div>
 							<div class="col-3 inf">
 								<c:choose>
-								    <c:when test="<%-- ${info.isLikes == 1 } --%>${pro.productCode == 1}">
+								    <c:when test="${likesCheck == 1 }">
 								        <span><i class="fas fa-heart" ></i> 찜 </span>
 								    </c:when>
 								    
@@ -45,9 +48,8 @@
 								    </c:otherwise>
 								</c:choose>  	
     
-								<span class="likes_count" data-count=<%-- ${info.likesCount } --%> ><%-- ${info.likesCount } --%></span>
+								<span class="likes_count" data-count=${likesCount } >${likesCount }</span>
 															
-								<!-- <span><i id="likes"class="fas fa-heart"></i> 찜 </span> -->
 							</div>
 						</div>
 							
@@ -424,7 +426,7 @@
 		}
 		//장바구니
 		function info_chk2(frm) {
-			frm.action = ${path}"/member/mypage/cart";
+			frm.action = ${path}"/member/mypage/cartInsert";
 			frm.submit();
 			return true;
 		}
