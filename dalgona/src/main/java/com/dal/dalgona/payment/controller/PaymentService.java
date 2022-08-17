@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.DeliveryLocation;
-import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.ProductOrder;
 
 public interface PaymentService {

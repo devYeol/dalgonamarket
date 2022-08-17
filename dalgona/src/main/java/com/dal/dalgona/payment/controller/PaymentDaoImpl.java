@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.ProductOrder;
