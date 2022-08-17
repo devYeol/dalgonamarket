@@ -228,9 +228,9 @@
 							<tbody>
 								<tr class="payment-tr">
 									<td style="width: 20%;">
-									<input type="hidden" name="likesCode" value="${z.likesCode }">
+									<%-- <input type="hidden" name="likesCode" value="${z.likesCode }">
 									<input type="hidden" name="member1" value="${z.memberId}">
-									<input type="hidden" name="product1" value="${z.productCode}">
+									<input type="hidden" name="product1" value="${z.productCode}"> --%>
 									<input class="check-input"
 										name="check" id="${z.product.productCode }" type="checkbox"
 										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"

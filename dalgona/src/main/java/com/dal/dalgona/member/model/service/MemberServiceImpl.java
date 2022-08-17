@@ -97,29 +97,6 @@ public class MemberServiceImpl implements MemberService {
 		return dao.sumMoney(session,memberId);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/* 충열 */
 	
 	@Override
