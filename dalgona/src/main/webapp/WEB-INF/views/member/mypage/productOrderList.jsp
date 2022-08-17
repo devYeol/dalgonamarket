@@ -328,7 +328,7 @@ img {
 									<div class="check-btn">
 										<button type="button" class="btn">교환,반품신청</button>
 										<button type="submit" class="btn">장바구니 담기</button>
-										<button type="button" class="btn">리뷰작성</button>
+										<button type="button" id="reviewMove" class="btn">리뷰작성</button>
 									</div>
 								</div>
 							</td>
@@ -349,6 +349,10 @@ img {
 
 <script>
 
+
+	$("#reviewMove").click(function(){
+		
+	})
 
 $("#productListMove").click(function(){
 	  location.assign("${path}/product/productList");
