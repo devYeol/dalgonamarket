@@ -16,19 +16,17 @@
 		<br>
 		<div class="menu" onclick="location.assign('${path}/admin/adminManageProduct.do')">상품관리</div>
 		<br>
-		<div class="menu">리뷰관리</div>
-		<br>
 		<div class="menu" onclick="location.assign('${path}/admin/adminManageOrder.do')">주문관리</div>
-		<br>
-		<div class="menu">매출통계</div>
 		<br>
 		<div class="menu" onclick="location.assign('${path}/admin/adminManageMember.do')">회원통계</div>
 		<br>
+		<div class="menu">매출통계</div>
+		<br>
 		<div class="menu">문의내역</div>
 		<br>
-		<div class="menu" onclick="location.assign('${path}/')">나가기</div>
+		<div class="menu">리뷰내역</div>
 		<br>
-		<div class="menu" onclick="location.assign('${path}/admin/pagingTest.do')">페이징테스트</div>
+		<div class="menu" onclick="location.assign('${path}/')">나가기</div>
 		<br>
 	</div>
 </div>
