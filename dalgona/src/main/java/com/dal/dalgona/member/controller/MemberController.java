@@ -51,10 +51,10 @@ public class MemberController {
 
 	@RequestMapping(value="/member/mypage/cartInsert")
 	public String cartInsert(Model mo,HttpSession session,
-			@RequestParam(value="product")Product productCode) 
+			/* @RequestParam(value="product") */
+			Product p) 
 			throws Exception {
 		Member m= (Member) session.getAttribute("loginMember");
-		Product p=service.selectProduct(productCode);
 //		Likes l=service.selectLikes(likesCode);
 		System.out.println(m);
 		System.out.println(p);
@@ -73,7 +73,7 @@ public class MemberController {
 			int result=service.cartInsert(c);
 			System.out.println(c);
 			msg="장바구니에 등록 되었습니다";
-			loc="redirect:/member/mypage/cart/"+p.getProductCode();
+			loc="/member/mypage/cart";
 		}else {
 			msg="로그인 후 이용해주세요";
 			loc="/member/login/loginPage";

@@ -274,6 +274,7 @@ img {
 				<p>한번에 조회 가능한 기간은 최대 6개월 이고 환불은 배송 완료 후 7일 내만 가능합니다.</p>
 			</div>
 		</div>
+		<form action="${path }/member/mypage/cartInsert" id="cartMove">
 		<div>
 			<div class="orderlist-box">
 				<div style="display: flex; justify-content: space-between;">
@@ -325,7 +326,7 @@ img {
 								</div>
 								<div class="check-btnbox" style="display: flex; float:right;">
 									<div class="check-btn">
-										<button type="submit" class="btn">교환,반품신청</button>
+										<button type="button" class="btn">교환,반품신청</button>
 										<button type="submit" class="btn">장바구니 담기</button>
 										<button type="button" class="btn">리뷰작성</button>
 									</div>
@@ -338,6 +339,7 @@ img {
 				</c:forEach>
 			</div>
 		</div>
+		</form> 
 		<hr>
 		</c:otherwise>
 		</c:choose>

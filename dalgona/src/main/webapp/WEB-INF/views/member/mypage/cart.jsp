@@ -296,7 +296,7 @@ text-decoration:none;
 					</div>
 					<div class="cartandprice" style="text-align: center;">
 						<button type="reset" name="productListMove" class="btn-cart">쇼핑계속하기</button>
-						<button type="submit"name="paymentMove" class="btn-buy">구매하기</button>
+						<button type="button"name="paymentMove" class="btn-buy">구매하기</button>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -377,23 +377,17 @@ $("button[name= productListMove]").click(function(){
         		
         })
     
-		$("#paymentMoves").click(function(){
-			if(confirm('상품을 구매하시겠습니까?')){
-			}else{
-				return false
-			}
-		})
-		/* var test = confirm("상품을 구매 하시겠습니까?");
+		
 		$("button[name=paymentMove]").click(function(){
         var tdCheck =$("input[name='check']:checked");
 			if(tdCheck.length >= 1){
 				$('#paymentMove').submit() ;
-			}else(!tdCheck.length >= 1){
-					alert('상품을 선택하세요');
+			}else{
+				alert('상품을 선택하세요');
 			}
 				
 				
-		})     */
+		})    
 		
 		
 		

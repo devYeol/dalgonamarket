@@ -229,7 +229,7 @@
 								<tr class="payment-tr">
 									<td style="width: 20%;">
 									<input type="hidden" name="likesCode" value="${z.likesCode }">
-									<input type="hidden" name="product" value="${z.product.productCode}">
+									<input type="hidden" name="productCode" value="${z.product.productCode}">
 									<input type="hidden" name="productName" value="${z.product.productName}">
 									<input type="hidden" name="productThumb" value="${z.product.productThumb}">
 									<input type="hidden" name="categoryName" value="${z.product.categoryName}">
@@ -343,7 +343,7 @@ $(".check-input").click(function(){
         		
         })
         
-        $("button[name=cartMove]").click(function(){
+        $("button[name=cartMoves]").click(function(){
         var qwe =$("input[name='check']:checked");
         let zzim =$()
 			if(qwe.length >= 1){
