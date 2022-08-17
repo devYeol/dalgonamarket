@@ -14,8 +14,11 @@ import com.dal.dalgona.common.model.vo.ProductOrder;
 
 public interface MemberDao {
 
-    void cartInsert(SqlSessionTemplate session,Cart c ); //장바구니에 추가
+    void cartInsert(SqlSessionTemplate session,Cart c); //장바구니에 추가
+//    void cartInsert(SqlSessionTemplate session,String memberId,Product p); //장바구니에 추가
 	
+//    Product selectProduct(SqlSessionTemplate session,long productCode);
+    
 	List<Cart> cartList(SqlSessionTemplate session,Member memberId );
 	
 	void updateCart(SqlSessionTemplate session ,Cart c);

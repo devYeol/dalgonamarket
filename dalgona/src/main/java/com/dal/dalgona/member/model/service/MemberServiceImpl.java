@@ -36,6 +36,10 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private SqlSessionTemplate session;
 	
+//	@Override
+//	public void cartInsert(String memberId,Product p){
+//		dao.cartInsert(session,memberId,p);
+//	}
 	@Override
 	public void cartInsert(Cart c){
 		dao.cartInsert(session,c);
@@ -93,29 +97,6 @@ public class MemberServiceImpl implements MemberService {
 		return dao.sumMoney(session,memberId);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/* 충열 */
 	
 	@Override
@@ -240,6 +221,12 @@ public class MemberServiceImpl implements MemberService {
 	public int pwUpdateEnd(String memberId, String memberPwd1) {
 		
 		return dao.pwUpdateEnd(session,memberId,memberPwd1);
+	}
+
+	@Override
+	public Product selectProduct(String memberId, long productCode) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 
-public interface adminService {
+public interface AdminService {
 
 	Product insertProduct(Product p);
 	

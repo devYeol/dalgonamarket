@@ -222,12 +222,15 @@
 				<hr>
 				<form action="${path }/member/mypage/cartInsert" id="cartMove">
 					<c:forEach var="z" items="${zzimList }">
+					<input type="hidden" name="zzimList" value="${zzimList })">
 						<br>
 						<table style="margin-left: 10; width: 98%;">
 							<tbody>
 								<tr class="payment-tr">
 									<td style="width: 20%;">
-									<input type="hidden" name="zzimCode" value="${z.likesCode }">
+									<%-- <input type="hidden" name="likesCode" value="${z.likesCode }">
+									<input type="hidden" name="member1" value="${z.memberId}">
+									<input type="hidden" name="product1" value="${z.productCode}"> --%>
 									<input class="check-input"
 										name="check" id="${z.product.productCode }" type="checkbox"
 										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"

@@ -112,6 +112,10 @@
 	<script>
 		// 개별 삭제
 		const adminDeleteProduct=(e)=>{
+			if(confirm("삭제 하시겠습니까?")){
+			}else{
+			 	return false;
+			 }
 			$.ajax({
 				url:"${path}/admin/adminDeleteProduct.do",
 				data:{productCode:$(e.target).attr("name")},
@@ -125,6 +129,10 @@
 		
 		// 선택 삭제
 	    const adminDeleteSelect=()=>{
+	    	if(confirm("삭제 하시겠습니까?")){
+			}else{
+			 	return false;
+			 }
 	        const cnt = $("input[name='check']:checked").length;
 	        const arr = new Array();
 	        $("input[name='check']:checked").each(function() {

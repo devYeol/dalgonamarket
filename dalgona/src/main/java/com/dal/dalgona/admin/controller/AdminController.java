@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dal.dalgona.admin.model.service.adminServiceImpl;
+import com.dal.dalgona.admin.model.service.AdminServiceImpl;
 import com.dal.dalgona.common.PageFactroyNoBootStrap;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
@@ -34,10 +34,10 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/admin")
 @Controller
 @Slf4j
-public class adminController {
+public class AdminController {
 
 	@Autowired
-	adminServiceImpl service;
+	AdminServiceImpl service;
 
 	// 관리자 메인 이동
 	@RequestMapping("adminMain.do")
