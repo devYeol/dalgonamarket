@@ -16,7 +16,7 @@
 	display:flex;
 	justify-content: center;
 	align-items: center;
-	height: 130vh;
+	height: 100vh;
 }
 
 .login-container {
@@ -110,10 +110,11 @@ input::placeholder {
 }
 
 .login-checkbox {
-	display:inline;
+	display:flex;
+	padding-top: 15px;
 	font-size: 15px;
 	width:100px;
-	line-height: 50px;
+	line-height: 17px;
 }
 </style>
 
@@ -133,10 +134,10 @@ input::placeholder {
 				<br>
 				<input type="password" name="memberPwd" placeholder="비밀번호를 입력해주세요" autocomplete="off" required>
 			</div>
-			<label class="login-checkbox">
-					<input type="checkbox" id="saveId" style="width: 15px; height:15px;">
-					<span>아이디 저장</span>
-			</label>
+			<div class="login-checkbox">
+				<input type="checkbox" id="saveId" style="width: 15px; height:15px; margin-right:5px;">
+				<div>아이디 저장</div>
+			</div>
 			<div class="btn-area">
 				<button type="submit"><b>로그인</b></button>
 			</div>
@@ -153,7 +154,7 @@ input::placeholder {
 					<a href="${path}/member/enroll"><b>&nbsp;&nbsp;회원가입</b>&nbsp;&nbsp;&nbsp;&nbsp;</a>
 				</div>
 			</div>
-		<br>
+		<!-- <br>
 		<br>
 		<hr>
 		<div class="btn-area1">
@@ -162,7 +163,7 @@ input::placeholder {
 		<br>
 		<div class="btn-area2">
 			<button type="submit"><b>카카오로 로그인</b></button>
-		</div>
+		</div> -->
 	</div>
 </section>
 <script>

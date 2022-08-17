@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dal.dalgona.common.model.vo.Cart;
 import com.dal.dalgona.common.model.vo.DeliveryLocation;
 import com.dal.dalgona.common.model.vo.Member;
-import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -33,6 +33,9 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	@Autowired
 	private PaymentDao paymentDao;
+	
+	@Autowired
+	private SqlSessionTemplate session;
 
 	@Value("${payment.imp_key}")
 	private String impKey;

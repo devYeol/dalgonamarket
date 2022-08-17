@@ -49,26 +49,38 @@ public class ProductController {
    }
    
    @RequestMapping("/product/productDetail/{productCode}")   
-   public String storeDetail(@PathVariable long productCode, Model model, HttpSession session) {   
+   public String storeDetail(@PathVariable long productCode, Model model, HttpSession session) throws Exception{   
       Product p=service.selectProduct(productCode);
       List<ProductOption> op=service.optionList(productCode);
       List<Review> review=service.reviewList(productCode);
       List<Qna> qna=service.qnaList(productCode);
-//      Member m = (Member) session.getAttribute("loginMember");
-//      String memberId=m.getMemberId();
-//      log.debug("{}",star);
+      Member m = (Member) session.getAttribute("loginMember");     
+      int likesCheck=0;
+      int likesCount=service.likesCount(productCode);     
+      if(m!=null) {
+    	  String memberId=m.getMemberId();
+    	  likesCheck= service.selLikes(productCode, memberId);
+//    	  log.debug("{}체크용",likeCheck);
+      }
+      double star=0.0;
+      if(review.size()!=0) {
+	      star=service.starAvg(productCode);
+//	      log.debug("{}별점",star);
+      }
       
+      
+//      log.debug("{}찜수",likesCount);     
 //      log.debug("{}",op);
-//      log.debug("{}",review);
+      log.debug("{}",review);
       
-//      Product proDe = service.proDe(productCode, memberId);
-//      model.addAttribute("proDe", proDe);
       
       model.addAttribute("pro",p);
       model.addAttribute("op",op);
       model.addAttribute("review",review);
       model.addAttribute("qna",qna);
-//      model.addAttribute("star",star);
+      model.addAttribute("likesCheck",likesCheck);
+      model.addAttribute("likesCount",likesCount);
+      model.addAttribute("star",star);
       
       
       return "product/productDetail";
@@ -84,12 +96,10 @@ public class ProductController {
          @RequestParam(value="reviewStar", required = false) int reviewStar,
          @RequestParam(value = "reviewImage", required = false) MultipartFile reviewImage,   
          HttpServletRequest rs, HttpSession session, Model model)  throws IllegalStateException, IOException {
-      Member m = (Member) session.getAttribute("loginMember");
-      String memberId = m.getMemberId();
-      
-      
-      
-      String reviewImagePath="";      
+	     Member m = (Member) session.getAttribute("loginMember");
+	     String memberId="";
+   
+	     String reviewImagePath="";      
          String path = rs.getServletContext().getRealPath("/resources/upload/product/review/");
          File uploadDir = new File(path);
          if (!uploadDir.exists())
@@ -114,9 +124,10 @@ public class ProductController {
 
          log.debug("리뷰이미지{}",reviewImagePath);
              
-       String msg="";
+      String msg="";
       String loc="";
        if(m !=null) {
+    	  memberId = m.getMemberId();
           Review review=Review.builder().memberId(memberId).productCode(productCode)
                .reviewContent(reviewContent).reviewImage(reviewImagePath)
                .reviewDate(new Date()).reviewStar(reviewStar).review(null).build();
@@ -127,11 +138,11 @@ public class ProductController {
          loc="/product/productDetail/"+productCode;
       }else {         
          msg="로그인이 필요합니다";   
-         loc="/member/login/loginPage";      
+         loc="/loginpage";      
       }
        
        model.addAttribute("msg",msg);
-      model.addAttribute("loc",loc);
+       model.addAttribute("loc",loc);
     
 //       return "redirect:/product/productDetail/"+productCode;
        return "common/msg";
@@ -194,23 +205,29 @@ public class ProductController {
    
    @RequestMapping("/product/likes")
    @ResponseBody
-   public String likes(long productCode, String likes, HttpServletRequest request, HttpServletResponse response,HttpSession session) throws UnsupportedEncodingException {	   
+   public String likes(long productCode, String likes, HttpServletRequest request, Model model,
+		   HttpServletResponse response,HttpSession session) throws UnsupportedEncodingException {	   
 	    Member m = (Member) session.getAttribute("loginMember");
 	    String memberId="";
 	    Product p=service.selectProduct(productCode);
 	    
 //	    log.debug("{}",m);
 	    
-	    if (m == null) {
-	     
-	        
+	    String msg="";
+	    String loc="";
+	    
+	    if (m != null) {	    	
+	    	System.out.println("찜하기 회원");
+		    memberId = m.getMemberId();
+		    service.likes(productCode, likes, memberId);        
 	    } else {
-	        System.out.println("찜하기 회원");
-	        memberId = m.getMemberId();
-	        service.likes(productCode, likes, memberId);
+//	    	msg="로그인이 필요합니다";   
+//	        loc="/loginpage";
 	    }
 	   
-	   return memberId;
+	    model.addAttribute("msg",msg);
+	    model.addAttribute("loc",loc);
+	    return memberId;
    }
    
  
