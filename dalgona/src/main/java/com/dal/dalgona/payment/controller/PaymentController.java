@@ -69,7 +69,6 @@ public class PaymentController {
 		
 		Member memberId = (Member) session.getAttribute("loginMember");
 		
-//		
 //		log.debug("{}",p);
 //		log.debug("{}",po);
 //		log.debug("{}",dl);
@@ -92,6 +91,8 @@ public class PaymentController {
 		
 		log.debug("{}",op);
 		log.debug("{}",od);
+		
+//		paymentService.insertOrderDetail(od);
 		
 		return "order/payment/paymentProduct";
 		
