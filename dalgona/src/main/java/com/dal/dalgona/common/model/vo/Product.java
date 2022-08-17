@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -61,11 +62,11 @@ public class Product {
 //	private List<Member> members;
 	
 	// 찜
-	@OneToMany(mappedBy="product")
+	@OneToMany(mappedBy="product", cascade = CascadeType.REMOVE)
 	private List<Likes> likes=new ArrayList();
 	
 	// 상품문의
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 	private List<Qna> qna=new ArrayList();
 	
 //	// 카테고리
@@ -74,7 +75,7 @@ public class Product {
 //	private Category category;
 //	
 	// 주문상세내역
-	@OneToMany(mappedBy="product")
+	@OneToMany(mappedBy="product", cascade = CascadeType.REMOVE)
 	private List<OrderDetail> orderdetails=new ArrayList();
 	
 	// 장바구니
@@ -82,11 +83,11 @@ public class Product {
 //	private List<Member> memberCart;
 	
 	// 장바구니
-	@OneToMany(mappedBy="product")
+	@OneToMany(mappedBy="product", cascade = CascadeType.REMOVE)
 	private List<Cart> cart=new ArrayList();
 	
 	//옵션
-	@OneToMany(mappedBy = "optionCode")
+	@OneToMany(mappedBy = "optionCode",cascade = CascadeType.REMOVE)
 	private List<ProductOption> optionCode;
 
 }

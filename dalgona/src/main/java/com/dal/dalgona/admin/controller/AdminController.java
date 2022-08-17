@@ -226,105 +226,74 @@ public class AdminController {
 								int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
 		//upload폴더에서 삭제(썸네일)
 		System.out.println(product_Content);
-		Boolean fileCheck = true;
 		String path = rs.getServletContext().getRealPath(beforeThumbnail);
 	    File f = new File(path);
 	    String path2 = rs.getServletContext().getRealPath(beforedetailedImage);
 	    File f2 = new File(path2);
 		log.debug("{}",f);
 		log.debug("{}",f2);
-		
-		if(f != null) {
-			//
-			//db를 거치고나서 만약 db가 수정이 완료되면 밑에 폴더삭제
-			//
-	        if(f.exists()) {
-	            if(f.delete()) {
-	            	System.out.println("파일삭제 성공!");
-	            
-	            }else {
-			    	System.out.println("파일삭제 실패!");
-			    	fileCheck = false;
-		        }
-		    }
-		}
-		
-		if(f2 != null) {
-	        if(f2.exists()) {
-	            if(f2.delete()) {
-	            	System.out.println("파일삭제 성공!");
-	            }else {
-			    	System.out.println("파일삭제 실패!");
-			    	fileCheck = false;
-		        }
-		    }
-		}
-		log.debug("{}",f);
-		log.debug("{}",f2);
-		
-		//파일 업데이트
 		String updatePath = rs.getServletContext().getRealPath("/resources/upload/product/");
 		System.out.println("updatePath : " + updatePath);
 		File uploadDir = new File(updatePath);
 		System.out.println("uploadDir : " + uploadDir);
+		int random = (int) (Math.random() * 10000);
 		
-		File thumbnailFile = new File(updatePath);
-		System.out.println("thumbnailFile : " + thumbnailFile);
+		// 이미지주소 자르기 상세이미지
+		Product po = Product.builder().productCode(Product_Code).productAmount(product_Ampont).productContent(product_Content)
+				.productPrice(product_Price).productName(product_Name).productDate(new Date()).categoryName(categoryName).build();
 		
-		File detailedImageFile = new File(updatePath);
-		System.out.println("detailedImageFile : " + detailedImageFile);
-		
-		System.out.println("beforeThumbnail : " + beforeThumbnail);
-		System.out.println("beforedetailedImage : " + beforedetailedImage);
-//		if ( (beforeThumbnail == null  || beforedetailedImage == null)) {
-		System.out.println("fileCheck : " + fileCheck);
-		if (fileCheck == true) {
-			System.out.println("**********************************" );
+		String rename="",secondRename="";
+		//파일 분기처리 -> 둘다 널이 아닐때 썸네일만 널아닐때 상세만 널아닐때 둘다 널일때
+		//둘다 널일때?
+		if(thumbnail != null) {
+			
+			File thumbnailFile = new File(updatePath);
+			System.out.println("thumbnailFile : " + thumbnailFile);
+			
 			String originalFilename = thumbnail.getOriginalFilename();
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-			String secondFilename = detailedImage.getOriginalFilename();
-			String exts = secondFilename.substring(secondFilename.lastIndexOf("."));
 			System.out.println("originalFilename : " + originalFilename);
-			System.out.println("secondFilename : " + secondFilename);
-			int random = (int) (Math.random() * 10000);
-			String rename = "admin_" + random + ext;
-			String secondRename = "admin_second_" + random + exts;
-			log.debug("{}", rename);
-			log.debug("{}", secondRename);
-			System.out.println("updatePath : " + updatePath);
+			
+			rename = "admin_" + random + ext;
 			
 			thumbnailFile = new File(updatePath + "/" + rename);
 			thumbnail.transferTo(thumbnailFile);
+			
+			String updatefileName = updatePath + thumbnailFile.getName();
+			
+			// 이미지주소자르기 썸네일
+			String target = "resources";
+			int target_num = updatefileName.indexOf(target) - 1;
+			String thumbnailPath = updatefileName.substring(target_num);
+			po.setProductThumb(thumbnailPath);
+				
+		}
+		if(detailedImage != null) {
+			
+			File detailedImageFile = new File(updatePath);
+			System.out.println("detailedImageFile : " + detailedImageFile);
+			
+			String secondFilename = detailedImage.getOriginalFilename();
+			String exts = secondFilename.substring(secondFilename.lastIndexOf("."));
+			System.out.println("secondFilename : " + secondFilename);
+			
+			secondRename = "admin_second_" + random + exts;
+			
 			detailedImageFile = new File(updatePath + "/" + secondRename);
 			detailedImage.transferTo(detailedImageFile);
 			
-			System.out.println("thumbnailFile : " + thumbnailFile);
-			System.out.println("detailedImageFile : " + detailedImageFile);
+			String updatefileName = updatePath + detailedImageFile.getName();
 			
-			System.out.println("thumbnail : " + thumbnail);
-			System.out.println("detailedImage : " + detailedImage);
-		}else {
-			System.out.println("이미지파일 안바뀜");
+			// 이미지주소자르기 썸네일
+			String target = "resources";
+			String updatedetailFile = updatePath +  detailedImageFile.getName();
+			int target_num1 = updatefileName.indexOf(target) - 1;
+			String detailedPath = updatedetailFile.substring(target_num1);
+			po.setProductImage(detailedPath);
 		}
-		String updatefileName = updatePath + thumbnailFile.getName();
-		System.out.println("thumbnailFile : " + thumbnailFile);
-
-		// 이미지주소자르기 썸네일
-		String target = "resources";
-		int target_num = updatefileName.indexOf(target) - 1;
-		String thumbnailPath = updatefileName.substring(target_num);
-	
-		// 이미지주소 자르기 상세이미지
-		String updatedetailFile = updatePath +  detailedImageFile.getName();
-		int target_num1 = updatefileName.indexOf(target) - 1;
-		System.out.println("-------------------------------------------------------------- ");
-		System.out.println("updatedetailFile : " + updatedetailFile);
-		String detailedPath = updatedetailFile.substring(target_num1);
-		System.out.println("detailedPath : " + detailedPath);
 		
-		Product po = Product.builder().productCode(Product_Code).productAmount(product_Ampont).productContent(product_Content)
-				.productPrice(product_Price).productName(product_Name).productThumb(thumbnailPath)
-				.productImage(detailedPath).productDate(new Date()).categoryName(categoryName).build();
+		
+
 		
 		List<ProductOption> option = new ArrayList(); 
 //		 option을 for문돌려 컬럼안에 집어넣음
@@ -335,18 +304,43 @@ public class AdminController {
 		
 		log.debug("option : ",option);
 		log.debug("{}",option);
-//		po.setOptionCode(option);
-//		log.debug("{}",po);
+		po.setOptionCode(option);
+		log.debug("{}",po);
 			
-		
-		Product p = service.updateProduct(po);
-		List<ProductOption> uo = service.updateOption(option); 
-		
-//		log.debug("{}",uo);
-		log.debug("{}",p);
+		try {
+			Product p = service.updateProduct(po);
+			List<ProductOption> uo = service.updateOption(option); 
+			//이전 파일 지우는 로직
+			if(f != null) {
+				//db를 거치고나서 만약 db가 수정이 완료되면 밑에 폴더삭제
+		      uploadFileDelete(f);
+			}
+			
+			if(f2 != null) {
+				uploadFileDelete(f2);
+			}
+		}catch(RuntimeException e) {
+			uploadFileDelete(new File(updatePath+"/"+rename));
+			uploadFileDelete(new File(updatePath+"/"+secondRename));
+		}
+//		log.debug("{}",uo); 
+//		log.debug("{}",p);
 
 		log.debug("{}",product_Name);
-		return "admin/adminManageProduct";
+		return "redirect:adminManageProduct.do";
+	}
+	
+	
+	private void uploadFileDelete(File f) {
+		if(f != null) {
+	        if(f.exists()) {
+	            if(f.delete()) {
+	            	System.out.println("파일삭제 성공!");
+	            }else {
+			    	System.out.println("파일삭제 실패!");
+		        }
+		    }
+		}
 	}
 	
 }

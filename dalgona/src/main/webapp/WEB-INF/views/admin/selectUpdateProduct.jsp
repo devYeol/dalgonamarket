@@ -99,9 +99,9 @@
 	    	  frmGo.submit();
 	    	  return true;
 	      }
-	    //취소
+	    //등록
 	      function adminUpdate(returnfrmGo){
-	    	  returnfrmGo.action = ${path}"/admin/adminManageProduct.do";
+	    	  returnfrmGo.action = ${path}"/admin/updateProduct.do";
 	    	  returnfrmGo.submit();
 	    	  return true;
 	      }
