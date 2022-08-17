@@ -315,7 +315,6 @@ public class AdminController {
 				//db를 거치고나서 만약 db가 수정이 완료되면 밑에 폴더삭제
 		      uploadFileDelete(f);
 			}
-			
 			if(f2 != null) {
 				uploadFileDelete(f2);
 			}
@@ -330,7 +329,7 @@ public class AdminController {
 		return "redirect:adminManageProduct.do";
 	}
 	
-	
+	//파일삭제메소드
 	private void uploadFileDelete(File f) {
 		if(f != null) {
 	        if(f.exists()) {
