@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Builder
@@ -26,11 +27,12 @@ public class Likes {
 	@GeneratedValue(generator="seq_likes_code", strategy=GenerationType.SEQUENCE)
 	private long likesCode;
 	
+	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name="memberId")
 	private Member member;
 	
-	
+	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name="productCode")
 	private Product product;

@@ -2,6 +2,7 @@ package com.dal.dalgona.member.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.dal.dalgona.common.model.vo.Cart;
@@ -14,11 +15,12 @@ import com.dal.dalgona.common.model.vo.ProductOrder;
 
 public interface MemberDao {
 
-    void cartInsert(SqlSessionTemplate session,Cart c); //장바구니에 추가
-//    void cartInsert(SqlSessionTemplate session,String memberId,Product p); //장바구니에 추가
+	int cartInsert(SqlSessionTemplate session,Cart c);
 	
-//    Product selectProduct(SqlSessionTemplate session,long productCode);
-    
+	Product selectProduct(SqlSession session, long productCode);
+
+	Likes selectLikes(SqlSession session, long likesCode);
+	
 	List<Cart> cartList(SqlSessionTemplate session,Member memberId );
 	
 	void updateCart(SqlSessionTemplate session ,Cart c);

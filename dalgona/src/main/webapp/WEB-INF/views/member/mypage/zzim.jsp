@@ -222,15 +222,19 @@
 				<hr>
 				<form action="${path }/member/mypage/cartInsert" id="cartMove">
 					<c:forEach var="z" items="${zzimList }">
-					<input type="hidden" name="zzimList" value="${zzimList })">
+					<%-- <input type="hidden" name="zzimList" value="${zzimList }"> --%>
 						<br>
 						<table style="margin-left: 10; width: 98%;">
 							<tbody>
 								<tr class="payment-tr">
 									<td style="width: 20%;">
 									<input type="hidden" name="likesCode" value="${z.likesCode }">
-									<input type="hidden" name="member1" value="${z.memberId}">
-									<input type="hidden" name="product1" value="${z.productCode}">
+									<%-- <input type="hidden" name="memberId" value="${z.Member.memberId}"> --%>
+									<input type="hidden" name="productCode" value="${z.product.productCode}">
+									<input type="hidden" name="productName" value="${z.product.productName}">
+									<input type="hidden" name="productThumb" value="${z.product.productThumb}">
+									<input type="hidden" name="categoryName" value="${z.product.categoryName}">
+									<input type="hidden" name="productPrice" value="${z.product.productPrice}">
 									<input class="check-input"
 										name="check" id="${z.product.productCode }" type="checkbox"
 										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
@@ -250,7 +254,7 @@
 											<c:out value="${z.product.productPrice }원" />
 										</div></td>
 									<td style="padding-left: 140px;">
-										<button type="button" name="cartMove" class="btn btn-danger"
+										<button type="submit" name="cartMoves" class="btn btn-danger"
 											style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
 									</td>
 									<a href="${path }/member/zzimDelete.do?likesCode=${z.likesCode}"
@@ -311,7 +315,6 @@ $(".check-input").click(function(){
  // 선택 삭제
     	$("#selectDelete").click(function(){
     	if(confirm("삭제 하시겠습니까?")){
-    		
         const cnt = $("input[name='check']:checked").length;
         const arr = new Array();
         $("input[name='check']:checked").each(function() {
@@ -343,6 +346,7 @@ $(".check-input").click(function(){
         
         $("button[name=cartMove]").click(function(){
         var qwe =$("input[name='check']:checked");
+        let zzim =$()
 			if(qwe.length >= 1){
 				
 				console.log(qwe);
@@ -353,9 +357,9 @@ $(".check-input").click(function(){
 			}
 		})    
         
+		 $("button[name=cartMoves]").click(function(e){
         
-        
-
+		 })
   $("#productListMove").click(function(){
 	  location.assign("${path}/product/productList");
   })

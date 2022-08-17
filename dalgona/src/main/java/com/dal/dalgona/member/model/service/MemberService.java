@@ -12,11 +12,11 @@ import com.dal.dalgona.common.model.vo.ProductOrder;
 
 public interface MemberService {
 
-	void cartInsert (Cart c);
-	
-//	void cartInsert (String memberId,Product p);
-	
-	Product selectProduct(String memberId,long productCode);
+	int cartInsert(Cart c);
+
+	Product selectProduct(long productCode);
+
+	Likes selectLikes(long likesCode);
 	
 	List<Cart> cartList(Member memberId); 
 
