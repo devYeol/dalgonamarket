@@ -54,16 +54,17 @@
 				<div class="px-3 py-2">
 					<div class="headcontainer" style="display: flex; justify-content: space-between;">
 						<div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
-							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
-								<li><a href="" class="nav-link text-black"> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-										<use xlink:href="#facebook" /></svg>
-								</a></li>
-								<li><a href="#" class="nav-link text-black"> <i class="bi bi-search"></i> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-										<use xlink:href="#instagram" /></svg>
-								</a></li>
-								<li><a href="#" class="nav-link text-black"> <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-										<use xlink:href="#twitter" /></svg>
-								</a></li>
+							<ul class="nav col-6 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+								<li>
+									<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+										<span style="font-size: 40px;">DALGONA MARKET</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="headcontainer" style="padding-left: 60px; padding-right: 60px;">
+							<ul class="nav nav-pills">
+								<li class="nav-item"><a href="${path}/admin/adminMain.do" class="nav-link" style="color: gray">ADMIN</a></li>
 							</ul>
 						</div>
 						<div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
@@ -89,6 +90,14 @@
 							</div>
 							</form>
 							<ul class="nav col-6 col-lg-auto my-2 justify-content-left my-md-0 text-small">
+								<li>
+									<a id="search-open" href="${path }/product/productList" class="nav-link text-black"> 
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+										  <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+										  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+										</svg>
+									</a>
+								</li>
 								<li>
 									<a id="search-open" href="${path }/member/mypage/cart" class="nav-link text-black"> 
 										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
@@ -122,25 +131,17 @@
 					</div>
 				</div>
 			</div>
-			<div>
-				<div class="headcontainer border-top"
-					style="padding-left: 60px; padding-right: 60px;">
+			<%-- <div>
+				<div class="headcontainer border-top" style="padding-left: 60px; padding-right: 60px;">
 					<div class="d-flex flex-wrap justify-content-center py-3 mb-1">
-						<a href="/"
-							class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-							<span style="font-size: 40px;">DALGONA MARKET</span>
-						</a>
+						
 						<ul class="nav nav-pills">
 							<li class="nav-item"><a href="${path}/admin/adminMain.do"
 								class="nav-link" style="color: gray">ADMIN</a></li>
-							<li class="nav-item"><a href="${path }/member/mypage/zzim"
-								class="nav-link" style="color: red">CUSTOMER</a></li>
-							<li class="nav-item"><a href="${path}/product/productList" class="nav-link">SHOP</a></li>
-							<li class="nav-item"><a href="${path }/member/mypage/mypageMain" class="nav-link">EVENT</a></li>
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 		</header>
 	</div>
 
