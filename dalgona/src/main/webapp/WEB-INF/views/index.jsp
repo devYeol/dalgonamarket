@@ -8,18 +8,39 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 
+<style> 
+
+h4 {
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+#img-box {
+	position:relative;
+}
+
+#text-box {
+	position:absolute;
+	visibility:hidden;
+}
+
+#img-box:hover {
+	opacity:0.5;
+}
+
+#img-box:hover #text-box {
+	visibility:visible;
+}
+
+</style>
 <section id="content">
 	<!-- 배너 시작 -->
-	<div id="carouselExampleIndicators" class="carousel slide"
-		data-bs-ride="carousel">
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleIndicators"
-				data-bs-slide-to="0" class="active" aria-current="true"
-				aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleIndicators"
-				data-bs-slide-to="1" aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleIndicators"
-				data-bs-slide-to="2" aria-label="Slide 3"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" 
+				class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
 		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
@@ -29,25 +50,21 @@
 					style="width: 100%; height: 72%;"> --%>
 			</div>
 			<div class="carousel-item">
-				<img
-					src="http://korean.visitseoul.net/comm/getImage?srvcId=MEDIA&parentSn=19242&fileTy=MEDIA&fileNo=2"
+				<img src="http://korean.visitseoul.net/comm/getImage?srvcId=MEDIA&parentSn=19242&fileTy=MEDIA&fileNo=2"
 					class="d-block w-100" alt="..." height="520">
 			</div>
 			<div class="carousel-item">
-				<img
-					src="https://i.pinimg.com/564x/74/8d/d1/748dd1a5810cfe4393cc90c063df3a49.jpg"
+				<img src="https://i.pinimg.com/564x/74/8d/d1/748dd1a5810cfe4393cc90c063df3a49.jpg" 
 					class="d-block w-100" alt="..." height="520" width="400 px">
 			</div>
 		</div>
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Previous</span>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+			<span class="visually-hidden">Previous</span>
 		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Next</span>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span> 
+			<span class="visually-hidden">Next</span>
 		</button>
 	</div>
 	<!-- 배너 끝 -->
@@ -55,47 +72,49 @@
 	<!-- 카테고리 시작-->
 	<div class="album py-5">
 		<div class="container">
+			<h4>카테고리</h4>
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 				<div class="col">
-					<div class="card shadow-sm">
+					<div class="card shadow-sm" id="img-box">
 						<!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
 						<img src="${path }/resources/images/mainpage/과자일러.png"
-							style="width: 420px; height: 225px;">
+							style="width: 419px; height: 280px;">
+						<h3 id="text-box">스낵</h3>
 					</div>
 				</div>
 				<div class="col">
 					<div class="card shadow-sm">
 						<!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
 						<img src="${path }/resources/images/mainpage/사탕일러.png"
-							style="width: 420px; height: 225px;">
+							style="width: 419px; height: 280px;">
 					</div>
 				</div>
 				<div class="col">
 					<div class="card shadow-sm">
 						<!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
 						<img src="${path }/resources/images/mainpage/초콜렛일러.png"
-							style="width: 420px; height: 225px;">
+							style="width: 419px; height: 280px;">
 					</div>
 				</div>
 				<div class="col">
 					<div class="card shadow-sm">
 						<!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
 						<img src="${path }/resources/images/mainpage/젤리일러.png"
-							style="width: 420px; height: 225px;">
+							style="width: 419px; height: 280px;">
 					</div>
 				</div>
 				<div class="col">
 					<div class="card shadow-sm">
 						<!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg> -->
 						<img src="${path }/resources/images/mainpage/완구일러.png"
-							style="width: 420px; height: 225px;">
+							style="width: 419px; height: 280px;">
 					</div>
 				</div>
 				<div class="col">
 					<div class="card shadow-sm">
 						<!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
 						<img src="${path }/resources/images/mainpage/기타일러.png"
-							style="width: 420px; height: 225px;">
+							style="width: 419px; height: 280px;">
 					</div>
 				</div>
 			</div>
@@ -104,30 +123,42 @@
 	<!-- 카테고리 끝-->
 
 	<!-- 추천상품 시작 -->
-	<div class="container">
+	<div class="container" style="padding-bottom: 40px;">
 		<!-- Carousel items -->
+		<h4>인기상품</h4>
 		<div class="carousel-inner">
 			<div class="item">
 				<div class="row">
 					<div class="col-3">
-						<a href="#x" class="thumbnail"><img
-							src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-							alt="Image" style="max-width: 100%;" /></a>
+						<a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" /></a>
 					</div>
 					<div class="col-3">
-						<a href="#x" class="thumbnail"><img
-							src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-							alt="Image" style="max-width: 100%;" /></a>
+						<a href="#x" class="thumbnail"><img	src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" /></a>
 					</div>
 					<div class="col-3">
-						<a href="#x" class="thumbnail"><img
-							src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-							alt="Image" style="max-width: 100%;" /></a>
+						<a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" /></a>
 					</div>
 					<div class="col-3">
-						<a href="#x" class="thumbnail"><img
-							src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340"
-							alt="Image" style="max-width: 100%;" /></a>
+						<a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h4>관심상품</h4>
+		<div class="carousel-inner">
+			<div class="item">
+				<div class="row">
+					<div class="col-3">
+						<a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" /></a>
+					</div>
+					<div class="col-3">
+						<a href="#x" class="thumbnail"><img	src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" /></a>
+					</div>
+					<div class="col-3">
+						<a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" /></a>
+					</div>
+					<div class="col-3">
+						<a href="#x" class="thumbnail"><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" /></a>
 					</div>
 				</div>
 			</div>
