@@ -236,8 +236,6 @@ text-decoration:none;
 										<input type="hidden" class="tdPrice"name="productPrice" value="${c.product.productPrice }">
 										<input type="hidden" class="tdThumb"name="productThumb" value="${c.product.productThumb }">
 										<input type="hidden" class="tdPsel" value="${ps }"> <!-- 상품개수 -->
-										<input type="hidden" class="totalCount" value="${c.totalCount }">
-										<input type="hidden" class="totalKind" value="${c.totalKind }">
 																			
 										<img
 											src="${c.product.productThumb }" width="150" height="150"
@@ -354,7 +352,7 @@ $("button[name= productListMove]").click(function(){
     
   
 	
-	let let quantity =$(".selAmount").val();
+	/* let let quantity =$(".selAmount").val(); */
 
     
     
