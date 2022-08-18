@@ -40,8 +40,8 @@ public class Cart {
 	@JoinColumn(name="productCode")
 	private Product product;
 	
-	@Column (columnDefinition = "number default 1")
-	private long cartAmount;
+	@Column /* (columnDefinition = "number default 1") */
+	private int cartAmount;
 	
 	@Column
     @ElementCollection(targetClass=Cart.class)
