@@ -80,7 +80,7 @@ public class PjeController {
 	@RequestMapping("adminManageOrder.do")
 	public ModelAndView adminManageOrder(ModelAndView mv,
 			@RequestParam(defaultValue = "1") int cPage, 
-			@RequestParam(defaultValue = "25") int numPerpage,
+			@RequestParam(defaultValue = "10") int numPerpage,
 			@RequestParam(value = "orderCode", defaultValue = "0") long orderCode
 			) {
 		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "orderDate"));

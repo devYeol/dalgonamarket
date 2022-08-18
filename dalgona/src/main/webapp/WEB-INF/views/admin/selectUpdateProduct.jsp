@@ -42,7 +42,7 @@
 						<td class="theader">옵션</td>
 						<td>
 							<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
-								<button id="addOptionBtn" class="adminbt" type="button" style="width: 80">옵션추가</button>
+								<button id="addOptionBtn"  class="adminbt" type="button" style="width: 80">옵션추가</button>
 							</div>
 							<c:forEach var="option" items="${po }">
 							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
@@ -52,7 +52,7 @@
 										<input id="price2" class="adminin" name="optionPrice" type="number" min="100" value="${option.optionPrice }">
 								</div>
 								<div>
-									<button class="adminbt" type="button" id="remove"  style="width:50; font-size:13">삭제</button>
+									<button class="adminbt" name="optionbtnn" type="button" id="remove"  style="width:50; font-size:13">삭제</button>
 								</div>
 							</div>
 							</c:forEach>
@@ -100,6 +100,30 @@
 	    	  frmGo.submit();
 	    	  return true;
 	      }
+		 //옵션추가
+	      let num = 0;
+	      $(function() {
+	         num++
+	         $("#addOptionBtn").on("click", function(e) {
+	            const optionTemplate=$(e.target).parent().next().clone();
+	              $(e.target).parent().next().after(optionTemplate).prop('id', 'optionInputID'+num ).find("input").val("");
+	         });
+	      });
+	      //삭제
+	      $(document).ready(function () {
+	          $(document).on("click", "button[name='optionbtnn']", function () {
+	            const a =  $(this).parents().parents().attr('id');
+	            console.log(':::' ,$('input:nth-child(2)').length)
+	            console.log(':::' ,$('input:nth-child(2)')[0])
+	             if($('input:nth-child(2)').length == 2){
+	        		return alert("최소 옵션은 1개입니다!");
+	           }else{
+	           console.log(':::' , $(this).parents().parents().attr('id'))
+	              console.log(':::' +'"#'+a+'"')
+	            $("#"+a).detach()
+	           }
+	          });
+	      });
 	    //수정
 	      function adminUpdate(returnfrmGo){
 	    	  const price = $('#price2').val();
@@ -111,7 +135,6 @@
 	    	  returnfrmGo.submit();
 	    	  return true;
 	      }
-	    
 	    function fn_update(){
 	    	const price = $('#price2').val(); //<input class="adminin" value값 price 변수에
 	    	if(price<100){

@@ -15,6 +15,8 @@ public interface OptionDao extends JpaRepository<ProductOption, Long> {
 	
 	List<ProductOption> save(Product p);
 	
+//	List<ProductOption> findByProduct(List<ProductOption> list);
+	
 	Long deleteByProduct(Product p);
 	
 	
