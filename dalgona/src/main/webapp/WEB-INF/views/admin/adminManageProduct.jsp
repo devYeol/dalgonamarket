@@ -43,54 +43,63 @@
 				</div>
 			</div>
 			<div class="listdiv">
-				<!-- <table class="listtable">
-					<tr>
-						<th>체크박스</th>
-						<th>상품코드</th>
-						<th>상품명</th>
-						<th>상품수량</th>
-						<th>상품등록일</th>
-						<th>상품등록</th>
-						<th>상품삭제</th>
-					</tr>
-				</table> -->
-				<div style="display: flex; padding-bottom: 8px;">
-					<div style="padding-top: 10px;">
-						<input type="checkbox" style="width: 15px; height: 15px;" oninput="selectAll();" id="productEntry">
-					</div>
-					<div style="padding-top: 10px; padding-left: 5px;">
-						<b>전체선택</b>
-					</div>
-					&nbsp;
-					<div style="padding-left: 78%;">
-						<button class="adminbt" style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteSelect();">선택삭제</button>
-						<button class="adminbt" style="width: 80px; background-color: #8295F7;"
-						onclick="location.assign('${path}/admin/adminEnrollProduct.do')">상품등록</button>
-					</div>
-				</div>
 				<table class="listtable">
+					<tr style="bolder-top: none;">
+						<td>
+							<div style="font-size: 11px; color:#2E6BFF; padding-bottom:2px;">
+								<b>전체선택</b>
+							</div>
+							<div style="">
+								<input type="checkbox" style="width: 15px; height: 15px;" oninput="selectAll();" id="productEntry">
+							</div>
+							
+						</td>
+						<td style="text-align:left;">
+							
+						</td>
+						<td colspan="3">
+						</td>
+						<td>
+							<div style="padding: 5px;">
+								<button class="adminbt" style="width: 80px; background-color: #2E6BFF;"
+								onclick="location.assign('${path}/admin/adminEnrollProduct.do')">상품등록</button>
+							</div>
+						</td>
+						<td>
+							<div style="padding: 5px;">
+								<button class="adminbt" style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteSelect();">선택삭제</button>
+							</div>
+						</td>
+					</tr>
 					<tr>
-						<th>체크</th>
-						<th>상품코드</th>
-						<th>이미지</th>
-						<th>상품명/가격</th>
-						<th>상품수량</th>
-						<th>등록/삭제</th>
+						<th style="width: 5%;">체크</th>
+						<th style="width: 10%;">상품코드</th>
+						<th style="width: 6%%;">이미지</th>
+						<th style="">상품명/가격</th>
+						<th style="width: 21%;">상품수량</th>
+						<th style="width: 9%;" colspan="2">등록/삭제</th>
 					</tr>
 					<c:if test="${not empty products}">
 		            	<c:forEach var="p" items="${products}">
-							<tr>
+							<tr >
 								<td style="width:50px;"><input type="checkbox" style="width: 15px; height: 15px;" id="<c:out value="${p.productCode}"/>" name="check"></td>
 								<td style="width:90px;" ><c:out value="${p.productCode}"/></td>
-								<td>
+								<td onclick="location.assign('${path}/product/productDetail/${p.productCode}')" style="cursor:pointer;">
 									<img src="${p.productThumb }" width="95" height="100" border="0" />
 								</td>
-								<td style="width:59%; text-align: center; padding-left:30px"><c:out value="${p.productName}"/><br><c:out value="${p.productPrice}"/>원</td>
-								<td>
-									<input style="width:50px; font-size: 15px; padding-right:10px;" type="number" value="<c:out value="${p.productAmount}"/>">
+								<td style="width:59%; text-align: center; padding-left:30px; cursor:pointer;" 
+								onclick="location.assign('${path}/product/productDetail/${p.productCode}')">
+									<c:out value="${p.productName}"/>
+									<br>
+									<c:out value="${p.productPrice}"/>원
 								</td>
 								<td>
+									<input style="width:90px; font-size: 15px; padding-right:10px;" type="number" value="<c:out value="${p.productAmount}"/>">
+								</td>
+								<td style="padding: 5px;">
 									<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="location.assign('${path}/admin/selectUpdateProduct.do?pro=${p.productCode}')">수정</button>
+								</td>
+								<td style="padding: 5px;">
 									<button class="adminbt" id="<c:out value="${p.productCode}"/>" name="<c:out value="${p.productCode}"/>" 
 										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event)">삭제</button>
 								</td>

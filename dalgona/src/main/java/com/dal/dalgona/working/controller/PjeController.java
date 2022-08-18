@@ -37,17 +37,17 @@ public class PjeController {
 	private PjeServiceImpl service;
 
 	// 회원관리 페이지 이동
-	@RequestMapping("adminManageMember.do")
-	public ModelAndView adminManageMember(ModelAndView mv,
-			@RequestParam(defaultValue = "1") int cPage,
-			@RequestParam(defaultValue = "25") int numPerpage) {
-		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "memberEnrollDate"));
-		Page<Member> list = service.selectMembers(pagerequest);
-		mv.addObject("members", list.getContent());
-		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageMember.do"));
-		mv.setViewName("admin/adminManageMember");
-		return mv;
-	}
+//	@RequestMapping("adminManageMember.do")
+//	public ModelAndView adminManageMember(ModelAndView mv,
+//			@RequestParam(defaultValue = "1") int cPage,
+//			@RequestParam(defaultValue = "25") int numPerpage) {
+//		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "memberEnrollDate"));
+//		Page<Member> list = service.selectMembers(pagerequest);
+//		mv.addObject("members", list.getContent());
+//		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageMember.do"));
+//		mv.setViewName("admin/adminManageMember");
+//		return mv;
+//	}
 	
 	// 회원관리 검색기능
 	@RequestMapping("adminSearchMember.do")
@@ -71,7 +71,8 @@ public class PjeController {
 		mv.addObject("keyword", keyword);
 		mv.addObject("searchGen", searchGen);
 		mv.addObject("pageBar",PageFactroyNoBootStrap.getPageBar(totalData, numPerpage, cPage, "adminManageProduct.do"));
-		mv.setViewName("admin/adminManageMember");
+		mv.setViewName("admin/adminMain");
+//		mv.setViewName("admin/adminManageMember");
 		return mv;
 	}
 	

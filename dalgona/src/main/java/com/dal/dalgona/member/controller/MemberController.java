@@ -51,7 +51,7 @@ public class MemberController {
 
 	@RequestMapping(value="/member/mypage/cartInsert")
 	public String cartInsert(Model mo,HttpSession session,
-			/* @RequestParam(value="product") */
+			@RequestParam(value="selAmount",required=false )int selAmount,
 			Product p) 
 			throws Exception {
 		Member m= (Member) session.getAttribute("loginMember");
@@ -89,22 +89,25 @@ public class MemberController {
 	
 
 	@RequestMapping(value="/member/mypage/cart") // 장바구니
-	public ModelAndView cart(ModelAndView mv, HttpSession session) {
+	public ModelAndView cart(ModelAndView mv, HttpSession session,
+			Product p) {
 		Member memberId = (Member) session.getAttribute("loginMember");
-		Map<String, Object> map = new HashMap<String, Object>();
 		if (memberId != null) {
 			List<Cart> cartList = service.cartList(memberId); // 장바구니 정보
 			System.out.println("cart :" + cartList);
+			service.selectProduct(p);
 			int sumMoney = service.sumMoney(memberId);// 장바구니 전체 금액 호출
 			System.out.println("sumMoney :" + sumMoney);
+			int productSelect=1; //상품 개수
 			int fee = 2500; // 배송료
 			System.out.println("allMoney :" + (fee + sumMoney));
-			map.put("sumMoney", sumMoney);
-			map.put("fee", fee);
-			map.put("allSum", fee + sumMoney); // 체크된 장바구니 상품 + 배송비
-			map.put("cartList", cartList);
-			map.put("count", cartList.size());
-			mv.addObject("map", map);
+			mv.addObject("sumMoney",sumMoney);
+			mv.addObject("ps",productSelect);
+			mv.addObject("fee",fee);
+			mv.addObject("product",p);
+			mv.addObject("allSum", fee + sumMoney); // 체크된 장바구니 상품 + 배송비
+			mv.addObject("cartList",cartList);
+			mv.addObject("count", cartList.size());
 			mv.setViewName("member/mypage/cart");
 			return mv;
 		} else {
