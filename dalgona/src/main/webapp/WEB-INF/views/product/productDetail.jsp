@@ -151,8 +151,8 @@
 					</fieldset>
 					<div class="custom-file">
 						<input type="file" class="custom-file-input" name="reviewImage"
-							id="upFile1"> <!-- <label class="custom-file-label"
-							for="upFile1">파일을 선택하세요</label> -->
+							id="upFile1"> <label class="custom-file-label"
+							for="upFile1">파일을 선택하세요</label>
 					</div>
 					<br>
 					<div class="row">

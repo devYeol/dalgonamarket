@@ -199,7 +199,7 @@
 			<b>찜 목록</b>
 		</h4>
 		<c:choose>
-			<c:when test="${empty zzimList }">
+			<c:when test="${count==0}">
 				<span>찜 한 상품이 없습니다</span>
 				<br>
 				<br>
@@ -240,7 +240,7 @@
 										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
 										style="text-decoration: none;"> <img
 											src="${z.product.productThumb }" width="150" height="150"
-											border="1" style="margin-left: 10" />
+											 style="margin-left: 10" />
 									</a></td>
 									<td style="width: 55%"><a
 										href="${path}/product/productList" class="proName"><c:out
@@ -266,7 +266,6 @@
 						<hr>
 					</c:forEach>
 					<div class="cartandprice" style="text-align: center;">
-						<button type="reset" name="productListMove" class="btn-cart">찜 하러가기</button>
 						<button class="btn-buy" name="cartMoves">장바구니에 담기</button>
 					</div>
 				</form>
@@ -357,11 +356,6 @@ $(".check-input").click(function(){
 			}
 		})    
         
-	
-  $("#productListMove").click(function(){
-	  location.assign("${path}/product/productList");
-  })
-
 </script>
 
 

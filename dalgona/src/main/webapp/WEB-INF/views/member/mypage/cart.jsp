@@ -188,7 +188,7 @@ text-decoration:none;
 			</ul>
 		</div>
 	</div>
-	<form action="${path }/payment/paymentMove.do" name="paymentMoves" id="paymentMove">
+	<form action="${path }/product/paymentCart.do" name="paymentMoves" id="paymentMoved">
 		<div class="cart-container">
 			<h4>
 				<b>장바구니</b>
@@ -228,14 +228,16 @@ text-decoration:none;
 										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
 										style="text-decoration: none;"> 
 										<input type="hidden" id="cartCode" name="cartCode" value="${c.cartCode}"> 
-										<input type="hidden" class="tdAm" name="cartAmount" value="${c.cartAmount}"> 
-										<input type="hidden" class="tdPCode" name="productCode" value="${c.product.productCode}">
-										<input type="hidden" class="tdPName" name="productName" value="${c.product.productName}">
-										<input type="hidden" class="tdPCate" name="categoryName" value="${c.product.categoryName }">
-										<input type="hidden" class="tdPContent"name="productContent" value="${c.product.productContent}">
-										<input type="hidden" class="tdPrice"name="productPrice" value="${c.product.productPrice }">
-										<input type="hidden" class="tdThumb"name="productThumb" value="${c.product.productThumb }">
-										<input type="hidden" class="tdPsel" value="${ps }"> <!-- 상품개수 -->
+										<input type="hidden" class="cartAmount" name="cartAmount" value="${c.cartAmount}"> 
+										<input type="hidden" class="productCode" name="productCode" value="${c.product.productCode}">
+										<input type="hidden" class="productName" name="productName" value="${c.product.productName}">
+										<input type="hidden" class="categoryName" name="categoryName" value="${c.product.categoryName }">
+										<input type="hidden" class="productContent"name="productContent" value="${c.product.productContent}">
+										<input type="hidden" class="productPrice"name="productPrice" value="${c.product.productPrice }">
+										<input type="hidden" class="productThumb"name="productThumb" value="${c.product.productThumb }">
+										<input type="hidden" class="selAmount" name="selAmount" value="${sA }"> <!-- 상품개수 -->
+										<input type="hidden" class="allSum" name="allSum" value="${allSum }"> <!-- 체크 된 장바구니 합계(배송비 포함) -->
+										<input type="hidden" class="fee" name="fee" value="${fee}"> <!-- 배송비 -->
 																			
 										<img
 											src="${c.product.productThumb }" width="150" height="150"
@@ -260,12 +262,16 @@ text-decoration:none;
 										</div>
 										<div style="margin-top: 5; font-size: 15px">도착 예정</div></td>
 									<td style="text-align: center;">
-										<input type="number" min="1"class="selAmount" name="selAmount"  value="1" id="select_count">개
+										<input type="text" class="selAmount" name="selAmount"  value="${sA }" id="select_count">개
+										<span>
+											<button type="button" class="btn plus_button" id="plus">+</button>
+											<button type="button" class="btn minus_button" id="minus">-</button>
+										</span>
 										<div style="margin-top: 5px">
 											<p>
 
 												<fmt:formatNumber pattern="###,###,###"
-													value="${c.product.productPrice*pc}" />
+													value="${c.product.productPrice}" />
 												&nbsp;원
 											</p>
 										</div></td>
@@ -292,18 +298,18 @@ text-decoration:none;
 						<div class="allrprice-content">
 							<div class="allprice-form">
 								<b>총 상품 가격</b> :<i> <fmt:formatNumber pattern="###,###,###"
-										value="${map.sumMoney}" /></i><span class="all-plus"><img
+										value="${sumMoney}" /></i><span class="all-plus"><img
 									src="/resources/images/mypage/img_plus.png" style="width: 14;">
 								</span> 배송비 <i><c:out value="${fee}"/></i> 원 <span class="all-plus"> <img
 									src="/resources/images/mypage/img_equals.png"
 									style="width: 14;"></span> 총 주문금액 <i class="final-price"><fmt:formatNumber
-										pattern="###,###,###" value="${map.allSum}" /></i>
+										pattern="###,###,###" value="${allSum}" /></i>
 							</div>
 						</div>
 					</div>
 					<div class="cartandprice" style="text-align: center;">
 						<button type="reset" name="productListMove" class="btn-cart">쇼핑계속하기</button>
-						<button type="button"name="paymentMove" class="btn-buy">구매하기</button>
+						<button type="button"id="paymentMove" class="btn-buy">구매하기</button>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -313,6 +319,15 @@ text-decoration:none;
 </section>
 
 <script>
+
+/* function setTotalInfo(){
+	let totalPri
+}
+ */
+
+
+
+
 
 function getCheckboxValues(){
 	/* 선택된 목록 가져오기 */
@@ -327,7 +342,7 @@ function getCheckboxValues(){
 	document.getElementById('result') =result;
 }
 
-
+ /* 상품 페이지로 이동 */
 $("button[name= productListMove]").click(function(){
 	  location.assign("${path}/product/productList");
 })
@@ -351,16 +366,23 @@ $("button[name= productListMove]").click(function(){
     })
     
   
-	
-	/* let let quantity =$(".selAmount").val(); */
+	/* 수량 조작 */
+	 let selAmount =$(".selAmount").val();
+	 let productPrice =$(".productPrice").val();
+    $("#plus").on('click',function(){
+    	$(".selAmount").val(++selAmount);
+    	selAmount*productPrice.val();
+    	
+    
+    });
+    
+    $("#minus").on("click",function(){
+    	if(selAmount>1){
+    		
+    	$(".selAmount").val(--selAmount);
+    	}
+    });
 
-    
-    
-    
-    
-    
-    
-    
     
     
   // 선택 삭제
@@ -385,8 +407,7 @@ $("button[name= productListMove]").click(function(){
     	}else{
     		return false;
     	}
-    })
-    
+    });
     
         $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
         	if(confirm("삭제 하시겠습니까?")){
@@ -397,19 +418,20 @@ $("button[name= productListMove]").click(function(){
         })
     
 		
-		$("button[name=paymentMove]").click(function(){
+		$("#paymentMove").click(function(){
         var tdCheck =$("input[name='check']:checked");
 			if(tdCheck.length >= 1){
-				$('#paymentMove').submit() ;
+				$('#paymentMoved').submit() ;
 			}else{
 				alert('상품을 선택하세요');
+				return false
 			}
 				
 				
 		})    
 		
-	/* $("input[name='check']:checked").prop("checked",true);
-	$("input[name='check']:checked").prop("checked",false); */
+ $("input[name='check']:checked").prop("checked",true);
+	$("input[name='check']:checked").prop("checked",false); 
 	
 
 	

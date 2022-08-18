@@ -77,48 +77,30 @@
 							</tr>
 							<tr>
 								<th style="width:9%">번호</th>
+								<th style="width:18%">상품명</th>
 								<th style="width:18%">아이디</th>
 								<th>제목</th>
-								<th style="width:22%">상품명</th>
 								<th>별점</th>
 								<th style="width:19%">작성일</th>
 							</tr>
-							<tr>
-								<td>1</td>
-								<td>admin</td>
-								<td nowrap>
-									<div style="overflow:hidden; text-overflow:ellipsis;">
-										이게뭔가요
-									</div>
-								</td>
-								<td>초코비</td>
-								<td nowrap>⭐ 4.8</td>
-								<td>22/08/18</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>admin</td>
-								<td nowrap>
-									<div style="overflow:hidden; text-overflow:ellipsis;">
-										이게뭔가요
-									</div>
-								</td>
-								<td>초코비</td>
-								<td nowrap>⭐ 4.8</td>
-								<td>22/08/18</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>admin</td>
-								<td nowrap>
-									<div style="overflow:hidden; text-overflow:ellipsis;">
-										이게뭔가요
-									</div>
-								</td>
-								<td>초코비</td>
-								<td nowrap>⭐ 4.8</td>
-								<td>22/08/18</td>
-							</tr>
+							<c:if test="${not empty reviews}">
+								<c:forEach var="r" items="${reviews}">
+									<tr>
+										<td>${r.reviewCode}</td>
+										<td nowrap>${r.productCode}</td>
+										<td>${r.memberId}</td>
+										<td nowrap>
+											<div style="overflow:hidden; text-overflow:ellipsis;">
+												${r.reviewContent}
+											</div>
+										</td>
+										<td nowrap>⭐ ${r.reviewStar}</td>
+										<td nowrap>
+											<fmt:parseDate value="${r.reviewDate}" var="dateValue" pattern="yyyyMMdd"/>
+										</td>
+									</tr>
+								</c:forEach>
+							</c:if>
 						</table>
 					</div>
 				</div>
@@ -131,33 +113,24 @@
 							</tr>
 							<tr>
 								<th style="width:10%">번호</th>
-								<th style="width:20%">아이디</th>
-								<th>내용</th>
-								<th style="width:22%">상품명</th>
+								<th style="width:18%">상품명</th>
+								<th style="width:18%">아이디</th>
+								<th>제목</th>
 								<th style="width:19%">작성일</th>
 							</tr>
-							<tr>
-								<td>1</td>
-								<td>admin</td>
-								<td nowrap>이게뭔가요뭔가요</td>
-								<td>초코비</td>
-								<td>22/08/18</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>admin</td>
-								<td nowrap>이게뭔가요뭔가요</td>
-								<td>초코비</td>
-								<td>22/08/18</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>admin</td>
-								<td nowrap>이게뭔가요뭔가요</td>
-								<td>초코비</td>
-								<td>22/08/18</td>
-							</tr>
-							
+							<c:if test="${not empty qnas}">
+								<c:forEach var="q" items="${qnas}">
+									<tr>
+										<td>${q.qnaCode}</td>
+										<td>${q.qnaCode}</td>
+										<td>${q.qnaCode}</td>
+										<td nowrap>${q.qnaTitle}</td>
+										<td>
+											${q.qnaDate}
+										</td>
+									</tr>
+								</c:forEach>
+							</c:if>
 						</table>
 					</div>
 				</div>

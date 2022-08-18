@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +30,9 @@ import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOption;
+import com.dal.dalgona.common.model.vo.Qna;
+import com.dal.dalgona.common.model.vo.Review;
 import com.dal.dalgona.member.model.service.MemberService;
 import com.google.gson.Gson;
 
@@ -61,17 +65,11 @@ public class MemberController {
 		String msg="" ,loc="";
 		log.debug("{1}",m);
 		log.debug("{1}",p);
-		Gson gson=new Gson();
 	
 		if(m!=null) {
-			
-			String Mjson =gson.toJson(m); 
-			String Pjson =gson.toJson(p); 
-//			String Ljson =gson.toJson(l);
 			Cart c =Cart.builder().member(m).product(p).build();
-			String Cjson =gson.toJson(c); 
-			int result=service.cartInsert(c);
 			System.out.println(c);
+			int result=service.cartInsert(c);
 			msg="장바구니에 등록 되었습니다";
 			loc="/member/mypage/cart";
 		}else {
@@ -85,9 +83,7 @@ public class MemberController {
 		mo.addAttribute("loc",loc);
 		return "common/msg";
 	}
-		
 	
-
 	@RequestMapping(value="/member/mypage/cart") // 장바구니
 	public ModelAndView cart(ModelAndView mv, HttpSession session,
 			Product p) {
@@ -98,11 +94,11 @@ public class MemberController {
 			service.selectProduct(p);
 			int sumMoney = service.sumMoney(memberId);// 장바구니 전체 금액 호출
 			System.out.println("sumMoney :" + sumMoney);
-			int productSelect=1; //상품 개수
+			int selAmount=1; //상품 개수
 			int fee = 2500; // 배송료
 			System.out.println("allMoney :" + (fee + sumMoney));
 			mv.addObject("sumMoney",sumMoney);
-			mv.addObject("ps",productSelect);
+			mv.addObject("sA",selAmount);
 			mv.addObject("fee",fee);
 			mv.addObject("product",p);
 			mv.addObject("allSum", fee + sumMoney); // 체크된 장바구니 상품 + 배송비
@@ -116,47 +112,10 @@ public class MemberController {
 
 	}
 	
-//	@RequestMapping(value="/member/mypage/cartInsert")
-//	public String cartInsert(Model mo,HttpSession session,
-//			@RequestParam(value="product")Product productCode) 
-//			throws Exception {
-//		Member m= (Member) session.getAttribute("loginMember");
-//		Product p=service.selectProduct(productCode);
-////		Likes l=service.selectLikes(likesCode);
-//		System.out.println(m);
-//		System.out.println(p);
-//		String msg="" ,loc="";
-//		log.debug("{1}",m);
-//		log.debug("{1}",p);
-//		Gson gson=new Gson();
-//	
-//		if(m!=null) {
-//			
-//			String Mjson =gson.toJson(m); 
-//			String Pjson =gson.toJson(p); 
-////			String Ljson =gson.toJson(l);
-//			Cart c =Cart.builder().member(m).product(p).build();
-//			String Cjson =gson.toJson(c); 
-//			int result=service.cartInsert(c);
-//			System.out.println(c);
-//			msg="장바구니에 등록 되었습니다";
-//			loc="redirect:/member/mypage/cart/"+p.getProductCode();
-//		}else {
-//			msg="로그인 후 이용해주세요";
-//			loc="/member/login/loginPage";
-//		}
-//		
-//		log.debug("{2}",m);
-//		log.debug("{2}",p);
-//		mo.addAttribute("msg",msg);
-//		mo.addAttribute("loc",loc);
-//		return "common/msg";
-//	}
-	  
-	
 	@RequestMapping(value="/payment/Move.do") //장바구니 -> 구매내역
 	public String paymentInsert(Model mo,HttpSession session,
-			@RequestParam(value="product")Product productCode) 
+			Product productCode,
+			@RequestParam(value="selAmount",required=false )int selAmount)
 			throws Exception {
 		Member m= (Member) session.getAttribute("loginMember");
 		Product p=service.selectProduct(productCode);
@@ -167,17 +126,13 @@ public class MemberController {
 		System.out.println(selectsDL);
 		log.debug("{1}",m);
 		log.debug("{1}",p);
-//		Gson gson=new Gson();
-//			String Mjson =gson.toJson(m); 
-//			String Pjson =gson.toJson(p); 
 		mo.addAttribute("pro",p);
 		mo.addAttribute("DL",selectsDL);
 		mo.addAttribute("cart",c);
 		
-		return "product/paymentCart.do";
+		return "payment/paymentCart";
 	}
 	
-
 	@RequestMapping("/member/delete.do") //개별 삭제(한 개 row만 삭제
 	 public String delete(@RequestParam long cartCode) {
       service.delete(cartCode);
@@ -196,6 +151,7 @@ public class MemberController {
 		result = true;
 		return result;
 	}
+	
 
 //	@RequestMapping("/member/deleteAll.do") // 장바구니 전체 삭제
 //	public String deleteAll(HttpSession session) {
@@ -211,9 +167,11 @@ public class MemberController {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		System.out.println("id :"+ memberId);
 		List<OrderDetail> orderDetailList = service.orderList(memberId);
+		int selAmount=1;
 		System.out.println("orderDetailList :"+orderDetailList);
+		System.out.println("selAmount :"+selAmount);
 		mo.addAttribute("orderDetailList", orderDetailList);
-		System.out.println("orderDetailList :"+orderDetailList);
+		mo.addAttribute("sA", selAmount);
 		
 		return "member/mypage/productOrderList";
 		
@@ -235,10 +193,17 @@ public class MemberController {
 	@RequestMapping("/member/mypage/zzim") // 찜
 	public String zzim(Model mo, HttpSession session) {
 		Member memberId = (Member) session.getAttribute("loginMember");
+		if(memberId!=null) {
+			
 		List<Likes> zzimList = service.zzimList(memberId);
 		System.out.println("찜 :"+zzimList);
 		mo.addAttribute("zzimList", zzimList);
+		mo.addAttribute("count", zzimList.size());
 		return "member/mypage/zzim";
+		}else {
+			
+			return "member/login/loginPage";
+		}
 		
 	}
 
