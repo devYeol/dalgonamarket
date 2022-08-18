@@ -98,11 +98,11 @@ public class MemberController {
 			service.selectProduct(p);
 			int sumMoney = service.sumMoney(memberId);// 장바구니 전체 금액 호출
 			System.out.println("sumMoney :" + sumMoney);
-			int productSelect=1; //상품 개수
+			int selAmount=1; //상품 개수
 			int fee = 2500; // 배송료
 			System.out.println("allMoney :" + (fee + sumMoney));
 			mv.addObject("sumMoney",sumMoney);
-			mv.addObject("ps",productSelect);
+			mv.addObject("sA",selAmount);
 			mv.addObject("fee",fee);
 			mv.addObject("product",p);
 			mv.addObject("allSum", fee + sumMoney); // 체크된 장바구니 상품 + 배송비
@@ -156,7 +156,8 @@ public class MemberController {
 	
 	@RequestMapping(value="/payment/Move.do") //장바구니 -> 구매내역
 	public String paymentInsert(Model mo,HttpSession session,
-			@RequestParam(value="product")Product productCode) 
+			Product productCode,
+			@RequestParam(value="selAmount",required=false )int selAmount)
 			throws Exception {
 		Member m= (Member) session.getAttribute("loginMember");
 		Product p=service.selectProduct(productCode);
@@ -174,7 +175,7 @@ public class MemberController {
 		mo.addAttribute("DL",selectsDL);
 		mo.addAttribute("cart",c);
 		
-		return "product/paymentCart.do";
+		return "payment/paymentCart";
 	}
 	
 
@@ -211,9 +212,11 @@ public class MemberController {
 		Member memberId = (Member) session.getAttribute("loginMember");
 		System.out.println("id :"+ memberId);
 		List<OrderDetail> orderDetailList = service.orderList(memberId);
+		int selAmount=1;
 		System.out.println("orderDetailList :"+orderDetailList);
+		System.out.println("selAmount :"+selAmount);
 		mo.addAttribute("orderDetailList", orderDetailList);
-		System.out.println("orderDetailList :"+orderDetailList);
+		mo.addAttribute("sA", selAmount);
 		
 		return "member/mypage/productOrderList";
 		
