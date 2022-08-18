@@ -18,7 +18,7 @@ public interface MemberService {
 
 	Likes selectLikes(long likesCode);
 	
-	List<Cart> cartList(Member memberId); 
+	List<Cart> cartList(Member memberId);
 	
 	Cart selectCart(Product productCode);
 

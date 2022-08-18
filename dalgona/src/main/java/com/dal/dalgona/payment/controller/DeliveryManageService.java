@@ -12,5 +12,7 @@ public interface DeliveryManageService {
 	int insertOd(OrderDetail od);
 	
 	int insertPo(ProductOrder po);
+	
+	ProductOrder selectPo(long orderCode);
 
 }

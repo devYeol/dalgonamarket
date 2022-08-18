@@ -36,6 +36,9 @@ public class DeliveryManageServiceImpl implements DeliveryManageService {
 		return dao.insertPo(session, po);
 	}
 	
-
+	@Override
+	public ProductOrder selectPo(long orderCode) {
+		return dao.selectPo(session, orderCode);
+	}
 
 }

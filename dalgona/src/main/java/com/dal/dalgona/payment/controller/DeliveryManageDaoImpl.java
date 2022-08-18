@@ -31,5 +31,12 @@ public class DeliveryManageDaoImpl implements DeliveryManageDao {
 		return session.insert("order.pOrder", po);
 		
 	}
+	
+	@Override
+	public ProductOrder selectPo(SqlSessionTemplate session, long orderCode) {
+		
+		return session.selectOne("order.selectPo", orderCode);
+		
+	}
 
 }
