@@ -3,11 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<c:set var= "c" value="${cartList}"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="" />
 </jsp:include>
 <jsp:useBean id="today" class="java.util.Date" />
 <style>
+
+.selAmount{
+ border:none;
+ width:25px;
+}
 
 .proName{
 font-size:20px;
@@ -188,7 +194,7 @@ text-decoration:none;
 				<b>장바구니</b>
 			</h4>
 			<c:choose>
-				<c:when test="${map.count ==0 }">
+				<c:when test="${count ==0 }">
 			장바구니가 비었습니다
 				<br>
 					<br>
@@ -211,23 +217,29 @@ text-decoration:none;
 						</div>
 					</div>
 
-					<hr>
-					<c:forEach var="c" items="${map.cartList}" varStatus="i">
+					<c:forEach var="c" items="${cartList}" varStatus="i">
 
 						<table style="margin-left: 10; width: 100%;">
 							<tbody>
 								<tr class="payment-tr" name="selectP">
-									<td style="width: 20%;"><input type="hidden" id="cartCode"
-										name="cartCode" value="${c.cartCode}"> <input
-										type="hidden" id="product.productCode"
-										name="product.productCode" value="${c.product.productCode}">
-										<input type="hidden" id="member.memberId"
-										name="member.memberId" value="${c.member.memberId}">
-										<input type="hidden" id="cartAmount" name="cartAmount"
-										value="${c.cartAmount}"> 
+					<hr>
+									<td style="width: 20%;" class="tdCheck">
 										<input class="check-input" name="check" id="${c.cartCode}" type="checkbox"
 										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
-										style="text-decoration: none;"> <img
+										style="text-decoration: none;"> 
+										<input type="hidden" id="cartCode" name="cartCode" value="${c.cartCode}"> 
+										<input type="hidden" class="tdAm" name="cartAmount" value="${c.cartAmount}"> 
+										<input type="hidden" class="tdPCode" name="productCode" value="${c.product.productCode}">
+										<input type="hidden" class="tdPName" name="productName" value="${c.product.productName}">
+										<input type="hidden" class="tdPCate" name="categoryName" value="${c.product.categoryName }">
+										<input type="hidden" class="tdPContent"name="productContent" value="${c.product.productContent}">
+										<input type="hidden" class="tdPrice"name="productPrice" value="${c.product.productPrice }">
+										<input type="hidden" class="tdThumb"name="productThumb" value="${c.product.productThumb }">
+										<input type="hidden" class="tdPsel" value="${ps }"> <!-- 상품개수 -->
+										<input type="hidden" class="totalCount" value="${c.totalCount }">
+										<input type="hidden" class="totalKind" value="${c.totalKind }">
+																			
+										<img
 											src="${c.product.productThumb }" width="150" height="150"
 											border="0" style="margin-left: 10" /> <!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
 									</a></td>
@@ -242,22 +254,20 @@ text-decoration:none;
 											<c:out value=" ${c.product.productName}" />
 										</div> <!-- 오예오예 오예스~ --> <br>
 										<div style="margin-top: 5;">	
-											<p>
+											<p id="priced">
 												<fmt:formatNumber pattern="###,###,###"
 													value="${c.product.productPrice}" />
 												&nbsp;원
 											</p>
-										</div> <br>
+										</div>
 										<div style="margin-top: 5; font-size: 15px">도착 예정</div></td>
-
-									<td style="text-align: center;"><c:out
-											value="${c.cartAmount} 개" />
-
+									<td style="text-align: center;">
+										<input type="number" min="1"class="selAmount" name="selAmount"  value="1" id="select_count">개
 										<div style="margin-top: 5px">
 											<p>
 
 												<fmt:formatNumber pattern="###,###,###"
-													value="${c.product.productPrice*c.cartAmount}" />
+													value="${c.product.productPrice*pc}" />
 												&nbsp;원
 											</p>
 										</div></td>
@@ -277,7 +287,6 @@ text-decoration:none;
 							</tbody>
 						</table>
 						<br>
-						<hr>
 					</c:forEach>
 
 
@@ -287,7 +296,7 @@ text-decoration:none;
 								<b>총 상품 가격</b> :<i> <fmt:formatNumber pattern="###,###,###"
 										value="${map.sumMoney}" /></i><span class="all-plus"><img
 									src="/resources/images/mypage/img_plus.png" style="width: 14;">
-								</span> 배송비 <i>${map.fee}</i> 원 <span class="all-plus"> <img
+								</span> 배송비 <i><c:out value="${fee}"/></i> 원 <span class="all-plus"> <img
 									src="/resources/images/mypage/img_equals.png"
 									style="width: 14;"></span> 총 주문금액 <i class="final-price"><fmt:formatNumber
 										pattern="###,###,###" value="${map.allSum}" /></i>
@@ -343,6 +352,18 @@ $("button[name= productListMove]").click(function(){
     	$("#checkAll").prop("checked",false)
     })
     
+  
+	
+	let let quantity =$(".selAmount").val();
+
+    
+    
+    
+    
+    
+    
+    
+    
     
   // 선택 삭제
     	$("#selectDelete").click(function(){
@@ -389,12 +410,13 @@ $("button[name= productListMove]").click(function(){
 				
 		})    
 		
+	/* $("input[name='check']:checked").prop("checked",true);
+	$("input[name='check']:checked").prop("checked",false); */
+	
+
+	
 		
-		
-	$("input[name='check']:checked").prop("checked",true);
-	$("input[name='check']:checked").prop("checked",false);
-		
-		
+	
 		
 </script>
 

@@ -234,6 +234,7 @@
 									<input type="hidden" name="productThumb" value="${z.product.productThumb}">
 									<input type="hidden" name="categoryName" value="${z.product.categoryName}">
 									<input type="hidden" name="productPrice" value="${z.product.productPrice}">
+									<input type="hidden" id="" name="selAmount"	value="1"> 
 									<input class="check-input"
 										name="check" id="${z.product.productCode }" type="checkbox"
 										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
