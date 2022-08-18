@@ -41,8 +41,15 @@ public class AdminController {
 
 	// 관리자 메인 이동
 	@RequestMapping("adminMain.do")
-	public String adminMain() {
-		return "admin/adminMain";
+	public ModelAndView adminManageMember(ModelAndView mv,
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam(defaultValue = "25") int numPerpage) {
+		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "memberEnrollDate"));
+		Page<Member> list = service.selectMembers(pagerequest);
+		mv.addObject("members", list.getContent());
+		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminMain.do"));
+		mv.setViewName("admin/adminMain");
+		return mv;
 	}
 
 	// 상품등록 페이지 이동

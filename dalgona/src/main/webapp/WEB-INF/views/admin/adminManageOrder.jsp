@@ -152,7 +152,7 @@
 										<td style="padding-right: 40px;">
 											<button class="adminbt" style="width: 80px; background-color: #6FB67F; margin-bottom: 20px;"
 											onClick="location.assign('${path}/product/productDetail/${od.product.productCode}')">리뷰확인</button>
-											<button class="adminbt" style="width: 80px; background-color: #D56B5A;" >삭제</button>
+											<button class="adminbt" style="width: 80px; background-color: #D56B5A;">삭제</button>
 										</td>
 									</tr>
 								</c:forEach>
