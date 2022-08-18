@@ -240,7 +240,7 @@
 										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
 										style="text-decoration: none;"> <img
 											src="${z.product.productThumb }" width="150" height="150"
-											border="1" style="margin-left: 10" />
+											 style="margin-left: 10" />
 									</a></td>
 									<td style="width: 55%"><a
 										href="${path}/product/productList" class="proName"><c:out

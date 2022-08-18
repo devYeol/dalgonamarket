@@ -292,6 +292,14 @@ img {
 						<tbody>
 						<tr  >
 						<td style="display: flex">
+						<input type="hidden" name="productCode" value="${o.product.productCode}">
+									<input type="hidden" class="tdPCode" name="productCode" value="${o.product.productCode}">
+										<input type="hidden" class="tdPName" name="productName" value="${o.product.productName}">
+										<input type="hidden" class="tdPCate" name="categoryName" value="${o.product.categoryName }">
+										<input type="hidden" class="tdPContent"name="productContent" value="${o.product.productContent}">
+										<input type="hidden" class="tdPrice"name="productPrice" value="${o.product.productPrice }">
+										<input type="hidden" class="tdThumb"name="productThumb" value="${o.product.productThumb }">
+										<input type="hidden" class="tdPsel" name="selAmount" value="${sA }"> <!-- 상품개수 -->|
 							<h3 style="margin-bottom: 0px; margin-left: 40px;">
 								주문날짜: ${o.productOrder.orderDate}
 							</h3>
@@ -327,8 +335,8 @@ img {
 								<div class="check-btnbox" style="display: flex; float:right;">
 									<div class="check-btn">
 										<button type="button" class="btn">교환,반품신청</button>
-										<button type="submit" class="btn">장바구니 담기</button>
-										<button type="button" id="reviewMove" class="btn">리뷰작성</button>
+										<button type="button" id="cartMoves"class="btn">장바구니 담기</button>
+										<button type="button" onclick="location.assign('${path}/product/productList')" class="btn">리뷰작성</button>
 									</div>
 								</div>
 							</td>
@@ -349,9 +357,8 @@ img {
 
 <script>
 
-
-	$("#reviewMove").click(function(){
-		
+	$("#cartMoves").click(function(){
+		$("#cartMove").submit();
 	})
 
 $("#productListMove").click(function(){
