@@ -35,5 +35,9 @@ public interface ProductService {
 	
 	int likesCount(long productCode);
 	
+	long deleteByReviewCode(long reviewCode);
 	
+	Review selectOneReview(long reviewCode);
+	
+	void updateReview(Review review);
 }

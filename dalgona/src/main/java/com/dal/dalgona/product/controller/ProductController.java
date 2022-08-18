@@ -71,7 +71,7 @@ public class ProductController {
       
 //      log.debug("{}찜수",likesCount);     
 //      log.debug("{}",op);
-      log.debug("{}",review);
+//      log.debug("{}",review);
       
       
       model.addAttribute("pro",p);
@@ -122,7 +122,7 @@ public class ProductController {
             reviewImagePath = pathReview.substring(target_num);
          }
 
-         log.debug("리뷰이미지{}",reviewImagePath);
+//         log.debug("리뷰이미지{}",reviewImagePath);
              
       String msg="";
       String loc="";
@@ -229,6 +229,109 @@ public class ProductController {
 	    model.addAttribute("loc",loc);
 	    return memberId;
    }
+   
+   	@RequestMapping("/product/reviewDelete.do")
+	@ResponseBody
+	public boolean deleteProduct(long reviewCode, HttpServletResponse response) throws IOException {
+		Long result = service.deleteByReviewCode(reviewCode);
+		return result > 0;
+	}
+   	
+   	@RequestMapping("/product/selectUpdateReview.do")
+	public String selectUpdateProduct(long reviewCode, Model model) {
+	
+   		Review r = service.selectOneReview(reviewCode);
+		model.addAttribute("r", r);		
+		
+		return "product/reviewUpdate";
+	}
+   	
+    @RequestMapping("/product/updateReview.do")
+    public String reviewUpdate( 
+          @RequestParam(value="productCode") long productCode,
+          @RequestParam(value="reviewContent") String reviewContent,
+          @RequestParam(value="memberId") String memberId,
+          @RequestParam(value="reviewStar", required = false) int reviewStar,
+          @RequestParam(value="reviewCode", required = false) long reviewCode,
+          @RequestParam(value="beforReviewImage") String beforReviewImage,//이전 리뷰 이미지
+          @RequestParam(value = "reviewImage", required = false) MultipartFile reviewImage,//업데이트 리뷰이미지   
+          HttpServletRequest rs, HttpSession session, Model model)  throws IllegalStateException, IOException {
+    		
+    	
+		String path = rs.getServletContext().getRealPath(beforReviewImage);	    	  
+		File f = null;
+			
+		String updatePath = rs.getServletContext().getRealPath("/resources/upload/product/review/");
+		File uploadDir = new File(updatePath);
+		
+		int random = (int) (Math.random() * 10000);
+				
+		Review review=Review.builder().memberId(memberId).productCode(productCode)
+	               .reviewContent(reviewContent).reviewDate(new Date())
+	               .reviewStar(reviewStar).review(null).build();
+	
+		String rename="";
+		if(reviewImage.isEmpty()) {  
+			
+			String target = "resources";
+			String updateReviewFile = path;
+			int target_num = updatePath.indexOf(target) - 1;
+			String reviewPath = updateReviewFile.substring(target_num);;
+			review.setReviewImage(reviewPath);
+		}
+		if(!reviewImage.isEmpty()) {
+			f = new File(path);
+			File reviewImageFile = new File(updatePath);
+	
+			String originalFilename = reviewImage.getOriginalFilename();
+			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			
+			rename = "review_" + random + ext;
+			
+			reviewImageFile = new File(updatePath + "/" + rename);
+			reviewImage.transferTo(reviewImageFile);
+			
+			String updatefileName = updatePath + reviewImageFile.getName();
+			
+			// 이미지주소자르기 썸네일
+			String target = "resources";
+			int target_num = updatefileName.indexOf(target) - 1;
+			String reviewImagePath = updatefileName.substring(target_num);
+			review.setReviewImage(reviewImagePath);
+//			log.debug(reviewImagePath);
+			
+			
+		}
+
+			
+		try {
+			service.updateReview(review);
+			//이전 파일 지우는 로직
+			if(f != null) {
+				//db를 거치고나서 만약 db가 수정이 완료되면 밑에 폴더삭제
+		      uploadFileDelete(f);
+			}
+		}catch(RuntimeException e) {
+			uploadFileDelete(new File(updatePath+"/"+rename));
+		}   
+    	
+    	return "";
+    }
+    
+  //파일삭제메소드
+  	private void uploadFileDelete(File f) {
+  		if(f != null) {
+  	        if(f.exists()) {
+  	            if(f.delete()) {
+  	            	System.out.println("파일삭제 성공!");
+  	            }else {
+  			    	System.out.println("파일삭제 실패!");
+  		        }
+  		    }
+  		}
+  	}
+   	
+   	
    
  
       

@@ -62,10 +62,10 @@
 						<div class="d-flex flex-wrap align-items-center justify-content-left justify-content-lg-start">
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
 								style="border: 1px solid white; background-color: white; padding: 8 16 8 16;">
-								<img src="/resources/images/header/search.svg" style="width: 24; height: 22; background-color: white; margin: 0;" >
+								<img src="${path}/resources/images/header/search.svg" style="width: 24; height: 22; background-color: white; margin: 0;" >
 							</button>
 							<!-- Modal -->
-							<form action="${path }/product/search.do" method="post">
+							<form action="${path}/product/search.do" method="post">
 							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 100%;">
 								<div id="close" class="modal-dialog modal-xl " style="max-width: 100%;height:30%; transform: translate(0,-30px);">
 									<div class="modal-content" style="height:100%">

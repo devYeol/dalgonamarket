@@ -9,13 +9,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +26,8 @@ import com.dal.dalgona.common.PageFactroyNoBootStrap;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
+import com.dal.dalgona.common.model.vo.Qna;
+import com.dal.dalgona.common.model.vo.Review;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,8 +44,14 @@ public class AdminController {
 	public ModelAndView adminManageMember(ModelAndView mv,
 			@RequestParam(defaultValue = "1") int cPage,
 			@RequestParam(defaultValue = "25") int numPerpage) {
-		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "memberEnrollDate"));
-		Page<Member> list = service.selectMembers(pagerequest);
+		List<Review> reviews=service.selectReviews();
+		List<Qna> qnas=service.selectQnas();
+		PageRequest pagerequest=PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "memberEnrollDate"));
+		Page<Member> list=service.selectMembers(pagerequest);
+		log.debug("{}",qnas);
+		log.debug("{}",reviews);
+		mv.addObject("reviews", reviews);
+		mv.addObject("qnas", qnas);
 		mv.addObject("members", list.getContent());
 		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminMain.do"));
 		mv.setViewName("admin/adminMain");
@@ -290,7 +296,6 @@ public class AdminController {
 		}
 		if(detailedImage.isEmpty()) { //==null
 			//이미지주소 자르면 넘어올것 같음
-			
 			String target = "resources";
 			String updatedetailFile = path2;
 			int target_num1 = updatedetailFile.indexOf(target) - 1;
@@ -323,14 +328,15 @@ public class AdminController {
 			po.setProductImage(detailedPath);
 		}
 		
-		List<ProductOption> option = new ArrayList(); 
+		List<ProductOption> option = new ArrayList();
 //		 option을 for문돌려 컬럼안에 집어넣음
 		for (int i = 0; i < optionName.length; i++) {
 			option.add(
 					ProductOption.builder().product(po).optionCode(optionCode[i]).optionName(optionName[i]).optionPrice(optionPrice[i]).build());
+			System.out.println("추가 옵션 : " + option);
 		}
 		
-		log.debug("option : ",option);
+		System.out.println("option : " + option);
 		log.debug("{}",option);
 		po.setOptionCode(option);
 		log.debug("{}",po);

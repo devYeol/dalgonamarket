@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
+import com.dal.dalgona.common.model.vo.Qna;
+import com.dal.dalgona.common.model.vo.Review;
 
 public interface AdminService {
 

@@ -299,7 +299,7 @@ img {
 										<input type="hidden" class="tdPContent"name="productContent" value="${o.product.productContent}">
 										<input type="hidden" class="tdPrice"name="productPrice" value="${o.product.productPrice }">
 										<input type="hidden" class="tdThumb"name="productThumb" value="${o.product.productThumb }">
-										<input type="hidden" class="tdPsel" name="selAmount" value="${sA }"> <!-- 상품개수 -->|
+										<input type="hidden" class="tdPsel" name="selAmount" value="${sA }"> <!-- 상품개수 -->
 							<h3 style="margin-bottom: 0px; margin-left: 40px;">
 								주문날짜: ${o.productOrder.orderDate}
 							</h3>
@@ -336,12 +336,12 @@ img {
 									<div class="check-btn">
 										<button type="button" class="btn">교환,반품신청</button>
 										<button type="button" id="cartMoves"class="btn">장바구니 담기</button>
-										<button type="button" onclick="location.assign('${path}/product/productList')" class="btn">리뷰작성</button>
+										<button type="button" onclick="location.assign('${path}/product/productDetail/${o.product.productCode}')" class="btn">리뷰작성</button>
 									</div>
 								</div>
 							</td>
 						</tr>
-						</tbody>
+						</tbody> 	
 					</table>
 					<br>
 				</c:forEach>

@@ -262,7 +262,7 @@ text-decoration:none;
 										</div>
 										<div style="margin-top: 5; font-size: 15px">도착 예정</div></td>
 									<td style="text-align: center;">
-										<input type="text" min="1"class="selAmount" name="selAmount"  value="1" id="select_count">개
+										<input type="text" class="selAmount" name="selAmount"  value="${sA }" id="select_count">개
 										<span>
 											<button type="button" class="btn plus_button" id="plus">+</button>
 											<button type="button" class="btn minus_button" id="minus">-</button>
@@ -271,7 +271,7 @@ text-decoration:none;
 											<p>
 
 												<fmt:formatNumber pattern="###,###,###"
-													value="${c.product.productPrice*sA}" />
+													value="${c.product.productPrice}" />
 												&nbsp;원
 											</p>
 										</div></td>
@@ -298,12 +298,12 @@ text-decoration:none;
 						<div class="allrprice-content">
 							<div class="allprice-form">
 								<b>총 상품 가격</b> :<i> <fmt:formatNumber pattern="###,###,###"
-										value="${map.sumMoney}" /></i><span class="all-plus"><img
+										value="${sumMoney}" /></i><span class="all-plus"><img
 									src="/resources/images/mypage/img_plus.png" style="width: 14;">
 								</span> 배송비 <i><c:out value="${fee}"/></i> 원 <span class="all-plus"> <img
 									src="/resources/images/mypage/img_equals.png"
 									style="width: 14;"></span> 총 주문금액 <i class="final-price"><fmt:formatNumber
-										pattern="###,###,###" value="${map.allSum}" /></i>
+										pattern="###,###,###" value="${allSum}" /></i>
 							</div>
 						</div>
 					</div>
@@ -407,8 +407,7 @@ $("button[name= productListMove]").click(function(){
     	}else{
     		return false;
     	}
-    })
-    
+    });
     
         $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
         	if(confirm("삭제 하시겠습니까?")){

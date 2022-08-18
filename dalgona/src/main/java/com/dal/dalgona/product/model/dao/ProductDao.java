@@ -41,5 +41,11 @@ public interface ProductDao {
 	int selLikes(SqlSession session,Map<String, Object> map) throws Exception;
 	
 	int likesCount(SqlSession session,long productCode);
+	
+	long deleteByReviewCode(SqlSession session,long reviewCode);
+	
+	Review selectOneReview(SqlSession session,long reviewCode);
+	
+	void updateReview(SqlSession session,Review review);
 
 }

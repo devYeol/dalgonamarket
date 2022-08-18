@@ -14,9 +14,12 @@ import com.dal.dalgona.admin.model.dao.AdminDao;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
+import com.dal.dalgona.common.model.vo.Qna;
+import com.dal.dalgona.common.model.vo.Review;
 import com.dal.dalgona.option.model.dao.OptionDao;
 import com.dal.dalgona.product.model.dao.ProductDao;
 import com.dal.dalgona.qna.model.dao.QnaDao;
+import com.dal.dalgona.review.model.dao.ReviewDao;
 import com.dal.dalgona.working.model.dao.PjeDaoJpa;
 
 @Service
@@ -33,6 +36,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private ReviewDao reviewDao;
 	
 	@Autowired
 	private QnaDao qnaDao;
@@ -97,7 +103,13 @@ public class AdminServiceImpl implements AdminService{
 		return optionUpdate;
 	}
 	
+	public List<Review> selectReviews() {
+		return reviewDao.findAll();
+	}
 	
+	public List<Qna> selectQnas() {
+		return qnaDao.findAll();
+	}
 
 	
 }
