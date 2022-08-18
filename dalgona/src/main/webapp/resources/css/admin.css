@@ -40,8 +40,10 @@ html {
 
   z-index: 9999;
   
+  /* 사이드바 배경변경 */
   /* background-image: url(../images/10.jpg); */
-  background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(#141E30, #243B55);
+  /* background: linear-gradient(#3A6073, #16222A); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -59,14 +61,27 @@ html {
 	cursor: pointer;
 }
 
+.loginfo {
+	margin: 40px 15px 20px 7px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	
+	border: 1px solid #969696;
+	border-radius: 7px;
+	
+	width: 93%;
+	
+	display: flex;
+	align-items: center;
+}
+
 .menucontainer {
 	position: relative;
-	top: 50px;
 	/* left: 30px; */
 }
 
 .menu {
-	padding-left: 40px;
+	padding-left: 27px;
 	height: 50px;
 	color: white;
 	font-size: 25px;
@@ -265,12 +280,12 @@ html {
 }
 
 .card {
-	width: 270px;
-	height: 170px;
+	width: 250px;
+	height: 135px;
 	/* border: 1px solid black; */
 	box-shadow: 1px 2px 5px #999;
 	transition: all .4s;
-	margin: 30px;
+	margin: 30px 5vh 30px 5vh;
 	background-color: white;
 	display:flex;
 	justify-content: center;
@@ -305,16 +320,42 @@ html {
 	border-radius: 15px;
 }
 
-.content {
+.contentlist {
 	/* border: 1px solid black; */
 	
 	background-color: white;
-	width: 1000px;
-	height: 250px;
+	width: 43%;
+	min-height: 25vh;
 	box-shadow: 1px 2px 5px #999;
 	transition: all .4s;
-	margin: 40px;
+	margin: 36px;
 	border-radius: 5px;
+	padding: 15px;
+	
+	display: flex;
+	justify-content: center;
+}
+
+.contable {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+
+.contable th{
+	height: 28px;
+	
+	background-color: #DEDDCF;
+	text-align: center;
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+}
+
+.contable td{
+	/* border: 1px solid black; */
+	height: 28px;
+	border-bottom: 1px solid #808080;
+	text-align: center;
 }
 
 .statsdiv {
@@ -446,7 +487,7 @@ html {
 
 .listtable td{
 	/* border: 1px solid black; */
-	border-top: 1px solid #808080;
+	/* border-top: 1px solid #808080; */
 	border-bottom: 1px solid #808080;
 	font-weight: bolder;
 	text-align: center;
