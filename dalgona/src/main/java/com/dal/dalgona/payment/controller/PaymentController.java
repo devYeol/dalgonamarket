@@ -1,6 +1,7 @@
 package com.dal.dalgona.payment.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -114,9 +115,10 @@ public class PaymentController {
 		
 		Member memberId = (Member) session.getAttribute("loginMember");
 		
-//		log.debug("{}",p);
-//		log.debug("{}",po);
-//		log.debug("{}",dl);
+		
+		log.debug("{}",p);
+		log.debug("{}",po);
+		log.debug("{}",dl);
 		log.debug("{}",productName);
 		log.debug("{}",selAmount);
 		log.debug("{}",selectedOpt);
@@ -126,21 +128,21 @@ public class PaymentController {
 		model.addAttribute("selAmount", selAmount);
 		
 //		dl=service.selectaddrBase(m); //여기서 기본배송지 선택해서
-//		dl=dlService.selectDl(memberId); //여기서 기본배송지 선택해서
 //		po=ProductOrder.builder().orderDate(new Date()).orderStatus("디폴").selectLocation(dl).build();
-		po=ProductOrder.builder().orderStatus("주문대기").build();
 		
-		model.addAttribute("deliveryLocation", dl);
+		po=ProductOrder.builder().orderDate("mm/DD").orderStatus("주문대기").deliveryLocation(dl).build();
 		
-//		Product p;
-//		int selsu=selAmount;
+//		int result =dlService.insertPo(po);
+		
+//		model.addAttribute("deliveryLocation", dl);
 		
 		OrderDetail od=OrderDetail.builder().productOrder(po).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
 		
-		log.debug("{}", dl);
-		log.debug("{}", od);
-
-//		paymentService.insertOrderDetail(od);
+//		dlService.insertOd(od);
+		
+		log.debug("dl : {}", dl);
+		log.debug("po : {}", po);
+		log.debug("od : {}", od);
 		
 		return "order/payment/paymentProduct";
 		
