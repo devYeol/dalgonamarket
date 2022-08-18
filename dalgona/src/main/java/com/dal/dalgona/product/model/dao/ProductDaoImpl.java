@@ -104,6 +104,30 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("likes.likesCount", productCode);
 	}
+
+	@Override
+	public long deleteByReviewCode(SqlSession session, long reviewCode) {
+		// TODO Auto-generated method stub
+		return session.delete("review.delReview",reviewCode);
+	}
+
+	@Override
+	public Review selectOneReview(SqlSession session, long reviewCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("review.selectOneReview",reviewCode);
+	}
+
+	@Override
+	public void updateReview(SqlSession session, Review review) {
+		// TODO Auto-generated method stub
+		session.update("review.updateReview",review);
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

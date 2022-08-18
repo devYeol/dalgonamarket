@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +15,15 @@ import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.common.model.vo.Qna;
 import com.dal.dalgona.common.model.vo.Review;
+import com.dal.dalgona.option.model.dao.OptionDao;
 import com.dal.dalgona.product.model.dao.ProductDao;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
-	private ProductDao dao;	
+	private ProductDao dao;
+	
 	
 	@Autowired
 	private SqlSessionTemplate session;
@@ -118,6 +122,32 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return dao.likesCount(session,productCode);
 	}
+
+
+	@Override
+	public long deleteByReviewCode(long reviewCode) {
+		// TODO Auto-generated method stub
+		return dao.deleteByReviewCode(session,reviewCode);
+	}
+
+
+	@Override
+	public Review selectOneReview(long reviewCode) {
+		// TODO Auto-generated method stub
+		return dao.selectOneReview(session,reviewCode);
+	}
+
+
+	@Override
+	public void updateReview(Review review) {
+		// TODO Auto-generated method stub
+		dao.updateReview(session,review);
+	}
+	
+	
+	
+	
+	
 
 	
 	

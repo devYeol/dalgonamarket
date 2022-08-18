@@ -154,6 +154,7 @@
 							id="upFile1"> <!-- <label class="custom-file-label"
 							for="upFile1">파일을 선택하세요</label> -->
 					</div>
+					<br>
 					<div class="row">
 						<div class="col-10">
 							<textarea class="col-auto form-control" type="text"
@@ -171,11 +172,11 @@
 			<hr>
 			<c:if test="${not empty review }">
 				<c:forEach var="re" items="${review }">
-					<table style="margin-left: 10; width: 98%;">
+					<table style="margin-left: 10; width: 98%; height:150px;">
 						<tbody>
 							<tr class="payment-tr">
 
-								<td style="width: 55%"><a href="#"
+								<td style="width: 70%"><a href="#"
 									style="color: black; text-decoration: none; font-size: 17"><b><c:out
 												value="${re.memberId }" /></b></a><br>
 									<div style="margin-top: 5; font-size: 15px">
@@ -187,84 +188,27 @@
 									<div style="margin-top: 5; font-size: 15px">
 										<c:out value="${re.reviewContent }" />
 									</div></td>
-
-
 								<td style="width: 20%;">
 								<c:if test="${not empty re.reviewImage }">
 									<img src="${re.reviewImage }" width="150" height="150" border="1" />
 								</c:if>
+								</td >
+								<td style="width: 10%;">
+								<c:if test="${re.memberId==loginMember.memberId }">
+								<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="javascript:window.open('${path}/product/selectUpdateReview.do?reviewCode=${re.reviewCode}','new','left=50, top=50, width=520, height=500')">수정</button>
+								<button class="adminbt" id="<c:out value="${re.reviewCode}"/>" name="<c:out value="${re.reviewCode}"/>" 
+										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event)">삭제</button>
+								</c:if>
+								<c:if test="${loginMember.memberId=='admin' }">
+								<button>답글</button>
+								</c:if>
 								</td>
 							</tr>
+						<hr>
 						</tbody>
 					</table>
-					<hr>
 				</c:forEach>
 			</c:if>
-
-
-
-
-			<%-- <c:forEach items="${store.reviewList }" var="reviewList">
-		<li>
-		    <div class="client">
-		        
-		        <div class="review_header">
-		            <div>
-		                <div class="nickname">${reviewList.nickname }</div>
-		                <div>
-		                    
-		                    <c:forEach begin="0" end="4" var="i">
-		                        <c:choose>
-		                               <c:when test="${Math.round(reviewList.score) > i }">
-		                                   <i class="far fas fa-star"></i>
-		                               </c:when>
-		                               <c:otherwise>
-		                                   <i class="far fa-star"></i>
-		                               </c:otherwise>
-		                         </c:choose>
-		                    </c:forEach>
-		                    
-		                    <span><fm:formatDate value="${reviewList.regiDate }" pattern="yyyy-MM-dd" /> </span>
-		                </div>
-		            </div>
-		        </div> 
-		            
-		        <div>
-		            <c:if test="${!empty reviewList.reviewImg }">
-		                <div><img src="${reviewList.reviewImg }" alt="이미지" class="review_img"></div>
-		            </c:if>
-		            <div>${reviewList.reviewContent } </div>
-        </div>
-    </div>
-    
-    
-    <div class="boss">
-        <c:if test="${!empty reviewList.bossComment }">	
-            <div class="boss_comment_box">
-                <div class="nickname">사장님</div>
-                <div class="boss_comment">${reviewList.bossComment }</div>
-            </div>
-        </c:if>
-    </div>
-    
-    
-     <div class="boss input">
-            <div class="boss_comment_box">
-             <div class="nickname">사장님</div>
-            <div class="boss_comment">
-                <textarea class="comment_area" spellcheck="false"></textarea>
-            </div>
-            
-            <div>
-                <button class="boss_comment_btn reply" >댓글 달기</button>
-                <input type="hidden" value="${reviewList.orderNum }" class="order_num">
-            </div>
-        </div>
-       </div>
-</li>
-</c:forEach> --%>
-
-
 		</ul>
 		<!-- 리뷰 탭 -->
 
@@ -313,6 +257,28 @@
 
 
 	<script>
+	
+	//리뷰삭제
+	const adminDeleteProduct=(e)=>{
+		if(confirm("삭제 하시겠습니까?")){
+		}else{
+		 	return false;
+		 }
+		$.ajax({
+			url:"${path}/product/reviewDelete.do",
+			data:{reviewCode:$(e.target).attr("name")},
+			success:data=>{
+				if(data){
+					$(e.target).parents("table").remove();
+				}
+			}
+		});
+	}
+	
+	
+	
+	
+	
 		$(document).ready(function() {
 			
 			$(".inf i").click(function(){
@@ -601,9 +567,9 @@ main .comment li .client {
 	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
-#reviewContents {
+#reviewContent {
 	width: 100%;
-	height: 150px;
+	height: 100px;
 	padding: 10px;
 	box-sizing: border-box;
 	border: solid 1.5px #D3D3D3;
