@@ -49,7 +49,7 @@
 								<div>
 										<input type="hidden" name="optionCode" value="<c:out value="${option.optionCode }"/>">
 										<input class="adminin" name="optionName" type="text"value="<c:out value="${option.optionName }"/> ">
-										<input class="adminin" name="optionPrice" type="number" min="1000"value="${option.optionPrice }">
+										<input id="price2" class="adminin" name="optionPrice" type="number" min="100" value="${option.optionPrice }">
 								</div>
 								<div>
 									<button class="adminbt" type="button" id="remove"  style="width:50; font-size:13">삭제</button>
@@ -69,10 +69,11 @@
 						<td style="width: 50%;">
 							<input type="hidden" name="beforeThumbnail" value="${p.productThumb}">
 							<input type="hidden" name="beforedetailedImage" value="${p.productImage }">
+							
 							<img src="${p.productThumb }" width="95" height="100" border="0" />
-								<input type="file" name="thumbnail" style="margin-bottom: 5px" >
+								<input type="file" name="thumbnail" style="margin-bottom: 5px" > <!-- files[0] <<사진   -->
 							<img src="${p.productImage }" width="95" height="100" border="0" />
-								<input type="file" name="detailedImage" >
+								<input type="file" name="detailedImage">
 						</td>
 					</tr>
 					<tr>
@@ -99,10 +100,23 @@
 	    	  frmGo.submit();
 	    	  return true;
 	      }
-	    //등록
+	    //수정
 	      function adminUpdate(returnfrmGo){
+	    	  const price = $('#price2').val();
+	    	  if(price<100){
+	    		  alert("옵션가격이 100원 이상이여야합니다!");
+	    		  return false;
+	    	  }
 	    	  returnfrmGo.action = ${path}"/admin/updateProduct.do";
 	    	  returnfrmGo.submit();
 	    	  return true;
 	      }
+	    
+	    function fn_update(){
+	    	const price = $('#price2').val(); //<input class="adminin" value값 price 변수에
+	    	if(price<100){
+	    		return false;
+	    	}
+	    		return true;
+	    }
 	</script>

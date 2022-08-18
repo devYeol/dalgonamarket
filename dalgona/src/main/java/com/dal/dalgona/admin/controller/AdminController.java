@@ -224,14 +224,16 @@ public class AdminController {
 								@RequestParam(value = "productName") String product_Name,
 								@RequestParam(value = "categoryName") String categoryName, long[] optionCode, String[] optionName,
 								int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
-		//upload폴더에서 삭제(썸네일)
+		
 		System.out.println(product_Content);
 		String path = rs.getServletContext().getRealPath(beforeThumbnail);
-	    File f = new File(path);
-	    String path2 = rs.getServletContext().getRealPath(beforedetailedImage);
-	    File f2 = new File(path2);
-		log.debug("{}",f);
-		log.debug("{}",f2);
+	    	System.out.println(path);
+	    String path2 = rs.getServletContext().getRealPath(beforedetailedImage); //db에 있는값이 조금 이상함
+	    	System.out.println(path2);
+			File f = null;
+			File f2 = null;
+		//log.debug("{}",f);
+		//log.debug("{}",f2);
 		String updatePath = rs.getServletContext().getRealPath("/resources/upload/product/");
 		System.out.println("updatePath : " + updatePath);
 		File uploadDir = new File(updatePath);
@@ -245,14 +247,23 @@ public class AdminController {
 		String rename="",secondRename="";
 		//파일 분기처리 -> 둘다 널이 아닐때 썸네일만 널아닐때 상세만 널아닐때 둘다 널일때
 		//둘다 널일때?
-		if(thumbnail != null) {
+		if(thumbnail.isEmpty()) { //디테일만 들어올때 
 			
+			String target = "resources";
+			String updateThumFile = path;
+			int target_num = updatePath.indexOf(target) - 1;
+			String thumbnailPath = updateThumFile.substring(target_num);;
+			po.setProductThumb(thumbnailPath);
+			log.debug(thumbnailPath);
+		}
+		if(!thumbnail.isEmpty()) {
+			f = new File(path);
 			File thumbnailFile = new File(updatePath);
 			System.out.println("thumbnailFile : " + thumbnailFile);
 			
 			String originalFilename = thumbnail.getOriginalFilename();
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-			System.out.println("originalFilename : " + originalFilename);
+			System.out.println("오리지널 : " + originalFilename);
 			
 			rename = "admin_" + random + ext;
 			
@@ -266,15 +277,28 @@ public class AdminController {
 			int target_num = updatefileName.indexOf(target) - 1;
 			String thumbnailPath = updatefileName.substring(target_num);
 			po.setProductThumb(thumbnailPath);
-				
-		}
-		if(detailedImage != null) {
+			log.debug(thumbnailPath);
 			
+			
+		}
+		if(detailedImage.isEmpty()) { //==null
+			//이미지주소 자르면 넘어올것 같음
+			
+			String target = "resources";
+			String updatedetailFile = path2;
+			int target_num1 = updatedetailFile.indexOf(target) - 1;
+			String detailedPath = updatedetailFile.substring(target_num1);
+			po.setProductImage(detailedPath);
+			System.out.println("디테일 이미지 자르기 : " + detailedPath);
+		}
+		System.out.println("디테일드 이미지 : "+detailedImage);
+		if(!detailedImage.isEmpty()) { //!=null
+			f2 = new File(path2);
 			File detailedImageFile = new File(updatePath);
-			System.out.println("detailedImageFile : " + detailedImageFile);
+			System.out.println("디테일 : " + detailedImageFile);
 			
 			String secondFilename = detailedImage.getOriginalFilename();
-			String exts = secondFilename.substring(secondFilename.lastIndexOf("."));
+			String exts = secondFilename.substring(secondFilename.lastIndexOf(".")); //null로 들어오는데 .을 못찾아서 에러발생
 			System.out.println("secondFilename : " + secondFilename);
 			
 			secondRename = "admin_second_" + random + exts;
@@ -291,9 +315,6 @@ public class AdminController {
 			String detailedPath = updatedetailFile.substring(target_num1);
 			po.setProductImage(detailedPath);
 		}
-		
-		
-
 		
 		List<ProductOption> option = new ArrayList(); 
 //		 option을 for문돌려 컬럼안에 집어넣음
@@ -328,6 +349,8 @@ public class AdminController {
 		log.debug("{}",product_Name);
 		return "redirect:adminManageProduct.do";
 	}
+	
+	
 	
 	//파일삭제메소드
 	private void uploadFileDelete(File f) {
