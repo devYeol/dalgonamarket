@@ -11,4 +11,5 @@ public interface PjeService {
 	int searchMembersCount(Map<String,Object> param);
 	List<OrderDetail> selectOrderDetails();
 	List<OrderDetail> selectOrderDetailsCode(long orderCode);
+	
 }
