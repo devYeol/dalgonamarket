@@ -72,4 +72,8 @@
 		AND o.ORDER_CODE = #{orderCode}
 	</select>
 	
+<!-- 	<select id="orderDetailList" resultMap="orderDetailMap">
+		select * from order
+	</select>
+	 -->
 </mapper>

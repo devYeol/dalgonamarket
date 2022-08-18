@@ -296,7 +296,6 @@ public class AdminController {
 		}
 		if(detailedImage.isEmpty()) { //==null
 			//이미지주소 자르면 넘어올것 같음
-			
 			String target = "resources";
 			String updatedetailFile = path2;
 			int target_num1 = updatedetailFile.indexOf(target) - 1;
@@ -329,14 +328,15 @@ public class AdminController {
 			po.setProductImage(detailedPath);
 		}
 		
-		List<ProductOption> option = new ArrayList(); 
+		List<ProductOption> option = new ArrayList();
 //		 option을 for문돌려 컬럼안에 집어넣음
 		for (int i = 0; i < optionName.length; i++) {
 			option.add(
 					ProductOption.builder().product(po).optionCode(optionCode[i]).optionName(optionName[i]).optionPrice(optionPrice[i]).build());
+			System.out.println("추가 옵션 : " + option);
 		}
 		
-		log.debug("option : ",option);
+		System.out.println("option : " + option);
 		log.debug("{}",option);
 		po.setOptionCode(option);
 		log.debug("{}",po);
