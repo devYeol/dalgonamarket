@@ -13,7 +13,20 @@
 		<result column="review_star" property="reviewStar"/>	
 		<result column="review_level" property="reviewLevel"/>	
 		<association column="review_ref" property="review" resultMap="reviewMap"/>
+		<!-- <association column="product_code" property="product" resultMap="productMap"/> -->
 	</resultMap>
+	
+	<resultMap type="product" id="productMap">
+		<id property="productCode" column="product_code"/>
+		<result property="productName" column="product_name"/>
+		<result property="productPrice" column="product_price"/>
+		<result property="productContent" column="product_content"/>
+		<result property="productAmount" column="product_amount"/>
+		<result property="productThumb" column="product_thumb"/>
+		<result property="productImage" column="product_image"/>
+		<result property="productDate" column="product_date"/>
+	</resultMap>
+	
 	<select id="reviewList"  parameterType="review" resultMap="reviewMap" >
 		SELECT * FROM REVIEW WHERE PRODUCT_CODE=#{productCode}
 	</select>
@@ -41,10 +54,14 @@
 			,REVIEW_STAR=#{reviewStar} WHERE REVIEW_CODE=#{reviewCode};
 	</update>
 	
-
-	
-
-	
-	
+	<select id="selectReviewsTop8" resultMap="reviewMap">
+		SELECT *
+		FROM (
+			SELECT * FROM REVIEW 
+			JOIN PRODUCT USING (PRODUCT_CODE)
+			ORDER BY REVIEW_DATE DESC
+		)
+		WHERE ROWNUM BETWEEN 1 AND 8
+	</select>
 	
 </mapper>
