@@ -74,10 +74,10 @@
 							<input type="hidden" name="beforeThumbnail" value="${p.productThumb}">
 							<input type="hidden" name="beforedetailedImage" value="${p.productImage }">
 							
-							<img src="${p.productThumb }" width="95" height="100" border="0" />
-								<input type="file" name="thumbnail" style="margin-bottom: 5px" onchange="setThumbnail(event);"> <!-- files[0] <<사진   -->
-							<img src="${p.productImage }" width="95" height="100" border="0" />
-								<input type="file" name="detailedImage" onchange="setDetailedImage(event);">
+							<img id="thumbnail" src="${p.productThumb }" width="95" height="100" border="0" />
+								<input id="thumbnail" type="file" name="thumbnail" style="margin-bottom: 5px" accept="image/*" onchange="setThumbnail(event);"> <!-- files[0] <<사진   -->
+							<img id="detailedImage" src="${p.productImage }" width="95" height="100" border="0" />
+								<input type="file" name="detailedImage" accept="image/*" onchange="setDetailedImage(event);">
 						</td>
 					</tr>
 					<tr>
@@ -128,15 +128,21 @@
 	           }
 	          });
 	      });
-	      //사진변경
+	      //썸네일 사진변경
 	      function setThumbnail(event) {
 	        var reader = new FileReader();
-	
 	        reader.onload = function(event) {
 	          var img = document.getElementById('thumbnail');
-	          /* var img = document.createElement("img"); */
 	          img.setAttribute("src", event.target.result);
-	          /* document.querySelector("div#image_container").appendChild(img); */
+	        };
+	        reader.readAsDataURL(event.target.files[0]);
+	      }
+	      //상세이미지 사진변경
+	      function setDetailedImage(event) {
+	        var reader = new FileReader();
+	        reader.onload = function(event) {
+	          var img = document.getElementById('detailedImage');
+	          img.setAttribute("src", event.target.result);
 	        };
 	        reader.readAsDataURL(event.target.files[0]);
 	      }
