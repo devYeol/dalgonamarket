@@ -77,7 +77,10 @@
 				</div>
 
 				<div class="deli-btn" style="float: right;">
-					<button type="submit" class="btn btn-primary" id="delivery-change-btn" onclick="popAddress()">배송지변경</button>
+					<%@ include file="/WEB-INF/views/order/payment/modifyAddress.jsp"%>
+					<!-- <button type="submit" class="btn btn-primary" id="delivery-change-btn" onclick="popAddress()">배송지변경</button> -->
+					<button type="submit" class="btn btn-primary"
+						id="delivery-change-btn" onclick="modifyAddress()">배송지변경</button>
 				</div>
 			</div>
 
@@ -87,40 +90,32 @@
 				<tbody>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">이름</label></th>
-						<td id="addrReceiver"><c:out value="${deliveryLocation.addrReceiver }" /></td>
+						<td><input type="text" id="addrReceiver" name="addrReceiver"
+							value="${deliveryLocation.addrReceiver }" placeholder="도로명"
+							style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">배송주소</label></th>
-						<td>
-							<input type="text" id="addrPostNum" name="addrPostNum" 
-							value="${deliveryLocation.adrPostNum }"
-							placeholder="우편번호"
-							readonly="readonly"
-							style="height: 30px;" />
-						</td>
+						<td><input type="text" id="addrPostNum" name="addrPostNum"
+							value="${deliveryLocation.adrPostNum }" placeholder="우편번호"
+							readonly="readonly" style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for=""></label></th>
-						<td>
-							<input type="text" id="addrRoadName" name="addrRoadName" 
-							value="${deliveryLocation.addrRoadName }" 
-							placeholder="도로명"
-							readonly="readonly"
-							style="height: 30px; width: 300px;" />
-						</td>
+						<td><input type="text" id="addrRoadName" name="addrRoadName"
+							value="${deliveryLocation.addrRoadName }" placeholder="도로명"
+							readonly="readonly" style="height: 30px; width: 300px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for=""></label></th>
-						<td>
-							<input type="text" id="addrDetail" name="addrDetail" 
-							value="" 
-							placeholder="상세주소 입력"
-							style="height: 30px;" />
-						</td>
+						<td><input type="text" id="addrDetail" name="addrDetail"
+							value="${deliveryLocation.addrDetail }" placeholder="상세주소 입력" style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">전화번호</label></th>
-						<td id="addrPhone"><c:out value="${deliveryLocation.addrPhone }" /></td>
+						<td><input type="text" id="addrReceiver" name="addrReceiver"
+							value="${deliveryLocation.addrPhone }" placeholder="전화번호"
+							style="height: 30px;" /></td>
 					</tr>
 				</tbody>
 			</table>

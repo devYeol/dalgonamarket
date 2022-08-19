@@ -28,4 +28,13 @@
 		
 		
 	</select>
+	
+	<delete id="deleteOption" parameterType="_long">
+		delete from product_Option where product_code=#{ppp}
+	</delete>
+	
+	<!-- <insert id="insertOption" parameterType="productOption"	>
+		insert into product_Otion values (seq_option_code.nextval, #{optionName}, #{optionPrice}, #{productCode})
+	</insert> -->
+	
 </mapper>

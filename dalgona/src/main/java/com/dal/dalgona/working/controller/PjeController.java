@@ -2,7 +2,9 @@
 package com.dal.dalgona.working.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dal.dalgona.common.PageFactroyNoBootStrap;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
+import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.working.model.service.PjeServiceImpl;
 
@@ -95,6 +98,7 @@ public class PjeController {
 		// log.debug("{}",list);
 		mv.addObject("productOrders",list.getContent());
 		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageOrder.do"));
+		mv.addObject("cPage",cPage);
 		mv.setViewName("admin/adminManageOrder");
 		return mv;
 	}
@@ -103,6 +107,20 @@ public class PjeController {
 	@ResponseBody
 	public String adminOrderPermit(long orderCode, HttpServletResponse response) throws IOException {
 		ProductOrder result = service.adminOrderPermit(orderCode);
+		if (result!=null) {
+			List<OrderDetail> orders=service.selectOrderDetailsCode(orderCode);
+			Iterator<OrderDetail> i=orders.iterator();
+			while(i.hasNext()) {
+				OrderDetail od=i.next();
+				log.debug("{}", od.getProduct().getProductCode());
+				log.debug("{}", od.getOrderAmount());
+				Map<String,Object> param=new HashMap();
+				param.put("productCode", od.getProduct().getProductCode());
+				param.put("orderAmount", od.getOrderAmount());
+				int cal=service.minusProductAmount(param);
+			}
+			
+		}
 		return result.getOrderStatus();
 	}
 	

@@ -90,8 +90,9 @@
 				<tbody>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">이름</label></th>
-						<td id="addrReceiver"><c:out
-								value="${deliveryLocation.addrReceiver }" /></td>
+						<td><input type="text" id="addrReceiver" name="addrReceiver"
+							value="${deliveryLocation.addrReceiver }" placeholder="도로명"
+							style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">배송주소</label></th>
@@ -108,12 +109,13 @@
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for=""></label></th>
 						<td><input type="text" id="addrDetail" name="addrDetail"
-							value="" placeholder="상세주소 입력" style="height: 30px;" /></td>
+							value="${deliveryLocation.addrDetail }" placeholder="상세주소 입력" style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">전화번호</label></th>
-						<td id="addrPhone"><c:out
-								value="${deliveryLocation.addrPhone }" /></td>
+						<td><input type="text" id="addrReceiver" name="addrReceiver"
+							value="${deliveryLocation.addrPhone }" placeholder="전화번호"
+							style="height: 30px;" /></td>
 					</tr>
 				</tbody>
 			</table>

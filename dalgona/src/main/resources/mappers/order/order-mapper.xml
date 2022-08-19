@@ -33,8 +33,8 @@
 	<resultMap type="DeliveryLocation" id="deliveryLocationMap">
 		<id property="addressCode" column="address_code"/>
 		<result property="addrDetail" column="addr_detail"/>
-		<result property="adrPostNum;" column="adr_postNum;"/>
-		<result property="addrRoadName" column="addr_roadName"/>
+		<result property="adrPostNum" column="adr_post_num"/>
+		<result property="addrRoadName" column="addr_road_name"/>
 		<result property="addrReceiver" column="addr_receiver"/>
 		<result property="addrPhone" column="addr_phone"/>
 		<result property="addrBase" column="addr_base"/>
@@ -97,10 +97,10 @@
 		</selectKey> -->
 		    
 		INSERT INTO ORDER_DETAIL VALUES (
-			   #{product.productCode },
+			#{product.productCode },
 			#{productOrder.orderCode },
-			   #{orderAmount },
-			   #{orderOption })
+			#{orderAmount },
+			#{orderOption })
 
 	</insert>
 

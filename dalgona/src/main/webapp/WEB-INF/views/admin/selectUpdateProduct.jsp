@@ -44,18 +44,22 @@
 							<div style="display: flex; margin-top:5; flex-direction: row-reverse;">
 								<button id="addOptionBtn"  class="adminbt" type="button" style="width: 80">옵션추가</button>
 							</div>
-							<c:forEach var="option" items="${po }">
+							 <c:forEach var="option" items="${po }"> <!-- db에 있는 option 2개 옵션있는데 -->
 							<div style="display:flex;justify-content:left;align-items:center;margin:2%" id="optionInput">
 								<div>
-										<input type="hidden" name="optionCode" value="<c:out value="${option.optionCode }"/>">
-										<input class="adminin" name="optionName" type="text"value="<c:out value="${option.optionName }"/> ">
-										<input id="price2" class="adminin" name="optionPrice" type="number" min="100" value="${option.optionPrice }">
+									<%-- <input type="hidden" name="optionCode" value="<c:out value="${option.optionCode }"/>"> --%>
+									
+									<input class="adminin" name="optionName" type="text"value="<c:out value="${option.optionName }"/> ">
+									<input id="price2" class="adminin" name="optionPrice" type="number" min="100" value="${option.optionPrice }">
 								</div>
 								<div>
 									<button class="adminbt" name="optionbtnn" type="button" id="remove"  style="width:50; font-size:13">삭제</button>
 								</div>
 							</div>
-							</c:forEach>
+							<div>
+							</div>
+							</c:forEach> 
+							<input type="hidden" name="pro" value="${pro}"/>
 						</td>
 					</tr>
 					
@@ -70,10 +74,10 @@
 							<input type="hidden" name="beforeThumbnail" value="${p.productThumb}">
 							<input type="hidden" name="beforedetailedImage" value="${p.productImage }">
 							
-							<img src="${p.productThumb }" width="95" height="100" border="0" />
-								<input type="file" name="thumbnail" style="margin-bottom: 5px" > <!-- files[0] <<사진   -->
-							<img src="${p.productImage }" width="95" height="100" border="0" />
-								<input type="file" name="detailedImage">
+							<img id="thumbnail" src="${p.productThumb }" width="95" height="100" border="0" />
+								<input id="thumbnail" type="file" name="thumbnail" style="margin-bottom: 5px" accept="image/*" onchange="setThumbnail(event);"> <!-- files[0] <<사진   -->
+							<img id="detailedImage" src="${p.productImage }" width="95" height="100" border="0" />
+								<input type="file" name="detailedImage" accept="image/*" onchange="setDetailedImage(event);">
 						</td>
 					</tr>
 					<tr>
@@ -124,6 +128,24 @@
 	           }
 	          });
 	      });
+	      //썸네일 사진변경
+	      function setThumbnail(event) {
+	        var reader = new FileReader();
+	        reader.onload = function(event) {
+	          var img = document.getElementById('thumbnail');
+	          img.setAttribute("src", event.target.result);
+	        };
+	        reader.readAsDataURL(event.target.files[0]);
+	      }
+	      //상세이미지 사진변경
+	      function setDetailedImage(event) {
+	        var reader = new FileReader();
+	        reader.onload = function(event) {
+	          var img = document.getElementById('detailedImage');
+	          img.setAttribute("src", event.target.result);
+	        };
+	        reader.readAsDataURL(event.target.files[0]);
+	      }
 	    //수정
 	      function adminUpdate(returnfrmGo){
 	    	  const price = $('#price2').val();
