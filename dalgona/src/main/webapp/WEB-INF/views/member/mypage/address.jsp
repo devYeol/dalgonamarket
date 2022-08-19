@@ -150,20 +150,20 @@
 			<div style="font-size: 18px; margin-top: 4px;">배송지</div>
 			<button class="btn-area" onclick="adressAdd();">+ 배송지 추가</button>
 		</div>
-		<c:forEach var="dl" items="${selectDl}">
-		<hr style="margin-top: 8px; margin-bottom: 0px;">
-		<div class="insert-addr">
-			<div style="margin-bottom: 40px; margin-top: 30px;">
-				<div style="font-size: 17px;">${dl.addrReceiver }</div>
-				<div style="font-size: 15px;">${dl.addrPhone }</div>
-				<div style="font-size: 15px;">${dl.adrPostNum }, ${dl.addrBase}, ${dl.addrDetail}, ${dl.addrRoadName}</div>
-			</div>
-			<div class="btn-container">
-				<button class="btn-addr">수정</button>
-				<button class="btn-addr">삭제</button>
-			</div>
-		</div>
-		</c:forEach>
+			<c:forEach var="dl" items="${selectDl}">
+				<hr style="margin-top: 8px; margin-bottom: 0px;">
+				<div class="insert-addr">
+					<div style="margin-bottom: 40px; margin-top: 30px;">
+						<div style="font-size: 17px;">수령인 : ${dl.addrReceiver }</div>
+						<div style="font-size: 15px;">연락처 : ${dl.addrPhone }</div>
+						<div style="font-size: 15px;">배송지 : (${dl.adrPostNum }) ${dl.addrRoadName} ${dl.addrDetail}</div>
+					</div>
+					<div class="btn-container">
+						<button class="btn-addr">수정</button>
+						<button class="btn-addr">삭제</button>
+					</div>
+				</div>
+			</c:forEach>
 		</c:otherwise>
 		</c:choose>
 	</div>
