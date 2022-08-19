@@ -96,7 +96,7 @@
 										</td>
 										<td nowrap>⭐ ${r.reviewStar}</td>
 										<td nowrap>
-											<fmt:parseDate value="${r.reviewDate}" var="dateValue" pattern="yyyyMMdd"/>
+											<%-- <fmt:parseDate value="${r.reviewDate}" var="dateValue" pattern="yyyyMMdd"/> --%>
 										</td>
 									</tr>
 								</c:forEach>

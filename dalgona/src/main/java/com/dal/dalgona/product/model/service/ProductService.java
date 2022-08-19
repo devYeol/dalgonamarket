@@ -40,4 +40,11 @@ public interface ProductService {
 	Review selectOneReview(long reviewCode);
 	
 	void updateReview(Review review);
+	
+	int deletebyProduct(long pro);
+
+//	int insertOptionCode(ProductOption option);
+	
+	
+	
 }

@@ -122,6 +122,17 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		session.update("review.updateReview",review);
 	}
+
+	@Override
+	public int deleteByProductOption(SqlSession session,long ppp) {
+		return session.delete("productOption.deleteOption", ppp);
+	}
+	
+	
+	/*
+	 * @Override public int insertOptionCode(SqlSession session, ProductOption
+	 * option) { return session.insert("productOption.insertOption", option); }
+	 */
 	
 	
 	

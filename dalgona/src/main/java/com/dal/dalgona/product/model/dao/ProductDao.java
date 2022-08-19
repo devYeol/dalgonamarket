@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
@@ -47,5 +48,11 @@ public interface ProductDao {
 	Review selectOneReview(SqlSession session,long reviewCode);
 	
 	void updateReview(SqlSession session,Review review);
+
+	int deleteByProductOption(SqlSession session,long ppp);
+
+//	int insertOptionCode(SqlSession session, ProductOption option);
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.dal.dalgona.admin.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -31,6 +32,7 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	PjeDaoJpa memberdao;
 	
+
 	@Autowired
 	private OptionDao optionDao;
 	
@@ -49,8 +51,8 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Transactional
 	public Long deleteByProductCode(long productCode) {
-		Long result = optionDao.deleteByProduct(selectOneProduct(productCode));
-		result = qnaDao.deleteByProduct(selectOneProduct(productCode));
+//		Long result = optionDao.deleteByProduct(selectOneProduct(productCode));
+//		result = qnaDao.deleteByProduct(selectOneProduct(productCode));
 		return dao.deleteByProductCode(productCode);
 	}
 	
@@ -110,6 +112,20 @@ public class AdminServiceImpl implements AdminService{
 	public List<Qna> selectQnas() {
 		return qnaDao.findAll();
 	}
+
+	public List<ProductOption> save(List<ProductOption> options) {
+		List<ProductOption> result=new ArrayList();
+		for(ProductOption po : options) {
+			result.add(optionDao.save(po));	
+		}
+		return result;
+	}
+
+	
+
+	
+	
+
 
 	
 }
