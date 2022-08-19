@@ -43,9 +43,9 @@
 		</div>
 		<br>
 		<div  class="col" id="image_container">
-				<%-- <c:if test="${not empty r.reviewImage }"> --%>
+				<c:if test="${not empty r.reviewImage }">
 					<img id="reviewImage" name="reviewImage"src="${r.reviewImage }" width="300" height="300" border="1" />
-				<%-- </c:if> --%>
+				</c:if>
 		</div>
 		<br>	
 		<div class="align-items-center">

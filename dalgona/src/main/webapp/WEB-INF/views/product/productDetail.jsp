@@ -3,9 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-
+<link rel="stylesheet" href="${path}/resources/css/productDetail.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="" />
 </jsp:include>
@@ -160,7 +159,7 @@
 								id="reviewContent" name="reviewContent" placeholder="내용을 입력해주세요"></textarea>
 						</div>
 						<div class="col-2">
-							<button type="submit">작성완료</button>
+							<button  id="" type="submit">작성완료</button>
 						</div>
 					</div>
 					<input type="hidden" value="${pro.productCode }" name="productCode">
@@ -194,9 +193,10 @@
 								</td >
 								<td style="width: 10%;">
 								<c:if test="${re.memberId==loginMember.memberId }">
-								<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="javascript:window.open('${path}/product/selectUpdateReview.do?reviewCode=${re.reviewCode}','new','left=50, top=50, width=520, height=500')">수정</button>
+								<button class="adminbt" style="width: 80px; padding: 5px; background-color: #6FB67F;" onclick="javascript:window.open('${path}/product/selectUpdateReview.do?reviewCode=${re.reviewCode}','new','left=50, top=50, width=520, height=500')">수정</button>
+						
 								<button class="adminbt" id="<c:out value="${re.reviewCode}"/>" name="<c:out value="${re.reviewCode}"/>" 
-										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event)">삭제</button>
+										style="width: 80px;background-color: #D56B5A;" onclick="adminDeleteProduct(event)">삭제</button>
 								</c:if>
 								<c:if test="${loginMember.memberId=='admin' }">
 								<button class="onDisplay" id="onDisplay">답글</button>
@@ -209,7 +209,7 @@
 						</tbody>
 						
 					</table>
-						<br>
+						<!-- <br>
 						<div class="row noneDiv"  id="noneDiv" style="display: none;">
 								<div class="col-10">
 									<textarea class="col-auto form-control" type="text"
@@ -218,7 +218,7 @@
 								<div class="col-2">
 									<button type="submit">등록</button>
 								</div>
-						</div>
+						</div> -->
 				</c:forEach>
 			</c:if>
 		</ul>
@@ -270,18 +270,129 @@
 
 	<script>
 	
+	//주문
+	function info_chk() {
+		return true;
+	}
 	
-	//답글버튼
-	$(function(){
-		$(".onDisplay").click(function(){
-			if($(".noneDiv").css("display") == "none"){
-				$(".noneDiv").show();
+	//장바구니
+	function info_chk2(frm) {
+		frm.action = ${path}"/member/mypage/cartInsert";
+		frm.submit();
+		return true;
+	}
+	
+	
+	
+	$(document).ready(function() {
+		//찜
+		$(".inf i").click(function(){
+			let likes ="";
+			
+			if($(this).hasClass("far")) {
+				$(this).removeClass("far").addClass("fas");
+				likes = "on";
+			} else {
+				$(this).removeClass("fas").addClass("far");
+				likes = "off";
+			}
+			
+			const data = {
+				productCode : $("#productCode").val(),
+				likes : likes
+			}
+			$.ajax({
+				url: "/product/likes",
+				type: "POST",
+				data: data
+			})
+			.done(function(result){
+				if(result == 0) {
+				} else {
+					
+					let likesCount = $(".likes_count").data("count");
+					
+					if(likes == "on") {
+						$(".likes_count").text(likesCount+1);
+						$(".likes_count").data("count", likesCount+1 );
+					} else {
+						$(".likes_count").text(likesCount-1);
+						$(".likes_count").data("count", likesCount-1 );
+					}
+				}
+			})
+		}) // 찜
+
+		$("main ul.info").hide();
+		// 탭 눌렀을때 색변경 콘텐츠 변경
+		$("ul.tab > li").click(function() {
+
+			const index = $(this).index() + 1;
+
+			$("ul.tab > li").removeClass("select");
+			$(this).addClass("select");
+
+			$("main  ul").eq(1).hide();
+			$("main  ul").eq(2).hide();
+			$("main  ul").eq(3).hide();
+			$("main  ul").eq(index).show();
+
+			const offset = $(".offset").offset();
+			const scrollPosition = $(document).scrollTop();
+
+			if (offset["top"] < scrollPosition) {
+				$("html").animate({
+					scrollTop : offset.top
+				}, 100);
 			}
 		});
 		
+		//수량 가격계산
+		$("#select_count").on('blur',function() {			
+			var count = $(this).val();
+			var price = $("#price").val();
+			var opt = $(".opt_select")
+					.val();
+			var shipping = 2500;
+
+			if (opt == null) {
+				var opPrice = price;
+			} else {
+				var opPrice = Number(price)
+						+ Number(opt);
+			}
+
+			var finalPrice = (count * opPrice)
+					+ shipping;
+
+			var str = '';
+
+			str += '<p><label>수량 : </label><span>&nbsp;'
+					+ count
+					+ '</span>&nbsp;&nbsp;&nbsp;';
+
+			if (opt == null) {
+				str += '<lable></lable>';
+			} else {
+				str += '<label>옵션 : </label><span>&nbsp;'
+						+ opt
+						+ '</span>&nbsp;&nbsp;&nbsp;';
+			}
+			str += '<label>배송비 : </label><span>&nbsp;'
+					+ shipping
+					+ '</span>&nbsp;&nbsp;&nbsp;';
+			str += '<label>가격 : </label><span>&nbsp;'
+					+ opPrice
+					+ ' 원</span></p>';
+			str += '<h4><label>결제금액 : </label><span>&nbsp;'
+					+ finalPrice
+					+ ' 원</span></h4>';
+			str += '<span class="glyphicon glyphicon-exclamation-remove"></span>';
+
+			$(".selected_option").html(str);
+		});
 	});
 	
-	//리뷰삭제
 	const adminDeleteProduct=(e)=>{
 		if(confirm("삭제 하시겠습니까?")){
 		}else{
@@ -297,310 +408,8 @@
 			}
 		});
 	}
-	
-	
-	
-	
-	
-		$(document).ready(function() {
-			
-			$(".inf i").click(function(){
-				let likes ="";
-				
-				if($(this).hasClass("far")) {
-					$(this).removeClass("far").addClass("fas");
-					likes = "on";
-				} else {
-					$(this).removeClass("fas").addClass("far");
-					likes = "off";
-				}
-				
-				const data = {
-					productCode : $("#productCode").val(),
-					likes : likes
-				}
-				$.ajax({
-					url: "/product/likes",
-					type: "POST",
-					data: data
-				})
-				.done(function(result){
-					if(result == 0) {
-					} else {
-						
-						let likesCount = $(".likes_count").data("count");
-						
-						if(likes == "on") {
-							$(".likes_count").text(likesCount+1);
-							$(".likes_count").data("count", likesCount+1 );
-						} else {
-							$(".likes_count").text(likesCount-1);
-							$(".likes_count").data("count", likesCount-1 );
-						}
-					}
-				})
-			}) // 찜
-
-			$("main ul.info").hide();
-			// 탭 눌렀을때 색변경 콘텐츠 변경
-			$("ul.tab > li").click(function() {
-
-				const index = $(this).index() + 1;
-
-				$("ul.tab > li").removeClass("select");
-				$(this).addClass("select");
-
-				$("main  ul").eq(1).hide();
-				$("main  ul").eq(2).hide();
-				$("main  ul").eq(3).hide();
-				$("main  ul").eq(index).show();
-
-				const offset = $(".offset").offset();
-				const scrollPosition = $(document).scrollTop();
-
-				if (offset["top"] < scrollPosition) {
-					$("html").animate({
-						scrollTop : offset.top
-					}, 100);
-				}
-			});
-			
-			$("#select_count").on('blur',function() {
-						var count = $(this).val();
-						var price = $("#price").val();
-						var opt = $(".opt_select")
-								.val();
-						var shipping = 2500;
-
-						if (opt == null) {
-							var opPrice = price;
-						} else {
-							var opPrice = Number(price)
-									+ Number(opt);
-						}
-
-						var finalPrice = (count * opPrice)
-								+ shipping;
-
-						var str = '';
-
-						str += '<p><label>수량 : </label><span>&nbsp;'
-								+ count
-								+ '</span>&nbsp;&nbsp;&nbsp;';
-
-						if (opt == null) {
-							str += '<lable></lable>';
-						} else {
-							str += '<label>옵션 : </label><span>&nbsp;'
-									+ opt
-									+ '</span>&nbsp;&nbsp;&nbsp;';
-						}
-						str += '<label>배송비 : </label><span>&nbsp;'
-								+ shipping
-								+ '</span>&nbsp;&nbsp;&nbsp;';
-						str += '<label>가격 : </label><span>&nbsp;'
-								+ opPrice
-								+ ' 원</span></p>';
-						str += '<h4><label>결제금액 : </label><span>&nbsp;'
-								+ finalPrice
-								+ ' 원</span></h4>';
-						str += '<span class="glyphicon glyphicon-exclamation-remove"></span>';
-
-						$(".selected_option").html(str);
-					});
-		});
-		//주문
-		function info_chk() {
-			return true;
-		}
-		//장바구니
-		function info_chk2(frm) {
-			frm.action = ${path}"/member/mypage/cartInsert";
-			frm.submit();
-			return true;
-		}
-
-		$(document)
-				.ready(
-						function() {
-
-							$("#select_count")
-									.on(
-											'blur',
-											function() {
-												var count = $(this).val();
-												var price = $("#price").val();
-												var opt = $(".opt_select")
-														.val();
-												var shipping = 2500;
-
-												if (opt == null) {
-													var opPrice = price;
-												} else {
-													var opPrice = Number(price)
-															+ Number(opt);
-												}
-
-												var finalPrice = (count * opPrice)
-														+ shipping;
-
-												var str = '';
-
-												str += '<p><label>수량 : </label><span>&nbsp;'
-														+ count
-														+ '</span>&nbsp;&nbsp;&nbsp;';
-
-												if (opt == null) {
-													str += '<lable></lable>';
-												} else {
-													str += '<label>옵션 : </label><span>&nbsp;'
-															+ opt
-															+ '</span>&nbsp;&nbsp;&nbsp;';
-												}
-												str += '<label>배송비 : </label><span>&nbsp;'
-														+ shipping
-														+ '</span>&nbsp;&nbsp;&nbsp;';
-												str += '<label>가격 : </label><span>&nbsp;'
-														+ opPrice
-														+ ' 원</span></p>';
-												str += '<h4><label>결제금액 : </label><span>&nbsp;'
-														+ finalPrice
-														+ ' 원</span></h4>';
-												str += '<span class="glyphicon glyphicon-exclamation-remove"></span>';
-
-												$(".selected_option").html(str);
-											});
-
-						});
-						
-						
-						
-					
-						
 	</script>
-
-	<style>
-
-/* 찜하기 */
-.fas.fa-heart {
-	color: red;
-}
-
-.score_box .fas {
-	color: gold;
-}
-
-.comment .fas {
-	color: gold;
-}
-/* 찜하기 */
-
-/* -------------- 메인 -------------- */
-ul {
-	list-style: none;
-}
-
-main {
-	width: 70%;
-}
-
-main ul.tab {
-	display: flex;
-	background: #fff;
-}
-
-main ul.tab li {
-	width: 100%;
-	padding: 5px 0;
-	border: 1px solid #ddd;
-	text-align: center;
-	cursor: pointer;
-	font-size: 30px;
-}
-
-main ul.tab li:hover {
-	background: #333333;
-	color: #fff;
-	transition: 0.1s;
-}
-
-main ul.tab li.select {
-	background: #333333;
-	color: #fff;
-	/* 메뉴탭 클릭시 색 바뀜 */
-}
-/* -------------- 메인 -------------- */
-main .comment {
-	display: none;
-}
-
-main .comment .boss_comment {
-	margin-bottom: 10px;
-}
-
-main .comment li {
-	border-radius: 10px;
-	width: 100%;
-	margin: 15px auto 30px;
-	font-size: 20px;
-}
-
-main .comment li .nickname {
-	font-weight: bold;
-}
-
-main .comment li .client {
-	border: 1px solid #ddd;
-	border-radius: 10px;
-	padding: 15px;
-}
-
-/* 리뷰탭 */
-
-/* 별찍기 */
-#myform fieldset {
-	display: inline-block;
-	direction: rtl;
-	border: 0;
-}
-
-#myform fieldset legend {
-	text-align: right;
-}
-
-#myform input[type=radio] {
-	display: none;
-}
-
-#myform label {
-	font-size: 3em;
-	color: transparent;
-	text-shadow: 0 0 0 #f0f0f0;
-}
-
-#myform label:hover {
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-
-#myform label:hover ~ label {
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-
-#myform input[type=radio]:checked ~ label {
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-
-#reviewContent {
-	width: 100%;
-	height: 100px;
-	padding: 10px;
-	box-sizing: border-box;
-	border: solid 1.5px #D3D3D3;
-	border-radius: 5px;
-	font-size: 16px;
-	resize: none;
-}
-</style>
+	
 </section>
 
 
