@@ -139,9 +139,9 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public void updateReview(Review review) {
+	public int updateReview(Review review) throws Exception{
 		// TODO Auto-generated method stub
-		dao.updateReview(session,review);
+		return dao.updateReview(session,review);
 	}
 	
 	

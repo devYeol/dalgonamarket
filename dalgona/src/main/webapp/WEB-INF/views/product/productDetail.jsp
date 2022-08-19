@@ -151,8 +151,7 @@
 					</fieldset>
 					<div class="custom-file">
 						<input type="file" class="custom-file-input" name="reviewImage"
-							id="upFile1"> <label class="custom-file-label"
-							for="upFile1">파일을 선택하세요</label>
+							id="upFile1">
 					</div>
 					<br>
 					<div class="row">
@@ -200,13 +199,26 @@
 										style="width: 80px; background-color: #D56B5A;" onclick="adminDeleteProduct(event)">삭제</button>
 								</c:if>
 								<c:if test="${loginMember.memberId=='admin' }">
-								<button>답글</button>
+								<button class="onDisplay" id="onDisplay">답글</button>
 								</c:if>
-								</td>
+								</td>									
+													
 							</tr>
+							
 						<hr>
 						</tbody>
+						
 					</table>
+						<br>
+						<div class="row noneDiv"  id="noneDiv" style="display: none;">
+								<div class="col-10">
+									<textarea class="col-auto form-control" type="text"
+										id="reviewContent" name="reviewContent" placeholder="내용을 입력해주세요"></textarea>
+								</div>
+								<div class="col-2">
+									<button type="submit">등록</button>
+								</div>
+						</div>
 				</c:forEach>
 			</c:if>
 		</ul>
@@ -257,6 +269,17 @@
 
 
 	<script>
+	
+	
+	//답글버튼
+	$(function(){
+		$(".onDisplay").click(function(){
+			if($(".noneDiv").css("display") == "none"){
+				$(".noneDiv").show();
+			}
+		});
+		
+	});
 	
 	//리뷰삭제
 	const adminDeleteProduct=(e)=>{

@@ -37,8 +37,8 @@
 	</select>
 	
 	<update id="updateReview">
-		UPDATE REVIEW SET REVIEW_CONTENT=#{reviewContent},REVIEW_IMAGE=#{reviewImage}
-			,REVIEW_STAR=#{reviewStar} WHERE REVIEW_CODE=#{reviewCode};
+		UPDATE REVIEW SET REVIEW_CONTENT=#{reviewContent}, REVIEW_IMAGE=#{reviewImage}
+			, REVIEW_STAR=#{reviewStar} WHERE REVIEW_CODE=#{reviewCode}
 	</update>
 	
 
