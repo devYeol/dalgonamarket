@@ -86,7 +86,7 @@
 						<tr>
 							<td><input class="" type="checkbox" value="" id=""></td>
 							<td>${po.orderCode}</td>
-							<td><button class="btn-somedate" onclick="location.assign('${path}/admin/adminManageOrder.do?orderCode=${po.orderCode}')">상세보기</button></td>
+							<td><button class="btn-somedate" onclick="location.assign('${path}/admin/adminManageOrder.do?cPage=${cPage}&orderCode=${po.orderCode}')">상세보기</button></td>
 							<td>2,500</td>
 							<td>${po.totalPrice}</td>
 							<td>${po.orderDate}</td>
@@ -169,25 +169,33 @@
 	
 	<script>
 		const adminOrderPermit=(e)=>{
-			$.ajax({
-				url:"${path}/admin/adminOrderPermit.do",
-				data:{orderCode:$(e.target).attr("name")},
-				success:data=>{
-					console.log(data);
-					$(e.target).parent().prev().text(data);
-				}
-			});
+			const returnVal=confirm("주문을 승인하시겠습니까?")
+			if(returnVal==true) {
+				$.ajax({
+					url:"${path}/admin/adminOrderPermit.do",
+					data:{orderCode:$(e.target).attr("name")},
+					success:data=>{
+						console.log(data);
+						if(data!=null) {
+							$(e.target).parent().prev().text(data);
+						}
+					}
+				});
+			}
 		}
 		
 		const adminOrderCancel=(e)=>{
-			$.ajax({
-				url:"${path}/admin/adminOrderCancel.do",
-				data:{orderCode:$(e.target).attr("name")},
-				success:data=>{
-					console.log(data);
-					$(e.target).parent().prev().prev().text(data);
-				}
-			});
+			const returnVal=confirm("주문을 취소하시겠습니까?")
+			if(returnVal==true) {
+				$.ajax({
+					url:"${path}/admin/adminOrderCancel.do",
+					data:{orderCode:$(e.target).attr("name")},
+					success:data=>{
+						console.log(data);
+						$(e.target).parent().prev().prev().text(data);
+					}
+				});
+			}
 		}
 	</script>
 

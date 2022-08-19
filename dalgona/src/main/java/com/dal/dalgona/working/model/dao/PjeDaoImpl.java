@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
+import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOrder;
 
 @Repository
@@ -39,5 +40,11 @@ public class PjeDaoImpl implements PjeDao {
 	public List<OrderDetail> selectOrderDetailsCode(SqlSessionTemplate session, long orderCode) {
 		// TODO Auto-generated method stub
 		return session.selectList("orderDetail.orderListsCode", orderCode);
+	}
+
+	@Override
+	public int minusProductAmount(SqlSessionTemplate session, Map<String,Object> param) {
+		// TODO Auto-generated method stub
+		return session.insert("product.minusProductAmount",param);
 	}
 }

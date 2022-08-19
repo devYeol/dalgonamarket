@@ -45,7 +45,7 @@
 			<div class="listdiv">
 				<table class="listtable">
 					<tr style="bolder-top: none;">
-						<td>
+						<td nowrap>
 							<div style="font-size: 11px; color:#2E6BFF; padding-bottom:2px;">
 								<b>전체선택</b>
 							</div>
