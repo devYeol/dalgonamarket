@@ -120,7 +120,7 @@
 					<h5>(@요일 N/N 도착예정)</h5>
 					<!-- 에러나는데 작동은 함 -->
 				</thead>
-
+ 
 				<tbody class="product-detail">
 					<tr class="payment-tr">
 						<!-- <td class=""><a href="#"><img src="https://img.mywisa.com/freeimg/smartwing/_data/product/201709/22/e4ee83bdcacc45b92130f10aeef309f1.jpg" width="73" height="90" border="0"></a></td>
