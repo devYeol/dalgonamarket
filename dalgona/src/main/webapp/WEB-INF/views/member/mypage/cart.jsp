@@ -168,7 +168,7 @@ text-decoration:none;
 </style>
 
 <div class="headcontainer border-top" style="padding-top: 20px"></div>
-<section class="cart-form">
+<section class="cart-form" onload="calculateOrderPrice();">
 	<div>
 		<div class="sidebar">
 			<h4>
@@ -220,7 +220,7 @@ text-decoration:none;
 					<c:forEach var="c" items="${cartList}" varStatus="i">
 
 						<table style="margin-left: 10; width: 100%;">
-							<tbody>
+							<tbody id="cart">
 								<tr class="payment-tr" name="selectP">
 					<hr>
 									<td style="width: 20%;" class="tdCheck">
@@ -238,6 +238,7 @@ text-decoration:none;
 										<input type="hidden" class="selAmount" name="selAmount" value="${sA }"> <!-- 상품개수 -->
 										<input type="hidden" class="allSum" name="allSum" value="${allSum }"> <!-- 체크 된 장바구니 합계(배송비 포함) -->
 										<input type="hidden" class="fee" name="fee" value="${fee}"> <!-- 배송비 -->
+										<input type="hidden" class="sumMoney" name="sumMoney" value="${sumMoney}"> <!-- 배송비 -->
 																			
 										<img
 											src="${c.product.productThumb }" width="150" height="150"
@@ -263,15 +264,16 @@ text-decoration:none;
 										<div style="margin-top: 5; font-size: 15px">도착 예정</div></td>
 									<td style="text-align: center;">
 										<input type="text" class="selAmount" name="selAmount"  value="${sA }" id="select_count">개
+											<br>
 										<span>
-											<button type="button" class="btn plus_button" id="plus">+</button>
-											<button type="button" class="btn minus_button" id="minus">-</button>
+											<button type="button" class="btn plus_button"  id="plus" >+</button>
+											<button type="button" class="btn minus_button"  id="minus">-</button>
 										</span>
 										<div style="margin-top: 5px">
 											<p>
 
 												<fmt:formatNumber pattern="###,###,###"
-													value="${c.product.productPrice}" />
+													value="${sumMoney}" />
 												&nbsp;원
 											</p>
 										</div></td>
@@ -320,27 +322,19 @@ text-decoration:none;
 
 <script>
 
-/* function setTotalInfo(){
-	let totalPri
-}
- */
 
-
-
-
-
-function getCheckboxValues(){
 	/* 선택된 목록 가져오기 */
+	/* 선택된 목록에서 value 찾기 */
+/* function getCheckboxValues(){
 	const query ='input [name="check"]:checked';
 	const selecteEls= document.queryselectAll(query);
 	
-	/* 선택된 목록에서 value 찾기 */
 	let result = '';
 	selecteEls.forEach((el)=>{
 		result +=el.value+' ';
 	});
 	document.getElementById('result') =result;
-}
+} */
 
  /* 상품 페이지로 이동 */
 $("button[name= productListMove]").click(function(){
@@ -355,6 +349,8 @@ $("button[name= productListMove]").click(function(){
         }else{
             $(".check-input").prop("checked",false); 
         }
+    	
+    	
     });
     
     $(".check-input").click(function(){
@@ -367,11 +363,12 @@ $("button[name= productListMove]").click(function(){
     
   
 	/* 수량 조작 */
+	
 	 let selAmount =$(".selAmount").val();
 	 let productPrice =$(".productPrice").val();
     $("#plus").on('click',function(){
     	$(".selAmount").val(++selAmount);
-    	selAmount*productPrice.val();
+    	
     	
     
     });
@@ -387,9 +384,9 @@ $("button[name= productListMove]").click(function(){
     
   // 선택 삭제
     	$("#selectDelete").click(function(){
-    	if(confirm("삭제 하시겠습니까?")){
         const cnt = $("input[name='check']:checked").length;
         const arr = new Array();
+    	if(confirm("삭제 하시겠습니까?")){
         $("input[name='check']:checked").each(function() {
             arr.push($(this).attr('id'));
         });
@@ -433,10 +430,25 @@ $("button[name= productListMove]").click(function(){
  $("input[name='check']:checked").prop("checked",true);
 	$("input[name='check']:checked").prop("checked",false); 
 	
+let sumMoney=$('.sumMoney');
+/* let selAmount =$('.selAmount'); */
 
+function getCheckboxValues(){
+	let sumMoneys =0;
+	let selAmounts= 0;
 	
-		
+	for(let i=0; i<inputList.length; i++){
+		if(inputList[i].checked){
+			sumMoney +=parseInt(inputList[i].value);
+			count +=1;
+		}
+	}
+	sumMoney=sumMoney.toLocaleString();
+	sumMoney =`sumMoney:${sumMoney}원`;
+	selAmount=`${selAmounts}개`;
 	
+	}
+
 		
 </script>
 

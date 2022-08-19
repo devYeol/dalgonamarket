@@ -48,6 +48,7 @@
 		WHERE 	m.MEMBER_Id = c.MEMBER_Id
 		AND	c.PRODUCT_CODE = p.PRODUCT_CODE 
 		AND c.MEMBER_Id =#{memberId}
+	
 	</select>
 	
 	<delete id="delete">
@@ -60,7 +61,33 @@
 		where cart_code =#{cartCode}
 		
 	</delete>
+	
+	<select id="countCart" resultType="_int">
+	<!-- 	select count(*)
+		from cart
+		where member_id=#{member.memberId}
+		and product_code=#{product.productCode} -->
+		select count(*)
+		FROM CART
+		c,PRODUCT p ,MEMBER m
+		WHERE c.PRODUCT_CODE = p.PRODUCT_CODE 
+		AND c.MEMBER_Id =#{member.memberId}
+		and c.product_code=#{product.productCode}
+	</select>
+	<update id="modifyCart">
+		update cart
+		set cart_amount =#{cartAmount}
+		where member_id=#{member.memberId}
+		and product_id=#{product.productCode}
+	</update>
 
+
+	<update id="updateCart">
+		update cart
+		set cart_amount = cart_amount+#{cartAmount}
+		where member_id=#{member.memberId}
+		and product_code=#{product.productCode}
+	</update>
 		<!-- 전체삭제 -->
 	<!-- <delete id="deleteAll">  
 		delete from cart

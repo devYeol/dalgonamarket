@@ -20,4 +20,8 @@ public interface AdminService {
 	Product updateProduct(Product po);
 	
 	List<ProductOption> updateOption(List<ProductOption> list);
+	
+	List<Review> selectReviewsTop8();
+	
+	List<Qna> selectQnasTop8();
 }

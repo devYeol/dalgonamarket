@@ -39,5 +39,5 @@ public interface ProductService {
 	
 	Review selectOneReview(long reviewCode);
 	
-	void updateReview(Review review);
+	int updateReview(Review review) throws Exception;
 }

@@ -44,8 +44,8 @@ public class AdminController {
 	public ModelAndView adminManageMember(ModelAndView mv,
 			@RequestParam(defaultValue = "1") int cPage,
 			@RequestParam(defaultValue = "25") int numPerpage) {
-		List<Review> reviews=service.selectReviews();
-		List<Qna> qnas=service.selectQnas();
+		List<Review> reviews=service.selectReviewsTop8();
+		List<Qna> qnas=service.selectQnasTop8();
 		PageRequest pagerequest=PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "memberEnrollDate"));
 		Page<Member> list=service.selectMembers(pagerequest);
 		log.debug("{}",qnas);

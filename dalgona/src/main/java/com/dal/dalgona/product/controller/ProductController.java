@@ -72,6 +72,7 @@ public class ProductController {
 //      log.debug("{}찜수",likesCount);     
 //      log.debug("{}",op);
 //      log.debug("{}",review);
+      log.debug("{}",qna);
       
       
       model.addAttribute("pro",p);
@@ -85,7 +86,7 @@ public class ProductController {
       
       return "product/productDetail";
    }
-   
+
    
    
    
@@ -255,10 +256,12 @@ public class ProductController {
           @RequestParam(value="reviewCode", required = false) long reviewCode,
           @RequestParam(value="beforReviewImage") String beforReviewImage,//이전 리뷰 이미지
           @RequestParam(value = "reviewImage", required = false) MultipartFile reviewImage,//업데이트 리뷰이미지   
-          HttpServletRequest rs, HttpSession session, Model model)  throws IllegalStateException, IOException {
+          HttpServletRequest rs, HttpSession session, Model model)  throws Exception,IllegalStateException, IOException {
     		
     	
-		String path = rs.getServletContext().getRealPath(beforReviewImage);	    	  
+		String path = rs.getServletContext().getRealPath(beforReviewImage);	 
+		log.debug("패스 : {}",path);
+		
 		File f = null;
 			
 		String updatePath = rs.getServletContext().getRealPath("/resources/upload/product/review/");
@@ -266,7 +269,7 @@ public class ProductController {
 		
 		int random = (int) (Math.random() * 10000);
 				
-		Review review=Review.builder().memberId(memberId).productCode(productCode)
+		Review review=Review.builder().reviewCode(reviewCode).memberId(memberId).productCode(productCode)
 	               .reviewContent(reviewContent).reviewDate(new Date())
 	               .reviewStar(reviewStar).review(null).build();
 	
@@ -274,10 +277,11 @@ public class ProductController {
 		if(reviewImage.isEmpty()) {  
 			
 			String target = "resources";
-			String updateReviewFile = path;
+//			String updateReviewFile = path;
 			int target_num = updatePath.indexOf(target) - 1;
-			String reviewPath = updateReviewFile.substring(target_num);;
+			String reviewPath = path.substring(target_num);;
 			review.setReviewImage(reviewPath);
+			log.debug(" 리뷰경로 : {}",reviewPath);
 		}
 		if(!reviewImage.isEmpty()) {
 			f = new File(path);
@@ -300,12 +304,14 @@ public class ProductController {
 			review.setReviewImage(reviewImagePath);
 //			log.debug(reviewImagePath);
 			
+			log.debug("여기까지 : {}",review);
+			
 			
 		}
 
-			
 		try {
 			service.updateReview(review);
+		
 			//이전 파일 지우는 로직
 			if(f != null) {
 				//db를 거치고나서 만약 db가 수정이 완료되면 밑에 폴더삭제

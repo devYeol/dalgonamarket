@@ -46,6 +46,6 @@ public interface ProductDao {
 	
 	Review selectOneReview(SqlSession session,long reviewCode);
 	
-	void updateReview(SqlSession session,Review review);
+	int updateReview(SqlSession session,Review review);
 
 }
