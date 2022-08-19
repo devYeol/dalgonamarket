@@ -46,11 +46,28 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectProduct(session,productCode);
 	}
 
+//	@Override
+//	public Likes selectLikes(long likesCode) {
+//		// TODO Auto-generated method stub
+//		return dao.selectLikes(session,likesCode);
+//	}
 	@Override
-	public Likes selectLikes(long likesCode) {
+	public int countCart(Product productCode,Member m ) {
 		// TODO Auto-generated method stub
-		return dao.selectLikes(session,likesCode);
+		return dao.countCart(session,productCode,m);
 	}
+	@Override
+	public void modifyCart(Cart c) {
+		dao.modifyCart(session, c);
+		
+	}
+	
+	@Override
+	public void updateCart(Cart c) {
+		// TODO Auto-generated method stub
+		 dao.updateCart(session,c);
+	}
+
 	@Override
 	public List<Cart> cartList(Member memberId){
 		return dao.cartList(session,memberId);
