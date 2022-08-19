@@ -57,13 +57,15 @@
 		from delivery_Location d, member m
 		where m.member_id=d.member_id
 		and d.member_id=#{memberId }
+		and d.addr_base='1'
 	</select>
 	
 	<select id="selectPo" resultMap="productOrderMap">
-		SELECT * FROM PRODUCT_ORDER WHERE ORDER_CODE=#{orderCode}
+		SELECT * FROM PRODUCT_ORDER WHERE ORDER_CODE=#{orderCode }
 	</select>
 	
 	<insert id="pOrder" parameterType="productOrder">
+	
 		INSERT INTO PRODUCT_ORDER <!-- (
 				ORDER_CODE,
 				IMP_UID,
@@ -93,39 +95,13 @@
 <!-- 		<selectKey keyProperty="productOrder.orderCode" order="BEFORE" resultType="long">
 	     	SELECT seq_order_code.NEXTVAL FROM DUAL
 		</selectKey> -->
-	
-		<!-- INSERT INTO ORDER_DETAIL (
-			   ORDER_CODE,
-			   PRODUCT_CODE,
-			   ORDER_AMOUNT,
-			   ORDER_OPTION
-		    ) VALUES (
-			   #{productOrder.orderCode },
-			   #{product.productCode },
-			   #{orderAmount },
-			   #{orderOption }
-		    ) -->
 		    
-		INSERT INTO ORDER_DETAIL VALUES(
+		INSERT INTO ORDER_DETAIL VALUES (
 			   #{product.productCode },
 			#{productOrder.orderCode },
 			   #{orderAmount },
 			   #{orderOption })
 
 	</insert>
-	
-<!-- 	<insert id="order">
-		INSERT INTO ORDER_DETAIL (
-			    ORDER_NUM,
-			    PRODUCT_CODE,
-			    ORDER_AMOUNT,
-			    ORDER_OPTION
-		    ) VALUES (
-			    #{orderNum },
-			    #{productCode },
-			    #{orderAmount },
-			    #{orderOption }
-		    )
-	</insert> -->
 
 </mapper>

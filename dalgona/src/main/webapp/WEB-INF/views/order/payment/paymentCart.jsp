@@ -91,9 +91,32 @@
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">배송주소</label></th>
-						<td id="addrPostNum"><c:out value="${deliveryLocation.adrPostNum }" /></td>
-						<td id="addrRoadName"><c:out value="${deliveryLocation.addrRoadName }" /></td>
-						<td id="addrDetail"><c:out value="${deliveryLocation.addrDetail }" /></td>
+						<td>
+							<input type="text" id="addrPostNum" name="addrPostNum" 
+							value="${deliveryLocation.adrPostNum }"
+							placeholder="우편번호"
+							readonly="readonly"
+							style="height: 30px;" />
+						</td>
+					</tr>
+					<tr class="payment-tr">
+						<th scope="row" id="payment-th"><label for=""></label></th>
+						<td>
+							<input type="text" id="addrRoadName" name="addrRoadName" 
+							value="${deliveryLocation.addrRoadName }" 
+							placeholder="도로명"
+							readonly="readonly"
+							style="height: 30px; width: 300px;" />
+						</td>
+					</tr>
+					<tr class="payment-tr">
+						<th scope="row" id="payment-th"><label for=""></label></th>
+						<td>
+							<input type="text" id="addrDetail" name="addrDetail" 
+							value="" 
+							placeholder="상세주소 입력"
+							style="height: 30px;" />
+						</td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">전화번호</label></th>
@@ -102,6 +125,10 @@
 				</tbody>
 			</table>
 		</div>
+		
+		<input type="hidden" value="${deliveryLocation.adrPostNum }" id="adrPostNum">
+		<input type="hidden" value="${deliveryLocation.addrRoadName }" id="adrPostNum">
+		<input type="hidden" value="${deliveryLocation.addrDetail }" id="adrPostNum">
 
 		<br> <br>
 
@@ -117,7 +144,7 @@
 			<table class="payment-table" id="payment-deli-table">
 
 				<thead>
-					<h5>(@요일 N/N 도착예정)</h5>
+					<h5>상품정보</h5>
 					<!-- 에러나는데 작동은 함 -->
 				</thead>
  
@@ -243,12 +270,13 @@
          amount : ${(product.productPrice+productOption)*selAmount+2500 }, // 총 상품가격
          /* buyer_name : ${deliveryLocation.addrReceiver }, // 배송받는 사람 이름
          buyer_tel : ${deliveryLocation.addrPhone }, // 배송받는 사람 연락처
-         buyer_addr : ${deliveryLocation.addrRoadName } + " " +${deliveryLocation.addrDetail }, // 배송받는 사람 도로명 + 상세주소
+         buyer_addr : ${deliveryLocation.addrRoadName } + " " + ${deliveryLocation.addrDetail }, // 배송받는 사람 도로명 + 상세주소
          buyer_postcode : ${deliveryLocation.adrPostNum }, // 배송받는 사람 우편번호 */
-         buyer_name : '오곡율무',
-         buyer_tel : '010-1234-5678',
-         buyer_addr : '서울특별시 강남구 삼성동',
-         buyer_postcode : '123-456',
+         buyer_name : '${deliveryLocation.addrReceiver }',
+         buyer_email : "taera2@icould.com",
+         buyer_tel : '${deliveryLocation.addrPhone }',
+         buyer_addr : '',
+         buyer_postcode : '',
          m_redirect_url : '/'
 
       },
@@ -257,7 +285,9 @@
 
          console.log(rsp);
 
-         if (rsp.success) {
+         if (rsp.success) { // 결제완료
+        	 
+			location.replace("/order/orderComplete");
         	 
             var msg = '결제가 완료되었습니다.';
             
@@ -266,11 +296,13 @@
             msg += '결제 금액 : ' + rsp.paid_amount;
             msg += '카드 승인번호 : ' + rsp.apply_num;
             
-         } else {
+         } else { // 결제실패
         	 
-            var msg = '결제에 실패하였습니다.';
+        	location.replace("/order/orderFail");
+        	 
+            var msg = '주문실패 : ';
             
-            msg += '에러내용 : ' + rsp.error_msg;
+            msg += rsp.error_msg;
             
          }
          

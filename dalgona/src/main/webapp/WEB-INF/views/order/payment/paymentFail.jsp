@@ -32,21 +32,29 @@
 			<h4>주문이 실패했습니다.</h4>
 		</div>
 		
-		<div class="payment-success-content">
-			<h5>에러코드 : #############</h5>
-		</div>
-		
 		<br>
 		<br>
 		
 		<div class="row gap-2" id="payment-btn" style="width: 400px;">
-			<button type="button" class="btn col btn-secondary btn-lg">장바구니 이동</button>
-			<button type="button" class="btn col btn-primary btn-lg">HOME</button>
+			<button onclick="home1()" type="button" class="btn col btn-secondary btn-lg">장바구니 이동</button>
+			<button onclick="home()"type="button" class="btn col btn-primary btn-lg">HOME</button>
 		</div>
 		
 		
 	</div>
 	
 </section>
+
+<script>
+
+function home() {
+	location.replace("/");
+}
+
+function home1() {
+	location.replace("/member/mypage/cart");
+}
+
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
