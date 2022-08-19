@@ -85,7 +85,7 @@
 							</tr>
 							<c:if test="${not empty reviews}">
 								<c:forEach var="r" items="${reviews}">
-									<tr>
+									<tr onclick="location.assign('${path}/product/productDetail/${r.productCode}')" style="cursor: pointer;">
 										<td>${r.reviewCode}</td>
 										<td nowrap>${r.productCode}</td>
 										<td>${r.memberId}</td>
@@ -96,7 +96,7 @@
 										</td>
 										<td nowrap>⭐ ${r.reviewStar}</td>
 										<td nowrap>
-											<%-- <fmt:parseDate value="${r.reviewDate}" var="dateValue" pattern="yyyyMMdd"/> --%>
+											<fmt:formatDate value="${r.reviewDate}" pattern="yyyy-MM-dd"/>
 										</td>
 									</tr>
 								</c:forEach>
@@ -125,8 +125,8 @@
 										<td>${q.qnaCode}</td>
 										<td>${q.qnaCode}</td>
 										<td nowrap>${q.qnaTitle}</td>
-										<td>
-											${q.qnaDate}
+										<td nowrap>
+											<fmt:formatDate value="${q.qnaDate}" pattern="yyyy-MM-dd"/>
 										</td>
 									</tr>
 								</c:forEach>

@@ -25,28 +25,32 @@
 		<br>
 		
 		<div class="payment-success-content">
-			<h2><strong>$ totalPrice</strong></h2>
-		</div>
-		
-		<div class="payment-success-content">
 			<h4>주문이 완료되었습니다!</h4>
-		</div>
-		
-		<div class="payment-success-content">
-			<h5>주문번호 : #############</h5>
 		</div>
 		
 		<br>
 		<br>
 		
 		<div class="row gap-2" id="payment-btn" style="width: 400px;">
-			<button type="button" class="btn col btn-secondary btn-lg">HOME</button>
-			<button type="button" class="btn col btn-primary btn-lg">구매내역 이동</button>
+			<button onclick="home()" type="button" class="btn col btn-secondary btn-lg">HOME</button>
+			<button onclick="home1()" type="button" class="btn col btn-primary btn-lg">구매내역 이동</button>
 		</div>
 		
 		
 	</div>
 	
 </section>
+
+<script>
+
+function home() {
+	location.replace("/");
+}
+
+function home1() {
+	location.replace("/member/mypage/productOrderList");
+}
+
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

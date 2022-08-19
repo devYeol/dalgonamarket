@@ -48,7 +48,7 @@
 		</div>
 
 		<div>
-		<input type="hidden" value="${loginMember }" id="memberId">
+			<input type="hidden" value="${loginMember }" id="memberId">
 			<h2>구매자 정보 (*)회원정보</h2>
 			<hr class="my-4">
 			<table class="payment-table">
@@ -77,7 +77,10 @@
 				</div>
 
 				<div class="deli-btn" style="float: right;">
-					<button type="submit" class="btn btn-primary" id="delivery-change-btn" onclick="popAddress()">배송지변경</button>
+					<%@ include file="/WEB-INF/views/order/payment/modifyAddress.jsp"%>
+					<!-- <button type="submit" class="btn btn-primary" id="delivery-change-btn" onclick="popAddress()">배송지변경</button> -->
+					<button type="submit" class="btn btn-primary"
+						id="delivery-change-btn" onclick="modifyAddress()">배송지변경</button>
 				</div>
 			</div>
 
@@ -87,21 +90,39 @@
 				<tbody>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">이름</label></th>
-						<td id="addrReceiver"><c:out value="${deliveryLocation.addrReceiver }" /></td>
+						<td id="addrReceiver"><c:out
+								value="${deliveryLocation.addrReceiver }" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">배송주소</label></th>
-						<td id="addrPostNum"><c:out value="${deliveryLocation.adrPostNum }" /></td>
-						<td id="addrRoadName"><c:out value="${deliveryLocation.addrRoadName }" /></td>
-						<td id="addrDetail"><c:out value="${deliveryLocation.addrDetail }" /></td>
+						<td><input type="text" id="addrPostNum" name="addrPostNum"
+							value="${deliveryLocation.adrPostNum }" placeholder="우편번호"
+							readonly="readonly" style="height: 30px;" /></td>
+					</tr>
+					<tr class="payment-tr">
+						<th scope="row" id="payment-th"><label for=""></label></th>
+						<td><input type="text" id="addrRoadName" name="addrRoadName"
+							value="${deliveryLocation.addrRoadName }" placeholder="도로명"
+							readonly="readonly" style="height: 30px; width: 300px;" /></td>
+					</tr>
+					<tr class="payment-tr">
+						<th scope="row" id="payment-th"><label for=""></label></th>
+						<td><input type="text" id="addrDetail" name="addrDetail"
+							value="" placeholder="상세주소 입력" style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">전화번호</label></th>
-						<td id="addrPhone"><c:out value="${deliveryLocation.addrPhone }" /></td>
+						<td id="addrPhone"><c:out
+								value="${deliveryLocation.addrPhone }" /></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+
+		<input type="hidden" value="${deliveryLocation.adrPostNum }"
+			id="adrPostNum"> <input type="hidden"
+			value="${deliveryLocation.addrRoadName }" id="adrPostNum"> <input
+			type="hidden" value="${deliveryLocation.addrDetail }" id="adrPostNum">
 
 		<br> <br>
 
@@ -115,37 +136,32 @@
 
 		<%-- <c:forEach var="c" items="${map.cartList}" varStatus="i"> --%>
 		<%-- <c:forEach var="c" items="${cart}" varStatus="i"> --%>
-			<table class="payment-table" id="payment-deli-table">
+		<table class="payment-table" id="payment-deli-table">
 
-				<thead>
-					<h5>(@요일 N/N 도착예정)</h5>
-					<!-- 에러나는데 작동은 함 -->
-				</thead>
+			<thead>
+				<h5>상품정보</h5>
+				<!-- 에러나는데 작동은 함 -->
+			</thead>
 
-				<tbody class="product-detail">
-					<tr class="payment-tr">
-						<!-- <td class=""><a href="#"><img src="https://img.mywisa.com/freeimg/smartwing/_data/product/201709/22/e4ee83bdcacc45b92130f10aeef309f1.jpg" width="73" height="90" border="0"></a></td>
+			<tbody class="product-detail">
+				<tr class="payment-tr">
+					<!-- <td class=""><a href="#"><img src="https://img.mywisa.com/freeimg/smartwing/_data/product/201709/22/e4ee83bdcacc45b92130f10aeef309f1.jpg" width="73" height="90" border="0"></a></td>
 							<td>
 								<a href="#">상품타이틀</a>
 							</td>
 							<td>수량 N개</td>
 							<td>배송비 N원</td> -->
-						<td class="">
-								<img src="${product.productThumb }" width="85" height="90"
-								border="0" />
-						</td>
-						<td>
-							<c:out value=" ${product.productName }" /><br>
-						</td>
-						<td>${selAmount } 개
-						</td>
-						<td>상품금액(옵션포함)<br>
-							<c:out value="${(product.productPrice+productOption)*selAmount }" /> 원
-						</td>
-					</tr>
+					<td class=""><img src="${product.productThumb }" width="85"
+						height="90" border="0" /></td>
+					<td><c:out value=" ${product.productName }" /><br></td>
+					<td>${selAmount }개</td>
+					<td>상품금액(옵션포함)<br> <c:out
+							value="${(product.productPrice+productOption)*selAmount }" /> 원
+					</td>
+				</tr>
 
-				</tbody>
-			</table>
+			</tbody>
+		</table>
 		<%-- </c:forEach> --%>
 
 		<br> <br>
@@ -158,35 +174,33 @@
 		<hr class="my-4">
 
 		<%-- <c:forEach var="c" items="${map.cartList}" varStatus="i"> --%>
-			<table class="payment-table">
-				<tbody>
-					<tr class="payment-tr">
-						<th scope="row" id="payment-th"><label for="">상품금액(옵션포함)</label></th>
-						<td class="pro-price">
-							<c:out value="${(product.productPrice+productOption)*selAmount }" /> 원
-						</td>
-					<tr class="payment-tr">
-						<th scope="row" id="payment-th"><label for="">배송비</label></th>
-						<td class="pro-price">
-							2500 원
-						</td>
-					</tr>
-					<tr class="payment-tr">
-						<th scope="row" id="payment-th"><label for="">총 결제금액</label></th>
-						<td class="pro-price" id="totalPrice">
-							<strong style="font-size: 25px; color: #C87854;">
-								<c:out value="${(product.productPrice+productOption)*selAmount+2500 }" /> 원
-							</strong>
-						</td>
-					</tr>
-					<tr class="payment-tr">
-						<th scope="row" id="payment-th"><label for=""></label></th>
-						<!-- <td>
+		<table class="payment-table">
+			<tbody>
+				<tr class="payment-tr">
+					<th scope="row" id="payment-th"><label for="">상품금액(옵션포함)</label></th>
+					<td class="pro-price"><c:out
+							value="${(product.productPrice+productOption)*selAmount }" /> 원
+					</td>
+				<tr class="payment-tr">
+					<th scope="row" id="payment-th"><label for="">배송비</label></th>
+					<td class="pro-price">2500 원</td>
+				</tr>
+				<tr class="payment-tr">
+					<th scope="row" id="payment-th"><label for="">총 결제금액</label></th>
+					<td class="pro-price" id="totalPrice"><strong
+						style="font-size: 25px; color: #C87854;"> <c:out
+								value="${(product.productPrice+productOption)*selAmount+2500 }" />
+							원
+					</strong></td>
+				</tr>
+				<tr class="payment-tr">
+					<th scope="row" id="payment-th"><label for=""></label></th>
+					<!-- <td>
 									<input class="form-control" id="" placeholder="내용을 입력해주세요.">
 								</td> -->
-					</tr>
-				</tbody>
-			</table>
+				</tr>
+			</tbody>
+		</table>
 		<%-- </c:forEach> --%>
 
 		<br>
@@ -194,7 +208,8 @@
 		<div class="row gap-2" id="payment-btn">
 			<button onclick="location.href='/'" type="button"
 				class="btn col btn-secondary btn-lg">취소하기</button>
-			<button onclick="payment()" type="button" class="btn col btn-primary btn-lg">결제하기</button>
+			<button onclick="payment()" type="button"
+				class="btn col btn-primary btn-lg">결제하기</button>
 			<!-- <button onclick="testPayment()" type="button" class="btn col btn-primary btn-lg">테스트 결제하기</button> -->
 		</div>
 
@@ -246,12 +261,13 @@
          amount : ${(product.productPrice+productOption)*selAmount+2500 }, // 총 상품가격
          /* buyer_name : ${deliveryLocation.addrReceiver }, // 배송받는 사람 이름
          buyer_tel : ${deliveryLocation.addrPhone }, // 배송받는 사람 연락처
-         buyer_addr : ${deliveryLocation.addrRoadName } + " " +${deliveryLocation.addrDetail }, // 배송받는 사람 도로명 + 상세주소
+         buyer_addr : ${deliveryLocation.addrRoadName } + " " + ${deliveryLocation.addrDetail }, // 배송받는 사람 도로명 + 상세주소
          buyer_postcode : ${deliveryLocation.adrPostNum }, // 배송받는 사람 우편번호 */
-         buyer_name : '오곡율무',
-         buyer_tel : '010-1234-5678',
-         buyer_addr : '서울특별시 강남구 삼성동',
-         buyer_postcode : '123-456',
+         buyer_name : '${deliveryLocation.addrReceiver }',
+         buyer_email : "taera2@icould.com",
+         buyer_tel : '${deliveryLocation.addrPhone }',
+         buyer_addr : '',
+         buyer_postcode : '',
          m_redirect_url : '/'
 
       },
@@ -260,7 +276,9 @@
 
          console.log(rsp);
 
-         if (rsp.success) {
+         if (rsp.success) { // 결제완료
+        	 
+			location.replace("/order/orderComplete");
         	 
             var msg = '결제가 완료되었습니다.';
             
@@ -269,11 +287,13 @@
             msg += '결제 금액 : ' + rsp.paid_amount;
             msg += '카드 승인번호 : ' + rsp.apply_num;
             
-         } else {
+         } else { // 결제실패
         	 
-            var msg = '결제에 실패하였습니다.';
+        	location.replace("/order/orderFail");
+        	 
+            var msg = '주문실패 : ';
             
-            msg += '에러내용 : ' + rsp.error_msg;
+            msg += rsp.error_msg;
             
          }
          

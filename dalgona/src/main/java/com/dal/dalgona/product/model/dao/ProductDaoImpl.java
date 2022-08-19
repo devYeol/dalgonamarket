@@ -118,9 +118,9 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public void updateReview(SqlSession session, Review review) {
+	public int updateReview(SqlSession session, Review review) {
 		// TODO Auto-generated method stub
-		session.update("review.updateReview",review);
+		return session.update("review.updateReview",review);
 	}
 
 	@Override
