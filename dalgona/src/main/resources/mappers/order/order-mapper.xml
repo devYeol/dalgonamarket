@@ -51,6 +51,17 @@
       <result property="memberEmail" column="member_email"/>
       <result property="memberEnrollDate" column="member_enroll_date"/>
    </resultMap>
+   
+   <select id="selectDl" resultMap="deliveryLocationMap">
+		select *
+		from delivery_Location d, member m
+		where m.member_id=d.member_id
+		and d.member_id=#{memberId }
+	</select>
+	
+	<select id="selectPo" resultMap="productOrderMap">
+		SELECT * FROM PRODUCT_ORDER WHERE ORDER_CODE=#{orderCode}
+	</select>
 	
 	<insert id="pOrder" parameterType="productOrder">
 		INSERT INTO PRODUCT_ORDER <!-- (
@@ -70,15 +81,20 @@
 				#{deliveryLocation.addressCode},
 				#{totalPrice }
 			)
+			
+		<selectKey keyProperty="orderCode" order="AFTER" resultType="long">
+	     	SELECT seq_order_code.CURRVAL FROM DUAL
+		</selectKey>
+		
 	</insert>
 
 	<insert id="order" parameterType="orderDetail">
 	
-		<!-- <selectKey keyProperty="orderCode" order="BEFORE" resultType="long">
+<!-- 		<selectKey keyProperty="productOrder.orderCode" order="BEFORE" resultType="long">
 	     	SELECT seq_order_code.NEXTVAL FROM DUAL
-		</selectKey>
+		</selectKey> -->
 	
-		INSERT INTO ORDER_DETAIL (
+		<!-- INSERT INTO ORDER_DETAIL (
 			   ORDER_CODE,
 			   PRODUCT_CODE,
 			   ORDER_AMOUNT,
@@ -90,8 +106,9 @@
 			   #{orderOption }
 		    ) -->
 		    
-		INSERT INTO ORDER_DETAIL VALUES(#{productOrder.orderCode },
+		INSERT INTO ORDER_DETAIL VALUES(
 			   #{product.productCode },
+			#{productOrder.orderCode },
 			   #{orderAmount },
 			   #{orderOption })
 
@@ -110,11 +127,5 @@
 			    #{orderOption }
 		    )
 	</insert> -->
-	
-	<select id="selectDl">
-		SELECT * FROM
-			DELEVERY_LOCATION
-			WHERE ADDR_BASE='0'
-	</select>
 
 </mapper>

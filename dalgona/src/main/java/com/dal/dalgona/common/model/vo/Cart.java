@@ -29,7 +29,7 @@ public class Cart {
 	
 	@Id
 	@GeneratedValue(generator="seq_cart_code", strategy=GenerationType.SEQUENCE)
-	private long cartCode;
+	private long cartCode; // **카트코드 + 프로덕트코드**를 보내서 일치를 한다면 -> 결제로 넘겨주도록 해야함
 	
 	@ManyToOne
 	@JoinColumn(name="memberId")
@@ -38,7 +38,7 @@ public class Cart {
 
 	@ManyToOne
 	@JoinColumn(name="productCode")
-	private Product product;
+	private Product product; // List<Product>
 	
 	@Column  (columnDefinition = "number default 1") 
 	private int cartAmount;

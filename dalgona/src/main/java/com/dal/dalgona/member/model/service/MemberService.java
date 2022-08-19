@@ -24,7 +24,7 @@ public interface MemberService {
 	
 	void updateCart(Cart c);
 	
-	List<Cart> cartList(Member memberId); 
+	List<Cart> cartList(Member memberId);
 	
 	Cart selectCart(Product productCode);
 

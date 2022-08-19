@@ -1,7 +1,7 @@
 package com.dal.dalgona.payment.controller;
 
 import java.io.IOException;
-import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +22,7 @@ import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOrder;
+import com.dal.dalgona.member.model.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -60,52 +61,8 @@ public class PaymentController {
 		return "order/payment/payment";
 		
 	}
-	
-	@RequestMapping("/product/paymentCart.do")
-	public String paymentProduct(HttpSession session) 
-//			(Product p, ProductOrder po, DeliveryLocation dl 
-//			, HttpSession session, Model model
-//			,@RequestParam(value="selAmount", required = false ) int selAmount
-//			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
-//			,@RequestParam(value="productName", required = false ) String productName
-//			) 
-	{
-		
-		Member memberId = (Member) session.getAttribute("loginMember");
 
-////		log.debug("{}",p);
-////		log.debug("{}",po);
-////		log.debug("{}",dl);
-//		log.debug("{}",productName);
-//		log.debug("{}",selAmount);
-//		log.debug("{}",selectedOpt);
-//		
-//		model.addAttribute("product", p);
-//		model.addAttribute("productOption", selectedOpt);
-//		model.addAttribute("selAmount", selAmount);
-//		
-////		dl=service.selectaddrBase(m); //여기서 기본배송지 선택해서
-//		dl=dlService.selectDl(memberId); //여기서 기본배송지 선택해서
-////		po=ProductOrder.builder().orderDate(new Date()).orderStatus("디폴").selectLocation(dl).build();
-//		po=ProductOrder.builder().orderStatus("주문대기").build();
-//		
-//		model.addAttribute("deliveryLocation", dl);
-//		
-////		Product p;
-////		int selsu=selAmount;
-//		
-//		OrderDetail od=OrderDetail.builder().productOrder(po).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
-//		
-//		log.debug("{}", dl);
-//		log.debug("{}", od);
-//
-////		paymentService.insertOrderDetail(od);
-		
-		return "order/payment/paymentCart";
-		
-	}
-	
-	@RequestMapping("/product/payment.do")
+	@RequestMapping("/product/paymentCart.do")
 	public String paymentCart(Product p, ProductOrder po, DeliveryLocation dl 
 			, HttpSession session, Model model
 			,@RequestParam(value="selAmount", required = false ) int selAmount
@@ -115,30 +72,77 @@ public class PaymentController {
 		
 		Member memberId = (Member) session.getAttribute("loginMember");
 		
-		
 		log.debug("{}",p);
 		log.debug("{}",po);
 		log.debug("{}",dl);
-		log.debug("{}",productName);
-		log.debug("{}",selAmount);
-		log.debug("{}",selectedOpt);
+//		log.debug("{}",productName);
+//		log.debug("{}",selAmount);
+//		log.debug("{}",selectedOpt);
 		
 		model.addAttribute("product", p);
 		model.addAttribute("productOption", selectedOpt);
 		model.addAttribute("selAmount", selAmount);
 		
-//		dl=service.selectaddrBase(m); //여기서 기본배송지 선택해서
-//		po=ProductOrder.builder().orderDate(new Date()).orderStatus("디폴").selectLocation(dl).build();
+		dl=dlService.selectDl(memberId);
 		
-		po=ProductOrder.builder().orderDate("mm/DD").orderStatus("주문대기").deliveryLocation(dl).build();
+		po=ProductOrder.builder().deliveryLocation(dl).orderStatus("주문대기").build();
+		log.debug("프로덕트오더 전 : {}", po.getOrderCode());
+		dlService.insertPo(po);
+		log.debug("프로덕트오더 후 : {}", po.getOrderCode());
 		
-//		int result =dlService.insertPo(po);
+		long orderCode=po.getOrderCode();
 		
-//		model.addAttribute("deliveryLocation", dl);
+		ProductOrder po2=dlService.selectPo(orderCode);
+		log.debug("프로덕트오더 : {}", po2);
 		
-		OrderDetail od=OrderDetail.builder().productOrder(po).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
+		OrderDetail od=OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
 		
-//		dlService.insertOd(od);
+		dlService.insertOd(od);
+		
+		log.debug("dl : {}", dl);
+		log.debug("po : {}", po);
+		log.debug("od : {}", od);
+		
+		return "order/payment/paymentCart";
+		
+	}
+	
+	@RequestMapping("/product/payment.do")
+	public String paymentProduct(Product p, ProductOrder po, DeliveryLocation dl 
+			, HttpSession session, Model model
+			,@RequestParam(value="selAmount", required = false ) int selAmount
+			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
+			,@RequestParam(value="productName", required = false ) String productName
+			) {
+		
+		Member memberId = (Member) session.getAttribute("loginMember");
+		
+//		log.debug("{}",p);
+//		log.debug("{}",po);
+//		log.debug("{}",dl);
+//		log.debug("{}",productName);
+//		log.debug("{}",selAmount);
+//		log.debug("{}",selectedOpt);
+		
+		model.addAttribute("product", p);
+		model.addAttribute("productOption", selectedOpt);
+		model.addAttribute("selAmount", selAmount);
+		
+		dl=dlService.selectDl(memberId);
+		
+		po=ProductOrder.builder().deliveryLocation(dl).orderStatus("주문대기").build();
+//		log.debug("프로덕트오더 전 : {}", po.getOrderCode());
+		dlService.insertPo(po);
+//		log.debug("프로덕트오더 후 : {}", po.getOrderCode());
+		
+		long orderCode=po.getOrderCode();
+		
+		ProductOrder po2=dlService.selectPo(orderCode);
+//		log.debug("프로덕트오더 : {}", po2);
+		
+		OrderDetail od=OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
+		
+		dlService.insertOd(od);
 		
 		log.debug("dl : {}", dl);
 		log.debug("po : {}", po);

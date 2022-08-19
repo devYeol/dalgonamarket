@@ -14,5 +14,7 @@ public interface DeliveryManageDao {
 	int insertOd(SqlSessionTemplate session, OrderDetail od);
 	
 	int insertPo(SqlSessionTemplate session, ProductOrder po);
+	
+	ProductOrder selectPo(SqlSessionTemplate session, long orderCode);
 
 }

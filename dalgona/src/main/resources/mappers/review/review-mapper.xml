@@ -28,6 +28,19 @@
 		SELECT AVG(REVIEW_STAR) FROM REVIEW WHERE PRODUCT_CODE=#{productCode}
 	</select>
 	
+	<delete id="delReview">
+		DELETE FROM REVIEW WHERE REVIEW_CODE=#{reviewCode}
+	</delete>
+	
+	<select id="selectOneReview" resultMap="reviewMap">
+		SELECT * FROM REVIEW WHERE REVIEW_CODE=#{reviewCode}
+	</select>
+	
+	<update id="updateReview">
+		UPDATE REVIEW SET REVIEW_CONTENT=#{reviewContent},REVIEW_IMAGE=#{reviewImage}
+			,REVIEW_STAR=#{reviewStar} WHERE REVIEW_CODE=#{reviewCode};
+	</update>
+	
 
 	
 
