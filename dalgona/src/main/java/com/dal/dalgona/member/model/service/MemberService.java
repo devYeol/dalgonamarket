@@ -16,14 +16,20 @@ public interface MemberService {
 
 	Product selectProduct(Product productCode);
 
-	Likes selectLikes(long likesCode);
+//	Likes selectLikes(long likesCode);
+	
+	void modifyCart(Cart c);
+	
+	int countCart(Product productCode,Member m );
+	
+	void updateCart(Cart c);
 	
 	List<Cart> cartList(Member memberId);
 	
 	Cart selectCart(Product productCode);
 
 	void delete(long cartCode); //장바구니 선택삭제
-
+	
 	long selectDelete(long cartCode);
 	
 //	void deleteAll(Member memberId); //전체 삭제

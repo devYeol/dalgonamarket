@@ -19,14 +19,18 @@ public interface MemberDao {
 	
 	Product selectProduct(SqlSession session, Product productCode);
 
-	Likes selectLikes(SqlSession session, long likesCode);
+//	Likes selectLikes(SqlSession session, long likesCode);
+	
+	int countCart(SqlSessionTemplate session,Product productCode,Member m );
+	
+	void modifyCart(SqlSessionTemplate session,Cart c);
+	
+	void updateCart(SqlSessionTemplate session,Cart c);
 	
 	List<Cart> cartList(SqlSessionTemplate session,Member memberId );
 
 	Cart selectCart(SqlSessionTemplate session,Product productCode);
 	
-	void updateCart(SqlSessionTemplate session ,Cart c);
-		
 	void delete(SqlSessionTemplate session,long cartCode); //장바구니 한 개 로우 삭제
 	
 	long selectDelete(SqlSessionTemplate session,long cartCode); //장바구니 삭제

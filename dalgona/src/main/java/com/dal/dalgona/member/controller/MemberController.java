@@ -30,11 +30,8 @@ import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
-import com.dal.dalgona.common.model.vo.ProductOption;
-import com.dal.dalgona.common.model.vo.Qna;
-import com.dal.dalgona.common.model.vo.Review;
 import com.dal.dalgona.member.model.service.MemberService;
-import com.google.gson.Gson;
+import com.dal.dalgona.product.model.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -45,6 +42,9 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 
+	 @Autowired
+	  private ProductService pservice;
+	
 	@Value(value = "${spring.mail.username}")
 	private String adminEmail;
 
@@ -59,30 +59,71 @@ public class MemberController {
 			Product p) 
 			throws Exception {
 		Member m= (Member) session.getAttribute("loginMember");
-//		Likes l=service.selectLikes(likesCode);
-		System.out.println(m);
-		System.out.println(p);
 		String msg="" ,loc="";
-		log.debug("{1}",m);
-		log.debug("{1}",p);
-	
-		if(m!=null) {
-			Cart c =Cart.builder().member(m).product(p).build();
+		Cart c =Cart.builder().member(m).product(p).build();
+		System.out.println(c);
+		//		int result=service.cartInsert(c);
+		
+		int count = service.countCart(c.getProduct(),m);
+		if(count == 0) {
+			System.out.println("count: "+count);
+			service.cartInsert(c);
+			log.debug("{2}",c);
+			log.debug("{2}",count);
 			System.out.println(c);
-			int result=service.cartInsert(c);
-			msg="장바구니에 등록 되었습니다";
+			System.out.println(count);
+			msg="장바구니에 추가 되었습니다";
 			loc="/member/mypage/cart";
+			mo.addAttribute("msg",msg);
+			mo.addAttribute("loc",loc);
+			return "common/msg";
 		}else {
-			msg="로그인 후 이용해주세요";
-			loc="/member/login/loginPage";
+			System.out.println("c"+c);
+			System.out.println("co"+count);
+			service.updateCart(c);
+		
+			log.debug("{3}",c);
+			log.debug("{3}",count);
+			System.out.println(c);
+			System.out.println(count);
+			msg="중복된 상품입니다";
+			loc="/";
+			mo.addAttribute("msg",msg);
+			mo.addAttribute("loc",loc);
+			return "common/msg";
 		}
 		
-		log.debug("{2}",m);
-		log.debug("{2}",p);
-		mo.addAttribute("msg",msg);
-		mo.addAttribute("loc",loc);
-		return "common/msg";
+		
 	}
+//	@RequestMapping(value="/member/mypage/cartInsert")
+//	public String cartInsert(Model mo,HttpSession session,
+//			@RequestParam(value="selAmount",required=false )int selAmount,
+//			Product p) 
+//			throws Exception {
+//		Member m= (Member) session.getAttribute("loginMember");
+////		Likes l=service.selectLikes(likesCode);
+//		System.out.println(m);
+//		System.out.println(p);
+//		String msg="" ,loc="";
+//		log.debug("{1}",m);
+//		log.debug("{1}",p);
+//		if(m!=null) {
+//			Cart c =Cart.builder().member(m).product(p).build();
+//			System.out.println(c);
+//			int result=service.cartInsert(c);
+//			msg="장바구니에 등록 되었습니다";
+//			loc="/member/mypage/cart";
+//		}else {
+//			msg="로그인 후 이용해주세요";
+//			loc="/member/login/loginPage";
+//		}
+//		
+//		log.debug("{2}",m);
+//		log.debug("{2}",p);
+//		mo.addAttribute("msg",msg);
+//		mo.addAttribute("loc",loc);
+//		return "common/msg";
+//	}
 	
 	@RequestMapping(value="/member/mypage/cart") // 장바구니
 	public ModelAndView cart(ModelAndView mv, HttpSession session,
@@ -92,16 +133,16 @@ public class MemberController {
 			List<Cart> cartList = service.cartList(memberId); // 장바구니 정보
 			System.out.println("cart :" + cartList);
 			service.selectProduct(p);
-			int sumMoney = service.sumMoney(memberId);// 장바구니 전체 금액 호출
-			System.out.println("sumMoney :" + sumMoney);
+//			int sumMoney = service.sumMoney(memberId);// 장바구니 전체 금액 호출
+//			System.out.println("sumMoney :" + sumMoney);
 			int selAmount=1; //상품 개수
 			int fee = 2500; // 배송료
-			System.out.println("allMoney :" + (fee + sumMoney));
-			mv.addObject("sumMoney",sumMoney);
+//			System.out.println("allMoney :" + (fee + sumMoney));
+//			mv.addObject("sumMoney",sumMoney);
 			mv.addObject("sA",selAmount);
 			mv.addObject("fee",fee);
 			mv.addObject("product",p);
-			mv.addObject("allSum", fee + sumMoney); // 체크된 장바구니 상품 + 배송비
+//			mv.addObject("allSum", fee + sumMoney); // 체크된 장바구니 상품 + 배송비
 			mv.addObject("cartList",cartList);
 			mv.addObject("count", cartList.size());
 			mv.setViewName("member/mypage/cart");
@@ -110,6 +151,23 @@ public class MemberController {
 			return new ModelAndView("member/login/loginPage");
 		}
 
+	}
+	@RequestMapping(value="/cart/update.do") // 장바구니
+	public String cart(Model mo, HttpSession session,
+			Product p,@RequestParam int[] cartAmount,
+			@RequestParam int[] selAmount,
+			@RequestParam long[] productCode) {
+		Member memberId = (Member) session.getAttribute("loginMember");
+		
+		for(int i=0; i<selAmount.length; i++) {
+			Cart c = new Cart();
+			c.setMember(memberId);
+			c.setCartAmount(selAmount[i]);
+			cartAmount[i]+=selAmount[i];
+			c.setProduct(p);
+			service.modifyCart(c);
+			}
+		return "redirect:/member/mypage/cart";
 	}
 	
 	@RequestMapping(value="/payment/Move.do") //장바구니 -> 구매내역

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +20,9 @@ import com.dal.dalgona.common.model.vo.Review;
 import com.dal.dalgona.option.model.dao.OptionDao;
 import com.dal.dalgona.product.model.dao.ProductDao;
 import com.dal.dalgona.qna.model.dao.QnaDao;
+import com.dal.dalgona.qna.model.dao.QnaDaoJpa;
 import com.dal.dalgona.review.model.dao.ReviewDao;
+import com.dal.dalgona.review.model.dao.ReviewDaoJpa;
 import com.dal.dalgona.working.model.dao.PjeDaoJpa;
 
 @Service
@@ -29,7 +32,16 @@ public class AdminServiceImpl implements AdminService{
 	AdminDao dao;
 	
 	@Autowired
-	PjeDaoJpa memberdao;
+	PjeDaoJpa memberDao;
+	
+	@Autowired
+	ReviewDao reviewDao;
+	
+	@Autowired
+	QnaDao qnaDao;
+	
+	@Autowired
+	SqlSessionTemplate session;
 	
 	@Autowired
 	private OptionDao optionDao;
@@ -38,10 +50,10 @@ public class AdminServiceImpl implements AdminService{
 	private ProductDao productDao;
 	
 	@Autowired
-	private ReviewDao reviewDao;
+	private ReviewDaoJpa reviewDaoJpa;
 	
 	@Autowired
-	private QnaDao qnaDao;
+	private QnaDaoJpa qnaDaoJpa;
 	
 	public List<Product> selectProducts() {
 		return dao.findAll(Sort.by(Sort.Direction.DESC,"productCode"));
@@ -50,21 +62,13 @@ public class AdminServiceImpl implements AdminService{
 	@Transactional
 	public Long deleteByProductCode(long productCode) {
 		Long result = optionDao.deleteByProduct(selectOneProduct(productCode));
-		result = qnaDao.deleteByProduct(selectOneProduct(productCode));
+		result = qnaDaoJpa.deleteByProduct(selectOneProduct(productCode));
 		return dao.deleteByProductCode(productCode);
 	}
 	
 	/*
 	 * public void insertProduct(Product p) { dao.saveAndFlush(p); }
 	 */
-	
-	public Page<Product> selectProducts(PageRequest pagerequest) {
-		return dao.findAll(pagerequest);
-	}
-	
-	public Page<Member> selectMembers(PageRequest pagerequest) {
-		return memberdao.findAll(pagerequest);
-	}
 	
 	// 상품등록
 	@Override
@@ -102,14 +106,36 @@ public class AdminServiceImpl implements AdminService{
 		List<ProductOption> optionUpdate = optionDao.saveAll(list);
 		return optionUpdate;
 	}
-	
-	public List<Review> selectReviews() {
-		return reviewDao.findAll();
+
+	@Override
+	public List<Review> selectReviewsTop8() {
+		// TODO Auto-generated method stub
+		return reviewDao.selectReviewsTop8(session);
 	}
 	
-	public List<Qna> selectQnas() {
-		return qnaDao.findAll();
+	@Override
+	public List<Qna> selectQnasTop8() {
+		// TODO Auto-generated method stub
+		return qnaDao.selectQnasTop8(session);
 	}
+	
+	// JPA
+	
+	public Page<Product> selectProducts(PageRequest pagerequest) {
+		return dao.findAll(pagerequest);
+	}
+	
+	public Page<Member> selectMembers(PageRequest pagerequest) {
+		return memberDao.findAll(pagerequest);
+	}
+
+//	public List<Review> selectReviews() {
+//		return reviewDaoJpa.findTop7ByReviewDate();
+//	}
+//	
+//	public List<Qna> selectQnas() {
+//		return qnaDao.findAll();
+//	}
 
 	
 }

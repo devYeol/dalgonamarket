@@ -72,6 +72,7 @@ public class ProductController {
 //      log.debug("{}찜수",likesCount);     
 //      log.debug("{}",op);
 //      log.debug("{}",review);
+      log.debug("{}",qna);
       
       
       model.addAttribute("pro",p);

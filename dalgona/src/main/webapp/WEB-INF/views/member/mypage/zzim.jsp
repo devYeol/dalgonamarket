@@ -220,7 +220,7 @@
 					</div>
 				</div>
 				<hr>
-				<form action="${path }/member/mypage/cartInsert" id="cartMove">
+				<form action="${path }/member/mypage/cartInsert" onsubmit="return cartMoved()"id="cartMoved">
 					<c:forEach var="z" items="${zzimList }">
 					<%-- <input type="hidden" name="zzimList" value="${zzimList }"> --%>
 						<br>
@@ -254,7 +254,7 @@
 											<c:out value="${z.product.productPrice }원" />
 										</div></td>
 									<td style="padding-left: 140px;">
-										<button type="submit" name="cartMove" class="btn btn-danger"
+										<button type="button" onclick="return cartMoved(this.form)" class="btn btn-danger"
 											style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
 									</td>
 									<a href="${path }/member/zzimDelete.do?likesCode=${z.likesCode}"
@@ -266,7 +266,7 @@
 						<hr>
 					</c:forEach>
 					<div class="cartandprice" style="text-align: center;">
-						<button class="btn-buy" name="cartMoves">장바구니에 담기</button>
+						<button class="btn-buy" id="cartMoves">장바구니에 담기</button>
 					</div>
 				</form>
 			</c:otherwise>
@@ -343,18 +343,25 @@ $(".check-input").click(function(){
         		
         })
         
-        $("button[name=cartMoves]").click(function(){
+        $("#cartMoves").click(function(){
         var qwe =$("input[name='check']:checked");
-        let zzim =$()
 			if(qwe.length >= 1){
 				
 				console.log(qwe);
- 				$('#cartMove').submit();
+ 				$('#cartMoved').submit();
 			}else{
 				alert('상품을 선택하세요');
 				return false
 			}
 		})    
+		
+		function cartMoved(frm){
+			 action = ${path}"/member/mypage/cartInsert";
+				frm.submit();
+				return true;
+			 
+		 };
+		
         
 </script>
 

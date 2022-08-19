@@ -12,6 +12,7 @@
 		<result property="productPrice" column="product_price" />
 		<result property="productThumb" column="product_thumb" />
 	</resultMap>
+	
 	<resultMap type="member" id="memberMap">
 		<id property="memberId" column="member_id"/>
 		<result property="memberPwd" column="member_pwd"/>
@@ -31,6 +32,7 @@
 		<association column="member_id" property="member" resultMap="memberMap"/>
 		<association column="product_code" property="product" resultMap="productMap"/>
 	</resultMap>
+	
 	<select id="qnaList" parameterType="qna" resultMap="qnaMap">
 		SELECT * FROM QNA q,MEMBER m, PRODUCT p WHERE q.PRODUCT_CODE=#{productCode} 		
 	</select>
@@ -41,6 +43,16 @@
 	</insert>
 	<select id="selectQna" parameterType="_long" resultMap="qnaMap">
 		SELECT * FROM QNA WHERE QNA_CODE=#{qnaCode} 		
+	</select>
+	
+	<select id="selectQnasTop8" resultMap="qnaMap">
+		SELECT *
+		FROM (
+			SELECT * FROM QNA 
+			JOIN PRODUCT USING (PRODUCT_CODE)
+			ORDER BY QNA_DATE DESC
+		)
+		WHERE ROWNUM BETWEEN 1 AND 8
 	</select>
 	
 </mapper>

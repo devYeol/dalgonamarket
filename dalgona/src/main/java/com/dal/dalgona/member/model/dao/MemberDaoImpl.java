@@ -29,10 +29,30 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("product.selectProduct",productCode);
 	}
 	
+//	@Override
+//	public Likes selectLikes(SqlSession session, long likesCode) {
+//		// TODO Auto-generated method stub
+//		return session.selectOne("likes.selectLikes",likesCode);
+//	}
+	
 	@Override
-	public Likes selectLikes(SqlSession session, long likesCode) {
+	public int countCart(SqlSessionTemplate session,Product productCode,Member m ) {
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("productCode", productCode);
+		map.put("m", m);
+		return session.selectOne("cart.countCart",map);
+	}
+	@Override
+	public void modifyCart(SqlSessionTemplate session,Cart c){
+		
+		session.update("cart.modifyCart",c);
+	}
+	
+	
+	@Override
+	public void updateCart(SqlSessionTemplate session,Cart c) {
 		// TODO Auto-generated method stub
-		return session.selectOne("likes.selectLikes",likesCode);
+		 session.update("cart.updateCart",c);
 	}
 	
 	@Override
@@ -75,11 +95,6 @@ public class MemberDaoImpl implements MemberDao {
 //	public void deleteAll(SqlSessionTemplate session ,Member memberId) {
 //		session.delete("cart.deleteAll",memberId);
 //	}
-
-	@Override
-	public  void updateCart(SqlSessionTemplate session ,Cart c) {
-		session.update("cart.updateCart",c);
-	}
 
 	@Override
 	public List<Likes> zzimList(SqlSessionTemplate session,Member memberId){
