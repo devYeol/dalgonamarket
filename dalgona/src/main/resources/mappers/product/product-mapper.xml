@@ -20,6 +20,10 @@
 		SELECT * FROM PRODUCT
 	</select>
 	
+	<update id="minusProductAmount" parameterType="Map">
+		UPDATE PRODUCT SET PRODUCT_AMOUNT=PRODUCT_AMOUNT-#{orderAmount} WHERE PRODUCT_CODE=#{productCode}
+	</update>
+	
 	
 	
 	

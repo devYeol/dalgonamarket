@@ -28,6 +28,7 @@ import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.common.model.vo.Qna;
 import com.dal.dalgona.common.model.vo.Review;
+import com.dal.dalgona.product.model.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +40,9 @@ public class AdminController {
 	@Autowired
 	AdminServiceImpl service;
 
+	@Autowired
+	ProductService pservice;
+	
 	// 관리자 메인 이동
 	@RequestMapping("adminMain.do")
 	public ModelAndView adminManageMember(ModelAndView mv,
@@ -214,12 +218,12 @@ public class AdminController {
 		Product p = service.selectOneProduct(pro);
 		List<ProductOption> po = service.selectOneOption(p);
 	
-		log.debug("{}", p);
+		//log.debug("{}", p);
 //		log.debug("{}", po);
 		
 		model.addAttribute("p", p);
 		model.addAttribute("po", po);
-		
+		model.addAttribute("pro",pro);
 		return "admin/selectUpdateProduct";
 	}
 	
@@ -235,9 +239,12 @@ public class AdminController {
 								@RequestParam(value = "detailedImage" ,required = false ) MultipartFile detailedImage, //업데이트 될 상세이미지
 								@RequestParam(value = "productPrice") int product_Price,
 								@RequestParam(value = "productName") String product_Name,
-								@RequestParam(value = "categoryName") String categoryName, long[] optionCode, String[] optionName,
+								@RequestParam(value = "categoryName") String categoryName,
+								@RequestParam(value = "pro") long pro,
+								
+								String[] optionName,
 								int[] optionPrice, HttpServletRequest rs, Model model) throws IllegalStateException, IOException {
-		
+		//System.out.println("pro :"+pro);
 		System.out.println(product_Content);
 		String path = rs.getServletContext().getRealPath(beforeThumbnail);
 	    	System.out.println(path);
@@ -248,12 +255,11 @@ public class AdminController {
 		//log.debug("{}",f);
 		//log.debug("{}",f2);
 		String updatePath = rs.getServletContext().getRealPath("/resources/upload/product/");
-		System.out.println("updatePath : " + updatePath);
+//		System.out.println("updatePath : " + updatePath);
 		File uploadDir = new File(updatePath);
-		System.out.println("uploadDir : " + uploadDir);
+//		System.out.println("uploadDir : " + uploadDir);
 		int random = (int) (Math.random() * 10000);
 		
-		// 이미지주소 자르기 상세이미지
 		Product po = Product.builder().productCode(Product_Code).productAmount(product_Ampont).productContent(product_Content)
 				.productPrice(product_Price).productName(product_Name).productDate(new Date()).categoryName(categoryName).build();
 		
@@ -261,7 +267,6 @@ public class AdminController {
 		//파일 분기처리 -> 둘다 널이 아닐때 썸네일만 널아닐때 상세만 널아닐때 둘다 널일때
 		//둘다 널일때?
 		if(thumbnail.isEmpty()) { //디테일만 들어올때 
-			
 			String target = "resources";
 			String updateThumFile = path;
 			int target_num = updatePath.indexOf(target) - 1;
@@ -269,14 +274,15 @@ public class AdminController {
 			po.setProductThumb(thumbnailPath);
 			log.debug(thumbnailPath);
 		}
-		if(!thumbnail.isEmpty()) {
+		
+		if(!thumbnail.isEmpty()) { 
 			f = new File(path);
 			File thumbnailFile = new File(updatePath);
-			System.out.println("thumbnailFile : " + thumbnailFile);
+//			System.out.println("thumbnailFile : " + thumbnailFile);
 			
 			String originalFilename = thumbnail.getOriginalFilename();
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-			System.out.println("오리지널 : " + originalFilename);
+//			System.out.println("오리지널 : " + originalFilename);
 			
 			rename = "admin_" + random + ext;
 			
@@ -290,10 +296,9 @@ public class AdminController {
 			int target_num = updatefileName.indexOf(target) - 1;
 			String thumbnailPath = updatefileName.substring(target_num);
 			po.setProductThumb(thumbnailPath);
-			log.debug(thumbnailPath);
-			
-			
+//			log.debug(thumbnailPath);
 		}
+		
 		if(detailedImage.isEmpty()) { //==null
 			//이미지주소 자르면 넘어올것 같음
 			String target = "resources";
@@ -301,17 +306,18 @@ public class AdminController {
 			int target_num1 = updatedetailFile.indexOf(target) - 1;
 			String detailedPath = updatedetailFile.substring(target_num1);
 			po.setProductImage(detailedPath);
-			System.out.println("디테일 이미지 자르기 : " + detailedPath);
+//			System.out.println("디테일 이미지 자르기 : " + detailedPath);
 		}
-		System.out.println("디테일드 이미지 : "+detailedImage);
+//		System.out.println("디테일드 이미지 : "+detailedImage);
+		
 		if(!detailedImage.isEmpty()) { //!=null
 			f2 = new File(path2);
 			File detailedImageFile = new File(updatePath);
-			System.out.println("디테일 : " + detailedImageFile);
+//			System.out.println("디테일 : " + detaiFledImageFile);
 			
 			String secondFilename = detailedImage.getOriginalFilename();
 			String exts = secondFilename.substring(secondFilename.lastIndexOf(".")); //null로 들어오는데 .을 못찾아서 에러발생
-			System.out.println("secondFilename : " + secondFilename);
+//			System.out.println("secondFilename : " + secondFilename);
 			
 			secondRename = "admin_second_" + random + exts;
 			
@@ -328,23 +334,49 @@ public class AdminController {
 			po.setProductImage(detailedPath);
 		}
 		
-		List<ProductOption> option = new ArrayList();
-//		 option을 for문돌려 컬럼안에 집어넣음
-		for (int i = 0; i < optionName.length; i++) {
-			option.add(
-					ProductOption.builder().product(po).optionCode(optionCode[i]).optionName(optionName[i]).optionPrice(optionPrice[i]).build());
-			System.out.println("추가 옵션 : " + option);
-		}
-		
-		System.out.println("option : " + option);
-		log.debug("{}",option);
-		po.setOptionCode(option);
-		log.debug("{}",po);
+
 			
+		//where product_code='상푸번호'로 옵션값 다 지운다음에
+		//selectupdateproduct.jsp에서 넘어온 값은 다시 insert 한다.
+		//long proNo = Long.parseLong(pro);
+		
 		try {
 			Product p = service.updateProduct(po);
-			List<ProductOption> uo = service.updateOption(option); 
+			//List<ProductOption> uo = service.updateOption(option); 
 			//이전 파일 지우는 로직
+			int result = pservice.deletebyProduct(pro); //db에 있는 옵션값 다지우기
+			
+			Product ppp = Product.builder().productCode(pro).build();
+			List<ProductOption> options = new ArrayList();
+			//option을 for문돌려 컬럼안에 집어넣음
+			for (int i = 0; i < optionName.length; i++) {
+				options.add(
+						ProductOption.builder().product(ppp).optionName(optionName[i]).optionPrice(optionPrice[i]).build());
+			}
+			System.out.println("options : : " + options);
+			System.out.println("p : " + p);
+			//p.setOptionCode(options);
+			List<ProductOption> popions = service.save(options);
+			
+			
+			
+		//	Product ppp = Product.builder().productCode(pro).build();
+//			for(int i=0; i<optionName.length; i++) {
+//			
+//				System.out.println("optionName : "+optionName[i]);
+//			}
+//			for(int i=0; i<optionName.length; i++) {
+//				
+//				System.out.println("optionPrice : "+optionPrice[i]);
+//			}
+//			ProductOption option = null;
+//			for(int i=0; i<optionName.length; i++) {
+//				option = ProductOption.builder().product(ppp).optionName(optionName[i]).optionPrice(optionPrice[i]).build();
+//				//int optionResult = pservice.insertOptionCode(option);
+//				ProductOption ppo = service.save(option);
+//			}
+			System.out.println("option : : " );
+			//앞단에서 받아오는 
 			if(f != null) {
 				//db를 거치고나서 만약 db가 수정이 완료되면 밑에 폴더삭제
 		      uploadFileDelete(f);

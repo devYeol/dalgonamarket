@@ -236,9 +236,9 @@ text-decoration:none;
 										<input type="hidden" class="productPrice"name="productPrice" value="${c.product.productPrice }">
 										<input type="hidden" class="productThumb"name="productThumb" value="${c.product.productThumb }">
 										<input type="hidden" class="selAmount" name="selAmount" value="${sA }"> <!-- 상품개수 -->
-										<input type="hidden" class="allSum" name="allSum" value="${allSum }"> <!-- 체크 된 장바구니 합계(배송비 포함) -->
+										<input type="hidden" class="selPrice" name="selPrice" value="${selPrice }"> <!-- 체크 된 장바구니 합계(배송비 포함) -->
 										<input type="hidden" class="fee" name="fee" value="${fee}"> <!-- 배송비 -->
-										<input type="hidden" class="sumMoney" name="sumMoney" value="${sumMoney}"> <!-- 배송비 -->
+										<input type="hidden" class="totalPrice" name="totalPrice" value="${totalPrice}"> <!-- 배송비 -->
 																			
 										<img
 											src="${c.product.productThumb }" width="150" height="150"
@@ -272,9 +272,11 @@ text-decoration:none;
 										<div style="margin-top: 5px">
 											<p>
 
-												<fmt:formatNumber pattern="###,###,###"
-													value="${sumMoney}" />
+												<%-- <fmt:formatNumber pattern="###,###,###"
+													value="${c.product.productPrice*sA}" /> --%>
+													<span id="res">
 												&nbsp;원
+													</span>
 											</p>
 										</div></td>
 									<td style="width: 100">
@@ -300,12 +302,14 @@ text-decoration:none;
 						<div class="allrprice-content">
 							<div class="allprice-form">
 								<b>총 상품 가격</b> :<i> <fmt:formatNumber pattern="###,###,###"
-										value="${sumMoney}" /></i><span class="all-plus"><img
+										value="" /></i><span class="all-plus">
+										<img
 									src="/resources/images/mypage/img_plus.png" style="width: 14;">
-								</span> 배송비 <i><c:out value="${fee}"/></i> 원 <span class="all-plus"> <img
-									src="/resources/images/mypage/img_equals.png"
-									style="width: 14;"></span> 총 주문금액 <i class="final-price"><fmt:formatNumber
-										pattern="###,###,###" value="${allSum}" /></i>
+								</span> 배송비 <i><c:out value="${fee}"/></i> 원 
+								<span class="all-plus">
+								 <img src="/resources/images/mypage/img_equals.png" style="width: 14;">
+								 </span> 총 주문금액 <i class="final-price">
+								 <fmt:formatNumber	pattern="###,###,###" value="${allSum}" /></i>
 							</div>
 						</div>
 					</div>
@@ -433,21 +437,29 @@ $("button[name= productListMove]").click(function(){
 let sumMoney=$('.sumMoney');
 /* let selAmount =$('.selAmount'); */
 
-function getCheckboxValues(){
-	let sumMoneys =0;
-	let selAmounts= 0;
+/* function getCheckboxValues(){
+	 let domInput = document.querySelector('.selAmount'); 
+	    let nowCnt = domInput.value;
+	    if(nowCnt == "") {
+	        
+	        return;
+	    }
+	    nowCnt = Number(Amount.trim()); //공백제거 후 숫자형으로 변환
+	    
+	    
+	    let goodsPrice =Number(document.querySelector('#productPrice').innerText);
+	    if(nowCnt <=1 || nowCnt >= 99) {
+	        
+	        domInput.value = 1;
+	        document.querySelector('#res').innerText = goodsPrice ;
+	        return;
+	    }
+	    let priceSum = 0;
+	    priceSum= goodsPrice*nowCnt;
+	    document.querySelector('#res').innerText = priceSum;
+} */
+	    
 	
-	for(let i=0; i<inputList.length; i++){
-		if(inputList[i].checked){
-			sumMoney +=parseInt(inputList[i].value);
-			count +=1;
-		}
-	}
-	sumMoney=sumMoney.toLocaleString();
-	sumMoney =`sumMoney:${sumMoney}원`;
-	selAmount=`${selAmounts}개`;
-	
-	}
 
 		
 </script>

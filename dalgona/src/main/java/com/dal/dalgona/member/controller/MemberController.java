@@ -60,24 +60,25 @@ public class MemberController {
 			throws Exception {
 		Member m= (Member) session.getAttribute("loginMember");
 		String msg="" ,loc="";
-		Cart c =Cart.builder().member(m).product(p).build();
-		System.out.println(c);
-		//		int result=service.cartInsert(c);
-		
-		int count = service.countCart(c.getProduct(),m);
-		if(count == 0) {
-			System.out.println("count: "+count);
-			service.cartInsert(c);
-			log.debug("{2}",c);
-			log.debug("{2}",count);
+		if(m!=null) {
+			
+			Cart c =Cart.builder().member(m).product(p).build();
 			System.out.println(c);
-			System.out.println(count);
-			msg="장바구니에 추가 되었습니다";
-			loc="/member/mypage/cart";
-			mo.addAttribute("msg",msg);
-			mo.addAttribute("loc",loc);
-			return "common/msg";
-		}else {
+			//		int result=service.cartInsert(c);
+			
+			int count = service.countCart(c.getProduct(),m);
+			if(count == 0) {
+				System.out.println("count: "+count);
+				service.cartInsert(c);
+				log.debug("{2}",c);
+				log.debug("{2}",count);
+				System.out.println(c);
+				System.out.println(count);
+				msg="장바구니에 추가 되었습니다";
+				loc="/member/mypage/cart";
+				mo.addAttribute("msg",msg);
+				mo.addAttribute("loc",loc);
+			}else {
 			System.out.println("c"+c);
 			System.out.println("co"+count);
 			service.updateCart(c);
@@ -90,9 +91,15 @@ public class MemberController {
 			loc="/";
 			mo.addAttribute("msg",msg);
 			mo.addAttribute("loc",loc);
-			return "common/msg";
+			}
+			
+		}else {
+			msg="로그인 후 이용해주세요";
+			loc="/loginpage";
+			mo.addAttribute("msg",msg);
+			mo.addAttribute("loc",loc);
 		}
-		
+		return "common/msg";
 		
 	}
 //	@RequestMapping(value="/member/mypage/cartInsert")
@@ -137,12 +144,15 @@ public class MemberController {
 //			System.out.println("sumMoney :" + sumMoney);
 			int selAmount=1; //상품 개수
 			int fee = 2500; // 배송료
+			int selPrice=selAmount*p.getProductPrice(); //개수*상품가격
+			int totalPrice=selPrice+fee; //개수*상품가격
+			
 //			System.out.println("allMoney :" + (fee + sumMoney));
-//			mv.addObject("sumMoney",sumMoney);
+			mv.addObject("selPrice",selPrice);
 			mv.addObject("sA",selAmount);
 			mv.addObject("fee",fee);
 			mv.addObject("product",p);
-//			mv.addObject("allSum", fee + sumMoney); // 체크된 장바구니 상품 + 배송비
+			mv.addObject("totalPrice",totalPrice); // 체크된 장바구니 상품 + 배송비
 			mv.addObject("cartList",cartList);
 			mv.addObject("count", cartList.size());
 			mv.setViewName("member/mypage/cart");

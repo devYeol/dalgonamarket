@@ -39,5 +39,9 @@ public interface ProductService {
 	
 	Review selectOneReview(long reviewCode);
 	
+	int deletebyProduct(long pro);
+
+//	int insertOptionCode(ProductOption option);
+	
 	int updateReview(Review review) throws Exception;
 }

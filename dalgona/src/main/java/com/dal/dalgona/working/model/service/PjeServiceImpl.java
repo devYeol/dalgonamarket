@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
+import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOrder;
+import com.dal.dalgona.orderdetail.model.dao.OrderDetailDaoJpa;
 import com.dal.dalgona.working.model.dao.PjeDao;
 import com.dal.dalgona.working.model.dao.PjeDaoJpa;
 import com.dal.dalgona.working.model.dao.ProductOrderJpa;
@@ -26,6 +28,9 @@ public class PjeServiceImpl implements PjeService {
 	
 	@Autowired
 	private ProductOrderJpa orderDao;
+	
+	@Autowired
+	private OrderDetailDaoJpa odJpa;
 	
 	@Autowired
 	private SqlSessionTemplate session;
@@ -53,15 +58,21 @@ public class PjeServiceImpl implements PjeService {
 	
 	public ProductOrder adminOrderPermit(Long orderCode) {
 		ProductOrder poUp=orderDao.findByOrderCode(orderCode);
-		if (poUp.getOrderStatus().equals("배송대기")) {
+		if (poUp.getOrderStatus().equals("주문대기")) {
 			poUp.setOrderStatus("배송중");
+		} else {
+			return null;
 		}
 		return orderDao.save(poUp);
 	}
 	
+//	public List<OrderDetail> adminPermitList(Long orderCode) {
+//		return odJpa.findByOrderCode();
+//	}
+	
 	public ProductOrder adminOrderCancel(Long orderCode) {
 		ProductOrder poUp=orderDao.findByOrderCode(orderCode);
-		if (poUp.getOrderStatus().equals("배송대기")) {
+		if (poUp.getOrderStatus().equals("주문대기")) {
 			poUp.setOrderStatus("주문취소");
 		}
 		return orderDao.save(poUp);
@@ -81,6 +92,12 @@ public class PjeServiceImpl implements PjeService {
 	public List<OrderDetail> selectOrderDetailsCode(long orderCode) {
 		// TODO Auto-generated method stub
 		return dao.selectOrderDetailsCode(session, orderCode);
+	}
+
+	@Override
+	public int minusProductAmount(Map<String,Object> param) {
+		// TODO Auto-generated method stub
+		return dao.minusProductAmount(session, param);
 	}
 	
 	

@@ -143,8 +143,25 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return dao.updateReview(session,review);
 	}
+
+
+	@Override
+	public int deletebyProduct(long ppp) {
+		
+		return dao.deleteByProductOption(session, ppp);
+	}
+
+
+	/*
+	 * @Override public int insertOptionCode(ProductOption option) { return
+	 * dao.insertOptionCode(session, option); }
+	 */
 	
 	
+
+
+
+
 	
 	
 	

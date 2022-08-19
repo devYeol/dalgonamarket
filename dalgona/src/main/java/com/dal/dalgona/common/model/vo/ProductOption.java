@@ -34,7 +34,8 @@ public class ProductOption {
 	private int optionPrice;
 	
 	// 상품옵션
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	//@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name="productCode")
 	private Product product;
 	
