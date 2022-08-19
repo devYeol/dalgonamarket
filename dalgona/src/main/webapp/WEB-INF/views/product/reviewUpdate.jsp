@@ -22,7 +22,7 @@
 			<label for="rate1">★</label>
 			<input type="radio" name="reviewStar" value="4" id="rate2">
 			<label for="rate2">★</label> 
-			<input type="radio" name="reviewStar"value="3" id="rate3"> 
+			<input type="radio" name="reviewStar" value="3" id="rate3"> 
 			<label for="rate3">★</label> 
 			<input type="radio" name="reviewStar" value="2" id="rate4">
 			<label for="rate4">★</label> 

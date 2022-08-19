@@ -12,7 +12,7 @@
 	cursor: pointer;
 }	
 
-/* ÂòÇÏ±â */
+/* ì°œí•˜ê¸° */
 .fas.fa-heart {
 	color: red;
 }
@@ -24,9 +24,9 @@
 .comment .fas {
 	color: gold;
 }
-/* ÂòÇÏ±â */
+/* ì°œí•˜ê¸° */
 
-/* -------------- ¸ŞÀÎ -------------- */
+/* -------------- ë©”ì¸ -------------- */
 ul {
 	list-style: none;
 }
@@ -58,9 +58,9 @@ main ul.tab li:hover {
 main ul.tab li.select {
 	background: #333333;
 	color: #fff;
-	/* ¸Ş´ºÅÇ Å¬¸¯½Ã »ö ¹Ù²ñ */
+	/* ë©”ë‰´íƒ­ í´ë¦­ì‹œ ìƒ‰ ë°”ë€œ */
 }
-/* -------------- ¸ŞÀÎ -------------- */
+/* -------------- ë©”ì¸ -------------- */
 main .comment {
 	display: none;
 }
@@ -86,9 +86,79 @@ main .comment li .client {
 	padding: 15px;
 }
 
-/* ¸®ºäÅÇ */
+/* ë¦¬ë·°íƒ­ */
+.star_rating {font-size:0; letter-spacing:-4px;}
+.star_rating a {font-size:22px;Â Â Â Â letter-spacing:0;Â Â Â Â display:inline-block;Â Â Â Â margin-left:5px;Â Â Â Â color:#ccc;Â Â Â Â text-decoration:none;}
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:#777;}
 
-/* º°Âï±â */
+
+
+
+
+
+
+
+
+
+
+
+
+/* .star-ratings {
+  color: #aaa9a9; 
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent; Will override color (regardless of order)
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+}
+ 
+.star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+} */
+
+
+
+
+/* #reStar fieldset {
+	display: inline-block;
+	direction: rtl;
+	border: 0;
+}
+
+#reStar fieldset legend {
+	text-align: right;
+}
+
+#reStar input[type=radio] {
+	display: none;
+}
+
+#reStar label {
+	font-size: 18px;
+	color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
+}
+
+#reStar input[type=radio]:checked ~ label {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+} */
+
+/* ë³„ì°ê¸° */
 #myform fieldset {
 	display: inline-block;
 	direction: rtl;

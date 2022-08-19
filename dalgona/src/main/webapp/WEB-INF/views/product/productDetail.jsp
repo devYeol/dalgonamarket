@@ -21,11 +21,7 @@
 						</div>
 					</div>
 
-					<input type="hidden" value="${pro.productCode}" id="productId">
-
-
-
-					<div class="col-md d-grid gap-5" style="margin-left: 10px;">
+					<div class="col-md d-grid gap-4" style="margin-left: 10px;">
 						<div class="row border-bottom">
 							<div class="col form-group " style="text-align: left;">
 								<h3 class="page-header">
@@ -34,7 +30,7 @@
 							</div>
 							<div class="col-2">★
 							<c:if test="${not empty star }">
-							 ${star}
+							 <fmt:formatNumber value="${star}" pattern="#.#"/>							 
 							 </c:if></div>
 							<div class="col-3 inf">
 								<c:choose>
@@ -54,7 +50,7 @@
 							
 							<div class="form-group" style="text-align: left;">
 								<label>가격 : </label><span>&nbsp;<fmt:formatNumber
-										value="${pro.productPrice}" type="number" /></span><span>&nbsp;원</span>
+										value="${pro.productPrice}" type="number"/></span><span>&nbsp;원</span>
 								<input type="hidden" value="${pro.productPrice}" id="price">
 							</div>
 							<div class="form-group" style="text-align: left;">
@@ -69,7 +65,9 @@
 									<select class="form-control opt_select" name="selectedOpt">
 										<c:forEach var="o" items="${op}">
 											<option value="${o.optionPrice }">${o.optionName }
-												${o.optionPrice }원</option>
+											<fmt:formatNumber value="${o.optionPrice }"/>
+											원
+											</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -96,9 +94,9 @@
 							<div class="row">
 								<div class="selected_option" style="text-align: right;"></div>
 								<div style="text-align: center;">
-
-									<input type='button' value='장바구니' onclick='return info_chk2(this.form);'> 
-									<input type='submit' value='결제하기'>
+	<br>
+									<input class="adminbt" type='button' style="width: 180px; background-color: #6FB67F;" value='장바구니' onclick='return info_chk2(this.form);'> 
+									<input class="adminbt" type='submit' style="width: 180px;background-color: #D56B5A;" value='결제하기'>
 
 									<!-- <button class="btn btn-default btn-cart"  onclick='return info_chk2(this.form);'>장바구니</button>
 									<button class="btn btn-default btn-order" type="submit">주문하기</button> -->
@@ -174,16 +172,76 @@
 						<tbody>
 							<tr class="payment-tr">
 
-								<td style="width: 70%"><a href="#"
-									style="color: black; text-decoration: none; font-size: 17"><b><c:out
-												value="${re.memberId }" /></b></a><br>
-									<div style="margin-top: 5; font-size: 15px">
-										<c:out value="${re.reviewDate }" />
+								<td style="width: 70%;" >
+									<!-- <a href="#"  style="color: black; text-decoration: none; font-size: 17"> -->
+									<!-- <div style="margin-bottom: 15;"> -->
+									
+									<input type="hidden" value="${re.reviewStar }" name="re11" id="re11" class="re11">
+									
+									
+									
+									
+									<!-- <p class="star_rating">    
+									<a href="#" class="on">★</a>   
+									<a href="#" class="on">★</a>    
+									<a href="#" class="on">★</a>    
+									<a href="#">★</a>    
+									<a href="#">★</a></p> -->
+									
+									<%-- <span class="score_box">
+										<c:forEach begin="0" end="4" var="i">
+											<c:if test="${Math.round(re.reviewStar) > i }">
+												<i class="far fas fa-star"></i>
+											</c:if>
+											<c:if test="${Math.round(re.reviewStar) <= i }">
+												<i class="far fa-star"></i>
+											</c:if>
+										</c:forEach>
+									</span> --%>
+									
+									
+									
+									<!-- <div class="star-ratings">
+										<div 
+									    class="star-ratings-fill space-x-2 text-lg"
+									    :style="{ width: ratingToPercent }"
+										>
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										</div>
+										<div class="star-ratings-base space-x-2 text-lg">
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										</div>								
+									</div> -->
+									
+									
+									
+									<%-- <div id="reStar" class="reStar">
+									
+										<fieldset>						
+											<input type="radio" name="reviewStar1" value="5" id="rate1">
+											<label for="rate1">★</label>
+											<input type="radio" name="reviewStar1" value="4" id="rate2">
+											<label for="rate2">★</label> 
+											<input type="radio" name="reviewStar1" value="3" id="rate3"> 
+											<label for="rate3">★</label> 
+											<input type="radio" name="reviewStar1" value="2" id="rate4">
+											<label for="rate4">★</label> 
+											<input type="radio" name="reviewStar1" value="1" id="rate5">
+											<label for="rate5">★</label>
+											<c:out value="${re.reviewStar }" />
+										</fieldset>
+										
+									</div> --%>
+										
+									<!-- </a> -->
+									<br>
+									<div>
+										<b><c:out value="${re.memberId }" /></b>
+										<fmt:formatDate value="${re.reviewDate }" type="date" dateStyle="short" />
+											<%-- <c:out value="${re.reviewDate }" /> --%>
 									</div>
-									<div style="margin-top: 5;">
-										<c:out value="★ ${re.reviewStar }" />
-									</div>
-									<div style="margin-top: 5; font-size: 15px">
+										
+									<div>
 										<c:out value="${re.reviewContent }" />
 									</div></td>
 								<td style="width: 20%;">
@@ -193,7 +251,7 @@
 								</td >
 								<td style="width: 10%;">
 								<c:if test="${re.memberId==loginMember.memberId }">
-								<button class="adminbt" style="width: 80px; padding: 5px; background-color: #6FB67F;" onclick="javascript:window.open('${path}/product/selectUpdateReview.do?reviewCode=${re.reviewCode}','new','left=50, top=50, width=520, height=500')">수정</button>
+								<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="javascript:window.open('${path}/product/selectUpdateReview.do?reviewCode=${re.reviewCode}','new','left=50, top=50, width=520, height=500')">수정</button>
 						
 								<button class="adminbt" id="<c:out value="${re.reviewCode}"/>" name="<c:out value="${re.reviewCode}"/>" 
 										style="width: 80px;background-color: #D56B5A;" onclick="adminDeleteProduct(event)">삭제</button>
@@ -270,6 +328,22 @@
 
 	<script>
 	
+	/* $( ".star_rating a" ).click(function() {
+		$(this).parent().children("a").removeClass("on");     
+		$(this).addClass("on").prevAll("a").addClass("on"); 	    
+		return false;}); */
+	
+	
+	//리뷰리스트 별점
+	/* function ratingToPercent() {	
+		  const score = $(".re11").val();
+		  log.console(score);
+	      const score = +this.restaurant.averageScore * 20;    
+	      const score = $(".re11").val().restaurant.averageScore * 20;
+	      return score + 1.5;
+	      return score;
+	 } */
+	
 	//주문
 	function info_chk() {
 		return true;
@@ -285,6 +359,8 @@
 	
 	
 	$(document).ready(function() {
+
+		
 		//찜
 		$(".inf i").click(function(){
 			let likes ="";
