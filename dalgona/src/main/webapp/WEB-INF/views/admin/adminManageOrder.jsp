@@ -38,25 +38,33 @@
 			<div class="manageorderdiv" style="">
 				<div class="manageorderdata">
 					<div>
-						<a href="#">1<br>전체 구매 내역
+						<a href="#">${orderCount}<br>전체 구매 내역
 						</a>
 					</div>
 					<div>
-						<a href="#">1<br>배송 중
+						<a href="#">${standbyCount}<br>주문 대기
 						</a>
 					</div>
 					<div>
-						<a href="#">1<br>배송 완료
+						<a href="#">${cancelCount}<br>주문 취소
 						</a>
 					</div>
 					<div>
-						<a href="#">1<br>환불 요청
+						<a href="#">${shippingCount}<br>배송 중
 						</a>
 					</div>
 					<div>
-						<a href="#">1<br>환불 완료
+						<a href="#">${arrivalCount}<br>배송 완료
 						</a>
 					</div>
+					<%-- <div>
+						<a href="#">${refundReq}<br>환불 요청
+						</a>
+					</div>
+					<div>
+						<a href="#">${refuntOver}<br>환불 완료
+						</a>
+					</div> --%>
 				</div>
 				<div class="somedate-search">
 					<input class="somedate" type="date"> <b>~</b> <input
@@ -67,6 +75,15 @@
 
 			<div class="listdiv">
 				<table class="listtable">
+					<tr>
+						<td colspan="8" style="text-align: left; padding: 7px;">
+							<button class="btn-somedate" onclick="location.assign('${path}/admin/adminManageOrder.do?cPage=${cPage}&orderStatus=전체')">전체</button>
+							<button class="btn-somedate" onclick="location.assign('${path}/admin/adminManageOrder.do?cPage=${cPage}&orderStatus=주문대기')">주문대기</button>
+							<button class="btn-somedate" onclick="location.assign('${path}/admin/adminManageOrder.do?cPage=${cPage}&orderStatus=주문취소')">주문취소</button>
+							<button class="btn-somedate" onclick="location.assign('${path}/admin/adminManageOrder.do?cPage=${cPage}&orderStatus=배송중')">배송중</button>
+							<button class="btn-somedate" onclick="location.assign('${path}/admin/adminManageOrder.do?cPage=${cPage}&orderStatus=배송완료')">배송완료</button>
+						</td>
+					</tr>
 					<tr style="background-color: lightgrey; height: 50px;">
 						<th style="width: 5%;">
 							<div>

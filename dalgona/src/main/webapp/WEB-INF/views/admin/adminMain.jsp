@@ -79,7 +79,7 @@
 								<th style="width:9%">번호</th>
 								<th style="width:18%">상품명</th>
 								<th style="width:18%">아이디</th>
-								<th>제목</th>
+								<th>내용</th>
 								<th>별점</th>
 								<th style="width:19%">작성일</th>
 							</tr>

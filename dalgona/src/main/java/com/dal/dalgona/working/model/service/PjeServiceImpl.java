@@ -14,9 +14,9 @@ import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.orderdetail.model.dao.OrderDetailDaoJpa;
+import com.dal.dalgona.productorder.model.dao.ProductOrderJpa;
 import com.dal.dalgona.working.model.dao.PjeDao;
 import com.dal.dalgona.working.model.dao.PjeDaoJpa;
-import com.dal.dalgona.working.model.dao.ProductOrderJpa;
 
 @Service
 public class PjeServiceImpl implements PjeService {
@@ -55,6 +55,11 @@ public class PjeServiceImpl implements PjeService {
 		// TODO Auto-generated method stub
 		return orderDao.findAll(pagerequest);
 	}
+	
+//	public Page<ProductOrder> searchOrderStatus(PageRequest pagerequest) {
+//		// TODO Auto-generated method stub
+//		return orderDao.findByOrderStatus(pagerequest);
+//	}
 	
 	public ProductOrder adminOrderPermit(Long orderCode) {
 		ProductOrder poUp=orderDao.findByOrderCode(orderCode);
@@ -100,5 +105,32 @@ public class PjeServiceImpl implements PjeService {
 		return dao.minusProductAmount(session, param);
 	}
 	
+	// ProductOrderStatus Count Methods
+	public long countAll() {
+		return orderDao.count();
+	}
+	public long countStandbyStatus(String orderStatus) {
+		return orderDao.countByOrderStatus(orderStatus);
+	}
+	
+	public long countCancelStatus(String orderStatus) {
+		return orderDao.countByOrderStatus(orderStatus);
+	}
+	
+	public long countShippingStatus(String orderStatus) {
+		return orderDao.countByOrderStatus(orderStatus);
+	}
+	
+	public long countArrivalStatus(String orderStatus) {
+		return orderDao.countByOrderStatus(orderStatus);
+	}
+	
+	public long countRefundReqStatus(String orderStatus) {
+		return orderDao.countByOrderStatus(orderStatus);
+	}
+	
+	public long countRefundOverStatus(String orderStatus) {
+		return orderDao.countByOrderStatus(orderStatus);
+	}
 	
 }
