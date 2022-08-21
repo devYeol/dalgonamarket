@@ -90,32 +90,46 @@
 				<tbody>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">이름</label></th>
-						<td><input type="text" id="addrReceiver" name="addrReceiver"
+						<%-- <td><input type="text" id="addrReceiver" name="addrReceiver"
 							value="${deliveryLocation.addrReceiver }" placeholder="수령인"
-							style="height: 30px;" /></td>
+							style="height: 30px;" /></td> --%>
+						<td><input type="text" id="addrReceiver" name="addrReceiver"
+						value="" placeholder="수령인"
+						style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">배송주소</label></th>
-						<td><input type="text" id="addrPostNum" name="addrPostNum"
+						<%-- <td><input type="text" id="addrPostNum" name="addrPostNum"
 							value="${deliveryLocation.adrPostNum }" placeholder="우편번호"
-							readonly="readonly" style="height: 30px;" /></td>
+							readonly="readonly" style="height: 30px;" /></td> --%>
+						<td><input type="text" id="addrPostNum" name="addrPostNum"
+						value="" placeholder="우편번호"
+						style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for=""></label></th>
-						<td><input type="text" id="addrRoadName" name="addrRoadName"
+						<%-- <td><input type="text" id="addrRoadName" name="addrRoadName"
 							value="${deliveryLocation.addrRoadName }" placeholder="도로명"
-							readonly="readonly" style="height: 30px; width: 300px;" /></td>
+							readonly="readonly" style="height: 30px; width: 300px;" /></td> --%>
+						<td><input type="text" id="addrRoadName" name="addrRoadName"
+						value="" placeholder="도로명"
+						style="height: 30px; width: 300px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for=""></label></th>
+						<%-- <td><input type="text" id="addrDetail" name="addrDetail"
+							value="${deliveryLocation.addrDetail }" placeholder="상세주소 입력" style="height: 30px;" /></td> --%>
 						<td><input type="text" id="addrDetail" name="addrDetail"
-							value="${deliveryLocation.addrDetail }" placeholder="상세주소 입력" style="height: 30px;" /></td>
+						value="" placeholder="상세주소" style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">전화번호</label></th>
-						<td><input type="text" id="addrPhone" name="addrPhone"
+						<%-- <td><input type="text" id="addrPhone" name="addrPhone"
 							value="${deliveryLocation.addrPhone }" placeholder="전화번호"
-							style="height: 30px;" /></td>
+							style="height: 30px;" /></td> --%>
+						<td><input type="text" id="addrPhone" name="addrPhone"
+						value="" placeholder="연락처"
+						style="height: 30px;" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -136,37 +150,32 @@
 		<hr class="my-4">
 
 		<%-- <c:forEach var="p" items="${product }" varStatus="i">  --%>
-			<table class="payment-table" id="payment-deli-table">
+		<table class="payment-table" id="payment-deli-table">
 
-				<thead>
-					<h5>상품정보</h5>
-					<!-- 에러나는데 작동은 함 -->
-				</thead>
- 
-				<tbody class="product-detail">
-					<tr class="payment-tr">
-						<!-- <td class=""><a href="#"><img src="https://img.mywisa.com/freeimg/smartwing/_data/product/201709/22/e4ee83bdcacc45b92130f10aeef309f1.jpg" width="73" height="90" border="0"></a></td>
+			<thead>
+				<h5>상품정보</h5>
+				<!-- 에러나는데 작동은 함 -->
+			</thead>
+
+			<tbody class="product-detail">
+				<tr class="payment-tr">
+					<!-- <td class=""><a href="#"><img src="https://img.mywisa.com/freeimg/smartwing/_data/product/201709/22/e4ee83bdcacc45b92130f10aeef309f1.jpg" width="73" height="90" border="0"></a></td>
 							<td>
 								<a href="#">상품타이틀</a>
 							</td>
 							<td>수량 N개</td>
 							<td>배송비 N원</td> -->
-						<td class="">
-								<img src="${p.productThumb }" width="85" height="90"
-								border="0" />
-						</td>
-						<td>
-							<c:out value=" ${p.productName }" /><br>
-						</td>
-						<td>${selAmount } 개
-						</td>
-						<td>상품금액(옵션포함)<br>
-							<c:out value="${(p.productPrice+productOption)*selAmount }" /> 원
-						</td>
-					</tr>
+					<td class=""><img src="${product.productThumb }" width="85"
+						height="90" border="0" /></td>
+					<td><c:out value=" ${product.productName }" /><br></td>
+					<td>${selAmount }개</td>
+					<td>상품금액(옵션포함)<br> <c:out
+							value="${(product.productPrice+productOption)*selAmount }" /> 원
+					</td>
+				</tr>
 
-				</tbody>
-			</table>
+			</tbody>
+		</table>
 		<%-- </c:forEach> --%>
 
 		<br> <br>

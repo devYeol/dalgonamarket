@@ -315,10 +315,10 @@ public class MemberController {
 	}
 
 //		
-	@RequestMapping("/member/mypage/addressadd")
-	public String addressadd() {
-		return "member/mypage/addressadd";
-	}
+//	@RequestMapping("/member/mypage/addressadd")
+//	public String addressadd() {
+//		return "member/mypage/addressadd";
+//	}
 
 //	
 	@RequestMapping("/baesong") // 배송
