@@ -17,6 +17,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+.adminsearch{
+	border: 0;
+	width: 60px;
+	height: 32px; 
+	background-color: #707070; 
+	color: white; 
+	border-radius: 0.4rem;
+	font-size: 15px;
+	font-weight: bolder;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -33,16 +45,13 @@
         -->
 		<div class="contents">
 		<div class="contentstitle">상품관리</div>
-		<form action="${path }/admin/adminSearch.do"></form>
+		<form action="${path }/admin/adminSearch.do" method="post"></form>
 			<div class="searchdiv">
 				<div>
-					<button type="button" style="border: 0px solid #fff; background-color: white" >
-						<img src="${path}/resources/images/glass.png" style="width:24px; height:24px;">
-					</button>
+					<input name="adminKeyword" class="search" type="text" placeholder="검색하실 상품명을 입력하세요" value="${adminKeyword }">
 				</div>
-				&nbsp;
-				<div>
-					<input name="adminKeyword" class="search" type="text" placeholder="검색하실 상품명을 입력하세요">
+				<div style="width: 60px; height: 32px; padding-left: 5;">
+					<button type="submit" value="검색" class="adminsearch">검색</button>
 				</div>
 			</div>
 			<div class="listdiv">
