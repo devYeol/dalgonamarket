@@ -57,7 +57,7 @@
 		from delivery_Location d, member m
 		where m.member_id=d.member_id
 		and d.member_id=#{memberId }
-		and d.addr_base='1'
+		<!-- and d.addr_base='1' -->
 	</select>
 	
 	<select id="selectPo" resultMap="productOrderMap">
