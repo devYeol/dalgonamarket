@@ -173,7 +173,11 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 	
-	
+	@Override
+	public List<Product> adminSearchList(String adminkeyword) {
+		// TODO Auto-generated method stub
+		return dao.adminSearchList(session,adminkeyword);
+	}
 
 
 

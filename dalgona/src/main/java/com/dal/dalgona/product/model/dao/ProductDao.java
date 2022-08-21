@@ -57,7 +57,7 @@ public interface ProductDao {
 	
 	List<Product> categoryList(SqlSession session,String categoryName);
 	
-	
+	List<Product> adminSearchList(SqlSession session, String adminKeyword);
 
 
 

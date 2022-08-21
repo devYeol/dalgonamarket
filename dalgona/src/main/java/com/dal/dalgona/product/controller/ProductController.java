@@ -361,8 +361,17 @@ public class ProductController {
 		return mv;
   }
 
-   	
-   	
+	
+   	@RequestMapping("/product/adminSearch.do")
+   	public ModelAndView adminSearch(@RequestParam(value="adminKeyword",defaultValue = "")String adminKeyword,ModelAndView mv) {
+	   	 System.out.println("adminKeyword : " + adminKeyword);
+	     List<Product> products = service.adminSearchList(adminKeyword);
+	     
+	     mv.addObject("products", products);
+	     mv.setViewName("admin/adminManageProduct");
+	     System.out.println("keyword : " + products);
+	     return mv;
+   	}
    
    
 

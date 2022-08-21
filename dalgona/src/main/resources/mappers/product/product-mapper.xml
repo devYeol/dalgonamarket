@@ -28,27 +28,31 @@
       SELECT * FROM PRODUCT WHERE CATEGORY_NAME=#{categoryName}
    </select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<select  id="searchProduct" resultMap="productMap">
 			select * from product where PRODUCT_NAME like '%'||#{keyword}||'%' or CATEGORY_NAME like '%'||#{keyword}||'%'
 	</select>
+	
+	<select id="adminSearchProduct" resultMap="productMap">
+			select * from product where PRODUCT_NAME like '%'||#{adminKeyword}||'%'
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 </mapper>

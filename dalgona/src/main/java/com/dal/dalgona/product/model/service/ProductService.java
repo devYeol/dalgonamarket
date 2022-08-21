@@ -48,4 +48,6 @@ public interface ProductService {
 	int updateReview(Review review) throws Exception;
 	
 	List<Product> categoryList(String categoryName);
+	
+	List<Product> adminSearchList(String adminkeyword);
 }

@@ -146,7 +146,11 @@ public class ProductDaoImpl implements ProductDao {
 	 */
 	
 	
-	
+   @Override
+   public List<Product> adminSearchList(SqlSession session, String adminKeyword) {
+   	// TODO Auto-generated method stub
+   	return session.selectList("product.adminSearchProduct",adminKeyword);
+   }
 	
 	
 	
