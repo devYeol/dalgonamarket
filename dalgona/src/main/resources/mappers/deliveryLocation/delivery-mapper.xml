@@ -30,5 +30,16 @@
 		where m.member_id=d.member_id
 		and d.member_id=#{memberId}
 	</select>
+	
+	<insert id="addressInsert">
+		insert into delivery_Location
+		values(seq_address_code.nextval,null,#{addrDetail},#{addrPhone},#{addrReceiver},#{addrRoadName},#{adrPostNum},#{member.memberId})
+		
+	</insert>
+	
+	<delete id="addressDelete">
+		delete from delivery_Location
+		where address_code=#{addressCode}
+	</delete>
 
 </mapper>

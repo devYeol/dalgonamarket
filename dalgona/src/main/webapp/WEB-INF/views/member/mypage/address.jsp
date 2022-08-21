@@ -152,14 +152,14 @@
 			<c:forEach var="dl" items="${selectDl}">
 				<hr style="margin-top: 8px; margin-bottom: 0px;">
 				<div class="insert-addr">
+				<input type="hidden" name="addressCode" value="${addressCode}">
 					<div style="margin-bottom: 40px; margin-top: 30px;">
 						<div style="font-size: 17px;">수령인 : ${dl.addrReceiver }</div>
 						<div style="font-size: 15px;">연락처 : ${dl.addrPhone }</div>
-						<div style="font-size: 15px;">배송지 : (${dl.adrPostNum }) ${dl.addrRoadName} ${dl.addrDetail}</div>
+						<div style="font-size: 15px;">배송지 : (${dl.adrPostNum })${dl.addrRoadName} ${dl.addrDetail}</div>
 					</div>
 					<div class="btn-container">
-						<button class="btn-addr">수정</button>
-						<button class="btn-addr">삭제</button>
+						<button class="btn-addr" onclick="location.assign('${path}/addressDel?addressCode=${dl.addressCode}')">삭제</button>
 					</div>
 				</div>
 			</c:forEach>
@@ -175,8 +175,9 @@
 	} */
 	 const adressAdd=()=>{
 		 const url="${path}/member/mypage/addressadd";
-		 window.open(url,"배송지 추가","width=500,height=500");
+		 open(url,"배송지 추가","width=500,height=500");
 	 }
+	 
 </script>
 
 

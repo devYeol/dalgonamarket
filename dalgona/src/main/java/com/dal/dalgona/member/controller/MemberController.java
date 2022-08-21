@@ -108,12 +108,14 @@ public class MemberController {
 			List<Cart> cartList = service.cartList(memberId); // 장바구니 정보
 			System.out.println("cart :" + cartList);
 			service.selectProduct(p);
-//			int sumMoney = service.sumMoney(memberId);// 장바구니 전체 금액 호출
+			int sumMoney = service.sumMoney(memberId);// 장바구니 전체 금액 호출
 //			System.out.println("sumMoney :" + sumMoney);
 			int selAmount=1; //상품 개수
 			int fee = 2500; // 배송료
+			int totalPrice=sumMoney+fee;
 			
-			
+			mv.addObject("totalPrice",totalPrice);
+			mv.addObject("sumMoney",sumMoney);
 			mv.addObject("sA",selAmount);
 			mv.addObject("fee",fee);
 			mv.addObject("product",p);
@@ -290,12 +292,52 @@ public class MemberController {
 		return "member/mypage/shippingset";
 
 	}
+	
+	@RequestMapping("/member/mypage/addressadd")
+	public String addressAdd() {
+		return "member/mypage/addressadd";
+	}
 
 //		
-//	@RequestMapping("/member/mypage/addressadd")
-//	public String addressadd() {
-//		return "member/mypage/addressadd";
-//	}
+	@RequestMapping("/member/mypage/addressInsert")
+	public String addressInsert(HttpSession session,Model mo,
+			@RequestParam(value="addrReceiver")String addrReceiver, 
+			@RequestParam(value="addrPhone")String addrPhone, 
+			@RequestParam(value="addrBase")String addrBase, 
+			@RequestParam(value="addrDetail")String addrDetail, 
+			@RequestParam(value="adrPostNum")String adrPostNum, 
+				@RequestParam(value="addrRoadName")String addrRoadName) {
+		log.debug("dd{}",addrReceiver);
+		 Member memberId=(Member)session.getAttribute("loginMember");
+		 DeliveryLocation dl =DeliveryLocation.builder().addrBase(addrBase).addrDetail(addrDetail).
+				 addrPhone(addrPhone).addrReceiver(addrReceiver).addrRoadName(addrRoadName).
+				 adrPostNum(adrPostNum).member(memberId).build();
+		 System.out.println(dl);
+		 String msg,loc="";
+		 if(dl!=null) {
+			 service.addressInsert(dl);
+			 msg="배송지가 추가되었습니다";
+			 loc="redirect:/member/mypage/address";
+			 mo.addAttribute("msg",msg);
+			 mo.addAttribute("loc",loc);
+			 
+			 return "common/msg";
+		 }else {
+			 msg="배송지 추가 실패";
+			 loc="member/mypage/address";
+			 mo.addAttribute("msg",msg);
+			 mo.addAttribute("loc",loc);
+			 return "common/msg";
+		 }
+	}
+	
+	@RequestMapping("/addressDel") //개별 삭제(한 개 row만 삭제
+	 public String addressDelete(@RequestParam(value="addressCode" )long addressCode) {
+     service.addressDelete(addressCode);
+      return "redirect:/member/mypage/address";
+  }
+	
+	
 
 //	
 	@RequestMapping("/baesong") // 배송

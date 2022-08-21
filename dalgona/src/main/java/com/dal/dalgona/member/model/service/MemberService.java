@@ -51,6 +51,10 @@ public interface MemberService {
 	List<DeliveryLocation>selectDL(Member memberId);
 
 	DeliveryLocation selectDelivery(Member memberId);
+
+	int addressInsert(DeliveryLocation dl);
+	
+	void addressDelete(long addressCode);
 	
 	
 	

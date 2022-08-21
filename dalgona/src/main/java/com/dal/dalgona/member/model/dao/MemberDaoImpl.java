@@ -121,6 +121,18 @@ public class MemberDaoImpl implements MemberDao {
 	public DeliveryLocation selectDelivery(SqlSessionTemplate session,Member memberId) {
 		return session.selectOne("deliveryLocation.selectDelivery",memberId);
 	}
+
+	@Override
+	public int addressInsert(SqlSessionTemplate session,DeliveryLocation dl) {
+		return session.insert("deliveryLocation.addressInsert",dl);
+	}
+
+	@Override
+	public void addressDelete(SqlSessionTemplate session,long addressCode) {
+		session.insert("deliveryLocation.addressDelete",addressCode);
+	}
+	
+	
 	
 	
 	public List<Product> orderList(SqlSessionTemplate session) {
