@@ -116,7 +116,7 @@ figure:hover figcaption {
          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/product/productList?categoryName=과자">
+                  <a href="${path}/product/categoryList?categoryName=스낵">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/과자일러.png"
                         style="width: 100%; height: 280px;">
@@ -128,7 +128,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/product/productList?categoryname=사탕">
+                  <a href="${path}/product/categoryList?categoryName=사탕">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/사탕일러.png"
                         style="width: 100%; height: 280px;">
@@ -140,7 +140,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/">
+                  <a href="${path}/product/categoryList?categoryName=초코">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/초콜렛일러.png"
                         style="width: 100%; height: 280px;">                  
@@ -152,7 +152,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/">
+                  <a href="${path}/product/categoryList?categoryName=젤리">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/젤리일러.png"
                         style="width: 100%; height: 280px;">
@@ -164,7 +164,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/">
+                  <a href="${path}/product/categoryList?categoryName=완구">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/완구일러.png"
                         style="width: 100%; height: 280px;">
@@ -176,7 +176,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/">
+                  <a href="${path}/product/categoryList?categoryName=기타">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/기타일러.png"
                         style="width: 100%; height: 280px;">
@@ -273,4 +273,3 @@ figure:hover figcaption {
 </script>
 <!-- 푸터 -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
-

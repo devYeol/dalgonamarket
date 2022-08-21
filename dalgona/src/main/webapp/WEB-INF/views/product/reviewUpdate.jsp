@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
@@ -44,12 +43,13 @@
 		<br>
 		<div  class="col" id="image_container">
 				<c:if test="${not empty r.reviewImage }">
-					<img id="reviewImage" name="reviewImage"src="${r.reviewImage }" width="300" height="300" border="1" />
+					<img id="reviewImage" name="reviewImage"src="${r.reviewImage }" width="450" height="350" border="1" />
 				</c:if>
 		</div>
 		<br>	
-		<div class="align-items-center">
-				<button type="submit">리뷰수정</button>
+		<!-- <div class="align-items-center">	 -->
+		<div class="d-grid gap-2 col-6 mx-auto">	
+				<button  id="send" type="button" onclick="submit_data()">리뷰수정</button>
 		</div>
 		
 		<input type="hidden" value="${r.productCode }" name="productCode">
@@ -59,21 +59,56 @@
 	</form>
 </div>
 <script>
-      function setThumbnail(event) {
-        var reader = new FileReader();
 
-        reader.onload = function(event) {
-          var img = document.getElementById('reviewImage');
-          /* var img = document.createElement("img"); */
-          img.setAttribute("src", event.target.result);
-          /* document.querySelector("div#image_container").appendChild(img); */
-        };
+//창닫기
+	$(function() {
+		var reCon = document.getElementById("reviewContent");
+		
+			$("#send").click( function() {
+				if(reCon.value.length==0){
+				    alert("내용을 입력하세요");
+				}else{
+		         $('#myform').submit();
+		         setTimeout(function() { 
+		        	 opener.parent.location.reload();
+		             window.close();
+		
+		         }, 100);
+				}
+		
+			});			
+	
+	});
 
-        reader.readAsDataURL(event.target.files[0]);
-      }
+	
+//미리보기
+	function setThumbnail(event) {
+	  var reader = new FileReader();
+	
+	  reader.onload = function(event) {
+	    var img = document.getElementById('reviewImage');
+	    /* var img = document.createElement("img"); */
+	    img.setAttribute("src", event.target.result);
+	    /* document.querySelector("div#image_container").appendChild(img); */
+	  };
+	
+	  reader.readAsDataURL(event.target.files[0]);
+	}
 </script>			
 				
 <style>
+#send {
+	/* width: 120px; */
+	height: 38px;
+	background-color: #5E5E5E;
+	border: 0;
+	outline: 0;
+    border-radius: 0.25rem;
+    color: white;
+	font-size: 15px;
+	font-weight: bolder;
+	cursor: pointer;
+}
 
 #reviewbox{
   display: flex;

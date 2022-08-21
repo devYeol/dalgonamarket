@@ -72,7 +72,7 @@ public class ProductController {
 //      log.debug("{}찜수",likesCount);     
 //      log.debug("{}",op);
 //      log.debug("{}",review);
-      log.debug("{}",qna);
+//      log.debug("{}",qna);
       
       
       model.addAttribute("pro",p);
@@ -158,35 +158,37 @@ public class ProductController {
    
    
    @RequestMapping("/qna/qnawWriteEnd.do")//
-   public String qnawWriteEnd(
+   public void qnawWriteEnd(
          @RequestParam(value="qnaTitle") String qnaTitle,
          @RequestParam(value="qnaContent") String qnaContent,
          @RequestParam(value="productCode") long productCode,
          Model model,HttpSession session){
-      Member m = (Member) session.getAttribute("loginMember");
-      
-      Product p=service.selectProduct(productCode);   
-      String msg="";
-      String loc="";
-      if(m !=null) {
-         Qna q=Qna.builder().qnaDate(new Date()).member(m).product(p).qnaContent(qnaContent).qnaTitle(qnaTitle).build();         
-         int result=service.qnaWrite(q);
-         msg="등록완료";
-         loc="/product/productDetail/"+p.getProductCode();
-      }else {         
-         msg="등록실패";   
-         loc="/product/productDetail/"+p.getProductCode();      
-      }
-      
-      model.addAttribute("msg",msg);
-      model.addAttribute("loc",loc);
-         
-      return "common/msg";
+      Member m = (Member) session.getAttribute("loginMember");     
+      Product p=service.selectProduct(productCode);       
+      Qna q=Qna.builder().qnaDate(new Date()).member(m).product(p).qnaContent(qnaContent).qnaTitle(qnaTitle).build();         
+      int result=service.qnaWrite(q);
+     
+     
+//      String msg="";
+//      String loc="";
+//      if(m !=null) {
+//    	 Qna q=Qna.builder().qnaDate(new Date()).member(m).product(p).qnaContent(qnaContent).qnaTitle(qnaTitle).build();         
+//         int result=service.qnaWrite(q);
+//         msg="등록완료";
+//         loc="/product/productDetail/"+p.getProductCode();
+//      }else {         
+//         msg="등록실패";   
+//         loc="/product/productDetail/"+p.getProductCode();      
+//      }   
+//      model.addAttribute("msg",msg);
+//      model.addAttribute("loc",loc);
+//         
+//      return "common/msg";
    }
    @RequestMapping("/qna/qnaView.do")
    public ModelAndView qnaView(long qnaCode, ModelAndView mv) {
       Qna q=service.qnaSelectOne(qnaCode);
-      System.out.println(q);
+//      System.out.println(q);
       mv.addObject("qna",service.qnaSelectOne(qnaCode));
       mv.setViewName("product/qnaView");
       return mv;
@@ -233,8 +235,15 @@ public class ProductController {
    
    	@RequestMapping("/product/reviewDelete.do")
 	@ResponseBody
-	public boolean deleteProduct(long reviewCode, HttpServletResponse response) throws IOException {
+	public boolean deleteReview(long reviewCode, HttpServletResponse response) throws IOException {
 		Long result = service.deleteByReviewCode(reviewCode);
+		return result > 0;
+	}
+   	
+   	@RequestMapping("/product/qnaDelete.do")
+	@ResponseBody
+	public boolean deleteQna(long qnaCode, HttpServletResponse response) throws IOException {
+		Long result = service.deleteByQnaCode(qnaCode);
 		return result > 0;
 	}
    	
@@ -248,7 +257,7 @@ public class ProductController {
 	}
    	
     @RequestMapping("/product/updateReview.do")
-    public String reviewUpdate( 
+    public void reviewUpdate( 
           @RequestParam(value="productCode") long productCode,
           @RequestParam(value="reviewContent") String reviewContent,
           @RequestParam(value="memberId") String memberId,
@@ -260,7 +269,7 @@ public class ProductController {
     		
     	
 		String path = rs.getServletContext().getRealPath(beforReviewImage);	 
-		log.debug("패스 : {}",path);
+//		log.debug("패스 : {}",path);
 		
 		File f = null;
 			
@@ -281,7 +290,7 @@ public class ProductController {
 			int target_num = updatePath.indexOf(target) - 1;
 			String reviewPath = path.substring(target_num);;
 			review.setReviewImage(reviewPath);
-			log.debug(" 리뷰경로 : {}",reviewPath);
+//			log.debug(" 리뷰경로 : {}",reviewPath);
 		}
 		if(!reviewImage.isEmpty()) {
 			f = new File(path);
@@ -304,7 +313,7 @@ public class ProductController {
 			review.setReviewImage(reviewImagePath);
 //			log.debug(reviewImagePath);
 			
-			log.debug("여기까지 : {}",review);
+//			log.debug("여기까지 : {}",review);
 			
 			
 		}
@@ -321,7 +330,7 @@ public class ProductController {
 			uploadFileDelete(new File(updatePath+"/"+rename));
 		}   
     	
-    	return "";
+    	
     }
     
   //파일삭제메소드
@@ -336,32 +345,27 @@ public class ProductController {
   		    }
   		}
   	}
+  	
+    
+	@GetMapping("/product/categoryList")
+	public ModelAndView categoryList(ModelAndView mv,
+			@RequestParam(value="categoryName") String categoryName,
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam(defaultValue = "20") int numPerpage) {	
+		
+		System.out.println(categoryName);
+		List<Product> list = service.categoryList(categoryName);
+		mv.addObject("products", list);
+		mv.setViewName("/product/productList");
+		
+		return mv;
+  }
+
    	
    	
    
- 
-      
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+
    
    
    

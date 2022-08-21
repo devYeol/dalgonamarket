@@ -24,6 +24,10 @@
 		UPDATE PRODUCT SET PRODUCT_AMOUNT=PRODUCT_AMOUNT-#{orderAmount} WHERE PRODUCT_CODE=#{productCode}
 	</update>
 	
+	<select id="categoryList" resultMap="productMap" >
+      SELECT * FROM PRODUCT WHERE CATEGORY_NAME=#{categoryName}
+   </select>
+	
 	
 	
 	
