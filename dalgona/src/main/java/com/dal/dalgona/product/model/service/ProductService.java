@@ -37,6 +37,8 @@ public interface ProductService {
 	
 	long deleteByReviewCode(long reviewCode);
 	
+	long deleteByQnaCode(long qnaCode);
+	
 	Review selectOneReview(long reviewCode);
 	
 	int deletebyProduct(long pro);
@@ -44,4 +46,6 @@ public interface ProductService {
 //	int insertOptionCode(ProductOption option);
 	
 	int updateReview(Review review) throws Exception;
+	
+	List<Product> categoryList(String categoryName);
 }

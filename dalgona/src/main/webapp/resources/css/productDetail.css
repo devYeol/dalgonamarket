@@ -1,4 +1,10 @@
 @charset "EUC-KR";
+/* 버튼 */
+
+#image_container img{	
+	width: 150px;
+	height:150px;
+}
 .adminbt {
 	width: 120px;
 	height: 38px;
@@ -10,19 +16,36 @@
 	font-size: 15px;
 	font-weight: bolder;
 	cursor: pointer;
+}
+#send{
+	width: 120px;
+	height: 100px;
+	background-color: #5E5E5E;
+	border: 0;
+	outline: 0;
+    border-radius: 0.25rem;
+    color: white;
+	font-size: 15px;
+	font-weight: bolder;
+	cursor: pointer;	
+}
+#qnaW{
+	width: 120px;
+	height: 38px;
+	background-color: #5E5E5E;
+	border: 0;
+	outline: 0;
+    border-radius: 0.25rem;
+    color: white;
+	font-size: 15px;
+	font-weight: bolder;
+	cursor: pointer;
+	
 }	
 
 /* 찜하기 */
 .fas.fa-heart {
 	color: red;
-}
-
-.score_box .fas {
-	color: gold;
-}
-
-.comment .fas {
-	color: gold;
 }
 /* 찜하기 */
 
@@ -61,104 +84,23 @@ main ul.tab li.select {
 	/* 메뉴탭 클릭시 색 바뀜 */
 }
 /* -------------- 메인 -------------- */
-main .comment {
-	display: none;
-}
 
-main .comment .boss_comment {
+
+main .comment {
 	margin-bottom: 10px;
 }
 
-main .comment li {
+/* main .comment li {
 	border-radius: 10px;
 	width: 100%;
 	margin: 15px auto 30px;
 	font-size: 20px;
-}
+} */
 
-main .comment li .nickname {
-	font-weight: bold;
-}
-
-main .comment li .client {
-	border: 1px solid #ddd;
-	border-radius: 10px;
-	padding: 15px;
-}
 
 /* 리뷰탭 */
-.star_rating {font-size:0; letter-spacing:-4px;}
-.star_rating a {font-size:22px;    letter-spacing:0;    display:inline-block;    margin-left:5px;    color:#ccc;    text-decoration:none;}
-.star_rating a:first-child {margin-left:0;}
-.star_rating a.on {color:#777;}
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* .star-ratings {
-  color: #aaa9a9; 
-  position: relative;
-  unicode-bidi: bidi-override;
-  width: max-content;
-  -webkit-text-fill-color: transparent; Will override color (regardless of order)
-  -webkit-text-stroke-width: 1.3px;
-  -webkit-text-stroke-color: #2b2a29;
-}
- 
-.star-ratings-fill {
-  color: #fff58c;
-  padding: 0;
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  -webkit-text-fill-color: gold;
-}
- 
-.star-ratings-base {
-  z-index: 0;
-  padding: 0;
-} */
-
-
-
-
-/* #reStar fieldset {
-	display: inline-block;
-	direction: rtl;
-	border: 0;
-}
-
-#reStar fieldset legend {
-	text-align: right;
-}
-
-#reStar input[type=radio] {
-	display: none;
-}
-
-#reStar label {
-	font-size: 18px;
-	color: transparent;
-	text-shadow: 0 0 0 #f0f0f0;
-}
-
-#reStar input[type=radio]:checked ~ label {
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-} */
-
-/* 별찍기 */
+	/* 별찍기 */
 #myform fieldset {
 	display: inline-block;
 	direction: rtl;
@@ -200,4 +142,7 @@ main .comment li .client {
 	border-radius: 5px;
 	font-size: 16px;
 	resize: none;
+}
+#qnaViewCon{
+	resize: none;	
 }

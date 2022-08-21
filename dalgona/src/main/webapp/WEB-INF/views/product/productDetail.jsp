@@ -95,8 +95,8 @@
 								<div class="selected_option" style="text-align: right;"></div>
 								<div style="text-align: center;">
 	<br>
-									<input class="adminbt" type='button' style="width: 180px; background-color: #6FB67F;" value='장바구니' onclick='return info_chk2(this.form);'> 
-									<input class="adminbt" type='submit' style="width: 180px;background-color: #D56B5A;" value='결제하기'>
+									<input class="adminbt " type='button' style="width: 170px; background-color: #6FB67F;" value='장바구니' onclick='return info_chk2(this.form);'> 
+									<input class="adminbt " type='submit' style="width: 170px;background-color: #D56B5A;" value='결제하기'>
 
 									<!-- <button class="btn btn-default btn-cart"  onclick='return info_chk2(this.form);'>장바구니</button>
 									<button class="btn btn-default btn-order" type="submit">주문하기</button> -->
@@ -135,7 +135,7 @@
 				<form class="mb-3" name="myform" id="myform" enctype="multipart/form-data" method="post"action="${path }/review/reviewWrite.do">
 					<fieldset>
 						<span class="text-bold">별점을 선택해주세요</span> 
-						<input type="radio" name="reviewStar" value="5" id="rate1" checked>
+						<input type="radio" name="reviewStar" value="5" id="rate1">
 						<label for="rate1">★</label>
 						<input type="radio" name="reviewStar" value="4" id="rate2">
 						<label for="rate2">★</label> 
@@ -143,13 +143,13 @@
 						<label for="rate3">★</label> 
 						<input type="radio" name="reviewStar" value="2" id="rate4">
 						<label for="rate4">★</label> 
-						<input type="radio" name="reviewStar" value="1" id="rate5">
+						<input type="radio" name="reviewStar" value="1" id="rate5" checked>
 						<label for="rate5">★</label>
 					</fieldset>
 					<div class="custom-file">
-						<input type="file" class="custom-file-input" name="reviewImage"
-							id="upFile1">
+						<input type="file" class="custom-file-input" name="reviewImage" id="upFile1" onchange="setThumbnail(event);"/>
 					</div>
+					<div id="image_container"></div>
 					<br>
 					<div class="row">
 						<div class="col-10">
@@ -157,13 +157,13 @@
 								id="reviewContent" name="reviewContent" placeholder="내용을 입력해주세요"></textarea>
 						</div>
 						<div class="col-2">
-							<button  id="" type="submit">작성완료</button>
+							<button  id="send" type="button">작성완료</button>
 						</div>
 					</div>
 					<input type="hidden" value="${pro.productCode }" name="productCode">
 				</form>
 
-			</li>
+			
 
 			<hr>
 			<c:if test="${not empty review }">
@@ -172,78 +172,23 @@
 						<tbody>
 							<tr class="payment-tr">
 
-								<td style="width: 70%;" >
+								<td style="width: 70%; margin-bottom: 80;" >
 									<!-- <a href="#"  style="color: black; text-decoration: none; font-size: 17"> -->
-									<!-- <div style="margin-bottom: 15;"> -->
-									
-									<input type="hidden" value="${re.reviewStar }" name="re11" id="re11" class="re11">
-									
-									
-									
-									
-									<!-- <p class="star_rating">    
-									<a href="#" class="on">★</a>   
-									<a href="#" class="on">★</a>    
-									<a href="#" class="on">★</a>    
-									<a href="#">★</a>    
-									<a href="#">★</a></p> -->
-									
-									<%-- <span class="score_box">
-										<c:forEach begin="0" end="4" var="i">
-											<c:if test="${Math.round(re.reviewStar) > i }">
-												<i class="far fas fa-star"></i>
-											</c:if>
-											<c:if test="${Math.round(re.reviewStar) <= i }">
-												<i class="far fa-star"></i>
-											</c:if>
-										</c:forEach>
-									</span> --%>
-									
-									
-									
-									<!-- <div class="star-ratings">
-										<div 
-									    class="star-ratings-fill space-x-2 text-lg"
-									    :style="{ width: ratingToPercent }"
-										>
-											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									<div style="margin-bottom: 80;">
+										<div>
+											<c:out value="★${re.reviewStar }"/>
 										</div>
-										<div class="star-ratings-base space-x-2 text-lg">
-											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-										</div>								
-									</div> -->
-									
-									
-									
-									<%-- <div id="reStar" class="reStar">
-									
-										<fieldset>						
-											<input type="radio" name="reviewStar1" value="5" id="rate1">
-											<label for="rate1">★</label>
-											<input type="radio" name="reviewStar1" value="4" id="rate2">
-											<label for="rate2">★</label> 
-											<input type="radio" name="reviewStar1" value="3" id="rate3"> 
-											<label for="rate3">★</label> 
-											<input type="radio" name="reviewStar1" value="2" id="rate4">
-											<label for="rate4">★</label> 
-											<input type="radio" name="reviewStar1" value="1" id="rate5">
-											<label for="rate5">★</label>
-											<c:out value="${re.reviewStar }" />
-										</fieldset>
-										
-									</div> --%>
-										
-									<!-- </a> -->
-									<br>
-									<div>
-										<b><c:out value="${re.memberId }" /></b>
-										<fmt:formatDate value="${re.reviewDate }" type="date" dateStyle="short" />
-											<%-- <c:out value="${re.reviewDate }" /> --%>
+										<div>
+											<b><c:out value="${re.memberId }" /></b>
+											<fmt:formatDate value="${re.reviewDate }" pattern="yyyy-MM-dd" />
+												<%-- <c:out value="${re.reviewDate }" /> --%>
+										</div>
+										<br>
+										<div>
+											<c:out value="${re.reviewContent }" />
+										</div>
 									</div>
-										
-									<div>
-										<c:out value="${re.reviewContent }" />
-									</div></td>
+								</td>
 								<td style="width: 20%;">
 								<c:if test="${not empty re.reviewImage }">
 									<img src="${re.reviewImage }" width="150" height="150" border="1" />
@@ -251,10 +196,10 @@
 								</td >
 								<td style="width: 10%;">
 								<c:if test="${re.memberId==loginMember.memberId }">
-								<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="javascript:window.open('${path}/product/selectUpdateReview.do?reviewCode=${re.reviewCode}','new','left=50, top=50, width=520, height=500')">수정</button>
+								<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="javascript:window.open('${path}/product/selectUpdateReview.do?reviewCode=${re.reviewCode}','upReview','left=50, top=50, width=520, height=650')">수정</button>
 						
 								<button class="adminbt" id="<c:out value="${re.reviewCode}"/>" name="<c:out value="${re.reviewCode}"/>" 
-										style="width: 80px;background-color: #D56B5A;" onclick="adminDeleteProduct(event)">삭제</button>
+										style="width: 80px;background-color: #D56B5A;" onclick="reviewDelete(event)">삭제</button>
 								</c:if>
 								<c:if test="${loginMember.memberId=='admin' }">
 								<button class="onDisplay" id="onDisplay">답글</button>
@@ -279,71 +224,116 @@
 						</div> -->
 				</c:forEach>
 			</c:if>
+			</li>
 		</ul>
 		<!-- 리뷰 탭 -->
 
 
 		<!-- 문의 탭 -->
-		<ul>
-			<%-- <p>총 ${totalContents }건의 게시물이 있습니다.</p> --%>
-			<button
-				onclick="location.assign('${path}/qna/qnawWrite.do/${pro.productCode}')">글쓰기</button>
-			<table id="tbl-board" class="table table-striped table-hover">
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-				</tr>
-				<c:if test="${not empty qna }">
-					<c:forEach var="q" items="${qna }">
-						<tr>
-							<td><c:out value="${q.qnaCode }" /></td>
-							<td><a href="${path }/qna/qnaView.do?qnaCode=${q.qnaCode}">
-									<c:out value="${q.qnaTitle }" />
-							</a></td>
-							<td><c:out value="${q.member.memberId }" /></td>
-							<td><c:out value="${q.qnaDate }" /></td>
-						</tr>
-					</c:forEach>
+		<ul class="qna">
+			<li>
+				<%-- <p>총 ${totalContents }건의 게시물이 있습니다.</p> --%>
+				<%-- <button onclick="location.assign('${path}/qna/qnawWrite.do/${pro.productCode}')">글쓰기</button> --%>
+				<c:if test="${not empty loginMember }">
+					<button id="qnaW" onclick="javascript:window.open('${path}/qna/qnawWrite.do/${pro.productCode}','new','left=50, top=50, width=520, height=900')">글쓰기</button>
 				</c:if>
-				<c:if test="${empty qna }">
+				<table id="tbl-board" class="table table-striped table-hover aaa">
 					<tr>
-						<td colspan="4">조회결과 없음</td>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
 					</tr>
-				</c:if>
-			</table>
-			<%--  <div id="pageBar">
-			        	${pageBar }
-			        </div>	 --%>
-
-
+					<c:if test="${not empty qna }">
+						<c:forEach var="q" items="${qna }">
+							
+							
+							<tr id="qnaViewClick" onclick="qnaView()">
+								<td><c:out value="${q.qnaCode }" /></td>
+								<td>
+									<%-- <a href="${path }/qna/qnaView.do?qnaCode=${q.qnaCode}"> --%>
+										<c:out value="${q.qnaTitle }" />
+									<!-- </a> -->
+								</td>
+								<td><c:out value="${q.member.memberId }" /></td>
+								<td>
+									<fmt:formatDate value="${q.qnaDate }" pattern="yyyy-MM-dd" />
+									<%-- <c:out value="${q.qnaDate }" /> --%>
+								</td>
+							</tr>
+					<tr id="qnaView" style="display: none;">
+						<td colspan="4">
+							<textarea class="form-control" id="qnaViewCon"><c:out value="${q.qnaContent }"/></textarea>
+							<c:if test="${q.member.memberId==loginMember.memberId }">
+								<button class="adminbt" style="width: 80px; background-color: #6FB67F;" onclick="">수정</button>
+								<button class="adminbt" id="<c:out value="${q.qnaCode}"/>" name="<c:out value="${q.qnaCode}"/>" 
+										style="width: 80px;background-color: #D56B5A;" onclick="qnaDelete(event)">삭제</button>
+							</c:if>
+						</td>
+					</tr>		
+				
+							
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty qna }">
+						<tr>
+							<td colspan="4">조회결과 없음</td>
+						</tr>
+					</c:if>
+				</table>
+				<%--  <div id="pageBar">
+				        	${pageBar }
+				        </div>	 --%>
+			</li>
 		</ul>
 		<!-- 문의 탭 -->
 	</main>
+</section>
 
-
-	</main>
 
 
 	<script>
+	//리뷰사진확인
+	function setThumbnail(event) {
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+          var img = document.createElement("img");
+          img.setAttribute("src", event.target.result);
+          document.querySelector("div#image_container").appendChild(img);
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+      }
+
 	
-	/* $( ".star_rating a" ).click(function() {
-		$(this).parent().children("a").removeClass("on");     
-		$(this).addClass("on").prevAll("a").addClass("on"); 	    
-		return false;}); */
+	
+	//리뷰내용 입력확인
+	$(function() {
+		var reCon = document.getElementById("reviewContent");
+		
+			$("#send").click( function() {
+				if(reCon.value.length==0){
+				    alert("내용을 입력하세요");
+				}else{
+		         $('#myform').submit();
+		        
+				}
+		
+			});			
+	
+	});
 	
 	
-	//리뷰리스트 별점
-	/* function ratingToPercent() {	
-		  const score = $(".re11").val();
-		  log.console(score);
-	      const score = +this.restaurant.averageScore * 20;    
-	      const score = $(".re11").val().restaurant.averageScore * 20;
-	      return score + 1.5;
-	      return score;
-	 } */
-	
+	//qna보이기	
+	$("#qnaViewClick").click(function(){
+		if($("#qnaView").css("display")=="none"){				
+			$("#qnaView").show();	
+		}else{
+			$("#qnaView").hide();
+		}
+	});
+				
 	//주문
 	function info_chk() {
 		return true;
@@ -358,8 +348,7 @@
 	
 	
 	
-	$(document).ready(function() {
-
+	$(document).ready(function() {		
 		
 		//찜
 		$(".inf i").click(function(){
@@ -400,6 +389,7 @@
 		}) // 찜
 
 		$("main ul.info").hide();
+		
 		// 탭 눌렀을때 색변경 콘텐츠 변경
 		$("ul.tab > li").click(function() {
 
@@ -469,7 +459,10 @@
 		});
 	});
 	
-	const adminDeleteProduct=(e)=>{
+	
+	
+	//리뷰삭제
+	const reviewDelete=(e)=>{
 		if(confirm("삭제 하시겠습니까?")){
 		}else{
 		 	return false;
@@ -480,6 +473,23 @@
 			success:data=>{
 				if(data){
 					$(e.target).parents("table").remove();
+				}
+			}
+		});
+	}
+	
+	//문의삭제
+	const qnaDelete=(e)=>{
+		if(confirm("삭제 하시겠습니까?")){
+		}else{
+		 	return false;
+		 }
+		$.ajax({
+			url:"${path}/product/qnaDelete.do",
+			data:{qnaCode:$(e.target).attr("name")},
+			success:data=>{
+				if(data){
+					$(e.target).parents("table tr").remove();
 				}
 			}
 		});
