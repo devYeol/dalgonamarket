@@ -1,6 +1,7 @@
 package com.dal.dalgona.payment.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -86,7 +87,7 @@ public class PaymentController {
 		dl=dlService.selectDl(memberId);
 		model.addAttribute("deliveryLocation", dl);
 		
-		po=ProductOrder.builder().deliveryLocation(dl).orderStatus("주문대기").build();
+		po=ProductOrder.builder().orderDate(new Date()).deliveryLocation(dl).orderStatus("주문대기").build();
 		log.debug("프로덕트오더 전 : {}", po.getOrderCode());
 		dlService.insertPo(po);
 		log.debug("프로덕트오더 후 : {}", po.getOrderCode());
@@ -148,7 +149,7 @@ public class PaymentController {
 			dl=dlService.selectDl(memberId);
 			model.addAttribute("deliveryLocation", dl);
 			
-			po=ProductOrder.builder().deliveryLocation(dl).orderStatus("주문대기").build();
+			po=ProductOrder.builder().orderDate(new Date()).deliveryLocation(dl).orderStatus("주문대기").build();
 //			log.debug("프로덕트오더 전 : {}", po.getOrderCode());
 			dlService.insertPo(po);
 //			log.debug("프로덕트오더 후 : {}", po.getOrderCode());

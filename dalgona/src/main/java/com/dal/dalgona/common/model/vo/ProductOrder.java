@@ -1,7 +1,6 @@
 package com.dal.dalgona.common.model.vo;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,9 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -24,7 +24,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 
@@ -49,10 +48,10 @@ public class ProductOrder {
 	@Column (columnDefinition = "varchar2(255) default '주문대기'")
 	private String orderStatus; //주문상태 (배송 대기/ 중 / 배송완료)
 	
-//	@Temporal(TemporalType.TIMESTAMP)
-	@CreatedDate
-	private String orderDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd"));
-//	private Date orderDate; //주문날짜
+//	@CreatedDate
+//	private String orderDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd"));
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date orderDate; //주문날짜
 	
 	@Column(nullable = true)
 	private long totalPrice;
