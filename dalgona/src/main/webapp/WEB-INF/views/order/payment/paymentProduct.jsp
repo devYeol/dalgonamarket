@@ -80,7 +80,7 @@
 					<%@ include file="/WEB-INF/views/order/payment/modifyAddress.jsp"%>
 					<!-- <button type="submit" class="btn btn-primary" id="delivery-change-btn" onclick="popAddress()">배송지변경</button> -->
 					<button type="submit" class="btn btn-primary"
-						id="delivery-change-btn" onclick="modifyAddress()">배송지변경</button>
+						id="delivery-change-btn" onclick="modifyAddress()">주소 찾기</button>
 				</div>
 			</div>
 
@@ -90,32 +90,46 @@
 				<tbody>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">이름</label></th>
+						<%-- <td><input type="text" id="addrReceiver" name="addrReceiver"
+							value="${deliveryLocation.addrReceiver }" placeholder="수령인"
+							style="height: 30px;" /></td> --%>
 						<td><input type="text" id="addrReceiver" name="addrReceiver"
-							value="${deliveryLocation.addrReceiver }" placeholder="도로명"
-							style="height: 30px;" /></td>
+						value="" placeholder="수령인"
+						style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">배송주소</label></th>
-						<td><input type="text" id="addrPostNum" name="addrPostNum"
+						<%-- <td><input type="text" id="addrPostNum" name="addrPostNum"
 							value="${deliveryLocation.adrPostNum }" placeholder="우편번호"
-							readonly="readonly" style="height: 30px;" /></td>
+							readonly="readonly" style="height: 30px;" /></td> --%>
+						<td><input type="text" id="addrPostNum" name="addrPostNum"
+						value="" placeholder="우편번호"
+						style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for=""></label></th>
-						<td><input type="text" id="addrRoadName" name="addrRoadName"
+						<%-- <td><input type="text" id="addrRoadName" name="addrRoadName"
 							value="${deliveryLocation.addrRoadName }" placeholder="도로명"
-							readonly="readonly" style="height: 30px; width: 300px;" /></td>
+							readonly="readonly" style="height: 30px; width: 300px;" /></td> --%>
+						<td><input type="text" id="addrRoadName" name="addrRoadName"
+						value="" placeholder="도로명"
+						style="height: 30px; width: 300px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for=""></label></th>
+						<%-- <td><input type="text" id="addrDetail" name="addrDetail"
+							value="${deliveryLocation.addrDetail }" placeholder="상세주소 입력" style="height: 30px;" /></td> --%>
 						<td><input type="text" id="addrDetail" name="addrDetail"
-							value="${deliveryLocation.addrDetail }" placeholder="상세주소 입력" style="height: 30px;" /></td>
+						value="" placeholder="상세주소" style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">전화번호</label></th>
-						<td><input type="text" id="addrReceiver" name="addrReceiver"
+						<%-- <td><input type="text" id="addrPhone" name="addrPhone"
 							value="${deliveryLocation.addrPhone }" placeholder="전화번호"
-							style="height: 30px;" /></td>
+							style="height: 30px;" /></td> --%>
+						<td><input type="text" id="addrPhone" name="addrPhone"
+						value="" placeholder="연락처"
+						style="height: 30px;" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -247,7 +261,7 @@
 
    }
    
-   /* test */
+   /* 결제 */
    function payment() {
 
       var IMP = window.IMP;
@@ -256,20 +270,16 @@
       // 결제창 호출
       IMP.request_pay({ // param
 
-         pg : "html5_inicis",
+    	 pg : "html5_inicis",
          pay_method : 'card', // 결제형태 - 생략가능
          merchant_uid : '주문번호_' + rndNumber(),
          name : '${product.productName }', // 상품명
          amount : ${(product.productPrice+productOption)*selAmount+2500 }, // 총 상품가격
-         /* buyer_name : ${deliveryLocation.addrReceiver }, // 배송받는 사람 이름
-         buyer_tel : ${deliveryLocation.addrPhone }, // 배송받는 사람 연락처
-         buyer_addr : ${deliveryLocation.addrRoadName } + " " + ${deliveryLocation.addrDetail }, // 배송받는 사람 도로명 + 상세주소
-         buyer_postcode : ${deliveryLocation.adrPostNum }, // 배송받는 사람 우편번호 */
-         buyer_name : '${deliveryLocation.addrReceiver }',
+         buyer_name : $("input[name='addrReceiver']").val(), // 배송받는 사람 이름
+         buyer_tel : $("input[name='addrPhone']").val(),// 배송받는 사람 연락처
+         buyer_addr : $("input[name='addrRoadName']").val() + " " + $("input[name='addrDetail']").val(), // 배송받는 사람 도로명 + 상세주소
+         buyer_postcode : $("input[name='addrPostNum']").val(), // 배송받는 사람 우편번호
          buyer_email : "taera2@icould.com",
-         buyer_tel : '${deliveryLocation.addrPhone }',
-         buyer_addr : '',
-         buyer_postcode : '',
          m_redirect_url : '/'
 
       },

@@ -62,10 +62,12 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Transactional
-	public Long deleteByProductCode(long productCode) {
+	public Long deleteByProductCode(Long productCode) {
+		System.out.println("productCode : " + productCode );
 //		Long result = optionDao.deleteByProduct(selectOneProduct(productCode));
 //		result = qnaDaoJpa.deleteByProduct(selectOneProduct(productCode));
 		return dao.deleteByProductCode(productCode);
+		
 	}
 	
 	/*

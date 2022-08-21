@@ -17,7 +17,7 @@ public interface AdminDao extends JpaRepository<Product, Long> {
 	List<Product> findAll();
 	
 	@Transactional
-	Long deleteByProductCode(long productCode);
+	Long deleteByProductCode(Long productCode);
 	
 	Product saveAndFlush(Product p);
 	

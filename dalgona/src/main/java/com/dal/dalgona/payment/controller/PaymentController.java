@@ -48,6 +48,7 @@ public class PaymentController {
 		return "order/payment/changeAddress";
 	}
 	
+	// 테스트
 	@RequestMapping("/payment")
 	public String order(HttpSession session, Model model) {
 		
@@ -59,7 +60,8 @@ public class PaymentController {
 		return "order/payment/payment";
 		
 	}
-
+	
+	// 장바구니 결제
 	@RequestMapping("/product/paymentCart.do")
 	public String paymentCart(Product p, ProductOrder po, DeliveryLocation dl 
 			, HttpSession session, Model model
@@ -67,16 +69,16 @@ public class PaymentController {
 			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
 			,@RequestParam(value="productName", required = false ) String productName
 			) {
-		
+
 		Member memberId = (Member) session.getAttribute("loginMember");
 		
-		log.debug("{}",p);
-		log.debug("{}",po);
-		log.debug("{}",dl);
+//		log.debug("{}",p);
+//		log.debug("{}",po);
+//		log.debug("{}",dl);
 //		log.debug("{}",productName);
 //		log.debug("{}",selAmount);
 //		log.debug("{}",selectedOpt);
-		
+			
 		model.addAttribute("product", p);
 		model.addAttribute("productOption", selectedOpt);
 		model.addAttribute("selAmount", selAmount);
@@ -106,6 +108,7 @@ public class PaymentController {
 		
 	}
 	
+	// 상세페이지 바로 결제
 	@RequestMapping("/product/payment.do")
 	public String paymentProduct(Product p, ProductOrder po, DeliveryLocation dl 
 			, HttpSession session, Model model
@@ -123,32 +126,49 @@ public class PaymentController {
 //		log.debug("{}",selAmount);
 //		log.debug("{}",selectedOpt);
 		
-		model.addAttribute("product", p);
-		model.addAttribute("productOption", selectedOpt);
-		model.addAttribute("selAmount", selAmount);
+		String msg="";
+		String loc="";
 		
-		dl=dlService.selectDl(memberId);
-		model.addAttribute("deliveryLocation", dl);
-		
-		po=ProductOrder.builder().deliveryLocation(dl).orderStatus("주문대기").build();
-//		log.debug("프로덕트오더 전 : {}", po.getOrderCode());
-		dlService.insertPo(po);
-//		log.debug("프로덕트오더 후 : {}", po.getOrderCode());
-		
-		long orderCode=po.getOrderCode();
-		
-		ProductOrder po2=dlService.selectPo(orderCode);
-//		log.debug("프로덕트오더 : {}", po2);
-		
-		OrderDetail od=OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
-		
-		dlService.insertOd(od);
-		
-		log.debug("dl : {}", dl);
-		log.debug("po : {}", po);
-		log.debug("od : {}", od);
-		
-		return "order/payment/paymentProduct";
+		if(memberId == null) {
+			
+			msg="로그인 후 결제해주세요!";
+			loc="/loginpage";
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("loc", loc);
+			
+			return "common/msg";
+			
+		}else {
+			
+			model.addAttribute("product", p);
+			model.addAttribute("productOption", selectedOpt);
+			model.addAttribute("selAmount", selAmount);
+			
+			dl=dlService.selectDl(memberId);
+			model.addAttribute("deliveryLocation", dl);
+			
+			po=ProductOrder.builder().deliveryLocation(dl).orderStatus("주문대기").build();
+//			log.debug("프로덕트오더 전 : {}", po.getOrderCode());
+			dlService.insertPo(po);
+//			log.debug("프로덕트오더 후 : {}", po.getOrderCode());
+			
+			long orderCode=po.getOrderCode();
+			
+			ProductOrder po2=dlService.selectPo(orderCode);
+//			log.debug("프로덕트오더 : {}", po2);
+			
+			OrderDetail od=OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
+			
+			dlService.insertOd(od);
+			
+			log.debug("dl : {}", dl);
+			log.debug("po : {}", po);
+			log.debug("od : {}", od);
+			
+			return "order/payment/paymentProduct";
+			
+		}
 		
 	}
 	

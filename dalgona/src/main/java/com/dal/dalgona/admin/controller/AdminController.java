@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,10 +89,11 @@ public class AdminController {
 	}
 
 	// 상품관리 - 삭제기능
-	@RequestMapping("/adminDeleteProduct.do")
+	@RequestMapping("adminDeleteProduct.do")
 	@ResponseBody
-	public boolean deleteProduct(long productCode, HttpServletResponse response) throws IOException {
+	public boolean deleteProduct(Long productCode, HttpServletResponse response) throws IOException {
 		Long result = service.deleteByProductCode(productCode);
+		System.out.println("result : " + result);
 		return result > 0;
 	}
 
@@ -357,7 +359,6 @@ public class AdminController {
 			System.out.println("p : " + p);
 			//p.setOptionCode(options);
 			List<ProductOption> popions = service.save(options);
-			
 			
 			
 		//	Product ppp = Product.builder().productCode(pro).build();

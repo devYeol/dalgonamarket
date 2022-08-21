@@ -82,12 +82,25 @@ public class PjeController {
 	// 주문내역 불러오기
 	@RequestMapping("adminManageOrder.do")
 	public ModelAndView adminManageOrder(ModelAndView mv,
+			@RequestParam(value = "orderStatus", defaultValue = "") String orderStatus, 
 			@RequestParam(defaultValue = "1") int cPage, 
 			@RequestParam(defaultValue = "10") int numPerpage,
 			@RequestParam(value = "orderCode", defaultValue = "0") long orderCode
 			) {
+		long orderCount=service.countAll();
+		long standbyCount=service.countStandbyStatus("주문대기");
+		long cancelCount=service.countCancelStatus("주문취소");
+		long shippingCount=service.countShippingStatus("배송중");
+		long arrivalCount=service.countArrivalStatus("배송완료");
+		long refundReq=service.countRefundReqStatus("환불요청");
+		long refuntOver=service.countRefundOverStatus("환불완료");
 		PageRequest pagerequest = PageRequest.of(cPage - 1, numPerpage,Sort.by(Sort.Direction.ASC, "orderDate"));
 		Page<ProductOrder> list=service.searchOrders(pagerequest);
+//		if(orderStatus=="전체") {
+//			list=service.searchOrders(pagerequest);
+//		} else {
+//			list=service.searchOrderStatus(pagerequest);
+//		}
 		if (orderCode != 0) {
 			ProductOrder order=service.selectProductOrder(orderCode);
 			List<OrderDetail> orderDetails=service.selectOrderDetailsCode(orderCode);
@@ -96,6 +109,13 @@ public class PjeController {
 //			log.debug("{}",order);
 		}
 		// log.debug("{}",list);
+		mv.addObject("orderCount",orderCount);
+		mv.addObject("standbyCount",standbyCount);
+		mv.addObject("cancelCount",cancelCount);
+		mv.addObject("shippingCount",shippingCount);
+		mv.addObject("arrivalCount",arrivalCount);
+		mv.addObject("refundReq",refundReq);
+		mv.addObject("refuntOver",refuntOver);
 		mv.addObject("productOrders",list.getContent());
 		mv.addObject("pageBar", PageFactroyNoBootStrap.getPageBar(list.getTotalElements(), numPerpage, cPage, "adminManageOrder.do"));
 		mv.addObject("cPage",cPage);
