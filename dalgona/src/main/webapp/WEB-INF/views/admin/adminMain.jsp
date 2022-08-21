@@ -122,8 +122,8 @@
 								<c:forEach var="q" items="${qnas}">
 									<tr>
 										<td>${q.qnaCode}</td>
-										<td>${q.qnaCode}</td>
-										<td>${q.qnaCode}</td>
+										<td>${q.product.productName}</td>
+										<td>${q.member.memberId}</td>
 										<td nowrap>${q.qnaTitle}</td>
 										<td nowrap>
 											<fmt:formatDate value="${q.qnaDate}" pattern="yyyy-MM-dd"/>

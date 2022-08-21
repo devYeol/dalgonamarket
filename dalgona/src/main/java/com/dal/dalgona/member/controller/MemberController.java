@@ -27,7 +27,6 @@ import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
-import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.member.model.service.MemberService;
 import com.dal.dalgona.product.model.service.ProductService;
 
