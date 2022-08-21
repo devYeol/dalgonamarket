@@ -3,6 +3,7 @@ package com.dal.dalgona.product.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -23,13 +24,44 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> selectProductsPlus(SqlSession session, Map<String, Object> param) {
 		// TODO Auto-generated method stub
-		return session.selectList("product.selectProductsPlus", param);
+		int offSet=(int)param.get("cPage");
+		int limit=(int)param.get("numPerpage");
+		
+		return session.selectList("product.selectProductsPlus", param, new RowBounds((offSet-1)*limit,limit));
+	}
+	
+	@Override
+	public int selectProductsPlusCount(SqlSession session, Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("product.selectProductsPlusCount", param);
 	}
 	
 	@Override
 	public List<Product> selectProductsPlusPop(SqlSession session, Map<String, Object> param) {
 		// TODO Auto-generated method stub
-		return session.selectList("product.selectProductsPlusPop", param);
+		int offSet=(int)param.get("cPage");
+		int limit=(int)param.get("numPerpage");
+		
+		return session.selectList("product.selectProductsPlusPop", param, new RowBounds((offSet-1)*limit,limit));
+	}
+	
+	@Override
+	public int selectProductsPlusPopCount(SqlSession session, Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		
+		return session.selectOne("product.selectProductsPlusPopCount", param);
+	}
+	
+	@Override
+	public List<Product> selectTopBuy(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("product.selectTopBuy");
+	}
+	
+	@Override
+	public List<Product> selectTopZzim(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("product.selectTopZzim");
 	}
 	
 	@Override

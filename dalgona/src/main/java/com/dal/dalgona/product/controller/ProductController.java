@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dal.dalgona.common.PageFactory;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
@@ -47,25 +48,31 @@ public class ProductController {
 		 @RequestParam(value="searchSeq", defaultValue="최신순") String searchSeq,
 		 @RequestParam(value="searchOrder", defaultValue="DESC") String searchOrder,
          @RequestParam(defaultValue = "1") int cPage,
-         @RequestParam(defaultValue = "20") int numPerpage) {
+         @RequestParam(defaultValue = "12") int numPerpage) {
       Map<String,Object> param=new HashMap();
 	  param.put("categoryName", categoryName);
 	  param.put("searchOrder", searchOrder);
+	  param.put("cPage", cPage);
+	  param.put("numPerpage", numPerpage);
 	  List<Product> list = new ArrayList();
+	  int listCounts = 0;
 	  if (searchSeq.equals("인기순")) {
 		  param.put("searchSeq", searchSeq);
 		  list = service.selectProductsPlusPop(param);
+		  listCounts = service.selectProductsPlusPopCount(param);
 	  } else {
 		  param.put("searchSeq", searchSeq);
 		  list = service.selectProductsPlus(param);
+		  listCounts = service.selectProductsPlusCount(param);
 	  }
-	  long listCounts = list.size();
       log.debug("{}",list);
       mv.addObject("categoryName", categoryName);
       mv.addObject("searchSeq", searchSeq);
       mv.addObject("searchOrder", searchOrder);
       mv.addObject("products", list);
       mv.addObject("listCounts",listCounts);
+      mv.addObject("cPage",cPage);
+      mv.addObject("pageBar",PageFactory.getPageBar(listCounts, numPerpage, cPage, "/product/productList"));
       mv.setViewName("/product/productList");
       return mv;
    }

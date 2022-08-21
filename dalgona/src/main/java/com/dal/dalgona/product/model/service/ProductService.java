@@ -13,7 +13,15 @@ public interface ProductService {
 	
 	List<Product> selectProductsPlus(Map<String, Object> param);
 	
+	int selectProductsPlusCount(Map<String, Object> param);
+	
 	List<Product> selectProductsPlusPop(Map<String, Object> param);
+	
+	int selectProductsPlusPopCount(Map<String, Object> param);
+	
+	List<Product> selectTopBuy();
+
+	List<Product> selectTopZzim();
 	
 	Product selectProduct(long productCode);
 	

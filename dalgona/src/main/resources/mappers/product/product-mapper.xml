@@ -57,6 +57,27 @@
 		</if>
 	</select>
 	
+	<select id="selectProductsPlusCount" resultType="_int" >
+		SELECT COUNT(*) 
+		FROM PRODUCT p
+		WHERE 1=1
+		<if test="categoryName != null and categoryName != ''">
+	   		AND CATEGORY_NAME LIKE '%'||#{categoryName}||'%'
+		</if>
+		<if test="searchSeq != null and searchSeq != '' and searchSeq =='최신순'">
+	   		ORDER BY PRODUCT_DATE
+		</if>
+		<if test="searchSeq != null and searchSeq != '' and searchSeq =='가격순'">
+	   		ORDER BY PRODUCT_PRICE
+		</if>
+		<if test="searchOrder != null and searchOrder != '' and searchOrder =='ASC'">
+	   		ASC
+		</if>
+		<if test="searchOrder != null and searchOrder != '' and searchOrder =='DESC'">
+	   		DESC
+		</if>
+	</select>
+	
 	<select id="selectProductsPlusPop" resultMap="productMap" >
 		SELECT * 
 		FROM PRODUCT P 
@@ -77,6 +98,57 @@
 		<if test="searchOrder != null and searchOrder != '' and searchOrder =='DESC'">
 	   		DESC
 		</if>
+	</select>
+	
+	<select id="selectProductsPlusPopCount" resultType="_int" >
+		SELECT COUNT(*) 
+		FROM PRODUCT P 
+		LEFT JOIN (SELECT COUNT(LIKES_CODE) AS LIKESSU, PRODUCT_CODE 
+					FROM (SELECT * 
+							FROM PRODUCT p 
+							LEFT JOIN LIKES l USING (PRODUCT_CODE)) 
+					GROUP BY PRODUCT_CODE) 
+		USING (PRODUCT_CODE)
+		WHERE 1=1
+		<if test="categoryName != null and categoryName != ''">
+	   		AND CATEGORY_NAME LIKE '%'||#{categoryName}||'%'
+		</if>
+		ORDER BY LIKESSU
+		<if test="searchOrder != null and searchOrder != '' and searchOrder =='ASC'">
+	   		ASC
+		</if>
+		<if test="searchOrder != null and searchOrder != '' and searchOrder =='DESC'">
+	   		DESC
+		</if>
+	</select>
+	
+	<select id="selectTopBuy" resultMap="productMap" >
+		SELECT * FROM (
+		SELECT * 
+		FROM PRODUCT p 
+		LEFT JOIN (SELECT COUNT(*) AS BUY, PRODUCT_CODE 
+					FROM (SELECT * 
+							FROM PRODUCT P2 
+							LEFT JOIN ORDER_DETAIL od 
+							USING (PRODUCT_CODE)) 
+					GROUP BY PRODUCT_CODE) 
+		USING (PRODUCT_CODE) 
+		ORDER BY BUY DESC) 
+		WHERE ROWNUM BETWEEN 1 AND 4
+	</select>
+	
+	<select id="selectTopZzim" resultMap="productMap" >
+		SELECT * FROM ( 
+		SELECT * 
+		FROM PRODUCT P 
+		LEFT JOIN (SELECT COUNT(LIKES_CODE) AS LIKESSU, PRODUCT_CODE 
+					FROM (SELECT * 
+							FROM PRODUCT p 
+							LEFT JOIN LIKES l USING (PRODUCT_CODE)) 
+					GROUP BY PRODUCT_CODE) 
+		USING (PRODUCT_CODE)
+		ORDER BY LIKESSU DESC )
+		WHERE ROWNUM BETWEEN 1 AND 4
 	</select>
 	
 	

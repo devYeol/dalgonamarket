@@ -37,9 +37,33 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	public int selectProductsPlusCount(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return dao.selectProductsPlusCount(session, param);
+	}
+	
+	@Override
 	public List<Product> selectProductsPlusPop(Map<String, Object> param) {
 		// TODO Auto-generated method stub
 		return dao.selectProductsPlusPop(session, param);
+	}
+	
+	@Override
+	public int selectProductsPlusPopCount(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return dao.selectProductsPlusPopCount(session, param);
+	}
+	
+	@Override
+	public List<Product> selectTopBuy() {
+		// TODO Auto-generated method stub
+		return dao.selectTopBuy(session);
+	}
+	
+	@Override
+	public List<Product> selectTopZzim() {
+		// TODO Auto-generated method stub
+		return dao.selectTopZzim(session);
 	}
 	
 	
@@ -186,6 +210,8 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return dao.adminSearchList(session,adminkeyword);
 	}
+
+	
 
 
 

@@ -116,7 +116,7 @@ figure:hover figcaption {
          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/product/categoryList?categoryName=스낵">
+                  <a href="${path}/product/productList?categoryName=스낵">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/과자일러.png"
                         style="width: 100%; height: 280px;">
@@ -128,7 +128,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/product/categoryList?categoryName=사탕">
+                  <a href="${path}/product/productList?categoryName=사탕">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/사탕일러.png"
                         style="width: 100%; height: 280px;">
@@ -140,7 +140,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/product/categoryList?categoryName=초코">
+                  <a href="${path}/product/productList?categoryName=초코">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/초콜렛일러.png"
                         style="width: 100%; height: 280px;">                  
@@ -152,7 +152,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/product/categoryList?categoryName=젤리">
+                  <a href="${path}/product/productList?categoryName=젤리">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/젤리일러.png"
                         style="width: 100%; height: 280px;">
@@ -164,7 +164,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/product/categoryList?categoryName=완구">
+                  <a href="${path}/product/productList?categoryName=완구">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/완구일러.png"
                         style="width: 100%; height: 280px;">
@@ -176,7 +176,7 @@ figure:hover figcaption {
             </figure>
             <figure class="col">
                <div class="gallery-img">
-                  <a href="${path}/product/categoryList?categoryName=기타">
+                  <a href="${path}/product/productList?categoryName=기타">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
                      <img class="category-img" src="${path }/resources/images/mainpage/기타일러.png"
                         style="width: 100%; height: 280px;">
@@ -198,64 +198,74 @@ figure:hover figcaption {
       <div class="carousel-inner">
          <div class="item">
             <div class="row">
-               <div class="col-3">
-                  <a href="#">
-                     <img class="thumbnail-img" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" />
-                     <div class="price-tag">
-                        <div>해바라기</div>
-                        <div>1000원</div>
-                     </div>
-                  </a>
-               </div>
-               <div class="col-3">
-                  <a href="#x" class="thumbnail">
-                     <img class="thumbnail-img" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" />
-                     <span>해바라기</span>
-                  </a>
-               </div>
-               <div class="col-3">
-                  <a href="#x" class="thumbnail">
-                     <img class="thumbnail-img" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" />
-                     <span>해바라기</span>
-                  </a>
-               </div>
-               <div class="col-3">
-                  <a href="#x" class="thumbnail">
-                     <img class="thumbnail-img" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" />
-                     <span>해바라기</span>
-                  </a>
-               </div>
+               <c:if test="${not empty topBuy}">
+					<c:forEach var="p" items="${topBuy}">
+						<!-- 상품 1개 -->
+						<div class="col-3" type="button" onclick="location.assign('${path}/product/productDetail/${p.productCode}')">
+							<div class="">
+								<div style="position: relative;">
+									<img src="${p.productThumb}" alt="Image" height="305" width="305" />
+								</div>
+							</div>
+							<div>
+								<div class="leftbox" style="font-size:20px;">
+									<span>${p.productName}</span>
+								</div>
+								<div class="rightbox">
+									<span>★4.8/5</span>
+								</div>
+								<hr style="margin: 4px 0px 4px 0px">
+								<div>
+									<div class="leftbox">
+										<span class="">${p.productContent}</span>
+									</div>
+									<div class="rightbox">
+										<h4>${p.productPrice}원</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 상품 1개 끝 -->
+					</c:forEach>
+				</c:if>
             </div>
          </div>
       </div>
+      
       <h4>관심상품</h4>
       <div class="carousel-inner">
          <div class="item">
             <div class="row">
-               <div class="col-3">
-                  <a href="#x" class="thumbnail">
-                     <img class="thumbnail-img" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" />
-                     <span>해바라기</span>
-                  </a>
-               </div>
-               <div class="col-3">
-                  <a href="#x" class="thumbnail">
-                     <img class="thumbnail-img" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" />
-                     <span>해바라기</span>
-                  </a>
-               </div>
-               <div class="col-3">
-                  <a href="#x" class="thumbnail">
-                     <img class="thumbnail-img" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" />
-                     <span>해바라기</span>
-                  </a>
-               </div>
-               <div class="col-3">
-                  <a href="#x" class="thumbnail">
-                     <img class="thumbnail-img" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" alt="Image" style="max-width: 100%;" />
-                     <span>해바라기</span>
-                  </a>
-               </div>
+               <c:if test="${not empty topZzim}">
+					<c:forEach var="p" items="${topZzim}">
+						<!-- 상품 1개 -->
+						<div class="col-3" type="button" onclick="location.assign('${path}/product/productDetail/${p.productCode}')">
+							<div class="">
+								<div style="position: relative;">
+									<img src="${p.productThumb}" alt="Image" height="305" width="305" />
+								</div>
+							</div>
+							<div>
+								<div class="leftbox" style="font-size:20px;">
+									<span>${p.productName}</span>
+								</div>
+								<div class="rightbox">
+									<span>★4.8/5</span>
+								</div>
+								<hr style="margin: 4px 0px 4px 0px">
+								<div>
+									<div class="leftbox">
+										<span class="">${p.productContent}</span>
+									</div>
+									<div class="rightbox">
+										<h4>${p.productPrice}원</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 상품 1개 끝 -->
+					</c:forEach>
+				</c:if>
             </div>
          </div>
       </div>
