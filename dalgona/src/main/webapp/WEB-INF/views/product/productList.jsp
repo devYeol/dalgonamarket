@@ -14,28 +14,27 @@
 	<hr style="background: lightgray;">
 	<div style="margin: auto 0;">
 		<div style="diplay: block;">
-			<div
-				style="display: flex; margin: 0 auto; max-width: 1200px; justify-content: space-between;">
+			<div style="display: flex; margin: 0 auto; max-width: 1200px; justify-content: space-between;">
 				<div class="category11">
 					<a class="button1 category11" id="cate1">ALL</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11">과자</a>
+					<a class="button1 category11" href="${path}/product/categoryList?categoryName=스낵">스낵</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11">사탕</a>
+					<a class="button1 category11" href="${path}/product/categoryList?categoryName=사탕">사탕</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11">초코</a>
+					<a class="button1 category11" href="${path}/product/categoryList?categoryName=초코">초코</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11">젤리</a>
+					<a class="button1 category11" href="${path}/product/categoryList?categoryName=젤리">젤리</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11">완구</a>
+					<a class="button1 category11" href="${path}/product/categoryList?categoryName=완구">완구</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11">기타</a>
+					<a class="button1 category11" href="${path}/product/categoryList?categoryName=기타">기타</a>
 				</div>
 			</div>
 		</div>
