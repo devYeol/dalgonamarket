@@ -152,10 +152,26 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 
+	@Override
+	public long deleteByQnaCode(long qnaCode) {
+		// TODO Auto-generated method stub
+		return dao.deleteByQnaCode(session,qnaCode);
+	}
+	
+	@Override
+	public List<Product> categoryList(String categoryName) {
+		// TODO Auto-generated method stub
+		return dao.categoryList(session,categoryName);
+	}
+	
+   
+
 	/*
 	 * @Override public int insertOptionCode(ProductOption option) { return
 	 * dao.insertOptionCode(session, option); }
 	 */
+	
+	
 	
 	
 

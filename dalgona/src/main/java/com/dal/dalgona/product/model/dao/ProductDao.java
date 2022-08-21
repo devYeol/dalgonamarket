@@ -52,6 +52,12 @@ public interface ProductDao {
 	int deleteByProductOption(SqlSession session,long ppp);
 
 //	int insertOptionCode(SqlSession session, ProductOption option);
+	
+	long deleteByQnaCode(SqlSession session,long qnaCode);
+	
+	List<Product> categoryList(SqlSession session,String categoryName);
+	
+	
 
 
 

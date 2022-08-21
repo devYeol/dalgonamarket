@@ -55,4 +55,8 @@
 		WHERE ROWNUM BETWEEN 1 AND 8
 	</select>
 	
+	<delete id="delQna">
+		DELETE FROM QNA WHERE QNA_CODE=#{qnaCode}
+	</delete>
+	
 </mapper>

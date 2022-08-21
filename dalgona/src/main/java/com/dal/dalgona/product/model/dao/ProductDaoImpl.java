@@ -127,7 +127,18 @@ public class ProductDaoImpl implements ProductDao {
 	public int deleteByProductOption(SqlSession session,long ppp) {
 		return session.delete("productOption.deleteOption", ppp);
 	}
+
+	@Override
+	public long deleteByQnaCode(SqlSession session, long qnaCode) {
+		// TODO Auto-generated method stub
+		return session.delete("qna.delQna",qnaCode);
+	}
 	
+   @Override
+   public List<Product> categoryList(SqlSession session,String categoryName) {
+      // TODO Auto-generated method stub
+      return session.selectList("product.categoryList", categoryName);
+   }
 	
 	/*
 	 * @Override public int insertOptionCode(SqlSession session, ProductOption

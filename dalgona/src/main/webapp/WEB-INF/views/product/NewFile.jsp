@@ -10,6 +10,41 @@
 	<jsp:param name="title" value="" />
 </jsp:include>
 <section>
+
+
+
+
+<style>
+	div#board-container{width:400px; margin:0 auto; text-align:center;}
+	div#board-container input{margin-bottom:15px;}
+</style>
+
+<div id="board-container">
+        <form name="boardFrm" action="${path }/qna/qnawWriteEnd.do" 
+        method="post" enctype="multipart/form-data" >
+            <input type="hidden" value="${productCode }" name="productCode"> 	 
+            <input type="text" class="form-control" placeholder="제목" name="qnaTitle" id="qnaTitle" required>
+            <input type="text" class="form-control" placeholder="아이디 (4글자이상)"  value="${loginMember.memberId}" readonly required>           
+            <textarea class="form-control" name="qnaContent" placeholder="내용" required></textarea>
+            <br />
+            <input type="submit" class="btn btn-outline-success" value="저장" >
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<main class="container" style="width: 70%;">
 		<form action="${path }/product/payment.do" method="post" onsubmit='return info_chk()'>
 			<div class="row mb-2 d-grid gap-4">
