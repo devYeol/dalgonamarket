@@ -45,7 +45,7 @@
         -->
 		<div class="contents">
 		<div class="contentstitle">상품관리</div>
-		<form action="${path }/admin/adminSearch.do" method="post"></form>
+		<form action="${path }/admin/adminSearch.do" method="post">
 			<div class="searchdiv">
 				<div>
 					<input name="adminKeyword" class="search" type="text" placeholder="검색하실 상품명을 입력하세요" value="${adminKeyword }">
@@ -54,6 +54,7 @@
 					<button type="submit" value="검색" class="adminsearch">검색</button>
 				</div>
 			</div>
+		</form>
 			<div class="listdiv">
 				<table class="listtable">
 					<tr style="bolder-top: none;">
