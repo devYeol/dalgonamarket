@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-
+<c:set var="now" value="<%=new java.util.Date()%>"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="" />
 </jsp:include>
@@ -218,7 +218,6 @@ img {
 				<strong>마이페이지</strong>
 			</h4>
 			<ul>
-				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
 				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
 				<li><a href="${path }/member/mypage/cart">장바구니</a>
 				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
@@ -274,7 +273,7 @@ img {
 				<p>한번에 조회 가능한 기간은 최대 6개월 이고 환불은 배송 완료 후 7일 내만 가능합니다.</p>
 			</div>
 		</div>
-		<form action="${path }/member/mypage/cartInsert" id="cartMove">
+		<form action="${path }/member/mypage/cartInsert" class="cartMove">
 		<div>
 			<div class="orderlist-box">
 				<div style="display: flex; justify-content: space-between;">
@@ -292,13 +291,13 @@ img {
 						<tbody>
 						<tr  >
 						<td style="display: flex">
-						<input type="hidden" name="productCode" value="${o.product.productCode}">
+						<input type="hidden" name="productOrder" value="${o.productOrder.orderCode}">
 									<input type="hidden" class="tdPCode" name="productCode" value="${o.product.productCode}">
-										<input type="hidden" class="tdPName" name="productName" value="${o.product.productName}">
+										<%-- <input type="hidden" class="tdPName" name="productName" value="${o.product.productName}">
 										<input type="hidden" class="tdPCate" name="categoryName" value="${o.product.categoryName }">
 										<input type="hidden" class="tdPContent"name="productContent" value="${o.product.productContent}">
 										<input type="hidden" class="tdPrice"name="productPrice" value="${o.product.productPrice }">
-										<input type="hidden" class="tdThumb"name="productThumb" value="${o.product.productThumb }">
+										<input type="hidden" class="tdThumb"name="productThumb" value="${o.product.productThumb }"> --%>
 										<input type="hidden" class="tdPsel" name="selAmount" value="${sA }"> <!-- 상품개수 -->
 							<h3 style="margin-bottom: 0px; margin-left: 40px;">
 								주문날짜: ${o.productOrder.orderDate}
@@ -307,27 +306,28 @@ img {
 							<td id="order-data" style="display: flex; ">
 								<div
 									style="padding-right: 215px; margin-right: 15px; height: 160;">
-									<div class="check-itembox">
+									<div class="check-itembox" >
 										<div class="check-item">
 											<input class="check-input" type="checkbox" name="check" id="${o.productOrder.orderCode}">
 										</div>
 										<div>
-											<img
-												src="${o.product.productThumb }"
-												class="d-block w-100">
-												<!-- src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F202002%2FFKF%2F1204740366.jpg&type=a340" -->
+											<a href="${path}/product/productDetail/${o.product.productCode}"> 
+											<img src="${o.product.productThumb }"class="d-block w-100">
+											</a>
 										</div>
-										<div style="margin-top: 20px; margin-left: 30px">
-											<a href="${path}/product/productList" class="proName"><b>
-												<c:out	value="${o.product.categoryName }"/></b></a><br>
-											<span style="font-size: 15"><b> <br>
+										<div style="margin-left: 30px">
+											<a href="${path}/product/productDetail/${o.product.productCode}" class="proName"><b>
+											<span style="font-size: 25"><b> <br>
 												<c:out	value="${o.product.productName }" /></b></span><br>
+												</b></a>
 											<span style="font-size: 15"><br>
-												<c:out value="${o.product.productPrice }원" />&nbsp;&nbsp; <br><br>
-												<c:out value="${o.product.productAmount}개" /></span> <br><br>
+												<fmt:formatNumber type="currency"
+													value="${o.product.productPrice}" />
+												&nbsp;원 <br><br>
+												<c:out value="수량 :${o.product.productAmount}개" /></span> <br><br>
 											<div style="float:left; margin-right:20px;">
-												<c:out value="" /> 8/14(화)
-													배송완료<br>
+												<c:out value="${o.productOrder.orderDate}"/>
+													배송대기<br>
 											</div>
 										</div>
 									</div>
@@ -335,7 +335,7 @@ img {
 								<div class="check-btnbox" style="display: flex; float:right;">
 									<div class="check-btn">
 										<button type="button" class="btn">교환,반품신청</button>
-										<button type="button" id="cartMoves"class="btn">장바구니 담기</button>
+										<button type="button" id="cartMoves"class="cartMoves">장바구니 담기</button>
 										<button type="button" onclick="location.assign('${path}/product/productDetail/${o.product.productCode}')" class="btn">리뷰작성</button>
 									</div>
 								</div>
@@ -357,8 +357,8 @@ img {
 
 <script>
 
-	$("#cartMoves").click(function(){
-		$("#cartMove").submit();
+	$(".cartMoves").click(function(){
+		$(".cartMove").submit();
 	})
 
 $("#productListMove").click(function(){

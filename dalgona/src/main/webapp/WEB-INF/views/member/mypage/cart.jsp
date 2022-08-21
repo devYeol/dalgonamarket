@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<c:set var="now" value="<%=new java.util.Date()%>"/>
 <c:set var= "c" value="${cartList}"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="" />
@@ -12,7 +13,7 @@
 
 .selAmount{
  border:none;
- width:25px;
+ width:30px;
 }
 
 .proName{
@@ -175,7 +176,6 @@ text-decoration:none;
 				<strong>마이페이지</strong>
 			</h4>
 			<ul>
-				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
 				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
 				<li><a href="${path }/member/mypage/cart">장바구니</a>
 				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
@@ -217,16 +217,15 @@ text-decoration:none;
 						</div>
 					</div>
 
-					<c:forEach var="c" items="${cartList}" varStatus="i">
+					<c:forEach var="c" items="${cartList}" varStatus="varStatus">
 
 						<table style="margin-left: 10; width: 100%;">
 							<tbody id="cart">
-								<tr class="payment-tr" name="selectP">
+								<tr class="payment-tr" >
 					<hr>
 									<td style="width: 20%;" class="tdCheck">
 										<input class="check-input" name="check" id="${c.cartCode}" type="checkbox"
-										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
-										style="text-decoration: none;"> 
+										style="margin-top: 40;" onclick="getCheckboxValues();"> 
 										<input type="hidden" id="cartCode" name="cartCode" value="${c.cartCode}"> 
 										<input type="hidden" class="cartAmount" name="cartAmount" value="${c.cartAmount}"> 
 										<input type="hidden" class="productCode" name="productCode" value="${c.product.productCode}">
@@ -238,45 +237,39 @@ text-decoration:none;
 										<input type="hidden" class="selAmount" name="selAmount" value="${sA }"> <!-- 상품개수 -->
 										<input type="hidden" class="selPrice" name="selPrice" value="${selPrice }"> <!-- 체크 된 장바구니 합계(배송비 포함) -->
 										<input type="hidden" class="fee" name="fee" value="${fee}"> <!-- 배송비 -->
-										<input type="hidden" class="totalPrice" name="totalPrice" value="${totalPrice}"> <!-- 배송비 -->
-																			
+										
+									<a href="${path}/product/productDetail/${c.product.productCode}">									
 										<img
 											src="${c.product.productThumb }" width="150" height="150"
-											border="0" style="margin-left: 10" /> <!-- src="http://img3.tmon.kr/cdn4/deals/2022/02/15/5164313822/front_cd6a3_671t8.jpg" -->
+											border="0" style="margin-left: 10" /> 
 									</a></td>
-									<td style="width: 55%"><a href="#"
-										style="color: black; text-decoration: none; font-size: 17"><b>
-												<input type="hidden" name="" value="${c.cartCode}">
-										</b></a>
-										<div style="margin-top: 5; font-size: 15px">
-											<c:out value=" ${c.product.categoryName}" />
-										</div> <!-- 오예오예 오예스~ --> <br>
-										<div style="margin-top: 5; font-size: 15px">
+									<td style="width: 55%">
+										
+										<div style=" font-size: 15px">
 											<c:out value=" ${c.product.productName}" />
 										</div> <!-- 오예오예 오예스~ --> <br>
 										<div style="margin-top: 5;">	
 											<p id="priced">
-												<fmt:formatNumber pattern="###,###,###"
+												<fmt:formatNumber type="currency"
 													value="${c.product.productPrice}" />
 												&nbsp;원
 											</p>
 										</div>
-										<div style="margin-top: 5; font-size: 15px">도착 예정</div></td>
+										<div style="margin-top: 5; font-size: 15px"><fmt:formatDate value="${now}"/>도착 예정</div></td>
 									<td style="text-align: center;">
-										<input type="text" class="selAmount" name="selAmount"  value="${sA }" id="select_count">개
-											<br>
 										<span>
-											<button type="button" class="btn plus_button"  id="plus" >+</button>
-											<button type="button" class="btn minus_button"  id="minus">-</button>
+										<input type="text" class="selAmount" name="carAmount"  value="${c.cartAmount}" id="select_count">개
+											<button type="button" class="btn plus_button" name="${c.cartCode }" onclick="fnCalCount('p',this);"   id="plus" >+</button>
+											<button type="button" class="btn minus_button"  onclick="fnCalCount('m', this);"  id="minus">-</button>
 										</span>
+										
 										<div style="margin-top: 5px">
 											<p>
 
-												<%-- <fmt:formatNumber pattern="###,###,###"
-													value="${c.product.productPrice*sA}" /> --%>
-													<span id="res">
+												<fmt:formatNumber type="currency"
+													value="${c.product.productPrice*c.cartAmount}" />
 												&nbsp;원
-													</span>
+													
 											</p>
 										</div></td>
 									<td style="width: 100">
@@ -294,7 +287,6 @@ text-decoration:none;
 
 							</tbody>
 						</table>
-						<br>
 					</c:forEach>
 
 
@@ -367,24 +359,28 @@ $("button[name= productListMove]").click(function(){
     
   
 	/* 수량 조작 */
-	
+	function fnCalCount(type, ths){
+	    var $input = $(ths).parents("td").find("input[name='selAmount']");
+	    var tCount = Number($input.val());
+	    var tEqCount = Number($(ths).parents("tr").find("span.res").html());
+    
+	 var i =0;
 	 let selAmount =$(".selAmount").val();
 	 let productPrice =$(".productPrice").val();
-    $("#plus").on('click',function(){
+
+	 $(".plus_button").on('click',function(){
     	$(".selAmount").val(++selAmount);
     	
     	
+	 });
     
-    });
-    
-    $("#minus").on("click",function(){
+   $(".minus_button").on("click",function(){
     	if(selAmount>1){
-    		
     	$(".selAmount").val(--selAmount);
-    	}
-    });
+    	} 
 
-    
+   });  
+} 
     
   // 선택 삭제
     	$("#selectDelete").click(function(){
@@ -409,15 +405,6 @@ $("button[name= productListMove]").click(function(){
     		return false;
     	}
     });
-    
-        $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
-        	if(confirm("삭제 하시겠습니까?")){
-        	}else{
-        		return false
-        	}
-        		
-        })
-    
 		
 		$("#paymentMove").click(function(){
         var tdCheck =$("input[name='check']:checked");
@@ -434,7 +421,6 @@ $("button[name= productListMove]").click(function(){
  $("input[name='check']:checked").prop("checked",true);
 	$("input[name='check']:checked").prop("checked",false); 
 	
-let sumMoney=$('.sumMoney');
 /* let selAmount =$('.selAmount'); */
 
 /* function getCheckboxValues(){

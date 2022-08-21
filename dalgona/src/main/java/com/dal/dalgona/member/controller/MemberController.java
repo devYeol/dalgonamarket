@@ -1,9 +1,7 @@
 package com.dal.dalgona.member.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +27,7 @@ import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.member.model.service.MemberService;
 import com.dal.dalgona.product.model.service.ProductService;
 
@@ -62,7 +60,7 @@ public class MemberController {
 		String msg="" ,loc="";
 		if(m!=null) {
 			
-			Cart c =Cart.builder().member(m).product(p).build();
+			Cart c =Cart.builder().member(m).product(p).cartAmount(selAmount).build();
 			System.out.println(c);
 			//		int result=service.cartInsert(c);
 			
@@ -102,35 +100,6 @@ public class MemberController {
 		return "common/msg";
 		
 	}
-//	@RequestMapping(value="/member/mypage/cartInsert")
-//	public String cartInsert(Model mo,HttpSession session,
-//			@RequestParam(value="selAmount",required=false )int selAmount,
-//			Product p) 
-//			throws Exception {
-//		Member m= (Member) session.getAttribute("loginMember");
-////		Likes l=service.selectLikes(likesCode);
-//		System.out.println(m);
-//		System.out.println(p);
-//		String msg="" ,loc="";
-//		log.debug("{1}",m);
-//		log.debug("{1}",p);
-//		if(m!=null) {
-//			Cart c =Cart.builder().member(m).product(p).build();
-//			System.out.println(c);
-//			int result=service.cartInsert(c);
-//			msg="장바구니에 등록 되었습니다";
-//			loc="/member/mypage/cart";
-//		}else {
-//			msg="로그인 후 이용해주세요";
-//			loc="/member/login/loginPage";
-//		}
-//		
-//		log.debug("{2}",m);
-//		log.debug("{2}",p);
-//		mo.addAttribute("msg",msg);
-//		mo.addAttribute("loc",loc);
-//		return "common/msg";
-//	}
 	
 	@RequestMapping(value="/member/mypage/cart") // 장바구니
 	public ModelAndView cart(ModelAndView mv, HttpSession session,
@@ -144,15 +113,11 @@ public class MemberController {
 //			System.out.println("sumMoney :" + sumMoney);
 			int selAmount=1; //상품 개수
 			int fee = 2500; // 배송료
-			int selPrice=selAmount*p.getProductPrice(); //개수*상품가격
-			int totalPrice=selPrice+fee; //개수*상품가격
 			
-//			System.out.println("allMoney :" + (fee + sumMoney));
-			mv.addObject("selPrice",selPrice);
+			
 			mv.addObject("sA",selAmount);
 			mv.addObject("fee",fee);
 			mv.addObject("product",p);
-			mv.addObject("totalPrice",totalPrice); // 체크된 장바구니 상품 + 배송비
 			mv.addObject("cartList",cartList);
 			mv.addObject("count", cartList.size());
 			mv.setViewName("member/mypage/cart");
@@ -163,7 +128,7 @@ public class MemberController {
 
 	}
 	@RequestMapping(value="/cart/update.do") // 장바구니
-	public String cart(Model mo, HttpSession session,
+	public String cartUpdate(Model mo, HttpSession session,
 			Product p,@RequestParam int[] cartAmount,
 			@RequestParam int[] selAmount,
 			@RequestParam long[] productCode) {
@@ -198,6 +163,7 @@ public class MemberController {
 		mo.addAttribute("DL",selectsDL);
 		mo.addAttribute("cart",c);
 		
+		
 		return "payment/paymentCart";
 	}
 	
@@ -230,20 +196,31 @@ public class MemberController {
 //		return "redirect:/member/mypage/cart";
 //	}
 
-	@RequestMapping("/member/mypage/productOrderList") // 구매내역
-	public String orderDetail(Model mo,HttpSession session) {
-		Member memberId = (Member) session.getAttribute("loginMember");
-		System.out.println("id :"+ memberId);
-		List<OrderDetail> orderDetailList = service.orderList(memberId);
-		int selAmount=1;
-		System.out.println("orderDetailList :"+orderDetailList);
-		System.out.println("selAmount :"+selAmount);
-		mo.addAttribute("orderDetailList", orderDetailList);
-		mo.addAttribute("sA", selAmount);
-		
-		return "member/mypage/productOrderList";
-		
-	}
+	   @RequestMapping("/member/mypage/productOrderList") // 구매내역
+	   public String orderDetail(Model mo,HttpSession session) {
+	      Member memberId = (Member) session.getAttribute("loginMember");
+
+	      String msg,loc="";
+	      if(memberId!=null) {
+    	  System.out.println("id :"+ memberId);
+	      List<OrderDetail> orderDetailList = service.orderList(memberId);
+	      int selAmount=1;
+	      System.out.println("orderDetailList :"+orderDetailList);
+	      System.out.println("selAmount :"+selAmount);
+	      mo.addAttribute("orderDetailList", orderDetailList);
+	      mo.addAttribute("sA", selAmount);
+	      
+	      return "member/mypage/productOrderList";
+	      }else {
+	    	  msg="로그인 후 사용 가능합니다";
+	    	  loc="loginpage";
+	    	  mo.addAttribute("msg",msg);
+	    	  mo.addAttribute("loc",loc);
+	    	 return "common/msg";
+	      }
+	      
+	      
+	   }
 	
 	//구매내역 - 선택삭제
 	@RequestMapping("/member/orderListDelete.do") 
@@ -310,6 +287,7 @@ public class MemberController {
 //	
 	@RequestMapping("/member/mypage/shippingset")
 	public String shippingset() {
+		
 		return "member/mypage/shippingset";
 
 	}

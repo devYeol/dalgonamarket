@@ -28,6 +28,7 @@
 	
 	<resultMap type="cart" id="cartMap">
 		<result column="cart_code" property="cartCode"/>
+		<result column="cart_amount" property="cartAmount"/>
 		<association column="product_code" property="product" resultMap="productMap"/>
 		<association column="member_id" property="member" resultMap="memberMap"/>
 	</resultMap>

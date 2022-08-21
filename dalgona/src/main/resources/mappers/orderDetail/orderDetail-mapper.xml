@@ -6,7 +6,7 @@
 		<result property="orderAmount" column="order_amount"/>
 		<result property="orderOption" column="order_option"/>
 		<association column="product_code" property="product" resultMap="productMap"/>
-		<association column="product_order" property="productOrder" resultMap="productOrderMap"/>
+		<association column="order_code" property="productOrder" resultMap="productOrderMap"/>
 	</resultMap>
 	
 	 <resultMap type="member" id="memberMap">
@@ -47,7 +47,7 @@
 		WHERE o.PRODUCT_CODE =p.PRODUCT_CODE 
 		AND o.ORDER_CODE =po.ORDER_CODE
 		AND m.MEMBER_ID =d.MEMBER_ID 
-		AND d.MEMBER_ID=#{memberId}
+		AND m.MEMBER_ID=#{memberId} 
 	</select>
 	
 	<delete id="orderListDelete">

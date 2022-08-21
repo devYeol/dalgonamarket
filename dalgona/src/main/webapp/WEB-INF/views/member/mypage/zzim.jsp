@@ -180,7 +180,6 @@
 				<strong>마이페이지</strong>
 			</h4>
 			<ul>
-				<li><a href="${path }/member/mypage/mypageMain">쇼핑정보</a></li>
 				<li><a href="${path }/member/mypage/productOrderList">구매내역</a></li>
 				<li><a href="${path }/member/mypage/cart">장바구니</a>
 				<li><a href="${path }/member/mypage/zzim">찜 목록</a></li>
@@ -279,7 +278,7 @@
 function getCheckboxValues(){
 	/* 선택된 목록 가져오기 */
 	const query ='input [name="check"]:checked';
-	const selecteEls= document.queryselectAll(query);
+	const selecteEls= document.queryselectorAll(query);
 	
 	/* 선택된 목록에서 value 찾기 */
 	let result = '';
@@ -331,6 +330,29 @@ $(".check-input").click(function(){
 			}
 		});
     	}else{
+    		return false;
+    	}
+    })
+    	$("#cartMoves").click(function(){
+    	if(confirm("")){
+        const cnt = $("input[name='check']:checked").length;
+        const arr = new Array();
+        $("input[name='check']:checked").each(function() {
+            arr.push($(this).attr('id'));
+        });
+        console.log(cnt);
+        console.log(arr);
+        $.ajax({
+			url:"${path}/member/mypage/cartInsert",
+			data:{deleteArr:arr},
+			success:data=>{
+				if(data){
+					$("input[name='check']:checked").parents("tr").remove();
+				}
+			}
+		});
+    	}else{
+    		confirm("상품을 선택해주세요");
     		return false;
     	}
     })
