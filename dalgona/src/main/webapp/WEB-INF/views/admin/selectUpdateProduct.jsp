@@ -100,6 +100,10 @@
 	<script>
 		 //취소
 	      function adminManage(frmGo){
+	    	  if(confirm("취소 하시겠습니까?")){
+				}else{
+				 	return false;
+				 }
 	    	  frmGo.action = ${path}"/admin/adminManageProduct.do";
 	    	  frmGo.submit();
 	    	  return true;
@@ -148,11 +152,16 @@
 	      }
 	    //수정
 	      function adminUpdate(returnfrmGo){
+	    	  
 	    	  const price = $('#price2').val();
 	    	  if(price<100){
 	    		  alert("옵션가격이 100원 이상이여야합니다!");
 	    		  return false;
 	    	  }
+	    	  if(confirm("수정 하시겠습니까?")){
+				}else{
+				 	return false;
+				 }
 	    	  returnfrmGo.action = ${path}"/admin/updateProduct.do";
 	    	  returnfrmGo.submit();
 	    	  return true;

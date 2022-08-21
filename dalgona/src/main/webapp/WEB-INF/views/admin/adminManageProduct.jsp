@@ -33,13 +33,16 @@
         -->
 		<div class="contents">
 		<div class="contentstitle">상품관리</div>
+		<form action="${path }/admin/adminSearch.do"></form>
 			<div class="searchdiv">
 				<div>
-					<img src="${path}/resources/images/glass.png" style="width:24px; height:24px">
+					<button type="button" style="border: 0px solid #fff; background-color: white" >
+						<img src="${path}/resources/images/glass.png" style="width:24px; height:24px;">
+					</button>
 				</div>
 				&nbsp;
 				<div>
-					<input class="search" type="text" placeholder="검색하실 상품명을 입력하세요">
+					<input name="adminKeyword" class="search" type="text" placeholder="검색하실 상품명을 입력하세요">
 				</div>
 			</div>
 			<div class="listdiv">
