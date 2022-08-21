@@ -101,7 +101,7 @@ public class ProductController {
 	     String memberId="";
    
 	     String reviewImagePath="";      
-         String path = rs.getServletContext().getRealPath("/resources/upload/product/review/");
+         String path = rs.getServletContext().getRealPath("/resources/upload/review/");
          File uploadDir = new File(path);
          if (!uploadDir.exists())
             uploadDir.mkdirs();

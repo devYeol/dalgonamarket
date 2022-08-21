@@ -120,7 +120,7 @@
 		<!-- 상세 탭 -->
 		<ul>
 			<li><img src="${pro.productImage }" class="d-block w-100"
-				alt="..." height="410" width="410px"></li>
+				alt="..." style="min-height: 100%; width: 410px;"></li>
 
 
 

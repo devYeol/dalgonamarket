@@ -19,8 +19,7 @@
     </select>
    
    <insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES(#{memberId},#{memberBirth},#{memberEmail},SYSDATE,#{memberGender},#{memberName},#{memberPhone},#{memberPwd},
-		NULL)
+		INSERT INTO MEMBER VALUES(#{memberId},#{memberBirth},#{memberEmail},SYSDATE,#{memberGender},#{memberName},#{memberPhone},#{memberPwd})
 	</insert>
    
    <select id="idCheck" parameterType="string" resultType="integer">

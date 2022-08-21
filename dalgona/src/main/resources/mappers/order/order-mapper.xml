@@ -80,8 +80,8 @@
 				#{orderDate },
 				#{orderStatus},
 				#{selectLocation },
-				#{deliveryLocation.addressCode},
-				#{totalPrice }
+				#{totalPrice },
+				#{deliveryLocation.addressCode}
 			)
 			
 		<selectKey keyProperty="orderCode" order="AFTER" resultType="long">
