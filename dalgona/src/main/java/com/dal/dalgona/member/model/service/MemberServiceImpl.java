@@ -119,6 +119,15 @@ public class MemberServiceImpl implements MemberService {
 	public DeliveryLocation selectDelivery(Member memberId) {
 		return dao.selectDelivery(session,memberId);
 	}
+	@Override
+	public int addressInsert(DeliveryLocation dl) {
+		return dao.addressInsert(session,dl);
+	}
+	@Override
+	public void addressDelete(long addressCode) {
+		dao.addressDelete(session, addressCode);
+	}
+	
 	
 	@Override
 	public long orderListDelete(long orderCode) {

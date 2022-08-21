@@ -55,7 +55,9 @@ public interface MemberDao {
 
 	List<DeliveryLocation>selectDL(SqlSessionTemplate session,Member memberId);
 	
+	int addressInsert(SqlSessionTemplate session,DeliveryLocation dl);
 	
+	void addressDelete(SqlSessionTemplate session,long addressCode);
 	
 	
 	

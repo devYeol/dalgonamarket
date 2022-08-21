@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<%-- <c:set var="dl" value="${selectDl}" /> --%>
+
 <html>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body>
@@ -127,15 +129,26 @@ input::placeholder {
 				<b>주소록 추가</b>
 			</h2>
 			<br>
-			<form action="${path}/member/mypage/shippingset" method="post" >
+			<form action="${path}/member/mypage/addressInsert">
+			<%-- <input type="hidden" name="addressCode" value="${dl.addressCode }">
+			<input type="hidden" name="addrReceiver" value="${dl.addrReceiver }">
+			<input type="hidden" name="addrPhone" value="${dl.addrPhone }">
+			<input type="hidden" name="addrDetail" value="${dl.addrDetail }">
+			<input type="hidden" name="addrBase" value="${dl.addrBase }">
+			<input type="hidden" name="adrPostNum" value="${dl.adrPostNum }">
+			<input type="hidden" name="addrRoadName" value="${dl.addrRoadName }">
+			<input type="hidden" name="addrDetail" value="${dl.addrDetail }"> --%>
+			
+			
+			
 				<div class="int-area">
 					<label for="name"><b>이름</b></label> <br> <input type="text"
-						name="name" placeholder="수령인 이름" autocomplete="off">
+						name="addrReceiver" placeholder="수령인 이름" autocomplete="off" required>
 				</div>
 				<br>
 				<div class="int-area">
 					<label for="phone"><b>휴대폰 번호</b></label> <br> <input
-						type="tel" name="phone" placeholder="-없이 입력" required>
+						type="tel" name="addrPhone" placeholder="-없이 입력" required>
 				</div>
 				<br>
 				<div class="int-area" style="">
@@ -145,37 +158,37 @@ input::placeholder {
 					</div>
 
 					<div>
-						<input type="text" id="searchBaesong" name="zipcode" placeholder="우편번호를 검색하세요"
+						<input type="text" id="searchBaesong" name="adrPostNum" placeholder="우편번호를 검색하세요"
 							autocomplete="off" required>
 					</div>
 				</div>
 				<br>
 				<div class="int-area">
-					<b>도로명 주소</b><br> <input type="text" name="roadAddress"
+					<b>도로명 주소</b><br> <input type="text" name="addrRoadName"
 						id="roadAddress" placeholder="우편번호 검색후,자동 입력됩니다" autocomplete="off"
 						required>
 				</div>
 				<br>
 				<div class="int-area">
 					<b>지번 주소</b><br> <input type="text" id="jibunAddress"
-						name="jibunAddress" placeholder="우편번호 검색후,자동 입력됩니다" autocomplete="off"
+						name="addrBase" placeholder="우편번호 검색후,자동 입력됩니다" autocomplete="off"
 						required>
 				</div>
 				<br>
 				<div class="int-area">
-					<b>상세 주소</b><br> <input type="text" id="sangeseAddress"
-						name="sangeseAddress"  placeholder="건물,아파트 동/호수 입력" autocomplete="off"
+					<b>상세 주소</b><br> <input type="text" id="addrDetail"
+						name="addrDetail"  placeholder="건물,아파트 동/호수 입력" autocomplete="off"
 						required>
 				</div>
 				<br>
-				<div>
+				<!-- <div>
 					<input class="form-check-input" type="checkbox"
 						id="checkboxNoLabel" value="" aria-label="..."> <label>기본배송지로
 						설정</label>
-				</div>
+				</div> -->
 				<div class="btn-area"
 					style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-					<button type="button" onclick="addCancel();" >
+					<button type="reset" onclick="addCancel();" >
 						<b>취소</b>
 					</button>
 					&nbsp;&nbsp;
@@ -215,7 +228,7 @@ input::placeholder {
 	
 	
 	const addCancel=()=>{
-		location.replace("${path}/member/mypage/mypageMain");
+		close();
 	}
 	
 </script>

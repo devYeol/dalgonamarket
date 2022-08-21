@@ -235,7 +235,8 @@ text-decoration:none;
 										<input type="hidden" class="productPrice"name="productPrice" value="${c.product.productPrice }">
 										<input type="hidden" class="productThumb"name="productThumb" value="${c.product.productThumb }">
 										<input type="hidden" class="selAmount" name="selAmount" value="${sA }"> <!-- 상품개수 -->
-										<input type="hidden" class="selPrice" name="selPrice" value="${selPrice }"> <!-- 체크 된 장바구니 합계(배송비 포함) -->
+										<input type="hidden" class="sumMoney" name="selPrice" value="${sumMoney }"> <!-- 체크 된 장바구니 합계(배송비 포함) -->
+										<input type="hidden" class="sumMoney" name="totalPrice" value="${totalPrice }"> <!-- 체크 된 장바구니 합계(배송비 포함) -->
 										<input type="hidden" class="fee" name="fee" value="${fee}"> <!-- 배송비 -->
 										
 									<a href="${path}/product/productDetail/${c.product.productCode}">									
@@ -259,8 +260,8 @@ text-decoration:none;
 									<td style="text-align: center;">
 										<span>
 										<input type="text" class="selAmount" name="carAmount"  value="${c.cartAmount}" id="select_count">개
-											<button type="button" class="btn plus_button" name="${c.cartCode }" onclick="fnCalCount('p',this);"   id="plus" >+</button>
-											<button type="button" class="btn minus_button"  onclick="fnCalCount('m', this);"  id="minus">-</button>
+											<%-- <button type="button" class="btn plus_button" name="${c.cartCode }" onclick="fnCalCount('p',this);"   id="plus" >+</button>
+											<button type="button" class="btn minus_button"  onclick="fnCalCount('m', this);"  id="minus">-</button> --%>
 										</span>
 										
 										<div style="margin-top: 5px">
@@ -294,14 +295,14 @@ text-decoration:none;
 						<div class="allrprice-content">
 							<div class="allprice-form">
 								<b>총 상품 가격</b> :<i> <fmt:formatNumber pattern="###,###,###"
-										value="" /></i><span class="all-plus">
+										value="${sumMoney}" /></i><span class="all-plus">
 										<img
 									src="/resources/images/mypage/img_plus.png" style="width: 14;">
 								</span> 배송비 <i><c:out value="${fee}"/></i> 원 
 								<span class="all-plus">
 								 <img src="/resources/images/mypage/img_equals.png" style="width: 14;">
 								 </span> 총 주문금액 <i class="final-price">
-								 <fmt:formatNumber	pattern="###,###,###" value="${allSum}" /></i>
+								 <fmt:formatNumber	pattern="###,###,###" value="${totalPrice}" /></i>
 							</div>
 						</div>
 					</div>

@@ -12,10 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class addressController {
 
-	@RequestMapping("/member/mypage/addressadd")
-	public String addressAdd() {
-		return "member/mypage/addressadd";
-	}
 
 //	@RequestMapping("/member/enrollEnd")
 //	public String addressAddEnd(Member m, Model model) {
