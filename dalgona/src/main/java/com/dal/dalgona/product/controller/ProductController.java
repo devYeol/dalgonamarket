@@ -273,7 +273,7 @@ public class ProductController {
 		
 		File f = null;
 			
-		String updatePath = rs.getServletContext().getRealPath("/resources/upload/product/review/");
+		String updatePath = rs.getServletContext().getRealPath("/resources/upload/review/");
 		File uploadDir = new File(updatePath);
 		
 		int random = (int) (Math.random() * 10000);
