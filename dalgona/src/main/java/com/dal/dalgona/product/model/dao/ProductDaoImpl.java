@@ -21,6 +21,18 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
+	public List<Product> selectProductsPlus(SqlSession session, Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return session.selectList("product.selectProductsPlus", param);
+	}
+	
+	@Override
+	public List<Product> selectProductsPlusPop(SqlSession session, Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return session.selectList("product.selectProductsPlusPop", param);
+	}
+	
+	@Override
 	public Product selectProduct(SqlSession session,long productCode) {
 		// TODO Auto-generated method stub
 		return session.selectOne("product.selectProduct",productCode);

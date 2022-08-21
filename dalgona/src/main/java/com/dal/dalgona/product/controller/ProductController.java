@@ -3,8 +3,11 @@ package com.dal.dalgona.product.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,10 +43,29 @@ public class ProductController {
    // Shop페이지이동
    @GetMapping("/product/productList")
    public ModelAndView productList(ModelAndView mv,
+		 @RequestParam(value="categoryName", defaultValue="") String categoryName,
+		 @RequestParam(value="searchSeq", defaultValue="최신순") String searchSeq,
+		 @RequestParam(value="searchOrder", defaultValue="DESC") String searchOrder,
          @RequestParam(defaultValue = "1") int cPage,
          @RequestParam(defaultValue = "20") int numPerpage) {
-      List<Product> list = service.selectProducts();
+      Map<String,Object> param=new HashMap();
+	  param.put("categoryName", categoryName);
+	  param.put("searchOrder", searchOrder);
+	  List<Product> list = new ArrayList();
+	  if (searchSeq.equals("인기순")) {
+		  param.put("searchSeq", searchSeq);
+		  list = service.selectProductsPlusPop(param);
+	  } else {
+		  param.put("searchSeq", searchSeq);
+		  list = service.selectProductsPlus(param);
+	  }
+	  long listCounts = list.size();
+      log.debug("{}",list);
+      mv.addObject("categoryName", categoryName);
+      mv.addObject("searchSeq", searchSeq);
+      mv.addObject("searchOrder", searchOrder);
       mv.addObject("products", list);
+      mv.addObject("listCounts",listCounts);
       mv.setViewName("/product/productList");
       return mv;
    }
