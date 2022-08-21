@@ -18,7 +18,7 @@
 	
 		<div class="payment-success-img">
 <!-- 			<img src="./images/payment/payment-success-icon.png" width="85" height="90" border="0" /> -->
-			<img src="resources/images/payment/payment-fail-icon.png" width="350" height="300" border="0" />
+			<img src="${path }/resources/images/payment/payment-fail-icon.png" width="350" height="300" border="0" />
 		</div>
 		
 		<br>
