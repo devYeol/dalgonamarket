@@ -29,13 +29,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SessionAttributes({ "loginMember" })
 public class PaymentController {
-	
+
 	@Autowired
 	private PaymentService paymentService;
-	
+
 	@Autowired
 	private DeliveryManageService dlService;
-	
+
 //	@RequestMapping("/payment")
 //	public String paymentTest(HttpSession session) {
 //		
@@ -43,160 +43,277 @@ public class PaymentController {
 //		
 //		return "order/payment/payment";
 //	}
-	
+
 	@RequestMapping("/changeAddress.do")
 	public String changeAddress() {
 		return "order/payment/changeAddress";
 	}
-	
+
 	// 테스트
 	@RequestMapping("/payment")
 	public String order(HttpSession session, Model model) {
-		
+
 		Member memberId = (Member) session.getAttribute("loginMember");
 		log.debug("user : {}", memberId);
- 
+
 		Cart cartList = (Cart) session.getAttribute("cartList");
 
 		return "order/payment/payment";
-		
+
 	}
-	
+
 	// 장바구니 결제
 	@RequestMapping("/product/paymentCart.do")
-	public String paymentCart(Product p, ProductOrder po, DeliveryLocation dl 
-			, HttpSession session, Model model
-			,@RequestParam(value="selAmount", required = false ) int selAmount
-			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
-			,@RequestParam(value="productName", required = false ) String productName
-			) {
+	public String paymentCart(Product p, ProductOrder po, DeliveryLocation dl, HttpSession session, Model model,
+			@RequestParam(value = "selAmount", required = false) int selAmount,
+			@RequestParam(value = "selectedOpt", required = false) String selectedOpt,
+			@RequestParam(value = "productName", required = false) String productName) {
 
 		Member memberId = (Member) session.getAttribute("loginMember");
-		
+
 //		log.debug("{}",p);
 //		log.debug("{}",po);
 //		log.debug("{}",dl);
 //		log.debug("{}",productName);
 //		log.debug("{}",selAmount);
 //		log.debug("{}",selectedOpt);
-			
+
 		model.addAttribute("product", p);
 		model.addAttribute("productOption", selectedOpt);
 		model.addAttribute("selAmount", selAmount);
-		
-		dl=dlService.selectDl(memberId);
+
+		dl = dlService.selectDl(memberId);
 		model.addAttribute("deliveryLocation", dl);
-		
-		po=ProductOrder.builder().orderDate(new Date()).deliveryLocation(dl).orderStatus("주문대기").build();
+
+		po = ProductOrder.builder().orderDate(new Date()).deliveryLocation(dl).orderStatus("주문대기").build();
 		log.debug("프로덕트오더 전 : {}", po.getOrderCode());
 		dlService.insertPo(po);
 		log.debug("프로덕트오더 후 : {}", po.getOrderCode());
-		
-		long orderCode=po.getOrderCode();
-		
-		ProductOrder po2=dlService.selectPo(orderCode);
+
+		long orderCode = po.getOrderCode();
+
+		ProductOrder po2 = dlService.selectPo(orderCode);
 		log.debug("프로덕트오더 : {}", po2);
-		
-		OrderDetail od=OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
-		
+
+		OrderDetail od = OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount)
+				.product(p).build();
+
 		dlService.insertOd(od);
-		
+
 		log.debug("dl : {}", dl);
 		log.debug("po : {}", po);
 		log.debug("od : {}", od);
-		
+
 		return "order/payment/paymentCart";
-		
+
 	}
-	
+
 	// 상세페이지 바로 결제
 	@RequestMapping("/product/payment.do")
-	public String paymentProduct(Product p, ProductOrder po, DeliveryLocation dl 
-			, HttpSession session, Model model
-			,@RequestParam(value="selAmount", required = false ) int selAmount
-			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
-			,@RequestParam(value="productName", required = false ) String productName
-			) {
-		
+	public String paymentProduct(Product p, ProductOrder po, DeliveryLocation dl, HttpSession session, Model model,
+			@RequestParam(value = "selAmount", required = false) int selAmount,
+			@RequestParam(value = "selectedOpt", required = false) String selectedOpt,
+			@RequestParam(value = "productName", required = false) String productName) {
+
 		Member memberId = (Member) session.getAttribute("loginMember");
-		
+
+		log.debug("{}", p);
+		log.debug("{}", po);
+		log.debug("{}", dl);
+		log.debug("{}", productName);
+		log.debug("{}", selAmount);
+		log.debug("{}", selectedOpt);
+
+		String msg = "";
+		String loc = "";
+
+		if (memberId == null) {
+
+			msg = "로그인 후 결제해주세요!";
+			loc = "/loginpage";
+
+			model.addAttribute("msg", msg);
+			model.addAttribute("loc", loc);
+
+			return "common/msg";
+
+		} else {
+
+			model.addAttribute("product", p);
+			model.addAttribute("productOption", selectedOpt);
+			model.addAttribute("selAmount", selAmount);
+
+			dl = dlService.selectDl(memberId);
+			model.addAttribute("deliveryLocation", dl);
+
+			po = ProductOrder.builder().orderDate(new Date()).deliveryLocation(dl).orderStatus("주문대기")
+					.totalPrice(p.getProductPrice()).build();
+			log.debug("프로덕트오더 전 : {}", po.getOrderCode());
+			dlService.insertPo(po);
+			log.debug("프로덕트오더 후 : {}", po.getOrderCode());
+
+			long orderCode = po.getOrderCode();
+
+			ProductOrder po2 = dlService.selectPo(orderCode);
+			log.debug("프로덕트오더 : {}", po2);
+
+			OrderDetail od = OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount)
+					.product(p).build();
+
+			dlService.insertOd(od);
+
+			log.debug("dl : {}", dl);
+			log.debug("po : {}", po);
+			log.debug("od : {}", od);
+
+			return "order/payment/paymentProduct";
+
+		}
+
+	}
+
+//	// 상세페이지 바로 결제
+//	@RequestMapping("/product/payment.do")
+//	public String paymentProduct(Product p, ProductOrder po, DeliveryLocation dl 
+//			, HttpSession session, Model model
+//			,@RequestParam(value="selAmount", required = false ) int selAmount
+//			,@RequestParam(value="selectedOpt", required = false) String selectedOpt
+//			,@RequestParam(value="productName", required = false ) String productName
+//			) {
+//		
+//		Member memberId = (Member) session.getAttribute("loginMember");
+//		
 //		log.debug("{}",p);
 //		log.debug("{}",po);
 //		log.debug("{}",dl);
 //		log.debug("{}",productName);
 //		log.debug("{}",selAmount);
 //		log.debug("{}",selectedOpt);
-		
-		String msg="";
-		String loc="";
-		
-		if(memberId == null) {
-			
-			msg="로그인 후 결제해주세요!";
-			loc="/loginpage";
-			
-			model.addAttribute("msg", msg);
-			model.addAttribute("loc", loc);
-			
-			return "common/msg";
-			
-		}else {
-			
-			model.addAttribute("product", p);
-			model.addAttribute("productOption", selectedOpt);
-			model.addAttribute("selAmount", selAmount);
-			
-			dl=dlService.selectDl(memberId);
-			model.addAttribute("deliveryLocation", dl);
-			
-			po=ProductOrder.builder().orderDate(new Date()).deliveryLocation(dl).orderStatus("주문대기").build();
-//			log.debug("프로덕트오더 전 : {}", po.getOrderCode());
-			dlService.insertPo(po);
-//			log.debug("프로덕트오더 후 : {}", po.getOrderCode());
-			
-			long orderCode=po.getOrderCode();
-			
-			ProductOrder po2=dlService.selectPo(orderCode);
-//			log.debug("프로덕트오더 : {}", po2);
-			
-			OrderDetail od=OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
-			
-			dlService.insertOd(od);
-			
-			log.debug("dl : {}", dl);
-			log.debug("po : {}", po);
-			log.debug("od : {}", od);
-			
-			return "order/payment/paymentProduct";
-			
-		}
-		
-	}
-	
+//		
+//		String msg="";
+//		String loc="";
+//		
+//		if(memberId == null) {
+//			
+//			msg="로그인 후 결제해주세요!";
+//			loc="/loginpage";
+//			
+//			model.addAttribute("msg", msg);
+//			model.addAttribute("loc", loc);
+//			
+//			return "common/msg";
+//			
+//		}else {
+//			
+//			model.addAttribute("product", p);
+//			model.addAttribute("productOption", selectedOpt);
+//			model.addAttribute("selAmount", selAmount);
+//			
+//			dl=dlService.selectDl(memberId);
+//			model.addAttribute("deliveryLocation", dl);
+//	
+//			return "order/payment/paymentProduct";
+//			
+//		}
+//		
+//	}
+
+//	// 상세페이지 바로 결제
+//		@RequestMapping("/product/paymentEnd.do")
+//		public String paymentProductEnd(Product p, ProductOrder po, DeliveryLocation dl 
+//				, HttpSession session, Model model
+//				,@RequestParam(value="selAmount", required = false ) int selAmount
+//				,@RequestParam(value="selectedOpt", required = false) String selectedOpt
+//				,@RequestParam(value="productName", required = false ) String productName
+//				) {
+//			
+//			Member memberId = (Member) session.getAttribute("loginMember");
+//			
+////			log.debug("{}",p);
+////			log.debug("{}",po);
+////			log.debug("{}",dl);
+////			log.debug("{}",productName);
+////			log.debug("{}",selAmount);
+////			log.debug("{}",selectedOpt);
+//			
+//			String msg="";
+//			String loc="";
+//			
+//			if(memberId != null) {
+//				
+//				model.addAttribute("product", p);
+//				model.addAttribute("productOption", selectedOpt);
+//				model.addAttribute("selAmount", selAmount);
+//				
+//				dl=dlService.selectDl(memberId);
+//				model.addAttribute("deliveryLocation", dl);
+//				
+//				po=ProductOrder.builder().orderDate(new Date()).deliveryLocation(dl).orderStatus("주문대기")
+//						.totalPrice(p.getProductPrice()).build();
+////				log.debug("프로덕트오더 전 : {}", po.getOrderCode());
+//				dlService.insertPo(po);
+////				log.debug("프로덕트오더 후 : {}", po.getOrderCode());
+//				
+//				long orderCode=po.getOrderCode();
+//				
+//				ProductOrder po2=dlService.selectPo(orderCode);
+////				log.debug("프로덕트오더 : {}", po2);
+//				
+//				OrderDetail od=OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount).product(p).build();
+//				
+//				dlService.insertOd(od);
+//				
+//				log.debug("dl : {}", dl);
+//				log.debug("po : {}", po);
+//				log.debug("od : {}", od);
+//				
+//				msg="주문완료";
+//				loc="redirect:/";
+//				
+//				model.addAttribute("msg",msg);
+//				model.addAttribute("loc",loc);
+//				
+//				return "common/msg";
+//				
+//			}else {
+//				
+//				msg="주문실패";
+//				loc="redirect:/";
+//				
+//				model.addAttribute("msg",msg);
+//				model.addAttribute("loc",loc);
+//				
+//				return "common/msg";
+//				
+//			}
+//			
+//		}
+
 	@ResponseBody
 	@PostMapping("/order/paymentCart")
-	public ResponseEntity<String> payment(HttpSession session, ProductOrder productOrder, long totalPrice) throws IOException {
-		
+	public ResponseEntity<String> payment(HttpSession session, ProductOrder productOrder, long totalPrice)
+			throws IOException {
+
 		Member memberId = (Member) session.getAttribute("loginMember");
-	    
-	    Cart cartList = (Cart) session.getAttribute("cartList");
-	 
-	    return new ResponseEntity<>(HttpStatus.OK);
-	    
+
+		Cart cartList = (Cart) session.getAttribute("cartList");
+
+		return new ResponseEntity<>(HttpStatus.OK);
+
 	}
-	
+
 	// 결제완료
 	@RequestMapping("/order/orderComplete")
 	public String orderComplete() {
 		return "order/payment/paymentComplete";
 	}
-	
+
 	// 주문실패
 	@RequestMapping("/order/orderFail")
 	public String orderFail() {
 		return "order/payment/paymentFail";
 	}
-	
+
 	// 결제 성공
 //	@RequestMapping("/order/payment/paymentComplete")
 //	public ResponseEntity<String> paymentComplete

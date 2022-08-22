@@ -92,7 +92,7 @@
 
 	<insert id="order" parameterType="orderDetail">
 	
-<!-- 		<selectKey keyProperty="productOrder.orderCode" order="BEFORE" resultType="long">
+<!--  		<selectKey keyProperty="productOrder.orderCode" order="BEFORE" resultType="long">
 	     	SELECT seq_order_code.NEXTVAL FROM DUAL
 		</selectKey> -->
 		    

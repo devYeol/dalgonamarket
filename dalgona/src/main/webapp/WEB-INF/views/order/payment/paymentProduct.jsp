@@ -36,7 +36,7 @@
 		</div> -->
 
 	&nbsp;
-
+	<!-- <form action="/product/paymentEnd.do" method="post" onsubmit="return pay()"> -->
 	<div id="payment-container">
 
 		<div id="payment-title">
@@ -48,7 +48,6 @@
 		</div>
 
 		<div>
-			<input type="hidden" value="${loginMember }" id="memberId">
 			<h2>구매자 정보 (*)회원정보</h2>
 			<hr class="my-4">
 			<table class="payment-table">
@@ -68,6 +67,8 @@
 					</tr>
 				</tbody>
 			</table>
+			
+			<input type="hidden" value="${loginMember }" id="memberId">
 
 			<br> <br>
 
@@ -94,7 +95,7 @@
 							value="${deliveryLocation.addrReceiver }" placeholder="수령인"
 							style="height: 30px;" /></td> --%>
 						<td><input type="text" id="addrReceiver" name="addrReceiver"
-						value="" placeholder="수령인"
+						value="${deliveryLocation.addrReceiver }" placeholder="수령인"
 						style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
@@ -103,7 +104,7 @@
 							value="${deliveryLocation.adrPostNum }" placeholder="우편번호"
 							readonly="readonly" style="height: 30px;" /></td> --%>
 						<td><input type="text" id="addrPostNum" name="addrPostNum"
-						value="" placeholder="우편번호"
+						value="${deliveryLocation.adrPostNum }" placeholder="우편번호"
 						style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
@@ -112,7 +113,7 @@
 							value="${deliveryLocation.addrRoadName }" placeholder="도로명"
 							readonly="readonly" style="height: 30px; width: 300px;" /></td> --%>
 						<td><input type="text" id="addrRoadName" name="addrRoadName"
-						value="" placeholder="도로명"
+						value="${deliveryLocation.addrRoadName }" placeholder="도로명"
 						style="height: 30px; width: 300px;" /></td>
 					</tr>
 					<tr class="payment-tr">
@@ -120,7 +121,7 @@
 						<%-- <td><input type="text" id="addrDetail" name="addrDetail"
 							value="${deliveryLocation.addrDetail }" placeholder="상세주소 입력" style="height: 30px;" /></td> --%>
 						<td><input type="text" id="addrDetail" name="addrDetail"
-						value="" placeholder="상세주소" style="height: 30px;" /></td>
+						value="${deliveryLocation.addrDetail }" placeholder="상세주소" style="height: 30px;" /></td>
 					</tr>
 					<tr class="payment-tr">
 						<th scope="row" id="payment-th"><label for="">전화번호</label></th>
@@ -128,7 +129,7 @@
 							value="${deliveryLocation.addrPhone }" placeholder="전화번호"
 							style="height: 30px;" /></td> --%>
 						<td><input type="text" id="addrPhone" name="addrPhone"
-						value="" placeholder="연락처"
+						value="${deliveryLocation.addrPhone }" placeholder="연락처"
 						style="height: 30px;" /></td>
 					</tr>
 				</tbody>
@@ -136,9 +137,9 @@
 		</div>
 
 		<input type="hidden" value="${deliveryLocation.adrPostNum }"
-			id="adrPostNum"> <input type="hidden"
-			value="${deliveryLocation.addrRoadName }" id="adrPostNum"> <input
-			type="hidden" value="${deliveryLocation.addrDetail }" id="adrPostNum">
+			name="adrPostNum"> <input type="hidden"
+			value="${deliveryLocation.addrRoadName }" name="adrPostNum"> <input
+			type="hidden" value="${deliveryLocation.addrDetail }" name="adrPostNum">
 
 		<br> <br>
 
@@ -175,11 +176,16 @@
 							value="${(product.productPrice+productOption)*selAmount }" /> 원
 					</td>
 				</tr>
-
+				
 			</tbody>
 		</table>
 		<%-- </c:forEach> --%>
-
+		
+		<input type="hidden" value="${product.productThumb }" name="productThumb" />
+		<input type="hidden" value="${product.productName }" name="productName" />
+		<input type="hidden" value="${selAmount }" name="selAmount" />
+		<input type="hidden" value="${(product.productPrice+productOption)*selAmount }" name="productPrice" />
+		
 		<br> <br>
 
 		<!-- 결제 정보 -->
@@ -217,6 +223,9 @@
 				</tr>
 			</tbody>
 		</table>
+
+		<input type="hidden" value="${(product.productPrice+productOption)*selAmount+2500 }" id="totalPrice" />
+		
 		<%-- </c:forEach> --%>
 
 		<br>
@@ -224,11 +233,11 @@
 		<div class="row gap-2" id="payment-btn">
 			<button onclick="location.href='/'" type="button"
 				class="btn col btn-secondary btn-lg">취소하기</button>
-			<button onclick="payment()" type="button"
-				class="btn col btn-primary btn-lg">결제하기</button>
-			<!-- <button onclick="testPayment()" type="button" class="btn col btn-primary btn-lg">테스트 결제하기</button> -->
+				<button onclick="payment()" type="submit"
+					class="btn col btn-primary btn-lg">결제하기</button>
+				<!-- <button onclick="testPayment()" type="button" class="btn col btn-primary btn-lg">테스트 결제하기</button> -->
+			
 		</div>
-
 		<!-- 				<div class="d-grid gap-2 col-4 mx-auto">
 					<button type="button" class="btn btn-secondary btn-lg">취소</button>
 					<button type="button" class="btn btn-primary btn-lg">결제</button>
@@ -236,9 +245,9 @@
 
 
 	</div>
-
+	<!-- </form> -->
 	&nbsp; &nbsp; &nbsp; &nbsp;
-
+	
 </section>
 
 <script>
@@ -319,6 +328,10 @@
    function popAddress() {
         window.open("/changeAddress.do", "배송지 변경", "width=1000, height=600, top=100, left=270");
     }
+   
+   function pay() {
+		return true;
+	}
 
 </script>
 

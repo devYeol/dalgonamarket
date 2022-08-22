@@ -3,8 +3,11 @@ package com.dal.dalgona.product.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dal.dalgona.common.PageFactory;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
@@ -40,10 +44,35 @@ public class ProductController {
    // Shop페이지이동
    @GetMapping("/product/productList")
    public ModelAndView productList(ModelAndView mv,
+		 @RequestParam(value="categoryName", defaultValue="") String categoryName,
+		 @RequestParam(value="searchSeq", defaultValue="최신순") String searchSeq,
+		 @RequestParam(value="searchOrder", defaultValue="DESC") String searchOrder,
          @RequestParam(defaultValue = "1") int cPage,
-         @RequestParam(defaultValue = "20") int numPerpage) {
-      List<Product> list = service.selectProducts();
+         @RequestParam(defaultValue = "12") int numPerpage) {
+      Map<String,Object> param=new HashMap();
+	  param.put("categoryName", categoryName);
+	  param.put("searchOrder", searchOrder);
+	  param.put("cPage", cPage);
+	  param.put("numPerpage", numPerpage);
+	  List<Product> list = new ArrayList();
+	  int listCounts = 0;
+	  if (searchSeq.equals("인기순")) {
+		  param.put("searchSeq", searchSeq);
+		  list = service.selectProductsPlusPop(param);
+		  listCounts = service.selectProductsPlusPopCount(param);
+	  } else {
+		  param.put("searchSeq", searchSeq);
+		  list = service.selectProductsPlus(param);
+		  listCounts = service.selectProductsPlusCount(param);
+	  }
+      log.debug("{}",list);
+      mv.addObject("categoryName", categoryName);
+      mv.addObject("searchSeq", searchSeq);
+      mv.addObject("searchOrder", searchOrder);
       mv.addObject("products", list);
+      mv.addObject("listCounts",listCounts);
+      mv.addObject("cPage",cPage);
+      mv.addObject("pageBar",PageFactory.getPageBar(listCounts, numPerpage, cPage, "/product/productList"));
       mv.setViewName("/product/productList");
       return mv;
    }
@@ -361,8 +390,17 @@ public class ProductController {
 		return mv;
   }
 
-   	
-   	
+	
+   	@RequestMapping("/product/adminSearch.do")
+   	public ModelAndView adminSearch(@RequestParam(value="adminKeyword",defaultValue = "")String adminKeyword,ModelAndView mv) {
+	   	 System.out.println("adminKeyword : " + adminKeyword);
+	     List<Product> products = service.adminSearchList(adminKeyword);
+	     
+	     mv.addObject("products", products);
+	     mv.setViewName("admin/adminManageProduct");
+	     System.out.println("keyword : " + products);
+	     return mv;
+   	}
    
    
 

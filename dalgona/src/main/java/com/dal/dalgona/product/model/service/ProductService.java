@@ -1,8 +1,8 @@
 package com.dal.dalgona.product.model.service;
 
 import java.util.List;
+import java.util.Map;
 
-import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.Product;
 import com.dal.dalgona.common.model.vo.ProductOption;
 import com.dal.dalgona.common.model.vo.Qna;
@@ -10,6 +10,18 @@ import com.dal.dalgona.common.model.vo.Review;
 
 public interface ProductService {
 	List<Product> selectProducts();
+	
+	List<Product> selectProductsPlus(Map<String, Object> param);
+	
+	int selectProductsPlusCount(Map<String, Object> param);
+	
+	List<Product> selectProductsPlusPop(Map<String, Object> param);
+	
+	int selectProductsPlusPopCount(Map<String, Object> param);
+	
+	List<Product> selectTopBuy();
+
+	List<Product> selectTopZzim();
 	
 	Product selectProduct(long productCode);
 	
@@ -48,4 +60,6 @@ public interface ProductService {
 	int updateReview(Review review) throws Exception;
 	
 	List<Product> categoryList(String categoryName);
+	
+	List<Product> adminSearchList(String adminkeyword);
 }
