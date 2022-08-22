@@ -33,7 +33,7 @@
 	
 	<insert id="addressInsert">
 		insert into delivery_Location
-		values(seq_address_code.nextval,null,#{addrDetail},#{addrPhone},#{addrReceiver},#{addrRoadName},#{adrPostNum},#{member.memberId})
+		values(seq_address_code.nextval,1,#{addrDetail},#{addrPhone},#{addrReceiver},#{addrRoadName},#{adrPostNum},#{member.memberId})
 		
 	</insert>
 	

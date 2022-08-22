@@ -148,7 +148,7 @@ input::placeholder {
 				<br>
 				<div class="int-area">
 					<label for="phone"><b>휴대폰 번호</b></label> <br> <input
-						type="tel" name="addrPhone" placeholder="-없이 입력" required>
+						type="tel" name="addrPhone" placeholder="-을 입력" required>
 				</div>
 				<br>
 				<div class="int-area" style="">
