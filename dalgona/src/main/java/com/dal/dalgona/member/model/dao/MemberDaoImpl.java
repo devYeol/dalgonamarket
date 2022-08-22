@@ -100,7 +100,14 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Likes> zzimList(SqlSessionTemplate session,Member memberId){
 		return session.selectList("likes.zzimList",memberId);
 	}
-//
+
+	@Override
+	public long zzimSelectDelete1(SqlSessionTemplate session,long productCode) {
+		return session.insert("cart.cartInsert",productCode);
+	}
+
+	
+	
 	@Override
 	public List<OrderDetail> orderList(SqlSessionTemplate session,Member memberId){
 		return session.selectList("orderDetail.orderList",memberId);

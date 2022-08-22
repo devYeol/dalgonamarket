@@ -225,7 +225,7 @@ text-decoration:none;
 					<hr>
 									<td style="width: 20%;" class="tdCheck">
 										<input class="check-input" name="check" id="${c.cartCode}" type="checkbox"
-										style="margin-top: 40;" onclick="getCheckboxValues();"> 
+											style="margin-top: 40;" onclick="getCheckboxValues();"> 
 										<input type="hidden" id="cartCode" name="cartCode" value="${c.cartCode}"> 
 										<input type="hidden" class="cartAmount" name="cartAmount" value="${c.cartAmount}"> 
 										<input type="hidden" class="productCode" name="productCode" value="${c.product.productCode}">
@@ -239,6 +239,7 @@ text-decoration:none;
 										<input type="hidden" class="sumMoney" name="totalPrice" value="${totalPrice }"> <!-- 체크 된 장바구니 합계(배송비 포함) -->
 										<input type="hidden" class="fee" name="fee" value="${fee}"> <!-- 배송비 -->
 										
+										
 									<a href="${path}/product/productDetail/${c.product.productCode}">									
 										<img
 											src="${c.product.productThumb }" width="150" height="150"
@@ -250,13 +251,12 @@ text-decoration:none;
 											<c:out value=" ${c.product.productName}" />
 										</div> <!-- 오예오예 오예스~ --> <br>
 										<div style="margin-top: 5;">	
-											<p id="priced">
 												<fmt:formatNumber type="currency"
 													value="${c.product.productPrice}" />
 												&nbsp;원
-											</p>
 										</div>
-										<div style="margin-top: 5; font-size: 15px"><fmt:formatDate value="${now}"/>도착 예정</div></td>
+										<div style="margin-top: 5; font-size: 15px">
+										<fmt:formatDate pattern="MM-dd" value="${now}"/>도착 예정</div></td>
 									<td style="text-align: center;">
 										<span>
 										<input type="text" class="selAmount" name="carAmount"  value="${c.cartAmount}" id="select_count">개
@@ -340,7 +340,7 @@ $("button[name= productListMove]").click(function(){
 
 
     //체크박스 전체 선택&해제
-    $('#checkAll').click(function(){
+     $('#checkAll').click(function(){
     	if($("#checkAll").prop("checked")){
             $(".check-input").prop("checked",true); 
         }else{
@@ -356,11 +356,11 @@ $("button[name= productListMove]").click(function(){
     
     $(".check-input").click(function(){
     	$("#checkAll").prop("checked",false)
-    })
+    }) 
     
   
 	/* 수량 조작 */
-	function fnCalCount(type, ths){
+	/* function fnCalCount(type, ths){
 	    var $input = $(ths).parents("td").find("input[name='selAmount']");
 	    var tCount = Number($input.val());
 	    var tEqCount = Number($(ths).parents("tr").find("span.res").html());
@@ -381,7 +381,7 @@ $("button[name= productListMove]").click(function(){
     	} 
 
    });  
-} 
+}  */
     
   // 선택 삭제
     	$("#selectDelete").click(function(){
@@ -415,9 +415,7 @@ $("button[name= productListMove]").click(function(){
 				alert('상품을 선택하세요');
 				return false
 			}
-				
-				
-		})    
+		});
 		
  $("input[name='check']:checked").prop("checked",true);
 	$("input[name='check']:checked").prop("checked",false); 
@@ -445,8 +443,6 @@ $("button[name= productListMove]").click(function(){
 	    priceSum= goodsPrice*nowCnt;
 	    document.querySelector('#res').innerText = priceSum;
 } */
-	    
-	
 
 		
 </script>

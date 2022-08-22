@@ -35,7 +35,9 @@
 	
 	<insert id="cartInsert">
 		insert into Cart
-		values(seq_cart_code.nextval,#{cartAmount},#{member.memberId},#{product.productCode})
+		values
+		(seq_cart_code.nextval,#{cartAmount},#{member.memberId},#{product.productCode})
+		 
 	</insert>
 	
 	<select id="selectCart" parameterType="product" resultMap="cartMap">

@@ -227,37 +227,39 @@
 							<tbody>
 								<tr class="payment-tr">
 									<td style="width: 20%;">
-									<input type="hidden" name="likesCode" value="${z.likesCode }">
-									<input type="hidden" name="productCode" value="${z.product.productCode}">
-									<input type="hidden" name="productName" value="${z.product.productName}">
-									<input type="hidden" name="productThumb" value="${z.product.productThumb}">
-									<input type="hidden" name="categoryName" value="${z.product.categoryName}">
-									<input type="hidden" name="productPrice" value="${z.product.productPrice}">
-									<input type="hidden" id="" name="selAmount"	value="1"> 
-									<input class="check-input"
-										name="check" id="${z.product.productCode }" type="checkbox"
+										<input type="hidden" name="likesCode" value="${z.likesCode }">
+										<input type="hidden" name="productCode" value="${z.product.productCode}">
+										<input type="hidden" name="productName" value="${z.product.productName}">
+										<input type="hidden" name="productThumb" value="${z.product.productThumb}">
+										<input type="hidden" name="categoryName" value="${z.product.categoryName}">
+										<input type="hidden" name="productPrice" value="${z.product.productPrice}">
+										<input type="hidden" id="" name="selAmount"	value="1"> 
+										<input class="check-input"
+										name="check" id="${z.likesCode }" type="checkbox"
 										style="margin-top: 40;" onclick="getCheckboxValues();"> <a href="#"
 										style="text-decoration: none;"> <img
 											src="${z.product.productThumb }" width="150" height="150"
 											 style="margin-left: 10" />
-									</a></td>
+										</a></td>
 									<td style="width: 55%"><a
 										href="${path}/product/productList" class="proName"><c:out
-												value="${z.product.categoryName }" /></a><br>
+												value="${z.product.productName }" /></a><br>
 									<br>
 										<div style="margin-top: 5; font-size: 15px">
-											<c:out value="${z.product.productName }" />
+											<c:out value=" ${z.product.categoryName }"/>
 										</div>
 										<br>
 										<div style="margin-top: 5;">
 											<c:out value="${z.product.productPrice }원" />
 										</div></td>
-									<td style="padding-left: 140px;">
-										<button type="button" onclick="return cartMoved(this.form)" class="btn btn-danger"
-											style="font-size: 14px; height: 4 0px;">장바구니 담기</button>
+									<td style="padding-left: 120px;">
+										<button type="button" onclick="return cartMoved(this.form)" class="btn btn-danger" id="jang"
+											style="font-size: 14px; width:100%;height: 47%;">장바구니 담기</button>
 									</td>
+									<td style="float:right;">
 									<a href="${path }/member/zzimDelete.do?likesCode=${z.likesCode}"
 										class="close" id="close"></a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -311,10 +313,10 @@ $(".check-input").click(function(){
 })
 
  // 선택 삭제
-    	$("#selectDelete").click(function(){
-    	if(confirm("삭제 하시겠습니까?")){
+  $("#selectDelete").click(function(){
         const cnt = $("input[name='check']:checked").length;
         const arr = new Array();
+    	if(confirm("삭제 하시겠습니까?")){
         $("input[name='check']:checked").each(function() {
             arr.push($(this).attr('id'));
         });
@@ -332,57 +334,34 @@ $(".check-input").click(function(){
     	}else{
     		return false;
     	}
-    })
-    	$("#cartMoves").click(function(){
-    	if(confirm("")){
-        const cnt = $("input[name='check']:checked").length;
-        const arr = new Array();
-        $("input[name='check']:checked").each(function() {
-            arr.push($(this).attr('id'));
-        });
-        console.log(cnt);
-        console.log(arr);
-        $.ajax({
-			url:"${path}/member/mypage/cartInsert",
-			data:{deleteArr:arr},
-			success:data=>{
-				if(data){
-					$("input[name='check']:checked").parents("tr").remove();
-				}
-			}
-		});
-    	}else{
-    		confirm("상품을 선택해주세요");
-    		return false;
-    	}
-    })
+    });
+    	
     
-        $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
-        	if(confirm("삭제 하시겠습니까?")){
+       /*  $("#close").click(function(){ //개별 삭제(1개 row만 삭제)
+       	if(confirm("삭제 하시겠습니까?")){
         	}else{
         		return false
         	}
-        		
-        })
+       		
+       }); */
         
-        $("#cartMoves").click(function(){
-        var qwe =$("input[name='check']:checked");
-			if(qwe.length >= 1){
+	$("#cartMoves").click(function(){
+	      var qwe =$("input[name='check']:checked");
+		if(data){
+			$("input[name='check']:checked").parents("tr").$('#cartMoved').submit();
+			console.log(qwe);
 				
-				console.log(qwe);
- 				$('#cartMoved').submit();
-			}else{
-				alert('상품을 선택하세요');
-				return false
-			}
-		})    
-		
-		function cartMoved(frm){
-			 action = ${path}"/member/mypage/cartInsert";
-				frm.submit();
-				return true;
-			 
-		 };
+		}else{
+			alert('상품을 선택하세요');
+			return false
+		}
+	})    
+	
+	function cartMoved(frm){
+		 action = ${path}"/member/mypage/cartInsert";
+			frm.submit();
+			return true;
+	 };
 		
         
 </script>
