@@ -75,7 +75,7 @@
 
 							<div class="form-horizontal" style="text-align: left;">
 								<label>구매수량 : <input type="number" name="selAmount"
-									value="1" id="select_count"></label>
+									value="1" min="1" id="select_count"></label>
 							</div>
 							<hr>
 
