@@ -81,6 +81,10 @@ public class MemberServiceImpl implements MemberService {
 	public List<Likes> zzimList(Member memberId){
 		return dao.zzimList(session,memberId);
 	}
+	@Override
+	public long zzimSelectDelete1(long productCode) {
+		return dao.zzimSelectDelete1(session,productCode);
+	}
 
 	@Override
 	public void delete(long cartCode) {
@@ -96,10 +100,7 @@ public class MemberServiceImpl implements MemberService {
 	public long zzimSelectDelete(long likesCode) {
 		return dao.zzimSelectDelete(session,likesCode);
 	}
-//	@Override
-//	public void zzimDelete(long likesCode) {
-//		 dao.zzimDelete(session,likesCode);
-//	}
+
 	@Override
 	public long zzimDelete(long likesCode) {
 		 return dao.zzimDelete(session,likesCode);

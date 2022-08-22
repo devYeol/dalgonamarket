@@ -40,6 +40,8 @@ public interface MemberDao {
 	int sumMoney(SqlSessionTemplate session,Member memberId );
 
 	List<Likes> zzimList(SqlSessionTemplate session ,Member memberId);
+	
+	long zzimSelectDelete1(SqlSessionTemplate session,long productCode);
 
 	long zzimSelectDelete(SqlSessionTemplate session,long likesCode); //찜 선택삭제
 

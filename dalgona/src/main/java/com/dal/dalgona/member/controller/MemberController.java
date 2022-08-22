@@ -27,8 +27,10 @@ import com.dal.dalgona.common.model.vo.Likes;
 import com.dal.dalgona.common.model.vo.Member;
 import com.dal.dalgona.common.model.vo.OrderDetail;
 import com.dal.dalgona.common.model.vo.Product;
+import com.dal.dalgona.common.model.vo.ProductOrder;
 import com.dal.dalgona.member.model.service.MemberService;
 import com.dal.dalgona.product.model.service.ProductService;
+import com.dal.dalgona.working.model.service.PjeServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -36,19 +38,18 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes({ "loginMember" })
 public class MemberController {
 
+
 	@Autowired
 	private MemberService service;
 
 	 @Autowired
 	  private ProductService pservice;
+	 
+	 @Autowired
 	
 	@Value(value = "${spring.mail.username}")
 	private String adminEmail;
 
-	@GetMapping("/member/mypage/mypageMain")
-	public String mypageMain() {
-		return "member/mypage/mypageMain";
-	}
 
 	@RequestMapping(value="/member/mypage/cartInsert")
 	public String cartInsert(Model mo,HttpSession session,
@@ -58,7 +59,6 @@ public class MemberController {
 		Member m= (Member) session.getAttribute("loginMember");
 		String msg="" ,loc="";
 		if(m!=null) {
-			
 			Cart c =Cart.builder().member(m).product(p).cartAmount(selAmount).build();
 			System.out.println(c);
 			//		int result=service.cartInsert(c);
@@ -113,7 +113,6 @@ public class MemberController {
 			int selAmount=1; //상품 개수
 			int fee = 2500; // 배송료
 			int totalPrice=sumMoney+fee;
-			
 			mv.addObject("totalPrice",totalPrice);
 			mv.addObject("sumMoney",sumMoney);
 			mv.addObject("sA",selAmount);
@@ -124,7 +123,7 @@ public class MemberController {
 			mv.setViewName("member/mypage/cart");
 			return mv;
 		} else {
-			return new ModelAndView("member/login/loginPage");
+			return new ModelAndView("loginPage");
 		}
 
 	}
@@ -200,7 +199,7 @@ public class MemberController {
 	   @RequestMapping("/member/mypage/productOrderList") // 구매내역
 	   public String orderDetail(Model mo,HttpSession session) {
 	      Member memberId = (Member) session.getAttribute("loginMember");
-
+	      
 	      String msg,loc="";
 	      if(memberId!=null) {
     	  System.out.println("id :"+ memberId);
@@ -265,6 +264,17 @@ public class MemberController {
 		result = true;
 		return result;
 	}
+	@RequestMapping("/member/zzimSelectDelete1.do") 
+	@ResponseBody
+	public boolean zzimSelectDelete1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String[] deleteArr = request.getParameterValues("deleteArr[]");
+		boolean result = false;
+		for (int i = 0; i < deleteArr.length; i++) {
+			service.zzimSelectDelete1(Long.parseLong(deleteArr[i]));
+		}
+		result = true;
+		return result;
+	}
 	
 	@RequestMapping("/member/zzimDelete.do") //개별 삭제(한 개 row만 삭제
 	public String zzimDelete(@RequestParam long likesCode) {
@@ -307,7 +317,6 @@ public class MemberController {
 			@RequestParam(value="addrDetail")String addrDetail, 
 			@RequestParam(value="adrPostNum")String adrPostNum, 
 				@RequestParam(value="addrRoadName")String addrRoadName) {
-		log.debug("dd{}",addrReceiver);
 		 Member memberId=(Member)session.getAttribute("loginMember");
 		 DeliveryLocation dl =DeliveryLocation.builder().addrBase(addrBase).addrDetail(addrDetail).
 				 addrPhone(addrPhone).addrReceiver(addrReceiver).addrRoadName(addrRoadName).

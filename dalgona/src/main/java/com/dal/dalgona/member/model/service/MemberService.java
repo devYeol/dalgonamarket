@@ -40,6 +40,8 @@ public interface MemberService {
 
 	long zzimSelectDelete(long likesCode); //찜 선택삭제
 	
+	long zzimSelectDelete1(long productCode);
+	
 //	void zzimDelete(long likesCode);
 
 	long zzimDelete(long likesCode);

@@ -25,6 +25,7 @@ text-decoration:none;
 .orderlist-container {
 	width: 100%;
 	position: relative;
+	/* margin-left: 5%; */
 	margin-left: 50px;
 }
 
@@ -241,38 +242,6 @@ img {
 			<button type="button" class="btn btn-danger"  id="productListMove">상품 페이지로 이동</button>
 			</c:when>
 			<c:otherwise>
-		<div>
-			<div class="pay">
-				<div>
-					<a href="#">1<br>전체 구매 내역
-					</a>
-				</div>
-				<div>
-					<a href="#">1<br>배송 중
-					</a>
-				</div>
-				<div>
-					<a href="#">1<br>배송 완료
-					</a>
-				</div>
-				<div>
-					<a href="#">1<br>환불 요청
-					</a>
-				</div>
-				<div>
-					<a href="#">1<br>환불 완료
-					</a>
-				</div>
-			</div>
-			<div class="somedate-search">
-				<input class="somedate" type="date"><b>~</b> <input
-					class="somedate" type="date">
-				<button class="btn-somedate">조회</button>
-			</div>
-			<div class="somedate-search">
-				<p>한번에 조회 가능한 기간은 최대 6개월 이고 환불은 배송 완료 후 7일 내만 가능합니다.</p>
-			</div>
-		</div>
 		<form action="${path }/member/mypage/cartInsert" class="cartMove">
 		<div>
 			<div class="orderlist-box">
@@ -300,7 +269,8 @@ img {
 										<input type="hidden" class="tdThumb"name="productThumb" value="${o.product.productThumb }"> --%>
 										<input type="hidden" class="tdPsel" name="selAmount" value="${sA }"> <!-- 상품개수 -->
 							<h3 style="margin-bottom: 0px; margin-left: 40px;">
-								주문날짜: ${o.productOrder.orderDate}
+							주문날짜:
+								<fmt:formatDate pattern="MM-dd" value="${o.productOrder.orderDate}"/>
 							</h3>
 						</td>
 							<td id="order-data" style="display: flex; ">
@@ -326,7 +296,7 @@ img {
 												&nbsp;원 <br><br>
 												<c:out value="수량 :${o.product.productAmount}개" /></span> <br><br>
 											<div style="float:left; margin-right:20px;">
-												<c:out value="${o.productOrder.orderDate}"/>
+												<fmt:formatDate pattern="MM-dd" value="${o.productOrder.orderDate}"/>
 													배송대기<br>
 											</div>
 										</div>
@@ -334,7 +304,6 @@ img {
 								</div>
 								<div class="check-btnbox" style="display: flex; float:right;">
 									<div class="check-btn">
-										<button type="button" class="btn">교환,반품신청</button>
 										<button type="button" id="cartMoves"class="cartMoves">장바구니 담기</button>
 										<button type="button" onclick="location.assign('${path}/product/productDetail/${o.product.productCode}')" class="btn">리뷰작성</button>
 									</div>
