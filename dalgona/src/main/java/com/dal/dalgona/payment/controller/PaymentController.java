@@ -86,23 +86,23 @@ public class PaymentController {
 		model.addAttribute("deliveryLocation", dl);
 
 		po = ProductOrder.builder().orderDate(new Date()).deliveryLocation(dl).orderStatus("주문대기").build();
-		log.debug("프로덕트오더 전 : {}", po.getOrderCode());
+//		log.debug("프로덕트오더 전 : {}", po.getOrderCode());
 		dlService.insertPo(po);
-		log.debug("프로덕트오더 후 : {}", po.getOrderCode());
+//		log.debug("프로덕트오더 후 : {}", po.getOrderCode());
 
 		long orderCode = po.getOrderCode();
 
 		ProductOrder po2 = dlService.selectPo(orderCode);
-		log.debug("프로덕트오더 : {}", po2);
+//		log.debug("프로덕트오더 : {}", po2);
 
 		OrderDetail od = OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount)
 				.product(p).build();
 
 		dlService.insertOd(od);
 
-		log.debug("dl : {}", dl);
-		log.debug("po : {}", po);
-		log.debug("od : {}", od);
+//		log.debug("dl : {}", dl);
+//		log.debug("po : {}", po);
+//		log.debug("od : {}", od);
 
 		return "order/payment/paymentCart";
 
@@ -148,23 +148,23 @@ public class PaymentController {
 
 			po = ProductOrder.builder().orderDate(new Date()).deliveryLocation(dl).orderStatus("주문대기")
 					.totalPrice(p.getProductPrice()).build();
-			log.debug("프로덕트오더 전 : {}", po.getOrderCode());
+//			log.debug("프로덕트오더 전 : {}", po.getOrderCode());
 			dlService.insertPo(po);
-			log.debug("프로덕트오더 후 : {}", po.getOrderCode());
+//			log.debug("프로덕트오더 후 : {}", po.getOrderCode());
 
 			long orderCode = po.getOrderCode();
 
 			ProductOrder po2 = dlService.selectPo(orderCode);
-			log.debug("프로덕트오더 : {}", po2);
+//			log.debug("프로덕트오더 : {}", po2);
 
 			OrderDetail od = OrderDetail.builder().productOrder(po2).orderOption(selectedOpt).orderAmount(selAmount)
 					.product(p).build();
 
 			dlService.insertOd(od);
 
-			log.debug("dl : {}", dl);
-			log.debug("po : {}", po);
-			log.debug("od : {}", od);
+//			log.debug("dl : {}", dl);
+//			log.debug("po : {}", po);
+//			log.debug("od : {}", od);
 
 			return "order/payment/paymentProduct";
 
