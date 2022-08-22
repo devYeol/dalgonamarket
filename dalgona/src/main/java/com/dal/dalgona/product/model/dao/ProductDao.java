@@ -14,6 +14,18 @@ import com.dal.dalgona.common.model.vo.Review;
 public interface ProductDao {
 	List<Product> selectProducts(SqlSession session);
 	
+	List<Product> selectProductsPlus(SqlSession session, Map<String, Object> param);
+	
+	int selectProductsPlusCount(SqlSession session, Map<String, Object> param);
+	
+	List<Product> selectProductsPlusPop(SqlSession session, Map<String, Object> param);
+	
+	int selectProductsPlusPopCount(SqlSession session, Map<String, Object> param);
+	
+	List<Product> selectTopBuy(SqlSession session);
+	
+	List<Product> selectTopZzim(SqlSession session);
+	
 	Product selectProduct(SqlSession session, long productCode);
 	
 	List<ProductOption> optionList(SqlSession session, long productCode);

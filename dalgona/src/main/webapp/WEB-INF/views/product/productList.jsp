@@ -16,25 +16,25 @@
 		<div style="diplay: block;">
 			<div style="display: flex; margin: 0 auto; max-width: 1200px; justify-content: space-between;">
 				<div class="category11">
-					<a class="button1 category11" id="cate1">ALL</a>
+					<a class="button1 category11" id="cate1" href="${path}/product/productList">ALL</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11" href="${path}/product/categoryList?categoryName=스낵">스낵</a>
+					<a class="button1 category11" href="${path}/product/productList?categoryName=스낵">스낵</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11" href="${path}/product/categoryList?categoryName=사탕">사탕</a>
+					<a class="button1 category11" href="${path}/product/productList?categoryName=사탕">사탕</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11" href="${path}/product/categoryList?categoryName=초코">초코</a>
+					<a class="button1 category11" href="${path}/product/productList?categoryName=초코">초코</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11" href="${path}/product/categoryList?categoryName=젤리">젤리</a>
+					<a class="button1 category11" href="${path}/product/productList?categoryName=젤리">젤리</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11" href="${path}/product/categoryList?categoryName=완구">완구</a>
+					<a class="button1 category11" href="${path}/product/productList?categoryName=완구">완구</a>
 				</div>
 				<div class="category11">
-					<a class="button1 category11" href="${path}/product/categoryList?categoryName=기타">기타</a>
+					<a class="button1 category11" href="${path}/product/productList?categoryName=기타">기타</a>
 				</div>
 			</div>
 		</div>
@@ -83,27 +83,27 @@
 	
 	<div class="shopHeader">
 		<div style="font-size: 24px;">
-			<span>검색 결과: 00 건</span>
+			<span>검색 결과: ${listCounts} 건</span>
 		</div>
 		<div style="diplay:flex;">
 			<table>
 				<tr>
 					<td>
 						<div style="">
-							<select style="text-align: center; font-size: 15px;">
-								<option value="">최신순</option>
-								<option value="">인기순</option>
-								<option value="">가격순</option>
-								<option value="">별점순</option>
-								<option value="">리뷰순</option>
+							<select style="text-align: center; font-size: 15px;" onchange="selectBoxChange(this.value)" id="searchSeq">
+								<option value="최신순">최신순</option>
+								<option value="가격순">가격순</option>
+								<option value="인기순">인기순</option>
+								<option value="별점순">별점순</option>
+								<!-- <option value="리뷰순">리뷰순</option> -->
 							</select>
 						</div>
 					</td>
 					<td>
 						<div style="font-size: 12px;">
-							<button style="border: none; background-color: white;">오름차순</button>
+							<button style="border: none; background-color: white;" onclick="orderChange(this.value);" value="ASC">오름차순</button>
 							<br>
-							<button style="border: none; background-color: white;">내림차순</button>
+							<button style="border: none; background-color: white;" onclick="orderChange(this.value);" value="DESC">내림차순</button>
 						</div>
 					</td>
 				</tr>
@@ -166,19 +166,9 @@
 	
 	<br> <br>
 	
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
+	<div id="pageBar">
+    	${pageBar}
+    </div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
@@ -212,6 +202,17 @@
      });
  });
  
+ const selectBoxChange = function(value) {
+	 console.log(value);
+	 location.assign('${path}/product/productList?cPage=${cPage}&categoryName=${categoryName}&searchSeq='+value+'&searchOrder=${searchOrder}');
+ }
+ 
+ const orderChange = function(value) {
+	 console.log(value);
+	 location.assign('${path}/product/productList?cPage=${cPage}&categoryName=${categoryName}&searchSeq=${searchSeq}&searchOrder='+value);
+ } 
+ 
+ $("#searchSeq").val('${searchSeq}').prop('selected',true);
 </script>
 
 
