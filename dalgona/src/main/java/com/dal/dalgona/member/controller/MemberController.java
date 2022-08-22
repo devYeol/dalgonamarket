@@ -46,16 +46,10 @@ public class MemberController {
 	  private ProductService pservice;
 	 
 	 @Autowired
-	 private PjeServiceImpl Pjeservice;
 	
 	@Value(value = "${spring.mail.username}")
 	private String adminEmail;
 
-
-	@GetMapping("/member/mypage/mypageMain")
-	public String mypageMain() {
-		return "member/mypage/mypageMain";
-	}
 
 	@RequestMapping(value="/member/mypage/cartInsert")
 	public String cartInsert(Model mo,HttpSession session,
@@ -129,7 +123,7 @@ public class MemberController {
 			mv.setViewName("member/mypage/cart");
 			return mv;
 		} else {
-			return new ModelAndView("member/login/loginPage");
+			return new ModelAndView("loginPage");
 		}
 
 	}
