@@ -118,7 +118,7 @@ figure:hover figcaption {
                <div class="gallery-img">
                   <a href="${path}/product/productList?categoryName=스낵">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                     <img class="category-img" src="${path }/resources/images/mainpage/과자일러.png"
+                     <img class="category-img" src="${path }/resources/images/mainpage/과자.jpg"
                         style="width: 100%; height: 280px;">
                   </a>
                </div>
@@ -130,7 +130,7 @@ figure:hover figcaption {
                <div class="gallery-img">
                   <a href="${path}/product/productList?categoryName=사탕">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                     <img class="category-img" src="${path }/resources/images/mainpage/사탕일러.png"
+                     <img class="category-img" src="${path }/resources/images/mainpage/캔디.jpg"
                         style="width: 100%; height: 280px;">
                   </a>
                </div>
@@ -142,7 +142,7 @@ figure:hover figcaption {
                <div class="gallery-img">
                   <a href="${path}/product/productList?categoryName=초코">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                     <img class="category-img" src="${path }/resources/images/mainpage/초콜렛일러.png"
+                     <img class="category-img" src="${path }/resources/images/mainpage/초콜렛.jpg"
                         style="width: 100%; height: 280px;">                  
                   </a>
                </div>
@@ -154,7 +154,7 @@ figure:hover figcaption {
                <div class="gallery-img">
                   <a href="${path}/product/productList?categoryName=젤리">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                     <img class="category-img" src="${path }/resources/images/mainpage/젤리일러.png"
+                     <img class="category-img" src="${path }/resources/images/mainpage/젤리2.jpg"
                         style="width: 100%; height: 280px;">
                   </a>
                </div>
@@ -166,7 +166,7 @@ figure:hover figcaption {
                <div class="gallery-img">
                   <a href="${path}/product/productList?categoryName=완구">
                      <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg> -->
-                     <img class="category-img" src="${path }/resources/images/mainpage/완구일러.png"
+                     <img class="category-img" src="${path }/resources/images/mainpage/완구.jpg"
                         style="width: 100%; height: 280px;">
                   </a>
                </div>
