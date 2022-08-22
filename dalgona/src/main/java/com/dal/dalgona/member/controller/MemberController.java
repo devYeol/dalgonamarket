@@ -123,7 +123,8 @@ public class MemberController {
 			mv.setViewName("member/mypage/cart");
 			return mv;
 		} else {
-			return new ModelAndView("loginPage");
+			mv.setViewName("member/login/loginPage");
+			return mv;
 		}
 
 	}
