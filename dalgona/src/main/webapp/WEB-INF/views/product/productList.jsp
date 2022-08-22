@@ -55,14 +55,14 @@
 				<!--
 					<img src="/resources/images/msw/digivice.png" class="d-block w-100" alt="..." height="150" width="400 px">
  				-->
-				<img src="https://kream-phinf.pstatic.net/MjAyMjA0MDVfMjg3/MDAxNjQ5MTQxNDQ2MzE5.KmWw8NmaqtTEZQUwNB-qnk94UoRvQjTBz6HE-wcsUPwg.uKnTAOmBZVasnEheK77-WjBLVGkrxaev02tgaOLhqz0g.JPEG/a_e84bc8e4c55041b29479627fc78a2469.jpg" class="d-block w-100" alt="..." height="150" width="400 px">
+				<img src="${path}/resources/images/shop_banner1.png" class="d-block w-100" alt="..." height="150" width="400 px">
 			</div>
 			<div class="carousel-item">
-				<img src="https://kream-phinf.pstatic.net/MjAyMjA0MDVfMjg3/MDAxNjQ5MTQxNDQ2MzE5.KmWw8NmaqtTEZQUwNB-qnk94UoRvQjTBz6HE-wcsUPwg.uKnTAOmBZVasnEheK77-WjBLVGkrxaev02tgaOLhqz0g.JPEG/a_e84bc8e4c55041b29479627fc78a2469.jpg" class="d-block w-100" alt="..." height="150">
+				<img src="${path}/resources/images/shop_banner1.png" class="d-block w-100" alt="..." height="150">
 			</div>
 			<div class="carousel-item">
 				<img
-					src="https://kream-phinf.pstatic.net/MjAyMjA0MDVfMjg3/MDAxNjQ5MTQxNDQ2MzE5.KmWw8NmaqtTEZQUwNB-qnk94UoRvQjTBz6HE-wcsUPwg.uKnTAOmBZVasnEheK77-WjBLVGkrxaev02tgaOLhqz0g.JPEG/a_e84bc8e4c55041b29479627fc78a2469.jpg" class="d-block w-100" alt="..." height="150">
+					src="${path}/resources/images/shop_banner1.png" class="d-block w-100" alt="..." height="150">
 			</div>
 		</div>
 		

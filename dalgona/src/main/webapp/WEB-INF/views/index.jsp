@@ -94,7 +94,7 @@ figure:hover figcaption {
                class="d-block w-100" alt="..." height="520">
          </div>
          <div class="carousel-item">
-            <img src="https://i.pinimg.com/564x/74/8d/d1/748dd1a5810cfe4393cc90c063df3a49.jpg" 
+            <img src="${path }/resources/images/banner/banner3.jpg" 
                class="d-block w-100" alt="..." height="520" width="400 px">
          </div>
       </div>
